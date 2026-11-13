@@ -1,5 +1,5 @@
 {
-  "snapshot": "2026-11-13T19:49:34+08:00",
+  "snapshot": "2026-11-13T20:55:10+08:00",
   "metric": "within-fold pair-weighted AUROC; AP and operating-point metrics are named separately",
   "model_versions": {
     "paper": {
@@ -20,20 +20,20 @@
       "people": 55,
       "available_n": 1964,
       "cohort_n": 1990,
-      "all_available_auroc": 0.47488527900146843,
-      "auroc": 0.4722898648081283,
-      "ap": 0.17489706281981454,
-      "within_person_auroc": 0.4614140263867553,
+      "all_available_auroc": 0.474885279001468,
+      "auroc": 0.472289864808128,
+      "ap": 0.174897062819814,
+      "within_person_auroc": 0.461414026386755,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.4890836408364084,
-      "sensitivity_at_validation_10pct_FPR": 0.08333333333333333,
-      "held_false_positive_rate": 0.10516605166051661,
-      "auroc_low": 0.3804333849847485,
-      "auroc_high": 0.5624953497681445,
-      "ap_low": 0.12176034805037164,
-      "ap_high": 0.27850122275211114,
-      "within_person_auroc_low": 0.3878755999963582,
-      "within_person_auroc_high": 0.5239895493214459
+      "balanced_accuracy": 0.489083640836408,
+      "sensitivity_at_validation_10pct_FPR": 0.083333333333333,
+      "held_false_positive_rate": 0.105166051660517,
+      "auroc_low": 0.380433384984748,
+      "auroc_high": 0.562495349768144,
+      "ap_low": 0.121760348050372,
+      "ap_high": 0.278501222752111,
+      "within_person_auroc_low": 0.387875599996358,
+      "within_person_auroc_high": 0.523989549321446
     },
     {
       "dataset": "RESILIENT",
@@ -42,20 +42,20 @@
       "people": 55,
       "available_n": 1950,
       "cohort_n": 1990,
-      "all_available_auroc": 0.4728243181670247,
-      "auroc": 0.47305026077383117,
-      "ap": 0.16594260429770694,
-      "within_person_auroc": 0.4670685760840144,
+      "all_available_auroc": 0.472824318167025,
+      "auroc": 0.473050260773831,
+      "ap": 0.165942604297707,
+      "within_person_auroc": 0.467068576084014,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.4841281105118744,
-      "sensitivity_at_validation_10pct_FPR": 0.05128205128205128,
-      "held_false_positive_rate": 0.08302583025830258,
-      "auroc_low": 0.3868027367484759,
-      "auroc_high": 0.5638846013375831,
-      "ap_low": 0.11695373467271966,
-      "ap_high": 0.25303980642330187,
-      "within_person_auroc_low": 0.3964871627196798,
-      "within_person_auroc_high": 0.5368271691642191
+      "balanced_accuracy": 0.484128110511874,
+      "sensitivity_at_validation_10pct_FPR": 0.051282051282051,
+      "held_false_positive_rate": 0.083025830258302,
+      "auroc_low": 0.386802736748476,
+      "auroc_high": 0.563884601337583,
+      "ap_low": 0.11695373467272,
+      "ap_high": 0.253039806423302,
+      "within_person_auroc_low": 0.39648716271968,
+      "within_person_auroc_high": 0.536827169164219
     },
     {
       "dataset": "RESILIENT",
@@ -64,20 +64,20 @@
       "people": 55,
       "available_n": 1990,
       "cohort_n": 1990,
-      "all_available_auroc": 0.7148709508220442,
-      "auroc": 0.7165169199764884,
-      "ap": 0.32885627330170586,
-      "within_person_auroc": 0.5579760692541713,
+      "all_available_auroc": 0.714870950822044,
+      "auroc": 0.716516919976488,
+      "ap": 0.328856273301706,
+      "within_person_auroc": 0.557976069254171,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.5966328413284133,
-      "sensitivity_at_validation_10pct_FPR": 0.2916666666666667,
-      "held_false_positive_rate": 0.0984009840098401,
-      "auroc_low": 0.6211490083479322,
+      "balanced_accuracy": 0.596632841328413,
+      "sensitivity_at_validation_10pct_FPR": 0.291666666666667,
+      "held_false_positive_rate": 0.09840098400984,
+      "auroc_low": 0.621149008347932,
       "auroc_high": 0.770967032666628,
-      "ap_low": 0.22853604329387736,
-      "ap_high": 0.4383018687203062,
-      "within_person_auroc_low": 0.4899737036196322,
-      "within_person_auroc_high": 0.6213449556380977
+      "ap_low": 0.228536043293877,
+      "ap_high": 0.438301868720306,
+      "within_person_auroc_low": 0.489973703619632,
+      "within_person_auroc_high": 0.621344955638098
     },
     {
       "dataset": "RESILIENT",
@@ -86,20 +86,20 @@
       "people": 55,
       "available_n": 1990,
       "cohort_n": 1990,
-      "all_available_auroc": 0.7595452983414424,
-      "auroc": 0.7608531362834831,
-      "ap": 0.34338337726510826,
-      "within_person_auroc": 0.4681843517902048,
+      "all_available_auroc": 0.759545298341442,
+      "auroc": 0.760853136283483,
+      "ap": 0.343383377265108,
+      "within_person_auroc": 0.468184351790205,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.6096662408931781,
-      "sensitivity_at_validation_10pct_FPR": 0.34294871794871795,
-      "held_false_positive_rate": 0.12361623616236163,
-      "auroc_low": 0.6316979052787576,
-      "auroc_high": 0.8238003430929648,
-      "ap_low": 0.23599341008977043,
-      "ap_high": 0.45973007084604867,
-      "within_person_auroc_low": 0.3958069395413772,
-      "within_person_auroc_high": 0.5446772888117921
+      "balanced_accuracy": 0.609666240893178,
+      "sensitivity_at_validation_10pct_FPR": 0.342948717948718,
+      "held_false_positive_rate": 0.123616236162362,
+      "auroc_low": 0.631697905278758,
+      "auroc_high": 0.823800343092965,
+      "ap_low": 0.23599341008977,
+      "ap_high": 0.459730070846049,
+      "within_person_auroc_low": 0.395806939541377,
+      "within_person_auroc_high": 0.544677288811792
     },
     {
       "dataset": "RESILIENT",
@@ -108,20 +108,20 @@
       "people": 55,
       "available_n": 1990,
       "cohort_n": 1990,
-      "all_available_auroc": 0.7999421223028089,
-      "auroc": 0.8005523367014676,
-      "ap": 0.43476417079506435,
-      "within_person_auroc": 0.5372717308060415,
+      "all_available_auroc": 0.799942122302809,
+      "auroc": 0.800552336701468,
+      "ap": 0.434764170795064,
+      "within_person_auroc": 0.537271730806042,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.6667435424354243,
-      "sensitivity_at_validation_10pct_FPR": 0.4583333333333333,
-      "held_false_positive_rate": 0.12484624846248463,
-      "auroc_low": 0.6914895269423075,
+      "balanced_accuracy": 0.666743542435424,
+      "sensitivity_at_validation_10pct_FPR": 0.458333333333333,
+      "held_false_positive_rate": 0.124846248462485,
+      "auroc_low": 0.691489526942308,
       "auroc_high": 0.855527788433601,
-      "ap_low": 0.3093138201972343,
-      "ap_high": 0.5596172408641835,
-      "within_person_auroc_low": 0.45672526645439443,
-      "within_person_auroc_high": 0.6174620055165208
+      "ap_low": 0.309313820197234,
+      "ap_high": 0.559617240864184,
+      "within_person_auroc_low": 0.456725266454394,
+      "within_person_auroc_high": 0.617462005516521
     },
     {
       "dataset": "RESILIENT",
@@ -130,19 +130,19 @@
       "people": 55,
       "available_n": 1990,
       "cohort_n": 1990,
-      "all_available_auroc": 0.7480059324639621,
-      "auroc": 0.7493632266912978,
-      "ap": 0.3575312534060831,
-      "within_person_auroc": 0.5645758670115619,
+      "all_available_auroc": 0.748005932463962,
+      "auroc": 0.749363226691298,
+      "ap": 0.357531253406083,
+      "within_person_auroc": 0.564575867011562,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.6026882864982496,
-      "sensitivity_at_validation_10pct_FPR": 0.3173076923076923,
-      "held_false_positive_rate": 0.11193111931119311,
+      "balanced_accuracy": 0.60268828649825,
+      "sensitivity_at_validation_10pct_FPR": 0.317307692307692,
+      "held_false_positive_rate": 0.111931119311193,
       "auroc_low": 0.640733269746556,
-      "auroc_high": 0.8051830813821637,
-      "ap_low": 0.23772840641869125,
-      "ap_high": 0.4765389243642127,
-      "within_person_auroc_low": 0.48755770048252783,
+      "auroc_high": 0.805183081382164,
+      "ap_low": 0.237728406418691,
+      "ap_high": 0.476538924364213,
+      "within_person_auroc_low": 0.487557700482528,
       "within_person_auroc_high": 0.640836302945275
     },
     {
@@ -153,19 +153,19 @@
       "available_n": 1990,
       "cohort_n": 1990,
       "all_available_auroc": 0.763442999511657,
-      "auroc": 0.7650609716274339,
-      "ap": 0.3628815534722924,
-      "within_person_auroc": 0.5026003368477365,
+      "auroc": 0.765060971627434,
+      "ap": 0.362881553472292,
+      "within_person_auroc": 0.502600336847736,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.6025759296054499,
-      "sensitivity_at_validation_10pct_FPR": 0.3269230769230769,
-      "held_false_positive_rate": 0.12177121771217712,
-      "auroc_low": 0.6385655536544393,
-      "auroc_high": 0.8259988717899884,
-      "ap_low": 0.24802673794100655,
-      "ap_high": 0.48002422937598266,
-      "within_person_auroc_low": 0.4226913824107247,
-      "within_person_auroc_high": 0.5848965518961647
+      "balanced_accuracy": 0.60257592960545,
+      "sensitivity_at_validation_10pct_FPR": 0.326923076923077,
+      "held_false_positive_rate": 0.121771217712177,
+      "auroc_low": 0.638565553654439,
+      "auroc_high": 0.825998871789988,
+      "ap_low": 0.248026737941006,
+      "ap_high": 0.480024229375983,
+      "within_person_auroc_low": 0.422691382410725,
+      "within_person_auroc_high": 0.584896551896165
     },
     {
       "dataset": "RESILIENT",
@@ -174,20 +174,20 @@
       "people": 55,
       "available_n": 1976,
       "cohort_n": 1990,
-      "all_available_auroc": 0.5225591245387287,
-      "auroc": 0.5287037814538025,
-      "ap": 0.1831938587932411,
-      "within_person_auroc": 0.4808528950953318,
+      "all_available_auroc": 0.522559124538729,
+      "auroc": 0.528703781453802,
+      "ap": 0.183193858793241,
+      "within_person_auroc": 0.480852895095332,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.4875165578578863,
-      "sensitivity_at_validation_10pct_FPR": 0.11217948717948718,
-      "held_false_positive_rate": 0.13714637146371464,
+      "balanced_accuracy": 0.487516557857886,
+      "sensitivity_at_validation_10pct_FPR": 0.112179487179487,
+      "held_false_positive_rate": 0.137146371463715,
       "auroc_low": 0.425256130917333,
-      "auroc_high": 0.6318572131532336,
-      "ap_low": 0.12293733707440609,
+      "auroc_high": 0.631857213153234,
+      "ap_low": 0.122937337074406,
       "ap_high": 0.302310886119925,
-      "within_person_auroc_low": 0.4176942595924053,
-      "within_person_auroc_high": 0.5409620128222881
+      "within_person_auroc_low": 0.417694259592405,
+      "within_person_auroc_high": 0.540962012822288
     },
     {
       "dataset": "RESILIENT",
@@ -196,20 +196,20 @@
       "people": 55,
       "available_n": 1976,
       "cohort_n": 1990,
-      "all_available_auroc": 0.4569358855501627,
-      "auroc": 0.45500601785764266,
-      "ap": 0.13957519463205284,
-      "within_person_auroc": 0.5151397868777424,
+      "all_available_auroc": 0.456935885550163,
+      "auroc": 0.455006017857643,
+      "ap": 0.139575194632053,
+      "within_person_auroc": 0.515139786877742,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.4589897341281105,
-      "sensitivity_at_validation_10pct_FPR": 0.009615384615384616,
-      "held_false_positive_rate": 0.09163591635916359,
-      "auroc_low": 0.3482538132084799,
-      "auroc_high": 0.5545005656837019,
-      "ap_low": 0.09863987539762539,
-      "ap_high": 0.23266372951820008,
-      "within_person_auroc_low": 0.4524689796084974,
-      "within_person_auroc_high": 0.5772786008215635
+      "balanced_accuracy": 0.45898973412811,
+      "sensitivity_at_validation_10pct_FPR": 0.009615384615385,
+      "held_false_positive_rate": 0.091635916359164,
+      "auroc_low": 0.34825381320848,
+      "auroc_high": 0.554500565683702,
+      "ap_low": 0.098639875397625,
+      "ap_high": 0.2326637295182,
+      "within_person_auroc_low": 0.452468979608497,
+      "within_person_auroc_high": 0.577278600821564
     },
     {
       "dataset": "RESILIENT",
@@ -218,20 +218,20 @@
       "people": 55,
       "available_n": 1990,
       "cohort_n": 1990,
-      "all_available_auroc": 0.5868165457866845,
-      "auroc": 0.5874082160084343,
-      "ap": 0.20457256633408347,
-      "within_person_auroc": 0.5462518148733921,
+      "all_available_auroc": 0.586816545786684,
+      "auroc": 0.587408216008434,
+      "ap": 0.204572566334083,
+      "within_person_auroc": 0.546251814873392,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.5143048065096035,
-      "sensitivity_at_validation_10pct_FPR": 0.14423076923076922,
-      "held_false_positive_rate": 0.11562115621156212,
+      "balanced_accuracy": 0.514304806509604,
+      "sensitivity_at_validation_10pct_FPR": 0.144230769230769,
+      "held_false_positive_rate": 0.115621156211562,
       "auroc_low": 0.512924723156444,
-      "auroc_high": 0.6562432916132617,
-      "ap_low": 0.14266178750254985,
-      "ap_high": 0.3052313871967507,
-      "within_person_auroc_low": 0.47858407421463195,
-      "within_person_auroc_high": 0.6114252767024083
+      "auroc_high": 0.656243291613262,
+      "ap_low": 0.14266178750255,
+      "ap_high": 0.305231387196751,
+      "within_person_auroc_low": 0.478584074214632,
+      "within_person_auroc_high": 0.611425276702408
     },
     {
       "dataset": "RESILIENT",
@@ -240,20 +240,20 @@
       "people": 55,
       "available_n": 1990,
       "cohort_n": 1990,
-      "all_available_auroc": 0.5380093689522328,
-      "auroc": 0.5396758753883617,
-      "ap": 0.19277076978336527,
-      "within_person_auroc": 0.4239873001139434,
+      "all_available_auroc": 0.538009368952233,
+      "auroc": 0.539675875388362,
+      "ap": 0.192770769783365,
+      "within_person_auroc": 0.423987300113943,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.5273677736777368,
-      "sensitivity_at_validation_10pct_FPR": 0.16666666666666666,
-      "held_false_positive_rate": 0.11193111931119311,
+      "balanced_accuracy": 0.527367773677737,
+      "sensitivity_at_validation_10pct_FPR": 0.166666666666667,
+      "held_false_positive_rate": 0.111931119311193,
       "auroc_low": 0.491489647402402,
-      "auroc_high": 0.5822913915399741,
-      "ap_low": 0.1361469621845034,
-      "ap_high": 0.2752003894761807,
-      "within_person_auroc_low": 0.3606227828139848,
-      "within_person_auroc_high": 0.4852996217985369
+      "auroc_high": 0.582291391539974,
+      "ap_low": 0.136146962184503,
+      "ap_high": 0.275200389476181,
+      "within_person_auroc_low": 0.360622782813985,
+      "within_person_auroc_high": 0.485299621798537
     },
     {
       "dataset": "RESILIENT",
@@ -262,20 +262,20 @@
       "people": 55,
       "available_n": 1990,
       "cohort_n": 1990,
-      "all_available_auroc": 0.5183399952974371,
-      "auroc": 0.5211931219152648,
-      "ap": 0.21263351098537342,
-      "within_person_auroc": 0.4621139040818945,
+      "all_available_auroc": 0.518339995297437,
+      "auroc": 0.521193121915265,
+      "ap": 0.212633510985373,
+      "within_person_auroc": 0.462113904081894,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.48578389630050145,
-      "sensitivity_at_validation_10pct_FPR": 0.10256410256410256,
-      "held_false_positive_rate": 0.13099630996309963,
-      "auroc_low": 0.41567249565284353,
-      "auroc_high": 0.6429473398231494,
-      "ap_low": 0.14424191315900903,
-      "ap_high": 0.34620087717889103,
-      "within_person_auroc_low": 0.3714328605282052,
-      "within_person_auroc_high": 0.5514558601233793
+      "balanced_accuracy": 0.485783896300501,
+      "sensitivity_at_validation_10pct_FPR": 0.102564102564102,
+      "held_false_positive_rate": 0.1309963099631,
+      "auroc_low": 0.415672495652844,
+      "auroc_high": 0.64294733982315,
+      "ap_low": 0.144241913159009,
+      "ap_high": 0.346200877178891,
+      "within_person_auroc_low": 0.371432860528205,
+      "within_person_auroc_high": 0.551455860123379
     },
     {
       "dataset": "RESILIENT",
@@ -284,20 +284,20 @@
       "people": 55,
       "available_n": 1990,
       "cohort_n": 1990,
-      "all_available_auroc": 0.46322957550326466,
-      "auroc": 0.46143439602168296,
-      "ap": 0.18573356345388048,
-      "within_person_auroc": 0.4705555585897888,
+      "all_available_auroc": 0.463229575503265,
+      "auroc": 0.461434396021683,
+      "ap": 0.18573356345388,
+      "within_person_auroc": 0.470555558589789,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.4731762702242407,
-      "sensitivity_at_validation_10pct_FPR": 0.10256410256410256,
-      "held_false_positive_rate": 0.15621156211562115,
-      "auroc_low": 0.35505202909940703,
-      "auroc_high": 0.5799774091390278,
-      "ap_low": 0.1282882679590374,
-      "ap_high": 0.3188010420058666,
-      "within_person_auroc_low": 0.3798474325866499,
-      "within_person_auroc_high": 0.5657534567574276
+      "balanced_accuracy": 0.473176270224241,
+      "sensitivity_at_validation_10pct_FPR": 0.102564102564102,
+      "held_false_positive_rate": 0.156211562115621,
+      "auroc_low": 0.355052029099407,
+      "auroc_high": 0.579977409139028,
+      "ap_low": 0.128288267959037,
+      "ap_high": 0.318801042005867,
+      "within_person_auroc_low": 0.37984743258665,
+      "within_person_auroc_high": 0.565753456757428
     },
     {
       "dataset": "RESILIENT",
@@ -306,20 +306,20 @@
       "people": 55,
       "available_n": 1990,
       "cohort_n": 1990,
-      "all_available_auroc": 0.5543326882381667,
-      "auroc": 0.5580186786837219,
-      "ap": 0.20703672774992185,
-      "within_person_auroc": 0.48542973970013725,
+      "all_available_auroc": 0.554332688238167,
+      "auroc": 0.558018678683722,
+      "ap": 0.207036727749922,
+      "within_person_auroc": 0.485429739700137,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.5112534298419907,
-      "sensitivity_at_validation_10pct_FPR": 0.22115384615384615,
-      "held_false_positive_rate": 0.1986469864698647,
-      "auroc_low": 0.4250758276257034,
-      "auroc_high": 0.6588246160292557,
-      "ap_low": 0.13651367318679017,
-      "ap_high": 0.3128787037224106,
-      "within_person_auroc_low": 0.40639244866574503,
-      "within_person_auroc_high": 0.5606282323405616
+      "balanced_accuracy": 0.511253429841991,
+      "sensitivity_at_validation_10pct_FPR": 0.221153846153846,
+      "held_false_positive_rate": 0.198646986469865,
+      "auroc_low": 0.425075827625703,
+      "auroc_high": 0.658824616029256,
+      "ap_low": 0.13651367318679,
+      "ap_high": 0.312878703722411,
+      "within_person_auroc_low": 0.406392448665745,
+      "within_person_auroc_high": 0.560628232340562
     },
     {
       "dataset": "RESILIENT",
@@ -328,20 +328,86 @@
       "people": 55,
       "available_n": 1990,
       "cohort_n": 1990,
-      "all_available_auroc": 0.7813217819096022,
-      "auroc": 0.7815097825174238,
-      "ap": 0.39440369281020277,
-      "within_person_auroc": 0.5915953566458119,
+      "all_available_auroc": 0.781321781909602,
+      "auroc": 0.781509782517424,
+      "ap": 0.394403692810203,
+      "within_person_auroc": 0.591595356645812,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.6543310625413947,
-      "sensitivity_at_validation_10pct_FPR": 0.46794871794871795,
-      "held_false_positive_rate": 0.15928659286592867,
-      "auroc_low": 0.6760025846170434,
-      "auroc_high": 0.8406157726103742,
-      "ap_low": 0.29565395055561944,
-      "ap_high": 0.5311537397588083,
-      "within_person_auroc_low": 0.5143333831801936,
-      "within_person_auroc_high": 0.6626493018158888
+      "balanced_accuracy": 0.654331062541395,
+      "sensitivity_at_validation_10pct_FPR": 0.467948717948718,
+      "held_false_positive_rate": 0.159286592865929,
+      "auroc_low": 0.676002584617043,
+      "auroc_high": 0.840615772610374,
+      "ap_low": 0.295653950555619,
+      "ap_high": 0.531153739758808,
+      "within_person_auroc_low": 0.514333383180194,
+      "within_person_auroc_high": 0.662649301815889
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "fixed",
+      "n": 1938,
+      "people": 55,
+      "available_n": 1990,
+      "cohort_n": 1990,
+      "all_available_auroc": 0.779241802166796,
+      "auroc": 0.780166260811151,
+      "ap": 0.413736558680675,
+      "within_person_auroc": 0.59077926026427,
+      "people_with_both_classes": 36,
+      "balanced_accuracy": 0.662763743022046,
+      "sensitivity_at_validation_10pct_FPR": 0.474358974358974,
+      "held_false_positive_rate": 0.148831488314883,
+      "auroc_low": 0.679165288075116,
+      "auroc_high": 0.83994549065445,
+      "ap_low": 0.309228097792894,
+      "ap_high": 0.546268354376704,
+      "within_person_auroc_low": 0.509410078334618,
+      "within_person_auroc_high": 0.664749613999795
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "coordinates_only",
+      "n": 1938,
+      "people": 55,
+      "available_n": 1990,
+      "cohort_n": 1990,
+      "all_available_auroc": 0.773698203982709,
+      "auroc": 0.774661553820173,
+      "ap": 0.386989111506735,
+      "within_person_auroc": 0.567451748432281,
+      "people_with_both_classes": 36,
+      "balanced_accuracy": 0.653473602043713,
+      "sensitivity_at_validation_10pct_FPR": 0.471153846153846,
+      "held_false_positive_rate": 0.164206642066421,
+      "auroc_low": 0.673802115754568,
+      "auroc_high": 0.836661366148969,
+      "ap_low": 0.28546360099825,
+      "ap_high": 0.522832928726429,
+      "within_person_auroc_low": 0.495779993421025,
+      "within_person_auroc_high": 0.638977044049048
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "no_coordinates",
+      "n": 1938,
+      "people": 55,
+      "available_n": 1990,
+      "cohort_n": 1990,
+      "all_available_auroc": 0.577320986091266,
+      "auroc": 0.571593845924184,
+      "ap": 0.240329719206372,
+      "within_person_auroc": 0.503335856266028,
+      "people_with_both_classes": 36,
+      "balanced_accuracy": 0.512950610275334,
+      "sensitivity_at_validation_10pct_FPR": 0.198717948717949,
+      "held_false_positive_rate": 0.172816728167282,
+      "auroc_low": 0.458020626829038,
+      "auroc_high": 0.690385565385427,
+      "ap_low": 0.168048030295082,
+      "ap_high": 0.354417487462054,
+      "within_person_auroc_low": 0.417069914148301,
+      "within_person_auroc_high": 0.586337571196858
     },
     {
       "dataset": "RESILIENT",
@@ -350,20 +416,20 @@
       "people": 55,
       "available_n": 1990,
       "cohort_n": 1990,
-      "all_available_auroc": 0.7814212592016495,
-      "auroc": 0.7818363329321428,
-      "ap": 0.3946738501646229,
-      "within_person_auroc": 0.5930544909648445,
+      "all_available_auroc": 0.78142125920165,
+      "auroc": 0.781836332932143,
+      "ap": 0.394673850164623,
+      "within_person_auroc": 0.593054490964844,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.6586361055918252,
-      "sensitivity_at_validation_10pct_FPR": 0.46794871794871795,
-      "held_false_positive_rate": 0.15067650676506766,
-      "auroc_low": 0.6809131404423325,
-      "auroc_high": 0.8414671337286476,
-      "ap_low": 0.29463793297315055,
-      "ap_high": 0.5306217243545641,
-      "within_person_auroc_low": 0.5137887570832127,
-      "within_person_auroc_high": 0.6653956973985335
+      "balanced_accuracy": 0.658636105591825,
+      "sensitivity_at_validation_10pct_FPR": 0.467948717948718,
+      "held_false_positive_rate": 0.150676506765068,
+      "auroc_low": 0.680913140442332,
+      "auroc_high": 0.841467133728648,
+      "ap_low": 0.29463793297315,
+      "ap_high": 0.530621724354564,
+      "within_person_auroc_low": 0.513788757083213,
+      "within_person_auroc_high": 0.665395697398534
     },
     {
       "dataset": "RESILIENT",
@@ -372,20 +438,20 @@
       "people": 55,
       "available_n": 1990,
       "cohort_n": 1990,
-      "all_available_auroc": 0.7809510029119716,
-      "auroc": 0.7813231822804415,
-      "ap": 0.39317348800758106,
-      "within_person_auroc": 0.5897763237367903,
+      "all_available_auroc": 0.780951002911972,
+      "auroc": 0.781323182280442,
+      "ap": 0.393173488007581,
+      "within_person_auroc": 0.58977632373679,
       "people_with_both_classes": 36,
-      "balanced_accuracy": 0.6577135963667329,
-      "sensitivity_at_validation_10pct_FPR": 0.46794871794871795,
-      "held_false_positive_rate": 0.15252152521525214,
-      "auroc_low": 0.6791862499572385,
-      "auroc_high": 0.8412133530299085,
-      "ap_low": 0.2942225118931782,
-      "ap_high": 0.5305304820872881,
+      "balanced_accuracy": 0.657713596366733,
+      "sensitivity_at_validation_10pct_FPR": 0.467948717948718,
+      "held_false_positive_rate": 0.152521525215252,
+      "auroc_low": 0.679186249957238,
+      "auroc_high": 0.841213353029908,
+      "ap_low": 0.294222511893178,
+      "ap_high": 0.530530482087288,
       "within_person_auroc_low": 0.511846693520848,
-      "within_person_auroc_high": 0.6621398240208961
+      "within_person_auroc_high": 0.662139824020896
     },
     {
       "dataset": "BrisT1D-Open",
@@ -394,20 +460,20 @@
       "people": 19,
       "available_n": 1230,
       "cohort_n": 1238,
-      "all_available_auroc": 0.48862878113879005,
-      "auroc": 0.48743761103121563,
-      "ap": 0.1603333886824387,
-      "within_person_auroc": 0.5347205716762742,
+      "all_available_auroc": 0.48862878113879,
+      "auroc": 0.487437611031216,
+      "ap": 0.160333388682439,
+      "within_person_auroc": 0.534720571676274,
       "people_with_both_classes": 15,
-      "balanced_accuracy": 0.4905510314015019,
-      "sensitivity_at_validation_10pct_FPR": 0.1456953642384106,
-      "held_false_positive_rate": 0.1645933014354067,
-      "auroc_low": 0.38266800656746053,
-      "auroc_high": 0.5971123134824401,
-      "ap_low": 0.09880897617901152,
-      "ap_high": 0.28121264600280443,
-      "within_person_auroc_low": 0.44464281265305755,
-      "within_person_auroc_high": 0.6217251102374386
+      "balanced_accuracy": 0.490551031401502,
+      "sensitivity_at_validation_10pct_FPR": 0.145695364238411,
+      "held_false_positive_rate": 0.164593301435407,
+      "auroc_low": 0.38266800656746,
+      "auroc_high": 0.59711231348244,
+      "ap_low": 0.098808976179012,
+      "ap_high": 0.281212646002804,
+      "within_person_auroc_low": 0.444642812653058,
+      "within_person_auroc_high": 0.621725110237439
     },
     {
       "dataset": "BrisT1D-Open",
@@ -416,19 +482,19 @@
       "people": 19,
       "available_n": 1196,
       "cohort_n": 1238,
-      "all_available_auroc": 0.5262950117023376,
-      "auroc": 0.5262950117023376,
-      "ap": 0.2136404451604713,
-      "within_person_auroc": 0.4847383175535447,
+      "all_available_auroc": 0.526295011702338,
+      "auroc": 0.526295011702338,
+      "ap": 0.213640445160471,
+      "within_person_auroc": 0.484738317553545,
       "people_with_both_classes": 15,
-      "balanced_accuracy": 0.5041604613580912,
-      "sensitivity_at_validation_10pct_FPR": 0.19205298013245034,
-      "held_false_positive_rate": 0.18373205741626794,
-      "auroc_low": 0.37372507805195343,
-      "auroc_high": 0.6341907914995344,
-      "ap_low": 0.09454700936185581,
-      "ap_high": 0.32907308233422067,
-      "within_person_auroc_low": 0.3797232253316046,
+      "balanced_accuracy": 0.504160461358091,
+      "sensitivity_at_validation_10pct_FPR": 0.19205298013245,
+      "held_false_positive_rate": 0.183732057416268,
+      "auroc_low": 0.373725078051953,
+      "auroc_high": 0.634190791499534,
+      "ap_low": 0.094547009361856,
+      "ap_high": 0.329073082334221,
+      "within_person_auroc_low": 0.379723225331605,
       "within_person_auroc_high": 0.581662223018519
     },
     {
@@ -439,19 +505,19 @@
       "available_n": 1238,
       "cohort_n": 1238,
       "all_available_auroc": 0.566070237830629,
-      "auroc": 0.5649550235456673,
-      "ap": 0.19460677129039597,
-      "within_person_auroc": 0.5261876506869869,
+      "auroc": 0.564955023545667,
+      "ap": 0.194606771290396,
+      "within_person_auroc": 0.526187650686987,
       "people_with_both_classes": 15,
-      "balanced_accuracy": 0.5442758008808898,
-      "sensitivity_at_validation_10pct_FPR": 0.2052980132450331,
-      "held_false_positive_rate": 0.11674641148325358,
-      "auroc_low": 0.48759493774923834,
-      "auroc_high": 0.6163408757780011,
-      "ap_low": 0.11774335987047548,
-      "ap_high": 0.28063076375687934,
-      "within_person_auroc_low": 0.4661550628238756,
-      "within_person_auroc_high": 0.5917931212935779
+      "balanced_accuracy": 0.54427580088089,
+      "sensitivity_at_validation_10pct_FPR": 0.205298013245033,
+      "held_false_positive_rate": 0.116746411483254,
+      "auroc_low": 0.487594937749238,
+      "auroc_high": 0.616340875778001,
+      "ap_low": 0.117743359870475,
+      "ap_high": 0.280630763756879,
+      "within_person_auroc_low": 0.466155062823876,
+      "within_person_auroc_high": 0.591793121293578
     },
     {
       "dataset": "BrisT1D-Open",
@@ -460,20 +526,20 @@
       "people": 19,
       "available_n": 1238,
       "cohort_n": 1238,
-      "all_available_auroc": 0.6389753278506335,
-      "auroc": 0.6367763584581113,
-      "ap": 0.2654279933800353,
-      "within_person_auroc": 0.44982033225446283,
+      "all_available_auroc": 0.638975327850634,
+      "auroc": 0.636776358458111,
+      "ap": 0.265427993380035,
+      "within_person_auroc": 0.449820332254463,
       "people_with_both_classes": 15,
-      "balanced_accuracy": 0.5626699198326943,
-      "sensitivity_at_validation_10pct_FPR": 0.25165562913907286,
-      "held_false_positive_rate": 0.12631578947368421,
-      "auroc_low": 0.46839978813487493,
-      "auroc_high": 0.7247052802806322,
-      "ap_low": 0.1318197238587546,
-      "ap_high": 0.3917065056126148,
-      "within_person_auroc_low": 0.34783306713366885,
-      "within_person_auroc_high": 0.5588605668838662
+      "balanced_accuracy": 0.562669919832694,
+      "sensitivity_at_validation_10pct_FPR": 0.251655629139073,
+      "held_false_positive_rate": 0.126315789473684,
+      "auroc_low": 0.468399788134875,
+      "auroc_high": 0.724705280280632,
+      "ap_low": 0.131819723858755,
+      "ap_high": 0.391706505612615,
+      "within_person_auroc_low": 0.347833067133669,
+      "within_person_auroc_high": 0.558860566883866
     },
     {
       "dataset": "BrisT1D-Open",
@@ -482,18 +548,18 @@
       "people": 19,
       "available_n": 1238,
       "cohort_n": 1238,
-      "all_available_auroc": 0.7088241831518115,
-      "auroc": 0.7082593125229112,
-      "ap": 0.33680036587656825,
-      "within_person_auroc": 0.6232072222669672,
+      "all_available_auroc": 0.708824183151812,
+      "auroc": 0.708259312522911,
+      "ap": 0.336800365876568,
+      "within_person_auroc": 0.623207222266967,
       "people_with_both_classes": 15,
-      "balanced_accuracy": 0.6076681770651795,
-      "sensitivity_at_validation_10pct_FPR": 0.33112582781456956,
-      "held_false_positive_rate": 0.11578947368421053,
-      "auroc_low": 0.5264982067125461,
-      "auroc_high": 0.8071321544957396,
-      "ap_low": 0.15342357253160777,
-      "ap_high": 0.4658780770211953,
+      "balanced_accuracy": 0.60766817706518,
+      "sensitivity_at_validation_10pct_FPR": 0.33112582781457,
+      "held_false_positive_rate": 0.11578947368421,
+      "auroc_low": 0.526498206712546,
+      "auroc_high": 0.80713215449574,
+      "ap_low": 0.153423572531608,
+      "ap_high": 0.465878077021195,
       "within_person_auroc_low": 0.529744455695263,
       "within_person_auroc_high": 0.715769787439924
     },
@@ -505,19 +571,19 @@
       "available_n": 1238,
       "cohort_n": 1238,
       "all_available_auroc": 0.597466103578573,
-      "auroc": 0.5973690889095677,
-      "ap": 0.19026607577970772,
-      "within_person_auroc": 0.4897836878633894,
+      "auroc": 0.597369088909568,
+      "ap": 0.190266075779708,
+      "within_person_auroc": 0.489783687863389,
       "people_with_both_classes": 15,
-      "balanced_accuracy": 0.5550904654773599,
-      "sensitivity_at_validation_10pct_FPR": 0.23841059602649006,
-      "held_false_positive_rate": 0.12822966507177033,
-      "auroc_low": 0.47799522680529877,
-      "auroc_high": 0.6500297707188969,
-      "ap_low": 0.10800969486314313,
-      "ap_high": 0.2772296677426184,
-      "within_person_auroc_low": 0.41359700131403776,
-      "within_person_auroc_high": 0.5667174001721301
+      "balanced_accuracy": 0.55509046547736,
+      "sensitivity_at_validation_10pct_FPR": 0.23841059602649,
+      "held_false_positive_rate": 0.12822966507177,
+      "auroc_low": 0.477995226805299,
+      "auroc_high": 0.650029770718897,
+      "ap_low": 0.108009694863143,
+      "ap_high": 0.277229667742618,
+      "within_person_auroc_low": 0.413597001314038,
+      "within_person_auroc_high": 0.56671740017213
     },
     {
       "dataset": "BrisT1D-Open",
@@ -526,20 +592,20 @@
       "people": 19,
       "available_n": 1238,
       "cohort_n": 1238,
-      "all_available_auroc": 0.6541592576128028,
-      "auroc": 0.6509742548571751,
-      "ap": 0.27865128661243016,
-      "within_person_auroc": 0.4674846245885823,
+      "all_available_auroc": 0.654159257612803,
+      "auroc": 0.650974254857175,
+      "ap": 0.27865128661243,
+      "within_person_auroc": 0.467484624588582,
       "people_with_both_classes": 15,
-      "balanced_accuracy": 0.5683735226084476,
-      "sensitivity_at_validation_10pct_FPR": 0.2582781456953642,
-      "held_false_positive_rate": 0.1215311004784689,
-      "auroc_low": 0.48320811129588015,
-      "auroc_high": 0.7456599977449597,
-      "ap_low": 0.15305856723954006,
-      "ap_high": 0.38312625482786433,
-      "within_person_auroc_low": 0.3522664632011396,
-      "within_person_auroc_high": 0.5807007132521692
+      "balanced_accuracy": 0.568373522608448,
+      "sensitivity_at_validation_10pct_FPR": 0.258278145695364,
+      "held_false_positive_rate": 0.121531100478469,
+      "auroc_low": 0.48320811129588,
+      "auroc_high": 0.74565999774496,
+      "ap_low": 0.15305856723954,
+      "ap_high": 0.383126254827864,
+      "within_person_auroc_low": 0.35226646320114,
+      "within_person_auroc_high": 0.580700713252169
     },
     {
       "dataset": "BrisT1D-Open",
@@ -548,20 +614,20 @@
       "people": 19,
       "available_n": 1233,
       "cohort_n": 1238,
-      "all_available_auroc": 0.6337938127136782,
-      "auroc": 0.6327439866903534,
-      "ap": 0.23274271783531597,
-      "within_person_auroc": 0.5355488168188338,
+      "all_available_auroc": 0.633793812713678,
+      "auroc": 0.632743986690353,
+      "ap": 0.232742717835316,
+      "within_person_auroc": 0.535548816818834,
       "people_with_both_classes": 15,
-      "balanced_accuracy": 0.49361830222757375,
-      "sensitivity_at_validation_10pct_FPR": 0.2781456953642384,
-      "held_false_positive_rate": 0.2909090909090909,
-      "auroc_low": 0.5166672975296392,
-      "auroc_high": 0.7488847713367522,
-      "ap_low": 0.12394787851946243,
-      "ap_high": 0.36879408563255706,
-      "within_person_auroc_low": 0.4093486690156322,
-      "within_person_auroc_high": 0.6616949579762622
+      "balanced_accuracy": 0.493618302227574,
+      "sensitivity_at_validation_10pct_FPR": 0.278145695364238,
+      "held_false_positive_rate": 0.290909090909091,
+      "auroc_low": 0.516667297529639,
+      "auroc_high": 0.748884771336752,
+      "ap_low": 0.123947878519462,
+      "ap_high": 0.368794085632557,
+      "within_person_auroc_low": 0.409348669015632,
+      "within_person_auroc_high": 0.661694957976262
     },
     {
       "dataset": "BrisT1D-Open",
@@ -570,20 +636,20 @@
       "people": 19,
       "available_n": 1233,
       "cohort_n": 1238,
-      "all_available_auroc": 0.44311643550045865,
-      "auroc": 0.4393029354538533,
+      "all_available_auroc": 0.443116435500459,
+      "auroc": 0.439302935453853,
       "ap": 0.135790410617392,
-      "within_person_auroc": 0.4320270267070652,
+      "within_person_auroc": 0.432027026707065,
       "people_with_both_classes": 15,
-      "balanced_accuracy": 0.4517348458442917,
-      "sensitivity_at_validation_10pct_FPR": 0.0728476821192053,
-      "held_false_positive_rate": 0.16937799043062202,
-      "auroc_low": 0.3017931937724874,
-      "auroc_high": 0.6162009865891036,
-      "ap_low": 0.07788994060691805,
-      "ap_high": 0.22497125541552157,
-      "within_person_auroc_low": 0.31155871693501536,
-      "within_person_auroc_high": 0.5472081892851535
+      "balanced_accuracy": 0.451734845844292,
+      "sensitivity_at_validation_10pct_FPR": 0.072847682119205,
+      "held_false_positive_rate": 0.169377990430622,
+      "auroc_low": 0.301793193772487,
+      "auroc_high": 0.616200986589104,
+      "ap_low": 0.077889940606918,
+      "ap_high": 0.224971255415522,
+      "within_person_auroc_low": 0.311558716935015,
+      "within_person_auroc_high": 0.547208189285153
     },
     {
       "dataset": "BrisT1D-Open",
@@ -592,20 +658,20 @@
       "people": 19,
       "available_n": 1238,
       "cohort_n": 1238,
-      "all_available_auroc": 0.5323683040675705,
-      "auroc": 0.5284380904040832,
-      "ap": 0.15772193297044265,
-      "within_person_auroc": 0.5001698217006422,
+      "all_available_auroc": 0.53236830406757,
+      "auroc": 0.528438090404083,
+      "ap": 0.157721932970443,
+      "within_person_auroc": 0.500169821700642,
       "people_with_both_classes": 15,
-      "balanced_accuracy": 0.5083304287208086,
-      "sensitivity_at_validation_10pct_FPR": 0.13245033112582782,
-      "held_false_positive_rate": 0.11578947368421053,
-      "auroc_low": 0.4136245742835391,
-      "auroc_high": 0.6626841065929966,
-      "ap_low": 0.0944265684674792,
-      "ap_high": 0.2665598036047864,
-      "within_person_auroc_low": 0.40868449181990013,
-      "within_person_auroc_high": 0.5902829265078546
+      "balanced_accuracy": 0.508330428720809,
+      "sensitivity_at_validation_10pct_FPR": 0.132450331125828,
+      "held_false_positive_rate": 0.11578947368421,
+      "auroc_low": 0.413624574283539,
+      "auroc_high": 0.662684106592997,
+      "ap_low": 0.094426568467479,
+      "ap_high": 0.266559803604786,
+      "within_person_auroc_low": 0.4086844918199,
+      "within_person_auroc_high": 0.590282926507855
     },
     {
       "dataset": "BrisT1D-Open",
@@ -614,19 +680,19 @@
       "people": 19,
       "available_n": 1238,
       "cohort_n": 1238,
-      "all_available_auroc": 0.45921315847966215,
-      "auroc": 0.4623128330936469,
-      "ap": 0.13155645859836654,
-      "within_person_auroc": 0.4252663493414347,
+      "all_available_auroc": 0.459213158479662,
+      "auroc": 0.462312833093647,
+      "ap": 0.131556458598367,
+      "within_person_auroc": 0.425266349341435,
       "people_with_both_classes": 15,
-      "balanced_accuracy": 0.4650939510123895,
-      "sensitivity_at_validation_10pct_FPR": 0.07947019867549669,
-      "held_false_positive_rate": 0.1492822966507177,
-      "auroc_low": 0.3352243618850766,
-      "auroc_high": 0.5490485644934624,
-      "ap_low": 0.0734110579887135,
-      "ap_high": 0.22141880568855885,
-      "within_person_auroc_low": 0.33835891004293156,
+      "balanced_accuracy": 0.46509395101239,
+      "sensitivity_at_validation_10pct_FPR": 0.079470198675497,
+      "held_false_positive_rate": 0.149282296650718,
+      "auroc_low": 0.335224361885077,
+      "auroc_high": 0.549048564493462,
+      "ap_low": 0.073411057988714,
+      "ap_high": 0.221418805688559,
+      "within_person_auroc_low": 0.338358910042932,
       "within_person_auroc_high": 0.517231664568636
     },
     {
@@ -636,20 +702,20 @@
       "people": 19,
       "available_n": 1238,
       "cohort_n": 1238,
-      "all_available_auroc": 0.5103356301400311,
-      "auroc": 0.5074584778501536,
-      "ap": 0.1832437389060871,
-      "within_person_auroc": 0.5165058108276415,
+      "all_available_auroc": 0.510335630140031,
+      "auroc": 0.507458477850154,
+      "ap": 0.183243738906087,
+      "within_person_auroc": 0.516505810827641,
       "people_with_both_classes": 15,
-      "balanced_accuracy": 0.4685636427009728,
-      "sensitivity_at_validation_10pct_FPR": 0.2251655629139073,
-      "held_false_positive_rate": 0.2880382775119617,
-      "auroc_low": 0.32752884508132424,
-      "auroc_high": 0.7127044684198492,
-      "ap_low": 0.08865822187587837,
-      "ap_high": 0.33849079178028624,
-      "within_person_auroc_low": 0.39796796908936255,
-      "within_person_auroc_high": 0.6281325760052249
+      "balanced_accuracy": 0.468563642700973,
+      "sensitivity_at_validation_10pct_FPR": 0.225165562913907,
+      "held_false_positive_rate": 0.288038277511962,
+      "auroc_low": 0.327528845081324,
+      "auroc_high": 0.712704468419849,
+      "ap_low": 0.088658221875878,
+      "ap_high": 0.338490791780286,
+      "within_person_auroc_low": 0.397967969089362,
+      "within_person_auroc_high": 0.628132576005225
     },
     {
       "dataset": "BrisT1D-Open",
@@ -658,20 +724,20 @@
       "people": 19,
       "available_n": 1238,
       "cohort_n": 1238,
-      "all_available_auroc": 0.5201989330962437,
-      "auroc": 0.5174971096635931,
-      "ap": 0.20878316828215185,
-      "within_person_auroc": 0.5474615766401931,
+      "all_available_auroc": 0.520198933096244,
+      "auroc": 0.517497109663593,
+      "ap": 0.208783168282152,
+      "within_person_auroc": 0.547461576640193,
       "people_with_both_classes": 15,
-      "balanced_accuracy": 0.4508919801007637,
-      "sensitivity_at_validation_10pct_FPR": 0.052980132450331126,
-      "held_false_positive_rate": 0.15119617224880383,
-      "auroc_low": 0.32720384766637284,
-      "auroc_high": 0.7070811275386413,
-      "ap_low": 0.1103324469835705,
-      "ap_high": 0.3336425387303641,
-      "within_person_auroc_low": 0.4327751172447802,
-      "within_person_auroc_high": 0.6658776729442543
+      "balanced_accuracy": 0.450891980100764,
+      "sensitivity_at_validation_10pct_FPR": 0.052980132450331,
+      "held_false_positive_rate": 0.151196172248804,
+      "auroc_low": 0.327203847666373,
+      "auroc_high": 0.707081127538641,
+      "ap_low": 0.11033244698357,
+      "ap_high": 0.333642538730364,
+      "within_person_auroc_low": 0.43277511724478,
+      "within_person_auroc_high": 0.665877672944254
     },
     {
       "dataset": "BrisT1D-Open",
@@ -680,20 +746,20 @@
       "people": 19,
       "available_n": 1238,
       "cohort_n": 1238,
-      "all_available_auroc": 0.6502278284063125,
-      "auroc": 0.6497758226884358,
-      "ap": 0.26185006512998116,
-      "within_person_auroc": 0.5231055725169895,
+      "all_available_auroc": 0.650227828406312,
+      "auroc": 0.649775822688436,
+      "ap": 0.261850065129981,
+      "within_person_auroc": 0.52310557251699,
       "people_with_both_classes": 15,
-      "balanced_accuracy": 0.5343261827054089,
+      "balanced_accuracy": 0.534326182705409,
       "sensitivity_at_validation_10pct_FPR": 0.271523178807947,
-      "held_false_positive_rate": 0.20287081339712917,
-      "auroc_low": 0.48293665222171406,
-      "auroc_high": 0.7505385790691788,
-      "ap_low": 0.14276258757512594,
-      "ap_high": 0.38905685407653373,
-      "within_person_auroc_low": 0.41921963930656886,
-      "within_person_auroc_high": 0.6342567564184058
+      "held_false_positive_rate": 0.202870813397129,
+      "auroc_low": 0.482936652221714,
+      "auroc_high": 0.750538579069179,
+      "ap_low": 0.142762587575126,
+      "ap_high": 0.389056854076534,
+      "within_person_auroc_low": 0.419219639306569,
+      "within_person_auroc_high": 0.634256756418406
     },
     {
       "dataset": "BrisT1D-Open",
@@ -702,20 +768,86 @@
       "people": 19,
       "available_n": 1238,
       "cohort_n": 1238,
-      "all_available_auroc": 0.6533118470771283,
-      "auroc": 0.6538927896681048,
-      "ap": 0.2657020735141707,
-      "within_person_auroc": 0.6239088480210364,
+      "all_available_auroc": 0.653311847077128,
+      "auroc": 0.653892789668105,
+      "ap": 0.265702073514171,
+      "within_person_auroc": 0.623908848021036,
       "people_with_both_classes": 15,
       "balanced_accuracy": 0.600855540416363,
-      "sensitivity_at_validation_10pct_FPR": 0.3509933774834437,
-      "held_false_positive_rate": 0.1492822966507177,
+      "sensitivity_at_validation_10pct_FPR": 0.350993377483444,
+      "held_false_positive_rate": 0.149282296650718,
       "auroc_low": 0.491170633442783,
-      "auroc_high": 0.7783701345615993,
-      "ap_low": 0.1560199165292463,
-      "ap_high": 0.41118747241355064,
-      "within_person_auroc_low": 0.5235557867109857,
+      "auroc_high": 0.778370134561599,
+      "ap_low": 0.156019916529246,
+      "ap_high": 0.411187472413551,
+      "within_person_auroc_low": 0.523555786710986,
       "within_person_auroc_high": 0.728414204067032
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "fixed",
+      "n": 1196,
+      "people": 19,
+      "available_n": 1238,
+      "cohort_n": 1238,
+      "all_available_auroc": 0.694376528117359,
+      "auroc": 0.695118856272735,
+      "ap": 0.317984850062155,
+      "within_person_auroc": 0.657052821060029,
+      "people_with_both_classes": 15,
+      "balanced_accuracy": 0.573158211603663,
+      "sensitivity_at_validation_10pct_FPR": 0.258278145695364,
+      "held_false_positive_rate": 0.111961722488038,
+      "auroc_low": 0.571191937351371,
+      "auroc_high": 0.798787779391529,
+      "ap_low": 0.155057815595661,
+      "ap_high": 0.439237258971648,
+      "within_person_auroc_low": 0.587170612105922,
+      "within_person_auroc_high": 0.729859445181518
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "coordinates_only",
+      "n": 1196,
+      "people": 19,
+      "available_n": 1238,
+      "cohort_n": 1238,
+      "all_available_auroc": 0.674149811069126,
+      "auroc": 0.672616529904408,
+      "ap": 0.320881897417764,
+      "within_person_auroc": 0.595368303778574,
+      "people_with_both_classes": 15,
+      "balanced_accuracy": 0.574115149402706,
+      "sensitivity_at_validation_10pct_FPR": 0.258278145695364,
+      "held_false_positive_rate": 0.110047846889952,
+      "auroc_low": 0.480121672903926,
+      "auroc_high": 0.810321439067778,
+      "ap_low": 0.141387928824755,
+      "ap_high": 0.459754131108297,
+      "within_person_auroc_low": 0.482969261212362,
+      "within_person_auroc_high": 0.706423823815855
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "no_coordinates",
+      "n": 1196,
+      "people": 19,
+      "available_n": 1238,
+      "cohort_n": 1238,
+      "all_available_auroc": 0.653367414981107,
+      "auroc": 0.654202972111778,
+      "ap": 0.220717169929572,
+      "within_person_auroc": 0.579051468345755,
+      "people_with_both_classes": 15,
+      "balanced_accuracy": 0.513615767293007,
+      "sensitivity_at_validation_10pct_FPR": 0.211920529801324,
+      "held_false_positive_rate": 0.184688995215311,
+      "auroc_low": 0.497871480091742,
+      "auroc_high": 0.753858042320097,
+      "ap_low": 0.11579632581693,
+      "ap_high": 0.374624995332093,
+      "within_person_auroc_low": 0.486315877786758,
+      "within_person_auroc_high": 0.664117481373119
     },
     {
       "dataset": "BrisT1D-Open",
@@ -724,20 +856,20 @@
       "people": 19,
       "available_n": 1238,
       "cohort_n": 1238,
-      "all_available_auroc": 0.6536730384529895,
-      "auroc": 0.6539773848800158,
-      "ap": 0.2776731464098759,
-      "within_person_auroc": 0.6241656860788012,
+      "all_available_auroc": 0.65367303845299,
+      "auroc": 0.653977384880016,
+      "ap": 0.277673146409876,
+      "within_person_auroc": 0.624165686078801,
       "people_with_both_classes": 15,
-      "balanced_accuracy": 0.5989796888367819,
-      "sensitivity_at_validation_10pct_FPR": 0.3443708609271523,
-      "held_false_positive_rate": 0.14641148325358852,
-      "auroc_low": 0.49143214903892685,
-      "auroc_high": 0.7778144005074304,
-      "ap_low": 0.15580951303984508,
-      "ap_high": 0.41608775289150457,
-      "within_person_auroc_low": 0.5264401725592738,
-      "within_person_auroc_high": 0.7259533838108589
+      "balanced_accuracy": 0.598979688836782,
+      "sensitivity_at_validation_10pct_FPR": 0.344370860927152,
+      "held_false_positive_rate": 0.146411483253588,
+      "auroc_low": 0.491432149038927,
+      "auroc_high": 0.77781440050743,
+      "ap_low": 0.155809513039845,
+      "ap_high": 0.416087752891504,
+      "within_person_auroc_low": 0.526440172559274,
+      "within_person_auroc_high": 0.725953383810859
     },
     {
       "dataset": "BrisT1D-Open",
@@ -747,292 +879,340 @@
       "available_n": 1238,
       "cohort_n": 1238,
       "all_available_auroc": 0.655812402756168,
-      "auroc": 0.6563178524095536,
-      "ap": 0.27737081003213926,
-      "within_person_auroc": 0.6284900935901508,
+      "auroc": 0.656317852409554,
+      "ap": 0.277370810032139,
+      "within_person_auroc": 0.628490093590151,
       "people_with_both_classes": 15,
-      "balanced_accuracy": 0.6041287746760037,
-      "sensitivity_at_validation_10pct_FPR": 0.36423841059602646,
-      "held_false_positive_rate": 0.15598086124401914,
-      "auroc_low": 0.49697486635254184,
-      "auroc_high": 0.7782141460419431,
-      "ap_low": 0.15440651356273968,
-      "ap_high": 0.41886220860161605,
-      "within_person_auroc_low": 0.5323336116114007,
-      "within_person_auroc_high": 0.7269960271222784
+      "balanced_accuracy": 0.604128774676004,
+      "sensitivity_at_validation_10pct_FPR": 0.364238410596026,
+      "held_false_positive_rate": 0.155980861244019,
+      "auroc_low": 0.496974866352542,
+      "auroc_high": 0.778214146041943,
+      "ap_low": 0.15440651356274,
+      "ap_high": 0.418862208601616,
+      "within_person_auroc_low": 0.532333611611401,
+      "within_person_auroc_high": 0.726996027122278
     }
   ],
   "paired_auroc_intervals": [
     {
       "dataset": "RESILIENT",
       "comparison": "DNB daily",
-      "delta": 0.30921991770929547,
-      "low": 0.17199758145607388,
-      "high": 0.40175490281502135,
+      "delta": 0.309219917709295,
+      "low": 0.171997581456074,
+      "high": 0.401754902815021,
       "strongest_observed": null
     },
     {
       "dataset": "RESILIENT",
       "comparison": "DNB-tuned daily",
-      "delta": 0.3084595217435926,
-      "low": 0.16424932627017608,
-      "high": 0.4026351024038474,
+      "delta": 0.308459521743593,
+      "low": 0.164249326270176,
+      "high": 0.402635102403847,
       "strongest_observed": null
     },
     {
       "dataset": "RESILIENT",
       "comparison": "FCM-score-LR daily",
-      "delta": 0.06499286254093539,
-      "low": -0.010327425852515717,
-      "high": 0.1401118966824397,
+      "delta": 0.064992862540935,
+      "low": -0.010327425852516,
+      "high": 0.14011189668244,
       "strongest_observed": null
     },
     {
       "dataset": "RESILIENT",
       "comparison": "CATCH-score-LR daily",
-      "delta": 0.0206566462339407,
-      "low": -0.05324888762422394,
-      "high": 0.10978594022559743,
+      "delta": 0.020656646233941,
+      "low": -0.053248887624224,
+      "high": 0.109785940225597,
       "strongest_observed": null
     },
     {
       "dataset": "RESILIENT",
       "comparison": "previous_HNE",
-      "delta": -0.01904255418404388,
-      "low": -0.04659570850329889,
-      "high": 0.012853119679361829,
+      "delta": -0.019042554184044,
+      "low": -0.046595708503299,
+      "high": 0.012853119679362,
       "strongest_observed": null
     },
     {
       "dataset": "RESILIENT",
       "comparison": "FCM daily",
-      "delta": 0.03214655582612591,
-      "low": -0.036774674193963575,
-      "high": 0.10457871612878598,
+      "delta": 0.032146555826126,
+      "low": -0.036774674193964,
+      "high": 0.104578716128786,
       "strongest_observed": null
     },
     {
       "dataset": "RESILIENT",
       "comparison": "CATCH daily",
-      "delta": 0.01644881088998984,
-      "low": -0.05951754393311774,
-      "high": 0.10649916687245564,
+      "delta": 0.01644881088999,
+      "low": -0.059517543933118,
+      "high": 0.106499166872456,
       "strongest_observed": null
     },
     {
       "dataset": "RESILIENT",
       "comparison": "DNB 3h",
-      "delta": 0.2528060010636213,
-      "low": 0.12036445431839134,
-      "high": 0.3607714560258139,
+      "delta": 0.252806001063621,
+      "low": 0.120364454318391,
+      "high": 0.360771456025814,
       "strongest_observed": null
     },
     {
       "dataset": "RESILIENT",
       "comparison": "DNB 3h calibrated",
-      "delta": 0.3265037646597811,
-      "low": 0.1712901631496568,
-      "high": 0.4543154681017517,
+      "delta": 0.326503764659781,
+      "low": 0.171290163149657,
+      "high": 0.454315468101752,
       "strongest_observed": null
     },
     {
       "dataset": "RESILIENT",
       "comparison": "FCM 3h",
-      "delta": 0.19410156650898946,
-      "low": 0.10128387694002468,
-      "high": 0.2676917929085973,
+      "delta": 0.194101566508989,
+      "low": 0.101283876940025,
+      "high": 0.267691792908597,
       "strongest_observed": null
     },
     {
       "dataset": "RESILIENT",
       "comparison": "FCM 3h calibrated",
-      "delta": 0.24183390712906205,
-      "low": 0.14032689710679483,
-      "high": 0.3073034577716043,
+      "delta": 0.241833907129062,
+      "low": 0.140326897106795,
+      "high": 0.307303457771604,
       "strongest_observed": null
     },
     {
       "dataset": "RESILIENT",
       "comparison": "CATCH 3h",
-      "delta": 0.26031666060215897,
-      "low": 0.12159337868687643,
-      "high": 0.36609063910588896,
+      "delta": 0.260316660602159,
+      "low": 0.121593378686876,
+      "high": 0.366090639105889,
       "strongest_observed": null
     },
     {
       "dataset": "RESILIENT",
       "comparison": "CATCH 3h calibrated",
-      "delta": 0.3200753864957408,
-      "low": 0.15856905213060798,
-      "high": 0.43966948682188073,
+      "delta": 0.320075386495741,
+      "low": 0.158569052130608,
+      "high": 0.439669486821881,
       "strongest_observed": null
     },
     {
       "dataset": "RESILIENT",
       "comparison": "Chronos-2 FT",
-      "delta": 0.22349110383370185,
-      "low": 0.10214979133591263,
-      "high": 0.33943132795589215,
+      "delta": 0.223491103833702,
+      "low": 0.102149791335913,
+      "high": 0.339431327955892,
+      "strongest_observed": null
+    },
+    {
+      "dataset": "RESILIENT",
+      "comparison": "fixed",
+      "delta": 0.001343521706272,
+      "low": -0.009112144049346,
+      "high": 0.009606765972969,
+      "strongest_observed": null
+    },
+    {
+      "dataset": "RESILIENT",
+      "comparison": "coordinates_only",
+      "delta": 0.00684822869725,
+      "low": -0.010996836725047,
+      "high": 0.021638065103615,
+      "strongest_observed": null
+    },
+    {
+      "dataset": "RESILIENT",
+      "comparison": "no_coordinates",
+      "delta": 0.209915936593239,
+      "low": 0.082207760676779,
+      "high": 0.311784522755105,
       "strongest_observed": null
     },
     {
       "dataset": "RESILIENT",
       "comparison": "best_constant",
-      "delta": -0.0003265504147190734,
-      "low": -0.0061936008400493014,
-      "high": 0.002937376767858018,
+      "delta": -0.000326550414719,
+      "low": -0.006193600840049,
+      "high": 0.002937376767858,
       "strongest_observed": null
     },
     {
       "dataset": "RESILIENT",
       "comparison": "uniform",
-      "delta": 0.00018660023698224837,
-      "low": -0.0029599000046093616,
-      "high": 0.0021365961135930197,
+      "delta": 0.000186600236982,
+      "low": -0.002959900004609,
+      "high": 0.002136596113593,
       "strongest_observed": null
     },
     {
       "dataset": "RESILIENT",
       "comparison": "strongest_external",
-      "delta": 0.01644881088998984,
-      "low": -0.062255525388967205,
-      "high": 0.0909317196462737,
+      "delta": 0.01644881088999,
+      "low": -0.062255525388967,
+      "high": 0.090931719646274,
       "strongest_observed": "CATCH daily"
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "DNB daily",
-      "delta": 0.1664551786368892,
-      "low": -0.012344571076456106,
-      "high": 0.29411349402564935,
+      "delta": 0.166455178636889,
+      "low": -0.012344571076456,
+      "high": 0.294113494025649,
       "strongest_observed": null
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "DNB-tuned daily",
-      "delta": 0.1275977779657672,
-      "low": -0.07202245678889117,
-      "high": 0.2895732471156295,
+      "delta": 0.127597777965767,
+      "low": -0.072022456788891,
+      "high": 0.28957324711563,
       "strongest_observed": null
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "FCM-score-LR daily",
-      "delta": 0.08893776612243753,
-      "low": -0.044554709882852164,
-      "high": 0.22869982719537113,
+      "delta": 0.088937766122438,
+      "low": -0.044554709882852,
+      "high": 0.228699827195371,
       "strongest_observed": null
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "CATCH-score-LR daily",
-      "delta": 0.01711643120999351,
-      "low": -0.051088698652715786,
-      "high": 0.13389149898206498,
+      "delta": 0.017116431209994,
+      "low": -0.051088698652716,
+      "high": 0.133891498982065,
       "strongest_observed": null
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "previous_HNE",
-      "delta": -0.054366522854806365,
-      "low": -0.12936340036180277,
-      "high": 0.034928098563618074,
+      "delta": -0.054366522854806,
+      "low": -0.129363400361803,
+      "high": 0.034928098563618,
       "strongest_observed": null
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "FCM daily",
-      "delta": 0.05652370075853708,
-      "low": -0.03891338236031003,
-      "high": 0.1809868895173684,
+      "delta": 0.056523700758537,
+      "low": -0.03891338236031,
+      "high": 0.180986889517368,
       "strongest_observed": null
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "CATCH daily",
-      "delta": 0.0029185348109297404,
-      "low": -0.07542511148960825,
-      "high": 0.12354414900620904,
+      "delta": 0.00291853481093,
+      "low": -0.075425111489608,
+      "high": 0.123544149006209,
       "strongest_observed": null
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "DNB 3h",
-      "delta": 0.021148802977751457,
-      "low": -0.14414193921972354,
-      "high": 0.20688273898466003,
+      "delta": 0.021148802977751,
+      "low": -0.144141939219724,
+      "high": 0.20688273898466,
       "strongest_observed": null
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "DNB 3h calibrated",
-      "delta": 0.21458985421425153,
-      "low": -0.029586115655008197,
-      "high": 0.42204152881931994,
+      "delta": 0.214589854214252,
+      "low": -0.029586115655008,
+      "high": 0.42204152881932,
       "strongest_observed": null
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "FCM 3h",
-      "delta": 0.12545469926402164,
-      "low": -0.07288166331960173,
+      "delta": 0.125454699264022,
+      "low": -0.072881663319602,
       "high": 0.293597521830546,
       "strongest_observed": null
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "FCM 3h calibrated",
-      "delta": 0.19157995657445792,
-      "low": -0.015091945127143586,
-      "high": 0.37181092664251064,
+      "delta": 0.191579956574458,
+      "low": -0.015091945127144,
+      "high": 0.371810926642511,
       "strongest_observed": null
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "CATCH 3h",
-      "delta": 0.1464343118179512,
-      "low": -0.07663080937805788,
-      "high": 0.3293088838707469,
+      "delta": 0.146434311817951,
+      "low": -0.076630809378058,
+      "high": 0.329308883870747,
       "strongest_observed": null
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "CATCH 3h calibrated",
-      "delta": 0.13639568000451174,
-      "low": -0.16238899585839364,
-      "high": 0.39924544134293505,
+      "delta": 0.136395680004512,
+      "low": -0.162388995858394,
+      "high": 0.399245441342935,
       "strongest_observed": null
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "Chronos-2 FT",
-      "delta": 0.004116966979669012,
-      "low": -0.20373248011364894,
-      "high": 0.20545596285170814,
+      "delta": 0.004116966979669,
+      "low": -0.203732480113649,
+      "high": 0.205455962851708,
+      "strongest_observed": null
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "comparison": "fixed",
+      "delta": -0.04122606660463,
+      "low": -0.129837462927864,
+      "high": 0.058307154585967,
+      "strongest_observed": null
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "comparison": "coordinates_only",
+      "delta": -0.018723740236303,
+      "low": -0.11647861502789,
+      "high": 0.0839357834031,
+      "strongest_observed": null
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "comparison": "no_coordinates",
+      "delta": -0.000310182443674,
+      "low": -0.198422397433995,
+      "high": 0.184204033802644,
       "strongest_observed": null
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "best_constant",
-      "delta": -8.459521191095387e-05,
-      "low": -0.003338306026913926,
-      "high": 0.004536424561899907,
+      "delta": -8.4595211911e-05,
+      "low": -0.003338306026914,
+      "high": 0.0045364245619,
       "strongest_observed": null
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "uniform",
-      "delta": -0.0024250627414488246,
-      "low": -0.009112111867752806,
-      "high": 0.003031607256606856,
+      "delta": -0.002425062741449,
+      "low": -0.009112111867753,
+      "high": 0.003031607256607,
       "strongest_observed": null
     },
     {
       "dataset": "BrisT1D-Open",
       "comparison": "strongest_external",
-      "delta": 0.0029185348109297404,
-      "low": -0.20793784740211263,
-      "high": 0.07701999520556695,
+      "delta": 0.00291853481093,
+      "low": -0.207937847402113,
+      "high": 0.077019995205567,
       "strongest_observed": "CATCH daily"
     }
   ],
@@ -1043,8 +1223,8 @@
       "fold": 0,
       "n": 369,
       "positives": 30,
-      "auroc": 0.6039331366764995,
-      "ap": 0.11013570907745554,
+      "auroc": 0.6039331366765,
+      "ap": 0.110135709077456,
       "threshold": 10.182095175233115
     },
     {
@@ -1053,8 +1233,8 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.48573797678275293,
-      "ap": 0.2325514211004865,
+      "auroc": 0.485737976782753,
+      "ap": 0.232551421100486,
       "threshold": 12.793942826358418
     },
     {
@@ -1063,8 +1243,8 @@
       "fold": 2,
       "n": 537,
       "positives": 91,
-      "auroc": 0.3906026708717292,
-      "ap": 0.13239772026960467,
+      "auroc": 0.390602670871729,
+      "ap": 0.132397720269605,
       "threshold": 12.659602508508826
     },
     {
@@ -1073,8 +1253,8 @@
       "fold": 3,
       "n": 368,
       "positives": 93,
-      "auroc": 0.5095210166177908,
-      "ap": 0.27160731487538975,
+      "auroc": 0.509521016617791,
+      "ap": 0.27160731487539,
       "threshold": 13.402115432831817
     },
     {
@@ -1083,8 +1263,8 @@
       "fold": 4,
       "n": 433,
       "positives": 68,
-      "auroc": 0.5102941176470588,
-      "ap": 0.16984292185239253,
+      "auroc": 0.510294117647059,
+      "ap": 0.169842921852392,
       "threshold": 10.61592277081508
     },
     {
@@ -1093,8 +1273,8 @@
       "fold": 0,
       "n": 369,
       "positives": 30,
-      "auroc": 0.6245821042281219,
-      "ap": 0.10947759863349762,
+      "auroc": 0.624582104228122,
+      "ap": 0.109477598633498,
       "threshold": 9.216039905051424
     },
     {
@@ -1103,8 +1283,8 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.5129353233830847,
-      "ap": 0.15760925543644339,
+      "auroc": 0.512935323383085,
+      "ap": 0.157609255436443,
       "threshold": 12.647032782702468
     },
     {
@@ -1113,8 +1293,8 @@
       "fold": 2,
       "n": 537,
       "positives": 91,
-      "auroc": 0.3906026708717292,
-      "ap": 0.13239772026960467,
+      "auroc": 0.390602670871729,
+      "ap": 0.132397720269605,
       "threshold": 12.659602508508826
     },
     {
@@ -1124,7 +1304,7 @@
       "n": 368,
       "positives": 93,
       "auroc": 0.48,
-      "ap": 0.28868008214539004,
+      "ap": 0.28868008214539,
       "threshold": 11.352179340696452
     },
     {
@@ -1134,7 +1314,7 @@
       "n": 433,
       "positives": 68,
       "auroc": 0.528928283642224,
-      "ap": 0.15579664945287713,
+      "ap": 0.155796649452877,
       "threshold": 10.321214607756064
     },
     {
@@ -1143,9 +1323,9 @@
       "fold": 0,
       "n": 369,
       "positives": 30,
-      "auroc": 0.7211406096361849,
-      "ap": 0.3508580066212264,
-      "threshold": 0.1959383552839435
+      "auroc": 0.721140609636185,
+      "ap": 0.350858006621226,
+      "threshold": 0.195938355283944
     },
     {
       "dataset": "RESILIENT",
@@ -1153,9 +1333,9 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.7349917081260365,
-      "ap": 0.3314102128916142,
-      "threshold": 0.2076496212741203
+      "auroc": 0.734991708126036,
+      "ap": 0.331410212891614,
+      "threshold": 0.20764962127412
     },
     {
       "dataset": "RESILIENT",
@@ -1163,8 +1343,8 @@
       "fold": 2,
       "n": 537,
       "positives": 91,
-      "auroc": 0.7462179076528852,
-      "ap": 0.2923987198693171,
+      "auroc": 0.746217907652885,
+      "ap": 0.292398719869317,
       "threshold": 0.184490528705614
     },
     {
@@ -1173,9 +1353,9 @@
       "fold": 3,
       "n": 368,
       "positives": 93,
-      "auroc": 0.6571652003910069,
-      "ap": 0.3961052054326377,
-      "threshold": 0.1308669924664767
+      "auroc": 0.657165200391007,
+      "ap": 0.396105205432638,
+      "threshold": 0.130866992466477
     },
     {
       "dataset": "RESILIENT",
@@ -1184,8 +1364,8 @@
       "n": 433,
       "positives": 68,
       "auroc": 0.722723609991942,
-      "ap": 0.29680430916507294,
-      "threshold": 0.1843353614845494
+      "ap": 0.296804309165073,
+      "threshold": 0.184335361484549
     },
     {
       "dataset": "RESILIENT",
@@ -1193,9 +1373,9 @@
       "fold": 0,
       "n": 369,
       "positives": 30,
-      "auroc": 0.7200589970501475,
-      "ap": 0.3244353108965135,
-      "threshold": 0.3236228592673494
+      "auroc": 0.720058997050148,
+      "ap": 0.324435310896514,
+      "threshold": 0.323622859267349
     },
     {
       "dataset": "RESILIENT",
@@ -1203,9 +1383,9 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.7854063018242123,
+      "auroc": 0.785406301824212,
       "ap": 0.2738809830627,
-      "threshold": 0.3417256421937149
+      "threshold": 0.341725642193715
     },
     {
       "dataset": "RESILIENT",
@@ -1213,9 +1393,9 @@
       "fold": 2,
       "n": 537,
       "positives": 91,
-      "auroc": 0.7750702212585622,
-      "ap": 0.2993668937267965,
-      "threshold": 0.3357293450873014
+      "auroc": 0.775070221258562,
+      "ap": 0.299366893726796,
+      "threshold": 0.335729345087301
     },
     {
       "dataset": "RESILIENT",
@@ -1223,9 +1403,9 @@
       "fold": 3,
       "n": 368,
       "positives": 93,
-      "auroc": 0.7007624633431085,
-      "ap": 0.43347213976797716,
-      "threshold": 0.2435266261138391
+      "auroc": 0.700762463343108,
+      "ap": 0.433472139767977,
+      "threshold": 0.243526626113839
     },
     {
       "dataset": "RESILIENT",
@@ -1233,8 +1413,8 @@
       "fold": 4,
       "n": 433,
       "positives": 68,
-      "auroc": 0.8102739726027397,
-      "ap": 0.37463297682581365,
+      "auroc": 0.81027397260274,
+      "ap": 0.374632976825814,
       "threshold": 0.210945359715679
     },
     {
@@ -1243,8 +1423,8 @@
       "fold": 0,
       "n": 369,
       "positives": 30,
-      "auroc": 0.7389380530973452,
-      "ap": 0.3515858497135075,
+      "auroc": 0.738938053097345,
+      "ap": 0.351585849713508,
       "threshold": 0.32049102884522
     },
     {
@@ -1253,9 +1433,9 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.5205638474295191,
-      "ap": 0.12580510549553614,
-      "threshold": 0.5554960701888603
+      "auroc": 0.520563847429519,
+      "ap": 0.125805105495536,
+      "threshold": 0.55549607018886
     },
     {
       "dataset": "RESILIENT",
@@ -1263,9 +1443,9 @@
       "fold": 2,
       "n": 537,
       "positives": 91,
-      "auroc": 0.7900507564184693,
-      "ap": 0.34189038419480106,
-      "threshold": 0.3809075348780638
+      "auroc": 0.790050756418469,
+      "ap": 0.341890384194801,
+      "threshold": 0.380907534878064
     },
     {
       "dataset": "RESILIENT",
@@ -1273,9 +1453,9 @@
       "fold": 3,
       "n": 368,
       "positives": 93,
-      "auroc": 0.8358944281524927,
-      "ap": 0.7104899615352541,
-      "threshold": 0.2570739058308468
+      "auroc": 0.835894428152493,
+      "ap": 0.710489961535254,
+      "threshold": 0.257073905830847
     },
     {
       "dataset": "RESILIENT",
@@ -1283,9 +1463,9 @@
       "fold": 4,
       "n": 433,
       "positives": 68,
-      "auroc": 0.8745769540692991,
-      "ap": 0.5513195448718243,
-      "threshold": 0.2971045640579722
+      "auroc": 0.874576954069299,
+      "ap": 0.551319544871824,
+      "threshold": 0.297104564057972
     },
     {
       "dataset": "RESILIENT",
@@ -1293,9 +1473,9 @@
       "fold": 0,
       "n": 369,
       "positives": 30,
-      "auroc": 0.7162733529990167,
-      "ap": 0.4073721254299696,
-      "threshold": 0.8011444921316165
+      "auroc": 0.716273352999017,
+      "ap": 0.40737212542997,
+      "threshold": 0.801144492131616
     },
     {
       "dataset": "RESILIENT",
@@ -1303,9 +1483,9 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.7364842454394693,
-      "ap": 0.2568734556955511,
-      "threshold": 0.8542600896860986
+      "auroc": 0.736484245439469,
+      "ap": 0.256873455695551,
+      "threshold": 0.854260089686099
     },
     {
       "dataset": "RESILIENT",
@@ -1313,8 +1493,8 @@
       "fold": 2,
       "n": 537,
       "positives": 91,
-      "auroc": 0.7760065047060563,
-      "ap": 0.30893826265631064,
+      "auroc": 0.776006504706056,
+      "ap": 0.308938262656311,
       "threshold": 0.823943661971831
     },
     {
@@ -1323,9 +1503,9 @@
       "fold": 3,
       "n": 368,
       "positives": 93,
-      "auroc": 0.7077810361681329,
-      "ap": 0.4765821567268529,
-      "threshold": 0.8401826484018264
+      "auroc": 0.707781036168133,
+      "ap": 0.476582156726853,
+      "threshold": 0.840182648401826
     },
     {
       "dataset": "RESILIENT",
@@ -1333,9 +1513,9 @@
       "fold": 4,
       "n": 433,
       "positives": 68,
-      "auroc": 0.7653303787268332,
-      "ap": 0.3278415839023956,
-      "threshold": 0.8376811594202899
+      "auroc": 0.765330378726833,
+      "ap": 0.327841583902396,
+      "threshold": 0.83768115942029
     },
     {
       "dataset": "RESILIENT",
@@ -1343,9 +1523,9 @@
       "fold": 0,
       "n": 369,
       "positives": 30,
-      "auroc": 0.7337758112094395,
-      "ap": 0.35154737746669895,
-      "threshold": 0.8841201716738198
+      "auroc": 0.73377581120944,
+      "ap": 0.351547377466699,
+      "threshold": 0.88412017167382
     },
     {
       "dataset": "RESILIENT",
@@ -1353,9 +1533,9 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.8035655058043117,
-      "ap": 0.36984986113659457,
-      "threshold": 0.9013452914798208
+      "auroc": 0.803565505804312,
+      "ap": 0.369849861136594,
+      "threshold": 0.901345291479821
     },
     {
       "dataset": "RESILIENT",
@@ -1363,9 +1543,9 @@
       "fold": 2,
       "n": 537,
       "positives": 91,
-      "auroc": 0.7773000542058839,
-      "ap": 0.30333180127003345,
-      "threshold": 0.8873239436619719
+      "auroc": 0.777300054205884,
+      "ap": 0.303331801270033,
+      "threshold": 0.887323943661972
     },
     {
       "dataset": "RESILIENT",
@@ -1373,9 +1553,9 @@
       "fold": 3,
       "n": 368,
       "positives": 93,
-      "auroc": 0.7030498533724341,
-      "ap": 0.4393742558737552,
-      "threshold": 0.8968036529680364
+      "auroc": 0.703049853372434,
+      "ap": 0.439374255873755,
+      "threshold": 0.896803652968036
     },
     {
       "dataset": "RESILIENT",
@@ -1384,8 +1564,8 @@
       "n": 433,
       "positives": 68,
       "auroc": 0.812409347300564,
-      "ap": 0.37766569740874734,
-      "threshold": 0.8821256038647344
+      "ap": 0.377665697408747,
+      "threshold": 0.882125603864734
     },
     {
       "dataset": "RESILIENT",
@@ -1393,8 +1573,8 @@
       "fold": 0,
       "n": 369,
       "positives": 30,
-      "auroc": 0.4279252704031465,
-      "ap": 0.07015522260205936,
+      "auroc": 0.427925270403146,
+      "ap": 0.070155222602059,
       "threshold": 10.971967315401496
     },
     {
@@ -1403,8 +1583,8 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.4767827529021559,
-      "ap": 0.11649437258351025,
+      "auroc": 0.476782752902156,
+      "ap": 0.11649437258351,
       "threshold": 9.244891847365786
     },
     {
@@ -1413,8 +1593,8 @@
       "fold": 2,
       "n": 537,
       "positives": 91,
-      "auroc": 0.48642389001133396,
-      "ap": 0.15268166751679574,
+      "auroc": 0.486423890011334,
+      "ap": 0.152681667516796,
       "threshold": 7.756998698244994
     },
     {
@@ -1423,8 +1603,8 @@
       "fold": 3,
       "n": 368,
       "positives": 93,
-      "auroc": 0.6285043988269795,
-      "ap": 0.35642113826825433,
+      "auroc": 0.62850439882698,
+      "ap": 0.356421138268254,
       "threshold": 6.794039549819491
     },
     {
@@ -1433,8 +1613,8 @@
       "fold": 4,
       "n": 433,
       "positives": 68,
-      "auroc": 0.5489121676067688,
-      "ap": 0.20572560460765255,
+      "auroc": 0.548912167606769,
+      "ap": 0.205725604607652,
       "threshold": 11.38956048075449
     },
     {
@@ -1443,9 +1623,9 @@
       "fold": 0,
       "n": 369,
       "positives": 30,
-      "auroc": 0.4279252704031465,
-      "ap": 0.07015522260205936,
-      "threshold": 0.2246597930233756
+      "auroc": 0.427925270403146,
+      "ap": 0.070155222602059,
+      "threshold": 0.224659793023376
     },
     {
       "dataset": "RESILIENT",
@@ -1453,9 +1633,9 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.4767827529021559,
-      "ap": 0.11649437258351025,
-      "threshold": 0.1740832175697456
+      "auroc": 0.476782752902156,
+      "ap": 0.11649437258351,
+      "threshold": 0.174083217569746
     },
     {
       "dataset": "RESILIENT",
@@ -1463,9 +1643,9 @@
       "fold": 2,
       "n": 537,
       "positives": 91,
-      "auroc": 0.5135761099886661,
-      "ap": 0.16253743949705493,
-      "threshold": 0.1268585854752795
+      "auroc": 0.513576109988666,
+      "ap": 0.162537439497055,
+      "threshold": 0.12685858547528
     },
     {
       "dataset": "RESILIENT",
@@ -1473,9 +1653,9 @@
       "fold": 3,
       "n": 368,
       "positives": 93,
-      "auroc": 0.3714956011730205,
-      "ap": 0.19380614149772032,
-      "threshold": 0.1520877652915495
+      "auroc": 0.37149560117302,
+      "ap": 0.19380614149772,
+      "threshold": 0.15208776529155
     },
     {
       "dataset": "RESILIENT",
@@ -1483,9 +1663,9 @@
       "fold": 4,
       "n": 433,
       "positives": 68,
-      "auroc": 0.45108783239323125,
-      "ap": 0.13648033466255904,
-      "threshold": 0.2006576014854099
+      "auroc": 0.451087832393231,
+      "ap": 0.136480334662559,
+      "threshold": 0.20065760148541
     },
     {
       "dataset": "RESILIENT",
@@ -1493,9 +1673,9 @@
       "fold": 0,
       "n": 369,
       "positives": 30,
-      "auroc": 0.5616519174041298,
-      "ap": 0.11124763904548209,
-      "threshold": 3.0305044750372567
+      "auroc": 0.56165191740413,
+      "ap": 0.111247639045482,
+      "threshold": 3.030504475037257
     },
     {
       "dataset": "RESILIENT",
@@ -1503,9 +1683,9 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.5480928689883914,
-      "ap": 0.15596892327677075,
-      "threshold": 1.9595882892608645
+      "auroc": 0.548092868988391,
+      "ap": 0.155968923276771,
+      "threshold": 1.959588289260864
     },
     {
       "dataset": "RESILIENT",
@@ -1513,8 +1693,8 @@
       "fold": 2,
       "n": 537,
       "positives": 91,
-      "auroc": 0.5884541467501109,
-      "ap": 0.20823025527143807,
+      "auroc": 0.588454146750111,
+      "ap": 0.208230255271438,
       "threshold": 2.435387591520945
     },
     {
@@ -1523,8 +1703,8 @@
       "fold": 3,
       "n": 368,
       "positives": 93,
-      "auroc": 0.6161094819159334,
-      "ap": 0.3493477127163157,
+      "auroc": 0.616109481915933,
+      "ap": 0.349347712716316,
       "threshold": 3.310991115868092
     },
     {
@@ -1533,8 +1713,8 @@
       "fold": 4,
       "n": 433,
       "positives": 68,
-      "auroc": 0.5762288477034649,
-      "ap": 0.1824545683842273,
+      "auroc": 0.576228847703465,
+      "ap": 0.182454568384227,
       "threshold": 2.020435929298401
     },
     {
@@ -1543,9 +1723,9 @@
       "fold": 0,
       "n": 369,
       "positives": 30,
-      "auroc": 0.5527040314650934,
-      "ap": 0.11090941052409828,
-      "threshold": 0.1938854010708986
+      "auroc": 0.552704031465093,
+      "ap": 0.110909410524098,
+      "threshold": 0.193885401070899
     },
     {
       "dataset": "RESILIENT",
@@ -1553,8 +1733,8 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.5514096185737978,
-      "ap": 0.15311609175408253,
+      "auroc": 0.551409618573798,
+      "ap": 0.153116091754082,
       "threshold": 0.167647879315008
     },
     {
@@ -1563,9 +1743,9 @@
       "fold": 2,
       "n": 537,
       "positives": 91,
-      "auroc": 0.5567683437638594,
-      "ap": 0.19331300655374212,
-      "threshold": 0.1211187197959444
+      "auroc": 0.556768343763859,
+      "ap": 0.193313006553742,
+      "threshold": 0.121118719795944
     },
     {
       "dataset": "RESILIENT",
@@ -1573,9 +1753,9 @@
       "fold": 3,
       "n": 368,
       "positives": 93,
-      "auroc": 0.5011925708699903,
-      "ap": 0.30156622414230994,
-      "threshold": 0.1310114662906395
+      "auroc": 0.50119257086999,
+      "ap": 0.30156622414231,
+      "threshold": 0.13101146629064
     },
     {
       "dataset": "RESILIENT",
@@ -1583,9 +1763,9 @@
       "fold": 4,
       "n": 433,
       "positives": 68,
-      "auroc": 0.5431909750201451,
-      "ap": 0.19055174863244112,
-      "threshold": 0.1895467488236751
+      "auroc": 0.543190975020145,
+      "ap": 0.190551748632441,
+      "threshold": 0.189546748823675
     },
     {
       "dataset": "RESILIENT",
@@ -1593,8 +1773,8 @@
       "fold": 0,
       "n": 369,
       "positives": 30,
-      "auroc": 0.5174041297935104,
-      "ap": 0.16684653596107604,
+      "auroc": 0.51740412979351,
+      "ap": 0.166846535961076,
       "threshold": 0.134994273384412
     },
     {
@@ -1603,9 +1783,9 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.6592039800995024,
-      "ap": 0.20183177819081088,
-      "threshold": 0.1207417771220206
+      "auroc": 0.659203980099502,
+      "ap": 0.201831778190811,
+      "threshold": 0.120741777122021
     },
     {
       "dataset": "RESILIENT",
@@ -1613,9 +1793,9 @@
       "fold": 2,
       "n": 537,
       "positives": 91,
-      "auroc": 0.4659488493569211,
-      "ap": 0.15305485442099254,
-      "threshold": 0.1237014109889665
+      "auroc": 0.465948849356921,
+      "ap": 0.153054854420992,
+      "threshold": 0.123701410988966
     },
     {
       "dataset": "RESILIENT",
@@ -1623,9 +1803,9 @@
       "fold": 3,
       "n": 368,
       "positives": 93,
-      "auroc": 0.6256500488758553,
-      "ap": 0.3391568872397779,
-      "threshold": 0.1630266159772872
+      "auroc": 0.625650048875855,
+      "ap": 0.339156887239778,
+      "threshold": 0.163026615977287
     },
     {
       "dataset": "RESILIENT",
@@ -1633,9 +1813,9 @@
       "fold": 4,
       "n": 433,
       "positives": 68,
-      "auroc": 0.47191780821917806,
-      "ap": 0.22377376542639268,
-      "threshold": 0.1266711950302123
+      "auroc": 0.471917808219178,
+      "ap": 0.223773765426393,
+      "threshold": 0.126671195030212
     },
     {
       "dataset": "RESILIENT",
@@ -1643,9 +1823,9 @@
       "fold": 0,
       "n": 369,
       "positives": 30,
-      "auroc": 0.5176991150442478,
-      "ap": 0.16845718707676005,
-      "threshold": 0.2204306502538376
+      "auroc": 0.517699115044248,
+      "ap": 0.16845718707676,
+      "threshold": 0.220430650253838
     },
     {
       "dataset": "RESILIENT",
@@ -1653,9 +1833,9 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.6603648424543946,
-      "ap": 0.2028913602618022,
-      "threshold": 0.1998489090760865
+      "auroc": 0.660364842454395,
+      "ap": 0.202891360261802,
+      "threshold": 0.199848909076086
     },
     {
       "dataset": "RESILIENT",
@@ -1663,9 +1843,9 @@
       "fold": 2,
       "n": 537,
       "positives": 91,
-      "auroc": 0.46597348839501307,
-      "ap": 0.15302699801372172,
-      "threshold": 0.1386236821931959
+      "auroc": 0.465973488395013,
+      "ap": 0.153026998013722,
+      "threshold": 0.138623682193196
     },
     {
       "dataset": "RESILIENT",
@@ -1673,9 +1853,9 @@
       "fold": 3,
       "n": 368,
       "positives": 93,
-      "auroc": 0.3747018572825025,
-      "ap": 0.1944934011484722,
-      "threshold": 0.1301909044414015
+      "auroc": 0.374701857282502,
+      "ap": 0.194493401148472,
+      "threshold": 0.130190904441402
     },
     {
       "dataset": "RESILIENT",
@@ -1683,8 +1863,8 @@
       "fold": 4,
       "n": 433,
       "positives": 68,
-      "auroc": 0.47199838839645447,
-      "ap": 0.22442025442451105,
+      "auroc": 0.471998388396454,
+      "ap": 0.224420254424511,
       "threshold": 0.214937798099854
     },
     {
@@ -1694,8 +1874,8 @@
       "n": 369,
       "positives": 30,
       "auroc": 0.588495575221239,
-      "ap": 0.09147881574132846,
-      "threshold": 0.5872310766666667
+      "ap": 0.091478815741328,
+      "threshold": 0.587231076666667
     },
     {
       "dataset": "RESILIENT",
@@ -1703,8 +1883,8 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.5170812603648425,
-      "ap": 0.14390481512127704,
+      "auroc": 0.517081260364842,
+      "ap": 0.143904815121277,
       "threshold": 0.98175899
     },
     {
@@ -1713,8 +1893,8 @@
       "fold": 2,
       "n": 537,
       "positives": 91,
-      "auroc": 0.4919430345439314,
-      "ap": 0.1599173140707113,
+      "auroc": 0.491943034543931,
+      "ap": 0.159917314070711,
       "threshold": 0.22066317144
     },
     {
@@ -1723,7 +1903,7 @@
       "fold": 3,
       "n": 368,
       "positives": 93,
-      "auroc": 0.5131964809384164,
+      "auroc": 0.513196480938416,
       "ap": 0.285915350138095,
       "threshold": 0.63489333758
     },
@@ -1734,7 +1914,7 @@
       "n": 433,
       "positives": 68,
       "auroc": 0.709709911361805,
-      "ap": 0.33059361794686476,
+      "ap": 0.330593617946865,
       "threshold": 0.39224722
     },
     {
@@ -1743,8 +1923,8 @@
       "fold": 0,
       "n": 369,
       "positives": 30,
-      "auroc": 0.6795476892822025,
-      "ap": 0.1915355945168536,
+      "auroc": 0.679547689282202,
+      "ap": 0.191535594516854,
       "threshold": 0.49979594
     },
     {
@@ -1753,9 +1933,9 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.5159203980099503,
-      "ap": 0.12486535585517797,
-      "threshold": 0.6387850286666666
+      "auroc": 0.51592039800995,
+      "ap": 0.124865355855178,
+      "threshold": 0.638785028666667
     },
     {
       "dataset": "RESILIENT",
@@ -1764,8 +1944,8 @@
       "n": 537,
       "positives": 91,
       "auroc": 0.764105849307643,
-      "ap": 0.3452183469477834,
-      "threshold": 0.7438300233333334
+      "ap": 0.345218346947783,
+      "threshold": 0.743830023333333
     },
     {
       "dataset": "RESILIENT",
@@ -1773,9 +1953,9 @@
       "fold": 3,
       "n": 368,
       "positives": 93,
-      "auroc": 0.8263929618768329,
+      "auroc": 0.826392961876833,
       "ap": 0.680882548618883,
-      "threshold": 0.3912201833333333
+      "threshold": 0.391220183333333
     },
     {
       "dataset": "RESILIENT",
@@ -1783,9 +1963,159 @@
       "fold": 4,
       "n": 433,
       "positives": 68,
-      "auroc": 0.8700241740531829,
-      "ap": 0.5286069165916842,
-      "threshold": 0.3167424816666667
+      "auroc": 0.870024174053183,
+      "ap": 0.528606916591684,
+      "threshold": 0.316742481666667
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "fixed",
+      "fold": 0,
+      "n": 369,
+      "positives": 30,
+      "auroc": 0.691838741396264,
+      "ap": 0.289028321977052,
+      "threshold": 0.451656123333333
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "fixed",
+      "fold": 1,
+      "n": 231,
+      "positives": 30,
+      "auroc": 0.540961857379768,
+      "ap": 0.147411064843491,
+      "threshold": 0.75767451
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "fixed",
+      "fold": 2,
+      "n": 537,
+      "positives": 91,
+      "auroc": 0.760878135317597,
+      "ap": 0.34247235012437,
+      "threshold": 0.760780436666667
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "fixed",
+      "fold": 3,
+      "n": 368,
+      "positives": 93,
+      "auroc": 0.821818181818182,
+      "ap": 0.667582128946843,
+      "threshold": 0.470677256666667
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "fixed",
+      "fold": 4,
+      "n": 433,
+      "positives": 68,
+      "auroc": 0.863094278807413,
+      "ap": 0.534734800151372,
+      "threshold": 0.459397673333333
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "coordinates_only",
+      "fold": 0,
+      "n": 369,
+      "positives": 30,
+      "auroc": 0.71740412979351,
+      "ap": 0.171166771289244,
+      "threshold": 0.555695733333333
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "coordinates_only",
+      "fold": 1,
+      "n": 231,
+      "positives": 30,
+      "auroc": 0.514427860696517,
+      "ap": 0.124398258343427,
+      "threshold": 0.819538533333333
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "coordinates_only",
+      "fold": 2,
+      "n": 537,
+      "positives": 91,
+      "auroc": 0.752155915833046,
+      "ap": 0.351527439911737,
+      "threshold": 0.80223375
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "coordinates_only",
+      "fold": 3,
+      "n": 368,
+      "positives": 93,
+      "auroc": 0.811456500488759,
+      "ap": 0.653544219431975,
+      "threshold": 0.471531886666667
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "coordinates_only",
+      "fold": 4,
+      "n": 433,
+      "positives": 68,
+      "auroc": 0.860233682514102,
+      "ap": 0.528438461509053,
+      "threshold": 0.37361
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "no_coordinates",
+      "fold": 0,
+      "n": 369,
+      "positives": 30,
+      "auroc": 0.56322517207473,
+      "ap": 0.11924396958104,
+      "threshold": 0.709982133333333
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "no_coordinates",
+      "fold": 1,
+      "n": 231,
+      "positives": 30,
+      "auroc": 0.633333333333333,
+      "ap": 0.17652399672979,
+      "threshold": 0.63578764
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "no_coordinates",
+      "fold": 2,
+      "n": 537,
+      "positives": 91,
+      "auroc": 0.418691174296555,
+      "ap": 0.140612680750214,
+      "threshold": 0.408281296666667
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "no_coordinates",
+      "fold": 3,
+      "n": 368,
+      "positives": 93,
+      "auroc": 0.684379276637341,
+      "ap": 0.475240709958803,
+      "threshold": 0.611280946666667
+    },
+    {
+      "dataset": "RESILIENT",
+      "method": "no_coordinates",
+      "fold": 4,
+      "n": 433,
+      "positives": 68,
+      "auroc": 0.693835616438356,
+      "ap": 0.30157814543709,
+      "threshold": 0.722452416666667
     },
     {
       "dataset": "RESILIENT",
@@ -1793,8 +2123,8 @@
       "fold": 0,
       "n": 369,
       "positives": 30,
-      "auroc": 0.6882989183874139,
-      "ap": 0.19436132444721624,
+      "auroc": 0.688298918387414,
+      "ap": 0.194361324447216,
       "threshold": 0.4548808
     },
     {
@@ -1803,9 +2133,9 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.5265339966832504,
-      "ap": 0.12806879788073075,
-      "threshold": 0.6068904222333333
+      "auroc": 0.52653399668325,
+      "ap": 0.128068797880731,
+      "threshold": 0.606890422233333
     },
     {
       "dataset": "RESILIENT",
@@ -1813,9 +2143,9 @@
       "fold": 2,
       "n": 537,
       "positives": 91,
-      "auroc": 0.7622579214507466,
-      "ap": 0.34436222853659765,
-      "threshold": 0.7489589099999999
+      "auroc": 0.762257921450746,
+      "ap": 0.344362228536598,
+      "threshold": 0.74895891
     },
     {
       "dataset": "RESILIENT",
@@ -1824,8 +2154,8 @@
       "n": 368,
       "positives": 93,
       "auroc": 0.824633431085044,
-      "ap": 0.6759982141158047,
-      "threshold": 0.4167357633333333
+      "ap": 0.675998214115805,
+      "threshold": 0.416735763333333
     },
     {
       "dataset": "RESILIENT",
@@ -1833,8 +2163,8 @@
       "fold": 4,
       "n": 433,
       "positives": 68,
-      "auroc": 0.8701047542304593,
-      "ap": 0.5309118731381026,
+      "auroc": 0.870104754230459,
+      "ap": 0.530911873138103,
       "threshold": 0.317969225
     },
     {
@@ -1843,9 +2173,9 @@
       "fold": 0,
       "n": 369,
       "positives": 30,
-      "auroc": 0.6817109144542772,
-      "ap": 0.1891122784588952,
-      "threshold": 0.4974588166666667
+      "auroc": 0.681710914454277,
+      "ap": 0.189112278458895,
+      "threshold": 0.497458816666667
     },
     {
       "dataset": "RESILIENT",
@@ -1853,8 +2183,8 @@
       "fold": 1,
       "n": 231,
       "positives": 30,
-      "auroc": 0.5194029850746269,
-      "ap": 0.12565129432260605,
+      "auroc": 0.519402985074627,
+      "ap": 0.125651294322606,
       "threshold": 0.62472753
     },
     {
@@ -1863,9 +2193,9 @@
       "fold": 2,
       "n": 537,
       "positives": 91,
-      "auroc": 0.7634898733553441,
-      "ap": 0.34489489397462963,
-      "threshold": 0.7406661333333333
+      "auroc": 0.763489873355344,
+      "ap": 0.34489489397463,
+      "threshold": 0.740666133333333
     },
     {
       "dataset": "RESILIENT",
@@ -1873,9 +2203,9 @@
       "fold": 3,
       "n": 368,
       "positives": 93,
-      "auroc": 0.8252590420332355,
-      "ap": 0.6777766187948189,
-      "threshold": 0.4081881133333334
+      "auroc": 0.825259042033236,
+      "ap": 0.677776618794819,
+      "threshold": 0.408188113333333
     },
     {
       "dataset": "RESILIENT",
@@ -1883,9 +2213,9 @@
       "fold": 4,
       "n": 433,
       "positives": 68,
-      "auroc": 0.8696615632554391,
-      "ap": 0.5277874970853772,
-      "threshold": 0.3111062546666666
+      "auroc": 0.869661563255439,
+      "ap": 0.527787497085377,
+      "threshold": 0.311106254666667
     },
     {
       "dataset": "BrisT1D-Open",
@@ -1893,8 +2223,8 @@
       "fold": 0,
       "n": 183,
       "positives": 27,
-      "auroc": 0.3584995251661918,
-      "ap": 0.11188035593304516,
+      "auroc": 0.358499525166192,
+      "ap": 0.111880355933045,
       "threshold": 5.968331204056294
     },
     {
@@ -1903,8 +2233,8 @@
       "fold": 1,
       "n": 154,
       "positives": 3,
-      "auroc": 0.6578366445916114,
-      "ap": 0.1844444444444444,
+      "auroc": 0.657836644591611,
+      "ap": 0.184444444444444,
       "threshold": 12.293493333269764
     },
     {
@@ -1913,8 +2243,8 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.4863283036122542,
-      "ap": 0.18004991758384276,
+      "auroc": 0.486328303612254,
+      "ap": 0.180049917583843,
       "threshold": 10.875956868708888
     },
     {
@@ -1923,8 +2253,8 @@
       "fold": 3,
       "n": 339,
       "positives": 51,
-      "auroc": 0.4700435729847494,
-      "ap": 0.15950747905689622,
+      "auroc": 0.470043572984749,
+      "ap": 0.159507479056896,
       "threshold": 6.574069336443789
     },
     {
@@ -1933,7 +2263,7 @@
       "fold": 4,
       "n": 232,
       "positives": 25,
-      "auroc": 0.6291787439613526,
+      "auroc": 0.629178743961353,
       "ap": 0.15927918801539,
       "threshold": 17.004747563629895
     },
@@ -1944,8 +2274,8 @@
       "n": 183,
       "positives": 27,
       "auroc": 0.391025641025641,
-      "ap": 0.11700520044625284,
-      "threshold": 5.4143563177224525
+      "ap": 0.117005200446253,
+      "threshold": 5.414356317722452
     },
     {
       "dataset": "BrisT1D-Open",
@@ -1953,8 +2283,8 @@
       "fold": 1,
       "n": 154,
       "positives": 3,
-      "auroc": 0.8189845474613686,
-      "ap": 0.4788617886178862,
+      "auroc": 0.818984547461369,
+      "ap": 0.478861788617886,
       "threshold": 9.519729966841304
     },
     {
@@ -1963,8 +2293,8 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.6039323273891176,
-      "ap": 0.2711301776279185,
+      "auroc": 0.603932327389118,
+      "ap": 0.271130177627919,
       "threshold": 6.128276647652973
     },
     {
@@ -1973,8 +2303,8 @@
       "fold": 3,
       "n": 339,
       "positives": 51,
-      "auroc": 0.46017156862745096,
-      "ap": 0.13297748798027653,
+      "auroc": 0.460171568627451,
+      "ap": 0.132977487980276,
       "threshold": 5.791024373392958
     },
     {
@@ -1983,8 +2313,8 @@
       "fold": 4,
       "n": 232,
       "positives": 25,
-      "auroc": 0.6343961352657004,
-      "ap": 0.16031226595237338,
+      "auroc": 0.6343961352657,
+      "ap": 0.160312265952373,
       "threshold": 8.730608458733908
     },
     {
@@ -1993,9 +2323,9 @@
       "fold": 0,
       "n": 183,
       "positives": 27,
-      "auroc": 0.6362773029439696,
-      "ap": 0.30588607050010624,
-      "threshold": 0.1413143690833973
+      "auroc": 0.63627730294397,
+      "ap": 0.305886070500106,
+      "threshold": 0.141314369083397
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2004,8 +2334,8 @@
       "n": 154,
       "positives": 3,
       "auroc": 0.869757174392936,
-      "ap": 0.10405982905982905,
-      "threshold": 0.1499862959536186
+      "ap": 0.104059829059829,
+      "threshold": 0.149986295953619
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2013,9 +2343,9 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.5459533607681755,
-      "ap": 0.17441550475816064,
-      "threshold": 0.1058630683847771
+      "auroc": 0.545953360768175,
+      "ap": 0.174415504758161,
+      "threshold": 0.105863068384777
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2024,8 +2354,8 @@
       "n": 339,
       "positives": 51,
       "auroc": 0.568218954248366,
-      "ap": 0.2489104596351641,
-      "threshold": 0.1267695539338094
+      "ap": 0.248910459635164,
+      "threshold": 0.126769553933809
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2033,9 +2363,9 @@
       "fold": 4,
       "n": 232,
       "positives": 25,
-      "auroc": 0.5111111111111111,
-      "ap": 0.11265095991340321,
-      "threshold": 0.1342681804321647
+      "auroc": 0.511111111111111,
+      "ap": 0.112650959913403,
+      "threshold": 0.134268180432165
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2043,9 +2373,9 @@
       "fold": 0,
       "n": 183,
       "positives": 27,
-      "auroc": 0.6982431149097816,
-      "ap": 0.24047367761084693,
-      "threshold": 0.1343322607936203
+      "auroc": 0.698243114909782,
+      "ap": 0.240473677610847,
+      "threshold": 0.13433226079362
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2053,9 +2383,9 @@
       "fold": 1,
       "n": 154,
       "positives": 3,
-      "auroc": 0.9536423841059603,
-      "ap": 0.7083333333333333,
-      "threshold": 0.1681209598953164
+      "auroc": 0.95364238410596,
+      "ap": 0.708333333333333,
+      "threshold": 0.168120959895316
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2063,9 +2393,9 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.5276634659350709,
-      "ap": 0.15582903584602176,
-      "threshold": 0.2933723278702401
+      "auroc": 0.527663465935071,
+      "ap": 0.155829035846022,
+      "threshold": 0.29337232787024
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2073,9 +2403,9 @@
       "fold": 3,
       "n": 339,
       "positives": 51,
-      "auroc": 0.7075844226579521,
-      "ap": 0.2428820274963403,
-      "threshold": 0.1916415295606555
+      "auroc": 0.707584422657952,
+      "ap": 0.24288202749634,
+      "threshold": 0.191641529560656
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2083,8 +2413,8 @@
       "fold": 4,
       "n": 232,
       "positives": 25,
-      "auroc": 0.5885990338164251,
-      "ap": 0.16011247457538913,
+      "auroc": 0.588599033816425,
+      "ap": 0.160112474575389,
       "threshold": 0.198031749035792
     },
     {
@@ -2093,9 +2423,9 @@
       "fold": 0,
       "n": 183,
       "positives": 27,
-      "auroc": 0.7689933523266856,
-      "ap": 0.3494285142649548,
-      "threshold": 0.1992962663944804
+      "auroc": 0.768993352326686,
+      "ap": 0.349428514264955,
+      "threshold": 0.19929626639448
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2103,9 +2433,9 @@
       "fold": 1,
       "n": 154,
       "positives": 3,
-      "auroc": 0.8543046357615895,
-      "ap": 0.18333333333333335,
-      "threshold": 0.2187803370134242
+      "auroc": 0.85430463576159,
+      "ap": 0.183333333333333,
+      "threshold": 0.218780337013424
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2113,9 +2443,9 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.6008230452674898,
-      "ap": 0.18517761351787657,
-      "threshold": 0.1952881463391889
+      "auroc": 0.60082304526749,
+      "ap": 0.185177613517876,
+      "threshold": 0.195288146339189
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2124,8 +2454,8 @@
       "n": 339,
       "positives": 51,
       "auroc": 0.752723311546841,
-      "ap": 0.4092269299289428,
-      "threshold": 0.1520947985094273
+      "ap": 0.409226929928943,
+      "threshold": 0.152094798509427
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2133,9 +2463,9 @@
       "fold": 4,
       "n": 232,
       "positives": 25,
-      "auroc": 0.7468599033816425,
-      "ap": 0.5111008801961012,
-      "threshold": 0.1994778065812349
+      "auroc": 0.746859903381642,
+      "ap": 0.511100880196101,
+      "threshold": 0.199477806581235
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2143,9 +2473,9 @@
       "fold": 0,
       "n": 183,
       "positives": 27,
-      "auroc": 0.5849952516619183,
-      "ap": 0.23027422107056433,
-      "threshold": 0.7655677655677655
+      "auroc": 0.584995251661918,
+      "ap": 0.230274221070564,
+      "threshold": 0.765567765567766
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2153,8 +2483,8 @@
       "fold": 1,
       "n": 154,
       "positives": 3,
-      "auroc": 0.7836644591611478,
-      "ap": 0.05689571150097466,
+      "auroc": 0.783664459161148,
+      "ap": 0.056895711500975,
       "threshold": 0.737997256515775
     },
     {
@@ -2163,9 +2493,9 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.5715134887974394,
-      "ap": 0.19800832494734302,
-      "threshold": 0.7349537037037037
+      "auroc": 0.571513488797439,
+      "ap": 0.198008324947343,
+      "threshold": 0.734953703703704
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2173,9 +2503,9 @@
       "fold": 3,
       "n": 339,
       "positives": 51,
-      "auroc": 0.6005582788671024,
-      "ap": 0.22796164080647413,
-      "threshold": 0.7648953301127214
+      "auroc": 0.600558278867102,
+      "ap": 0.227961640806474,
+      "threshold": 0.764895330112721
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2183,9 +2513,9 @@
       "fold": 4,
       "n": 232,
       "positives": 25,
-      "auroc": 0.6367149758454106,
-      "ap": 0.18254616718636857,
-      "threshold": 0.6867469879518072
+      "auroc": 0.636714975845411,
+      "ap": 0.182546167186368,
+      "threshold": 0.686746987951807
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2193,9 +2523,9 @@
       "fold": 0,
       "n": 183,
       "positives": 27,
-      "auroc": 0.7405033238366572,
-      "ap": 0.28254658293100904,
-      "threshold": 0.8827838827838828
+      "auroc": 0.740503323836657,
+      "ap": 0.282546582931009,
+      "threshold": 0.882783882783883
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2203,9 +2533,9 @@
       "fold": 1,
       "n": 154,
       "positives": 3,
-      "auroc": 0.9536423841059603,
-      "ap": 0.5990338164251208,
-      "threshold": 0.8792866941015088
+      "auroc": 0.95364238410596,
+      "ap": 0.599033816425121,
+      "threshold": 0.879286694101509
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2213,9 +2543,9 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.5529492455418382,
-      "ap": 0.1717884360894355,
-      "threshold": 0.8865740740740741
+      "auroc": 0.552949245541838,
+      "ap": 0.171788436089436,
+      "threshold": 0.886574074074074
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2223,9 +2553,9 @@
       "fold": 3,
       "n": 339,
       "positives": 51,
-      "auroc": 0.7117715141612201,
-      "ap": 0.24920375076760592,
-      "threshold": 0.8679549114331723
+      "auroc": 0.71177151416122,
+      "ap": 0.249203750767606,
+      "threshold": 0.867954911433172
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2233,9 +2563,9 @@
       "fold": 4,
       "n": 232,
       "positives": 25,
-      "auroc": 0.5861835748792271,
-      "ap": 0.23859726413210064,
-      "threshold": 0.8855421686746987
+      "auroc": 0.586183574879227,
+      "ap": 0.238597264132101,
+      "threshold": 0.885542168674699
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2243,8 +2573,8 @@
       "fold": 0,
       "n": 183,
       "positives": 27,
-      "auroc": 0.7860873694207028,
-      "ap": 0.31294585959413984,
+      "auroc": 0.786087369420703,
+      "ap": 0.31294585959414,
       "threshold": 15.97405200537284
     },
     {
@@ -2253,8 +2583,8 @@
       "fold": 1,
       "n": 154,
       "positives": 3,
-      "auroc": 0.6600441501103753,
-      "ap": 0.036183662554687565,
+      "auroc": 0.660044150110375,
+      "ap": 0.036183662554688,
       "threshold": 4.152395704328695
     },
     {
@@ -2263,8 +2593,8 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.6021947873799726,
-      "ap": 0.2483393926377687,
+      "auroc": 0.602194787379973,
+      "ap": 0.248339392637769,
       "threshold": 5.788345985267454
     },
     {
@@ -2273,8 +2603,8 @@
       "fold": 3,
       "n": 339,
       "positives": 51,
-      "auroc": 0.5885076252723311,
-      "ap": 0.1951075090093244,
+      "auroc": 0.588507625272331,
+      "ap": 0.195107509009324,
       "threshold": 3.698950871565236
     },
     {
@@ -2283,8 +2613,8 @@
       "fold": 4,
       "n": 232,
       "positives": 25,
-      "auroc": 0.6956521739130435,
-      "ap": 0.33558501533642265,
+      "auroc": 0.695652173913044,
+      "ap": 0.335585015336423,
       "threshold": 4.285824313067559
     },
     {
@@ -2293,9 +2623,9 @@
       "fold": 0,
       "n": 183,
       "positives": 27,
-      "auroc": 0.7860873694207028,
-      "ap": 0.31294585959413984,
-      "threshold": 0.1493219615616397
+      "auroc": 0.786087369420703,
+      "ap": 0.31294585959414,
+      "threshold": 0.14932196156164
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2303,9 +2633,9 @@
       "fold": 1,
       "n": 154,
       "positives": 3,
-      "auroc": 0.6600441501103753,
-      "ap": 0.036183662554687565,
-      "threshold": 0.1501147788367702
+      "auroc": 0.660044150110375,
+      "ap": 0.036183662554688,
+      "threshold": 0.15011477883677
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2313,9 +2643,9 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.39780521262002744,
+      "auroc": 0.397805212620027,
       "ap": 0.137234718146798,
-      "threshold": 0.0943725424476402
+      "threshold": 0.09437254244764
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2323,9 +2653,9 @@
       "fold": 3,
       "n": 339,
       "positives": 51,
-      "auroc": 0.41149237472766886,
-      "ap": 0.12205950563397258,
-      "threshold": 0.1177331660690463
+      "auroc": 0.411492374727669,
+      "ap": 0.122059505633972,
+      "threshold": 0.117733166069046
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2333,9 +2663,9 @@
       "fold": 4,
       "n": 232,
       "positives": 25,
-      "auroc": 0.30434782608695654,
-      "ap": 0.08044044622007261,
-      "threshold": 0.1280344516265477
+      "auroc": 0.304347826086956,
+      "ap": 0.080440446220073,
+      "threshold": 0.128034451626548
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2343,9 +2673,9 @@
       "fold": 0,
       "n": 183,
       "positives": 27,
-      "auroc": 0.7428774928774928,
-      "ap": 0.30839673986456195,
-      "threshold": 3.0127816994984946
+      "auroc": 0.742877492877493,
+      "ap": 0.308396739864562,
+      "threshold": 3.012781699498495
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2353,8 +2683,8 @@
       "fold": 1,
       "n": 154,
       "positives": 3,
-      "auroc": 0.26931567328918327,
-      "ap": 0.017074972522687554,
+      "auroc": 0.269315673289183,
+      "ap": 0.017074972522688,
       "threshold": 2.498694241046906
     },
     {
@@ -2363,8 +2693,8 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.4629172382258802,
-      "ap": 0.17299914124890256,
+      "auroc": 0.46291723822588,
+      "ap": 0.172999141248902,
       "threshold": 5.275401691595714
     },
     {
@@ -2373,9 +2703,9 @@
       "fold": 3,
       "n": 339,
       "positives": 51,
-      "auroc": 0.5661764705882353,
-      "ap": 0.17206130114761672,
-      "threshold": 1.6258396978179614
+      "auroc": 0.566176470588235,
+      "ap": 0.172061301147617,
+      "threshold": 1.625839697817962
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2383,8 +2713,8 @@
       "fold": 4,
       "n": 232,
       "positives": 25,
-      "auroc": 0.40792270531400965,
-      "ap": 0.09231357284575292,
+      "auroc": 0.40792270531401,
+      "ap": 0.092313572845753,
       "threshold": 1.128055880467097
     },
     {
@@ -2393,9 +2723,9 @@
       "fold": 0,
       "n": 183,
       "positives": 27,
-      "auroc": 0.30650522317188983,
-      "ap": 0.11133487671143011,
-      "threshold": 0.1421979010397512
+      "auroc": 0.30650522317189,
+      "ap": 0.11133487671143,
+      "threshold": 0.142197901039751
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2403,9 +2733,9 @@
       "fold": 1,
       "n": 154,
       "positives": 3,
-      "auroc": 0.2759381898454747,
-      "ap": 0.017221829217031137,
-      "threshold": 0.1588171103631658
+      "auroc": 0.275938189845475,
+      "ap": 0.017221829217031,
+      "threshold": 0.158817110363166
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2413,9 +2743,9 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.5564700502972107,
-      "ap": 0.2149109088912458,
-      "threshold": 0.0935113850689395
+      "auroc": 0.556470050297211,
+      "ap": 0.214910908891246,
+      "threshold": 0.09351138506894
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2423,9 +2753,9 @@
       "fold": 3,
       "n": 339,
       "positives": 51,
-      "auroc": 0.5032679738562091,
-      "ap": 0.16257151707686768,
-      "threshold": 0.1160095301713981
+      "auroc": 0.503267973856209,
+      "ap": 0.162571517076868,
+      "threshold": 0.116009530171398
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2433,9 +2763,9 @@
       "fold": 4,
       "n": 232,
       "positives": 25,
-      "auroc": 0.2902415458937198,
-      "ap": 0.07460773403575394,
-      "threshold": 0.1236149432515087
+      "auroc": 0.29024154589372,
+      "ap": 0.074607734035754,
+      "threshold": 0.123614943251509
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2443,9 +2773,9 @@
       "fold": 0,
       "n": 183,
       "positives": 27,
-      "auroc": 0.7692307692307692,
-      "ap": 0.3579495679496594,
-      "threshold": 0.2050461769104003
+      "auroc": 0.769230769230769,
+      "ap": 0.357949567949659,
+      "threshold": 0.2050461769104
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2453,9 +2783,9 @@
       "fold": 1,
       "n": 154,
       "positives": 3,
-      "auroc": 0.8101545253863135,
+      "auroc": 0.810154525386314,
       "ap": 0.11740233384069,
-      "threshold": 0.2293841938177744
+      "threshold": 0.229384193817774
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2463,9 +2793,9 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.3139460448102423,
-      "ap": 0.12153850934611347,
-      "threshold": 0.3784264226754506
+      "auroc": 0.313946044810242,
+      "ap": 0.121538509346113,
+      "threshold": 0.378426422675451
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2473,9 +2803,9 @@
       "fold": 3,
       "n": 339,
       "positives": 51,
-      "auroc": 0.6257489106753813,
+      "auroc": 0.625748910675381,
       "ap": 0.241436625646113,
-      "threshold": 0.2030477573474248
+      "threshold": 0.203047757347425
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2483,9 +2813,9 @@
       "fold": 4,
       "n": 232,
       "positives": 25,
-      "auroc": 0.34106280193236715,
-      "ap": 0.08070980430910889,
-      "threshold": 0.1008102645476658
+      "auroc": 0.341062801932367,
+      "ap": 0.080709804309109,
+      "threshold": 0.100810264547666
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2493,9 +2823,9 @@
       "fold": 0,
       "n": 183,
       "positives": 27,
-      "auroc": 0.7689933523266858,
+      "auroc": 0.768993352326686,
       "ap": 0.357516162369251,
-      "threshold": 0.1756825270001435
+      "threshold": 0.175682527000144
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2503,9 +2833,9 @@
       "fold": 1,
       "n": 154,
       "positives": 3,
-      "auroc": 0.8211920529801324,
-      "ap": 0.11840958605664488,
-      "threshold": 0.2375483528323112
+      "auroc": 0.821192052980132,
+      "ap": 0.118409586056645,
+      "threshold": 0.237548352832311
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2513,9 +2843,9 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.6867855509830817,
-      "ap": 0.3769328505593251,
-      "threshold": 0.0867953345381384
+      "auroc": 0.686785550983082,
+      "ap": 0.376932850559325,
+      "threshold": 0.086795334538138
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2523,9 +2853,9 @@
       "fold": 3,
       "n": 339,
       "positives": 51,
-      "auroc": 0.3703703703703704,
+      "auroc": 0.37037037037037,
       "ap": 0.11398344864045,
-      "threshold": 0.1156386474310639
+      "threshold": 0.115638647431064
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2533,9 +2863,9 @@
       "fold": 4,
       "n": 232,
       "positives": 25,
-      "auroc": 0.34608695652173915,
-      "ap": 0.08123743641792752,
-      "threshold": 0.1234177986164778
+      "auroc": 0.346086956521739,
+      "ap": 0.081237436417928,
+      "threshold": 0.123417798616478
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2543,9 +2873,9 @@
       "fold": 0,
       "n": 183,
       "positives": 27,
-      "auroc": 0.7305318138651472,
-      "ap": 0.24641547790655008,
-      "threshold": 0.4940205333333333
+      "auroc": 0.730531813865147,
+      "ap": 0.24641547790655,
+      "threshold": 0.494020533333333
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2553,8 +2883,8 @@
       "fold": 1,
       "n": 154,
       "positives": 3,
-      "auroc": 0.5408388520971302,
-      "ap": 0.030992205723388518,
+      "auroc": 0.54083885209713,
+      "ap": 0.030992205723388,
       "threshold": 0.217119465
     },
     {
@@ -2563,9 +2893,9 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.6975765889346136,
-      "ap": 0.37669083085248545,
-      "threshold": 0.5718120533333333
+      "auroc": 0.697576588934614,
+      "ap": 0.376690830852485,
+      "threshold": 0.571812053333333
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2573,9 +2903,9 @@
       "fold": 3,
       "n": 339,
       "positives": 51,
-      "auroc": 0.5520152505446624,
-      "ap": 0.18127792592179534,
-      "threshold": 0.5707334533333334
+      "auroc": 0.552015250544662,
+      "ap": 0.181277925921795,
+      "threshold": 0.570733453333333
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2583,9 +2913,9 @@
       "fold": 4,
       "n": 232,
       "positives": 25,
-      "auroc": 0.7700483091787439,
-      "ap": 0.40243823096617476,
-      "threshold": 0.3330239614633333
+      "auroc": 0.770048309178744,
+      "ap": 0.402438230966175,
+      "threshold": 0.333023961463333
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2594,8 +2924,8 @@
       "n": 183,
       "positives": 27,
       "auroc": 0.574074074074074,
-      "ap": 0.23239811522292508,
-      "threshold": 0.0885241922333333
+      "ap": 0.232398115222925,
+      "threshold": 0.088524192233333
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2604,7 +2934,7 @@
       "n": 154,
       "positives": 3,
       "auroc": 0.847682119205298,
-      "ap": 0.16612903225806452,
+      "ap": 0.166129032258064,
       "threshold": 0.57596594
     },
     {
@@ -2613,8 +2943,8 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.49958847736625517,
-      "ap": 0.14943922840661283,
+      "auroc": 0.499588477366255,
+      "ap": 0.149439228406613,
       "threshold": 0.51526371
     },
     {
@@ -2623,9 +2953,9 @@
       "fold": 3,
       "n": 339,
       "positives": 51,
-      "auroc": 0.7593954248366013,
-      "ap": 0.3464304329721744,
-      "threshold": 0.4174984666666666
+      "auroc": 0.759395424836601,
+      "ap": 0.346430432972174,
+      "threshold": 0.417498466666667
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2633,9 +2963,159 @@
       "fold": 4,
       "n": 232,
       "positives": 25,
-      "auroc": 0.7285024154589372,
-      "ap": 0.3844333590980143,
-      "threshold": 0.6324975300000001
+      "auroc": 0.728502415458937,
+      "ap": 0.384433359098014,
+      "threshold": 0.63249753
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "fixed",
+      "fold": 0,
+      "n": 183,
+      "positives": 27,
+      "auroc": 0.620132953466287,
+      "ap": 0.231405147650418,
+      "threshold": 0.060490184
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "fixed",
+      "fold": 1,
+      "n": 154,
+      "positives": 3,
+      "auroc": 0.845474613686534,
+      "ap": 0.259150326797386,
+      "threshold": 0.598321786333333
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "fixed",
+      "fold": 2,
+      "n": 288,
+      "positives": 45,
+      "auroc": 0.595427526291724,
+      "ap": 0.20475635566027,
+      "threshold": 0.222855242766667
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "fixed",
+      "fold": 3,
+      "n": 339,
+      "positives": 51,
+      "auroc": 0.793300653594771,
+      "ap": 0.425088732337023,
+      "threshold": 0.634435386666667
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "fixed",
+      "fold": 4,
+      "n": 232,
+      "positives": 25,
+      "auroc": 0.674975845410628,
+      "ap": 0.409390851875453,
+      "threshold": 0.594680666666667
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "coordinates_only",
+      "fold": 0,
+      "n": 183,
+      "positives": 27,
+      "auroc": 0.469610636277303,
+      "ap": 0.14200361513596,
+      "threshold": 0.029858577666667
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "coordinates_only",
+      "fold": 1,
+      "n": 154,
+      "positives": 3,
+      "auroc": 0.865342163355408,
+      "ap": 0.294444444444444,
+      "threshold": 0.714888803333333
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "coordinates_only",
+      "fold": 2,
+      "n": 288,
+      "positives": 45,
+      "auroc": 0.532967535436671,
+      "ap": 0.161095814519507,
+      "threshold": 0.897488733333333
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "coordinates_only",
+      "fold": 3,
+      "n": 339,
+      "positives": 51,
+      "auroc": 0.840686274509804,
+      "ap": 0.545146153487047,
+      "threshold": 0.6498755
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "coordinates_only",
+      "fold": 4,
+      "n": 232,
+      "positives": 25,
+      "auroc": 0.639033816425121,
+      "ap": 0.350187511567218,
+      "threshold": 0.655248656666667
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "no_coordinates",
+      "fold": 0,
+      "n": 183,
+      "positives": 27,
+      "auroc": 0.775403608736942,
+      "ap": 0.342698948047289,
+      "threshold": 0.557245383333333
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "no_coordinates",
+      "fold": 1,
+      "n": 154,
+      "positives": 3,
+      "auroc": 0.258278145695364,
+      "ap": 0.017056483851872,
+      "threshold": 0.311764353333333
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "no_coordinates",
+      "fold": 2,
+      "n": 288,
+      "positives": 45,
+      "auroc": 0.591129401005944,
+      "ap": 0.197178386062693,
+      "threshold": 0.3349357628
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "no_coordinates",
+      "fold": 3,
+      "n": 339,
+      "positives": 51,
+      "auroc": 0.66087962962963,
+      "ap": 0.306780776578982,
+      "threshold": 0.059356104433333
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "method": "no_coordinates",
+      "fold": 4,
+      "n": 232,
+      "positives": 25,
+      "auroc": 0.704541062801932,
+      "ap": 0.163151167170671,
+      "threshold": 0.37086282
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2643,9 +3123,9 @@
       "fold": 0,
       "n": 183,
       "positives": 27,
-      "auroc": 0.5698005698005698,
-      "ap": 0.22957800405129009,
-      "threshold": 0.1070006995666666
+      "auroc": 0.56980056980057,
+      "ap": 0.22957800405129,
+      "threshold": 0.107000699566667
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2653,9 +3133,9 @@
       "fold": 1,
       "n": 154,
       "positives": 3,
-      "auroc": 0.8520971302428257,
-      "ap": 0.16666666666666669,
-      "threshold": 0.4928147433333333
+      "auroc": 0.852097130242826,
+      "ap": 0.166666666666667,
+      "threshold": 0.492814743333333
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2663,9 +3143,9 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.5004115226337449,
+      "auroc": 0.500411522633745,
       "ap": 0.150159370048969,
-      "threshold": 0.5249464833333334
+      "threshold": 0.524946483333333
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2674,8 +3154,8 @@
       "n": 339,
       "positives": 51,
       "auroc": 0.761437908496732,
-      "ap": 0.3591942944077119,
-      "threshold": 0.4169226266666667
+      "ap": 0.359194294407712,
+      "threshold": 0.416922626666667
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2683,9 +3163,9 @@
       "fold": 4,
       "n": 232,
       "positives": 25,
-      "auroc": 0.7246376811594203,
-      "ap": 0.42846929879241996,
-      "threshold": 0.6243622200000001
+      "auroc": 0.72463768115942,
+      "ap": 0.42846929879242,
+      "threshold": 0.62436222
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2693,8 +3173,8 @@
       "fold": 0,
       "n": 183,
       "positives": 27,
-      "auroc": 0.5686134852801519,
-      "ap": 0.23016898866624047,
+      "auroc": 0.568613485280152,
+      "ap": 0.23016898866624,
       "threshold": 0.09136734152
     },
     {
@@ -2703,8 +3183,8 @@
       "fold": 1,
       "n": 154,
       "positives": 3,
-      "auroc": 0.8498896247240618,
-      "ap": 0.17803379416282641,
+      "auroc": 0.849889624724062,
+      "ap": 0.178033794162826,
       "threshold": 0.53960623
     },
     {
@@ -2713,8 +3193,8 @@
       "fold": 2,
       "n": 288,
       "positives": 45,
-      "auroc": 0.5095564700502972,
-      "ap": 0.15404709454453475,
+      "auroc": 0.509556470050297,
+      "ap": 0.154047094544535,
       "threshold": 0.49678363
     },
     {
@@ -2723,9 +3203,9 @@
       "fold": 3,
       "n": 339,
       "positives": 51,
-      "auroc": 0.7592592592592592,
-      "ap": 0.3579504450418382,
-      "threshold": 0.4136123933333333
+      "auroc": 0.759259259259259,
+      "ap": 0.357950445041838,
+      "threshold": 0.413612393333333
     },
     {
       "dataset": "BrisT1D-Open",
@@ -2735,7 +3215,7 @@
       "positives": 25,
       "auroc": 0.728695652173913,
       "ap": 0.415890497730311,
-      "threshold": 0.6340896466666667
+      "threshold": 0.634089646666667
     }
   ],
   "per_seed": [
@@ -2743,42 +3223,168 @@
       "dataset": "RESILIENT",
       "variant": "joint",
       "seed": 20261113,
-      "auroc": 0.7677106949925826,
+      "auroc": 0.767710694992583,
       "n": 1938
     },
     {
       "dataset": "RESILIENT",
       "variant": "joint",
       "seed": 20261114,
-      "auroc": 0.7678039951110738,
+      "auroc": 0.767803995111074,
       "n": 1938
     },
     {
       "dataset": "RESILIENT",
       "variant": "joint",
       "seed": 20261115,
-      "auroc": 0.7956634104925313,
+      "auroc": 0.795663410492531,
+      "n": 1938
+    },
+    {
+      "dataset": "RESILIENT",
+      "variant": "fixed",
+      "seed": 20261113,
+      "auroc": 0.777413907315662,
+      "n": 1938
+    },
+    {
+      "dataset": "RESILIENT",
+      "variant": "fixed",
+      "seed": 20261114,
+      "auroc": 0.779681100194997,
+      "n": 1938
+    },
+    {
+      "dataset": "RESILIENT",
+      "variant": "fixed",
+      "seed": 20261115,
+      "auroc": 0.776602196284789,
+      "n": 1938
+    },
+    {
+      "dataset": "RESILIENT",
+      "variant": "coordinates_only",
+      "seed": 20261113,
+      "auroc": 0.773924482884093,
+      "n": 1938
+    },
+    {
+      "dataset": "RESILIENT",
+      "variant": "coordinates_only",
+      "seed": 20261114,
+      "auroc": 0.76646980341665,
+      "n": 1938
+    },
+    {
+      "dataset": "RESILIENT",
+      "variant": "coordinates_only",
+      "seed": 20261115,
+      "auroc": 0.775137384424478,
+      "n": 1938
+    },
+    {
+      "dataset": "RESILIENT",
+      "variant": "no_coordinates",
+      "seed": 20261113,
+      "auroc": 0.557281607747642,
+      "n": 1938
+    },
+    {
+      "dataset": "RESILIENT",
+      "variant": "no_coordinates",
+      "seed": 20261114,
+      "auroc": 0.571127345331729,
+      "n": 1938
+    },
+    {
+      "dataset": "RESILIENT",
+      "variant": "no_coordinates",
+      "seed": 20261115,
+      "auroc": 0.535775930435432,
       "n": 1938
     },
     {
       "dataset": "BrisT1D-Open",
       "variant": "joint",
       "seed": 20261113,
-      "auroc": 0.6454050700730338,
+      "auroc": 0.645405070073034,
       "n": 1196
     },
     {
       "dataset": "BrisT1D-Open",
       "variant": "joint",
       "seed": 20261114,
-      "auroc": 0.6496066322646138,
+      "auroc": 0.649606632264614,
       "n": 1196
     },
     {
       "dataset": "BrisT1D-Open",
       "variant": "joint",
       "seed": 20261115,
-      "auroc": 0.6522572822378253,
+      "auroc": 0.652257282237825,
+      "n": 1196
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "variant": "fixed",
+      "seed": 20261113,
+      "auroc": 0.628612920508699,
+      "n": 1196
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "variant": "fixed",
+      "seed": 20261114,
+      "auroc": 0.678002425062742,
+      "n": 1196
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "variant": "fixed",
+      "seed": 20261115,
+      "auroc": 0.689309985054846,
+      "n": 1196
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "variant": "coordinates_only",
+      "seed": 20261113,
+      "auroc": 0.658207145475566,
+      "n": 1196
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "variant": "coordinates_only",
+      "seed": 20261114,
+      "auroc": 0.66779460282548,
+      "n": 1196
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "variant": "coordinates_only",
+      "seed": 20261115,
+      "auroc": 0.652059893410033,
+      "n": 1196
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "variant": "no_coordinates",
+      "seed": 20261113,
+      "auroc": 0.639652595663086,
+      "n": 1196
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "variant": "no_coordinates",
+      "seed": 20261114,
+      "auroc": 0.605447931647069,
+      "n": 1196
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "variant": "no_coordinates",
+      "seed": 20261115,
+      "auroc": 0.589318444576037,
       "n": 1196
     }
   ],
@@ -2787,103 +3393,103 @@
       "dataset": "RESILIENT",
       "seed": 20261113,
       "n": 1938,
-      "mean_path_span": 0.03898246671026832,
-      "selected_loss_rank": 3.3947368421052633,
+      "mean_path_span": 0.038982466710268,
+      "selected_loss_rank": 3.394736842105264,
       "selected_bce": 0.570439483504632,
-      "uniform_path_bce": 0.5528195343942711,
-      "retrospective_best_path_bce": 0.49015930205258756,
-      "policy_sum_max_error": 2.1000000005599873e-07,
-      "path0_fraction": 0.28121775025799794,
-      "path1_fraction": 0.013415892672858616,
-      "path2_fraction": 0.15892672858617132,
-      "path3_fraction": 0.1826625386996904,
-      "path4_fraction": 0.31682146542827655,
-      "path5_fraction": 0.04695562435500516
+      "uniform_path_bce": 0.552819534394271,
+      "retrospective_best_path_bce": 0.490159302052588,
+      "policy_sum_max_error": 2.1e-07,
+      "path0_fraction": 0.281217750257998,
+      "path1_fraction": 0.013415892672859,
+      "path2_fraction": 0.158926728586171,
+      "path3_fraction": 0.18266253869969,
+      "path4_fraction": 0.316821465428276,
+      "path5_fraction": 0.046955624355005
     },
     {
       "dataset": "RESILIENT",
       "seed": 20261114,
       "n": 1938,
-      "mean_path_span": 0.024644337778209492,
+      "mean_path_span": 0.024644337778209,
       "selected_loss_rank": 3.259545923632611,
-      "selected_bce": 0.5818522566680021,
-      "uniform_path_bce": 0.5717162547712685,
-      "retrospective_best_path_bce": 0.5271370701712884,
-      "policy_sum_max_error": 2.0999999994497642e-07,
-      "path0_fraction": 0.21620227038183695,
-      "path1_fraction": 0.0041279669762641896,
-      "path2_fraction": 0.30082559339525283,
-      "path3_fraction": 0.054695562435500514,
-      "path4_fraction": 0.14705882352941177,
-      "path5_fraction": 0.2770897832817337
+      "selected_bce": 0.581852256668002,
+      "uniform_path_bce": 0.571716254771268,
+      "retrospective_best_path_bce": 0.527137070171288,
+      "policy_sum_max_error": 2.1e-07,
+      "path0_fraction": 0.216202270381837,
+      "path1_fraction": 0.004127966976264,
+      "path2_fraction": 0.300825593395253,
+      "path3_fraction": 0.0546955624355,
+      "path4_fraction": 0.147058823529412,
+      "path5_fraction": 0.277089783281734
     },
     {
       "dataset": "RESILIENT",
       "seed": 20261115,
       "n": 1938,
-      "mean_path_span": 0.015544353653663572,
+      "mean_path_span": 0.015544353653664,
       "selected_loss_rank": 3.128998968008256,
-      "selected_bce": 0.48072663923445724,
-      "uniform_path_bce": 0.4790505743410725,
-      "retrospective_best_path_bce": 0.45976502431197114,
-      "policy_sum_max_error": 2.300000000454716e-07,
-      "path0_fraction": 0.22961816305469557,
-      "path1_fraction": 0.30392156862745096,
-      "path2_fraction": 0.0804953560371517,
-      "path3_fraction": 0.06398348813209494,
-      "path4_fraction": 0.10474716202270382,
+      "selected_bce": 0.480726639234457,
+      "uniform_path_bce": 0.479050574341072,
+      "retrospective_best_path_bce": 0.459765024311971,
+      "policy_sum_max_error": 2.3e-07,
+      "path0_fraction": 0.229618163054696,
+      "path1_fraction": 0.303921568627451,
+      "path2_fraction": 0.080495356037152,
+      "path3_fraction": 0.063983488132095,
+      "path4_fraction": 0.104747162022704,
       "path5_fraction": 0.217234262125903
     },
     {
       "dataset": "BrisT1D-Open",
       "seed": 20261113,
       "n": 1196,
-      "mean_path_span": 0.025455430838269233,
-      "selected_loss_rank": 3.3561872909698995,
-      "selected_bce": 0.9404238161005484,
-      "uniform_path_bce": 0.9436349522213766,
-      "retrospective_best_path_bce": 0.8970314511686585,
-      "policy_sum_max_error": 1.8999999995550354e-07,
-      "path0_fraction": 0.1596989966555184,
-      "path1_fraction": 0.042642140468227424,
-      "path2_fraction": 0.5418060200668896,
-      "path3_fraction": 0.05518394648829431,
-      "path4_fraction": 0.1245819397993311,
-      "path5_fraction": 0.07608695652173914
+      "mean_path_span": 0.025455430838269,
+      "selected_loss_rank": 3.3561872909699,
+      "selected_bce": 0.940423816100548,
+      "uniform_path_bce": 0.943634952221377,
+      "retrospective_best_path_bce": 0.897031451168658,
+      "policy_sum_max_error": 1.9e-07,
+      "path0_fraction": 0.159698996655518,
+      "path1_fraction": 0.042642140468227,
+      "path2_fraction": 0.54180602006689,
+      "path3_fraction": 0.055183946488294,
+      "path4_fraction": 0.124581939799331,
+      "path5_fraction": 0.076086956521739
     },
     {
       "dataset": "BrisT1D-Open",
       "seed": 20261114,
       "n": 1196,
-      "mean_path_span": 0.027687620296237465,
+      "mean_path_span": 0.027687620296237,
       "selected_loss_rank": 3.279264214046823,
-      "selected_bce": 0.5680879516490202,
-      "uniform_path_bce": 0.5640848294029855,
-      "retrospective_best_path_bce": 0.5301662053386442,
-      "policy_sum_max_error": 1.9999999989472883e-07,
-      "path0_fraction": 0.5008361204013378,
-      "path1_fraction": 0.03177257525083612,
-      "path2_fraction": 0.18896321070234115,
-      "path3_fraction": 0.08528428093645485,
-      "path4_fraction": 0.06020066889632107,
-      "path5_fraction": 0.13294314381270902
+      "selected_bce": 0.56808795164902,
+      "uniform_path_bce": 0.564084829402986,
+      "retrospective_best_path_bce": 0.530166205338644,
+      "policy_sum_max_error": 2e-07,
+      "path0_fraction": 0.500836120401338,
+      "path1_fraction": 0.031772575250836,
+      "path2_fraction": 0.188963210702341,
+      "path3_fraction": 0.085284280936455,
+      "path4_fraction": 0.060200668896321,
+      "path5_fraction": 0.132943143812709
     },
     {
       "dataset": "BrisT1D-Open",
       "seed": 20261115,
       "n": 1196,
-      "mean_path_span": 0.017690750970819395,
-      "selected_loss_rank": 3.8390468227424748,
-      "selected_bce": 0.44928368201896923,
-      "uniform_path_bce": 0.4466894874667717,
-      "retrospective_best_path_bce": 0.4264434103792687,
-      "policy_sum_max_error": 1.7999999990525595e-07,
-      "path0_fraction": 0.09782608695652174,
-      "path1_fraction": 0.30518394648829433,
-      "path2_fraction": 0.4180602006688963,
-      "path3_fraction": 0.1588628762541806,
-      "path4_fraction": 0.004180602006688963,
-      "path5_fraction": 0.01588628762541806
+      "mean_path_span": 0.017690750970819,
+      "selected_loss_rank": 3.839046822742474,
+      "selected_bce": 0.449283682018969,
+      "uniform_path_bce": 0.446689487466772,
+      "retrospective_best_path_bce": 0.426443410379269,
+      "policy_sum_max_error": 1.8e-07,
+      "path0_fraction": 0.097826086956522,
+      "path1_fraction": 0.305183946488294,
+      "path2_fraction": 0.418060200668896,
+      "path3_fraction": 0.158862876254181,
+      "path4_fraction": 0.004180602006689,
+      "path5_fraction": 0.015886287625418
     }
   ],
   "paper_human_rhythms_transfer": [
@@ -3545,7 +4151,13 @@
     {
       "dataset": "BrisT1D-Open",
       "variant": "coordinates_only",
-      "completed": 9,
+      "completed": 15,
+      "planned": 15
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "variant": "fixed",
+      "completed": 15,
       "planned": 15
     },
     {
@@ -3555,14 +4167,32 @@
       "planned": 15
     },
     {
+      "dataset": "BrisT1D-Open",
+      "variant": "no_coordinates",
+      "completed": 15,
+      "planned": 15
+    },
+    {
       "dataset": "RESILIENT",
       "variant": "coordinates_only",
-      "completed": 3,
+      "completed": 15,
+      "planned": 15
+    },
+    {
+      "dataset": "RESILIENT",
+      "variant": "fixed",
+      "completed": 15,
       "planned": 15
     },
     {
       "dataset": "RESILIENT",
       "variant": "joint",
+      "completed": 15,
+      "planned": 15
+    },
+    {
+      "dataset": "RESILIENT",
+      "variant": "no_coordinates",
       "completed": 15,
       "planned": 15
     }
@@ -3583,5 +4213,184 @@
       "results/ssaqs_external",
       "results/pmdata_external"
     ]
+  },
+  "joint_bidirectional_transfer": [
+    {
+      "source": "RESILIENT",
+      "target": "BrisT1D-Open",
+      "method": "joint",
+      "source_models": 15,
+      "target_training_labels": 0,
+      "n": 1238,
+      "auroc": 0.739562130464282,
+      "ap": 0.410810394471774,
+      "auroc_low": 0.643781112925943,
+      "auroc_high": 0.821409500249424,
+      "joint_delta_low": 0.0,
+      "joint_delta_high": 0.0
+    },
+    {
+      "source": "RESILIENT",
+      "target": "BrisT1D-Open",
+      "method": "best_constant",
+      "source_models": 15,
+      "target_training_labels": 0,
+      "n": 1238,
+      "auroc": 0.740906998158379,
+      "ap": 0.41479304395394,
+      "auroc_low": 0.647924290541323,
+      "auroc_high": 0.820869099933738,
+      "joint_delta_low": -0.006278858701614,
+      "joint_delta_high": 0.00225195788047
+    },
+    {
+      "source": "RESILIENT",
+      "target": "BrisT1D-Open",
+      "method": "uniform",
+      "source_models": 15,
+      "target_training_labels": 0,
+      "n": 1238,
+      "auroc": 0.741046331297858,
+      "ap": 0.412883045707964,
+      "auroc_low": 0.64726611650823,
+      "auroc_high": 0.821881986891636,
+      "joint_delta_low": -0.004454755384399,
+      "joint_delta_high": 0.00101404594603
+    },
+    {
+      "source": "RESILIENT",
+      "target": "BrisT1D-Open",
+      "method": "fixed",
+      "source_models": 15,
+      "target_training_labels": 0,
+      "n": 1238,
+      "auroc": 0.74002253562082,
+      "ap": 0.416437650624268,
+      "auroc_low": 0.646590000066372,
+      "auroc_high": 0.816777055997574,
+      "joint_delta_low": -0.016589431756681,
+      "joint_delta_high": 0.014790253042867
+    },
+    {
+      "source": "RESILIENT",
+      "target": "BrisT1D-Open",
+      "method": "coordinates_only",
+      "source_models": 15,
+      "target_training_labels": 0,
+      "n": 1238,
+      "auroc": 0.735424542018028,
+      "ap": 0.410990477186721,
+      "auroc_low": 0.632269766560628,
+      "auroc_high": 0.8167923491892,
+      "joint_delta_low": -0.016251458248077,
+      "joint_delta_high": 0.025391062127542
+    },
+    {
+      "source": "RESILIENT",
+      "target": "BrisT1D-Open",
+      "method": "no_coordinates",
+      "source_models": 15,
+      "target_training_labels": 0,
+      "n": 1238,
+      "auroc": 0.606177910245226,
+      "ap": 0.182505490027919,
+      "auroc_low": 0.480417530531225,
+      "auroc_high": 0.700353418595428,
+      "joint_delta_low": 0.01417431915296,
+      "joint_delta_high": 0.253829974724412
+    },
+    {
+      "source": "BrisT1D-Open",
+      "target": "RESILIENT",
+      "method": "joint",
+      "source_models": 15,
+      "target_training_labels": 0,
+      "n": 1990,
+      "auroc": 0.79274089689464,
+      "ap": 0.48186711139387,
+      "auroc_low": 0.72111713388477,
+      "auroc_high": 0.848167987900506,
+      "joint_delta_low": 0.0,
+      "joint_delta_high": 0.0
+    },
+    {
+      "source": "BrisT1D-Open",
+      "target": "RESILIENT",
+      "method": "best_constant",
+      "source_models": 15,
+      "target_training_labels": 0,
+      "n": 1990,
+      "auroc": 0.793664830740976,
+      "ap": 0.4879492825616,
+      "auroc_low": 0.720756884872585,
+      "auroc_high": 0.849680419176061,
+      "joint_delta_low": -0.002858647409228,
+      "joint_delta_high": 0.001119812882112
+    },
+    {
+      "source": "BrisT1D-Open",
+      "target": "RESILIENT",
+      "method": "uniform",
+      "source_models": 15,
+      "target_training_labels": 0,
+      "n": 1990,
+      "auroc": 0.794215419890222,
+      "ap": 0.486919185792777,
+      "auroc_low": 0.722572909933331,
+      "auroc_high": 0.849650214851115,
+      "joint_delta_low": -0.002720729312867,
+      "joint_delta_high": -0.000466780762291
+    },
+    {
+      "source": "BrisT1D-Open",
+      "target": "RESILIENT",
+      "method": "fixed",
+      "source_models": 15,
+      "target_training_labels": 0,
+      "n": 1990,
+      "auroc": 0.795288314499539,
+      "ap": 0.486096415398991,
+      "auroc_low": 0.721589050439649,
+      "auroc_high": 0.851498197880544,
+      "joint_delta_low": -0.016276229923457,
+      "joint_delta_high": 0.010367013624428
+    },
+    {
+      "source": "BrisT1D-Open",
+      "target": "RESILIENT",
+      "method": "coordinates_only",
+      "source_models": 15,
+      "target_training_labels": 0,
+      "n": 1990,
+      "auroc": 0.813702881730811,
+      "ap": 0.496872554186462,
+      "auroc_low": 0.746169041791901,
+      "auroc_high": 0.865831209676645,
+      "joint_delta_low": -0.040214119718181,
+      "joint_delta_high": -0.00361046942924
+    },
+    {
+      "source": "BrisT1D-Open",
+      "target": "RESILIENT",
+      "method": "no_coordinates",
+      "source_models": 15,
+      "target_training_labels": 0,
+      "n": 1990,
+      "auroc": 0.565200503072551,
+      "ap": 0.196484781341222,
+      "auroc_low": 0.457836760731654,
+      "auroc_high": 0.66214418499512,
+      "joint_delta_low": 0.12124384874139,
+      "joint_delta_high": 0.337734137923578
+    }
+  ],
+  "joint_experiment_status": {
+    "training_fits_completed": 120,
+    "training_fits_planned": 120,
+    "epochs_per_fit": 30,
+    "transfer_settings": 8,
+    "additional_same_weight_transfer_controls": 4,
+    "figure_groups": 7,
+    "pipeline_finished": true
   }
 }

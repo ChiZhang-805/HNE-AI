@@ -42,6 +42,7 @@
       "N",
       "E+NE"
     ],
+    "sequence_readout": "observed tokens only; no masked-query representations",
     "basis": "training-only median, standardization, quadratic spline with 3 knots, basis standardization, group-size normalization",
     "checkpoint_selection": "validation AUROC; tie lower BCE",
     "primary_metric": "within-fold pair-weighted AUROC",

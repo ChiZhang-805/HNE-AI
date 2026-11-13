@@ -36,7 +36,7 @@ AI / 计算机方向研究仓库，包含论文、方案、代码和可追溯的
 
 原稿的Human Rhythms迁移实验进一步显示：使用22名目标训练参与者时，迁移源域学得的系数达到AUROC 0.639，目标域从头训练为0.593；配对提升为0.046，95%区间为[0.017, 0.077]。这为小样本条件下复用已学预警规则提供了直接证据，完整样本量比较保存在 `results/human_rhythms_transfer`。
 
-**已有证据支持继续推进“个人参考下的多指标风险学习”和“小样本规则迁移”。路径学习的独立增益由新版实验回答。** 当前材料快照中，动态路径在两库的AUROC分别为0.7815和0.6539，同权重、验证集选择的最佳恒定路径为0.7818和0.6540；这项比较尚未显示动态路径优势。后续固定路径重训、去基模、去数值证据与双向迁移，将分别判断顺序学习、预训练表示、数值证据和规则复用的贡献。
+**已有证据支持继续推进“个人参考下的多指标风险学习”和“小样本规则迁移”。路径学习的独立增益由新版实验回答。** 当前材料快照中，动态路径在两库的AUROC分别为0.7815和0.6539，同权重、验证集选择的最佳恒定路径为0.7818和0.6540；这项比较尚未显示动态路径优势。本轮120次训练及8组冻结迁移已完成。固定路径重训在两库达到0.7802和0.6951；去基模达到0.7747和0.6726。双向冻结迁移的完整HNE为0.7396和0.7927，去数值证据降至0.6062和0.5652。结果支持数值证据在跨库预警中的作用，动态路径的额外收益尚未得到支持；下一步研究重点是路径监督与证据交互。
 
 ### AI论文的贡献定位
 
@@ -53,6 +53,7 @@ AI / 计算机方向研究仓库，包含论文、方案、代码和可追溯的
 | 两页汇报 | [AI论文 - HNE.pptx](presentation/AI论文%20-%20HNE.pptx) |
 | 当前方法与三个RQ | [设计方案](literature/hne_model_design.md) |
 | 核心结果JSON | [key_results.json](results/key_results.json) |
+| 本轮完整报告与迁移 | [报告](results/hne_joint/summary/report.md) · [迁移CSV](results/hne_joint/transfer/metrics.csv) |
 | 新版主比较与配对区间 | [指标CSV](results/hne_joint/summary/metrics.csv) · [配对区间CSV](results/hne_joint/summary/paired_intervals.csv) |
 | 训练记录 | [RESILIENT](results/hne_joint/RESILIENT) · [BrisT1D-Open](results/hne_joint/BrisT1D-Open) |
 | 迁移记录 | [Human Rhythms](results/human_rhythms_transfer) · [College](results/college_transfer) |
@@ -61,18 +62,18 @@ AI / 计算机方向研究仓库，包含论文、方案、代码和可追溯的
 
 原稿对应共享表示 / 加性HNE。`src/hne_joint.py` 对应后续的基模与路径联合训练方案，结果独立保存在 `results/hne_joint`，尚未替换原稿结论。PPT是已有汇报版本。
 
-本次公开结果快照为2026年11月13日19:49（北京时间）。`key_results.json` 同时提供主比较、配对区间、折/种子指标、路径结果和完整样本量迁移比较。`result.json` 保存每次完整训练的曲线、验证选择与评价指标；CSV保留两库的逐样本预测。正文未选用的有效汇总结果也保留在 `results`。
+新版实验结果已更新至2026年11月13日20:55（北京时间）：120/120次训练、8组双向冻结迁移、完整统计及7组柱状图均已完成。原稿材料保持其原有模型版本。`key_results.json` 同时提供主比较、配对区间、折/种子指标、路径结果和完整样本量迁移比较。`result.json` 保存每次完整训练的曲线、验证选择与评价指标；CSV保留两库的逐样本预测。正文未选用的有效汇总结果也保留在 `results`。
 
 | 数据集 | 新模型变体 | 完整拟合/计划 |
 | --- | --- | --- |
 | RESILIENT | joint | 15/15 |
-| RESILIENT | fixed | 0/15 |
-| RESILIENT | coordinates_only | 3/15 |
-| RESILIENT | no_coordinates | 0/15 |
+| RESILIENT | fixed | 15/15 |
+| RESILIENT | coordinates_only | 15/15 |
+| RESILIENT | no_coordinates | 15/15 |
 | BrisT1D-Open | joint | 15/15 |
-| BrisT1D-Open | fixed | 0/15 |
-| BrisT1D-Open | coordinates_only | 9/15 |
-| BrisT1D-Open | no_coordinates | 0/15 |
+| BrisT1D-Open | fixed | 15/15 |
+| BrisT1D-Open | coordinates_only | 15/15 |
+| BrisT1D-Open | no_coordinates | 15/15 |
 
 ## 复现
 
