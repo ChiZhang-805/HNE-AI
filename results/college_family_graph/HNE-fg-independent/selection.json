@@ -1,0 +1,35 @@
+{
+  "method": "HNE-fg-independent",
+  "C": 1.0,
+  "validation_auroc": 0.6656687342845148,
+  "trials": [
+    {
+      "C": 0.01,
+      "validation_auroc": 0.6582982218605351,
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "iterations": 32,
+      "objective": 0.5260513267840979,
+      "maximum_gradient": 7.399847825632563e-07
+    },
+    {
+      "C": 0.1,
+      "validation_auroc": 0.6640949796907576,
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "iterations": 84,
+      "objective": 0.5110481877921421,
+      "maximum_gradient": 4.561230913429151e-07
+    },
+    {
+      "C": 1.0,
+      "validation_auroc": 0.6656687342845148,
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "iterations": 233,
+      "objective": 0.5025254271297934,
+      "maximum_gradient": 6.8116534538212314e-06
+    }
+  ],
+  "threshold": 0.3936182009114824
+}

@@ -1,0 +1,17 @@
+{
+  "dataset": "Human-Rhythms",
+  "fold": null,
+  "condition": "frozen",
+  "C": 0.0,
+  "candidates": [
+    {
+      "C": 0.0,
+      "auroc": 0.6988936446781352,
+      "within_person_auroc": 0.5905520803457305,
+      "person_nll": 0.4000174025027351,
+      "person_brier": 0.12324170812175647,
+      "adapted_fraction": 0.0
+    }
+  ],
+  "validation_auroc": 0.6988936446781352
+}

@@ -1,0 +1,39 @@
+\section{Spacecraft Transfer with Expert Event Labels}
+\label{app:esa}
+
+\subsection{Telemetry and Future Event Labels}
+ESA-AD v2 supplies long spacecraft telemetry, executed-command logs, and expert event annotations \citep{hneD09,esaADv2}. We aggregate observed hourly means into daily means and standard deviations for numerical target channels. Numerical non-target channels and four command-priority counts provide context. Missions 1 and 2 contribute 5,114/1,277 published-clock days, 116/94 state coordinates, and 22/47 context coordinates before the unchanged reference-based 32-state budget. Their clocks are anonymized and scaled; the reported time units are not physical days.
+
+The original initial-reference fluctuation endpoint produces no eligible training/validation origins on either mission: all 2,462/544 candidate origins have an already abnormal preceding week. We evaluate a separately defined expert endpoint, fixed before the Mission 2 analysis, without changing HNE's features or risk function. A positive origin precedes the earliest onset of an event labelled multivariate and subsequence by one to seven complete days. The preceding seven days contain no expert anomaly, and the intervening day contains no anomaly onset. Future univariate or point anomalies are excluded from the negative class. Expert-labelled rare normal events remain negative examples. Labels never enter the historical features.
+
+Mission 1 training ends before October 2006, validation occupies the following three months, and testing begins in January 2007. Its training/validation populations contain 1,875/40 origins and 224/4 positives. Mission 2 uses July and October 2001 boundaries, yielding 304/85 training/validation origins and 55/0 positives. The shared selection function uses validation log loss when AUROC is undefined; FCM and CATCH retain their native validation losses. All twelve public-model runs complete 20 epochs. Frozen testing yields 2,007/566 origins and 230/14 positives for Missions 1/2. Uncertainty resamples 64-day blocks jointly across methods; observations within one spacecraft are not treated as independent systems.
+
+\subsection{Frozen Source Rules}
+On Mission 1's 2,007 shared source-transfer origins, source HNE reaches AUROC .564, compared with .498 for source history and .490 for DNB (Table~\ref{tab:esa-source}). Mission 2 gives .760/.808/.123 on 566 origins. 
+
+\begin{table}[!htb]
+\centering
+\caption{Frozen human-source rules on ESA expert events. Thresholds use validation-negative percentiles.}
+\label{tab:esa-source}
+\hnetable{tables/esa_source}
+\end{table}
+
+\subsection{Target-Domain Training}
+Target-domain fits are a separate comparison: on 1,980/469 common origins, target HNE reaches .555/.346, FCM .504/.449, and CATCH .445/.508. The strongest target controls are history logistic regression at .591 on Mission 1 and history boosting at .730 on Mission 2 (Table~\ref{tab:esa-target}). Source history exceeds full source HNE on Mission 2, reversing their ordering on Mission 1.
+
+\begin{table}[!htb]
+\centering
+\caption{ESA target-trained models on common origins. Neural methods average three seeds; intervals resample 64-day blocks.}
+\label{tab:esa-target}
+\hnetable{tables/esa_target}
+\end{table}
+
+\subsection{Rare Normal Events}
+On Mission 1, rare normal events overlap 292 negative test windows. Source HNE's false-positive rate is 43.5\% in these windows and 43.1\% in the other 1,485 negative windows; source history gives 49.3\% and 49.4\%, respectively (Table~\ref{tab:esa-benign}). Every one of Mission 2's 552 negative windows overlaps a rare normal event; source HNE and source history yield false-positive rates of 3.8\% and 2.2\%. Mission 2 therefore supplies no ordinary-negative subgroup for the same within-mission contrast.
+
+\begin{table}[!htb]
+\centering
+\caption{False alarms during expert-labelled rare normal events and other negative windows. Thresholds are fixed before testing.}
+\label{tab:esa-benign}
+\hnetable{tables/esa_benign}
+\end{table}

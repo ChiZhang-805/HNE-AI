@@ -1,0 +1,22 @@
+{
+  "dataset": "BrisT1D-Open",
+  "method": "HNE-fg-boundary",
+  "fold": 2,
+  "C": 0.01,
+  "validation_auroc": 0.6389569716775598,
+  "auroc": 0.42752629172382256,
+  "trials": [
+    {
+      "C": 0.01,
+      "validation_auroc": 0.6389569716775598
+    },
+    {
+      "C": 0.1,
+      "validation_auroc": 0.6226851851851852
+    },
+    {
+      "C": 1.0,
+      "validation_auroc": 0.5893246187363834
+    }
+  ]
+}

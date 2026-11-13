@@ -1,0 +1,12 @@
+{
+  "version": "college-delayed-personal-feedback-20261110",
+  "core_configuration": "configs/delayed_adaptation.json",
+  "source_methods": ["HNE-additive", "HNE-history", "History-HGB", "History-LR", "JAPE-event-AUC-3seed", "CATCH-score-LR-3seed", "FCM-score-LR-3seed", "DNB-score-LR", "MM-DEV-score-LR"],
+  "common_conditions": ["frozen", "intercept", "affine"],
+  "coefficient_conditions": ["HNE-additive", "HNE-history"],
+  "native_score_readout_C": 0.1,
+  "source": "Already fitted College training-participant models; all selected parameters unchanged",
+  "comparison": "Identical delayed-label availability and update schedule for HNE, history and public baselines; coefficient learning compared with baseline-risk calibration",
+  "rationale": "Independent evaluation of the personal-risk adaptation effect seen in Human validation, using long same-person histories and matched adaptive controls",
+  "test": "Separate prequential experiment: only same-person outcomes completed at least8 days after their origin may update the frozen learning rule; static primary comparison retained"
+}

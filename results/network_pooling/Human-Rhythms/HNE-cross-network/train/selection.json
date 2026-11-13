@@ -1,0 +1,28 @@
+{
+  "C": 1.0,
+  "candidates": [
+    {
+      "C": 0.01,
+      "validation_selection_score": 0.6696596910753808
+    },
+    {
+      "C": 0.1,
+      "validation_selection_score": 0.6783899148642161
+    },
+    {
+      "C": 1.0,
+      "validation_selection_score": 0.7041414401648847
+    }
+  ],
+  "metrics": [
+    {
+      "part": "validation",
+      "origins": 2526,
+      "positive": 308,
+      "auroc": 0.7041414401648847,
+      "ap": 0.24306642723171024
+    }
+  ],
+  "selected_train_model": true,
+  "context_ridge": 10
+}

@@ -1,0 +1,103 @@
+{
+  "method": "HNE-rank-basis",
+  "C": 0.01,
+  "trials": [
+    {
+      "C": 0.01,
+      "validation_auroc": 0.7851753377407301
+    },
+    {
+      "C": 0.1,
+      "validation_auroc": 0.7718094279965507
+    },
+    {
+      "C": 1.0,
+      "validation_auroc": 0.7173038229376257
+    }
+  ],
+  "config": {
+    "version": "hne-rank-basis-v1-20261110",
+    "method": "HNE-rank-basis",
+    "reason": "Training-only diagnostic: 37% of varying H and 35% of varying E coordinates in College have IQR/SD below0.1; compare one common training-rank transform before the unchanged additive risk rule.",
+    "unchanged": "296 H/N/E/NE descriptors, context_ridge10, endpoint, origins, folds, three quadratic basis coordinates, group penalties, person/class weights and prior correction",
+    "transform": "training median imputation, then per-coordinate empirical quantile to uniform using min(1001,N) quantiles and all training origins; no outcome labels in transform; original three-knot spline and basis StandardScaler",
+    "C_candidates": [
+      0.01,
+      0.1,
+      1.0
+    ],
+    "selection": "maximum validation AUROC; negative logloss if single class; exact ties retain smaller C; no validation refit",
+    "role": "preprocessing mechanism comparison; quantile normalization and spline encoding are established methods, not new algorithm claims",
+    "development": [
+      "RESILIENT",
+      "BrisT1D-Open",
+      "IFH-Affect"
+    ],
+    "prospective_cohort": "College-Experience, train/validation only until global freeze",
+    "documentation": "https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.QuantileTransformer.html"
+  },
+  "model_sha256": "b436a724fe2f60f5ec2afdbcb334a0f0f23a37810e9d61ee8fd5aa1df460d9cf",
+  "core": {
+    "hne_rank_basis.py": "8e158f1d36a1c62114f7143ebc42fa1dc614e62ea8b5083d68ce782c24acadcd",
+    "hne_additive.py": "caf7123ea343e392b2f979299139ff7ae1e10101fe7caa55fb3ad627362e791a"
+  },
+  "train_people": [
+    "0b918943",
+    "19581e27",
+    "327ec92a",
+    "355901a7",
+    "3d914f93",
+    "3ff1feb9",
+    "403c387d",
+    "44cb730c",
+    "4523540f",
+    "4b227777",
+    "4ec9599f",
+    "51841482",
+    "5e86cb4b",
+    "5f9c4ab0",
+    "670671cd",
+    "6b86b273",
+    "7077831c",
+    "71ee45a3",
+    "73475cb4",
+    "76a50887",
+    "7a61b537",
+    "8527a891",
+    "86e50149",
+    "9f14025a",
+    "aea92132",
+    "c6f3ac57",
+    "df4f4518",
+    "e629fa65",
+    "e7f6c011",
+    "f276ebe4",
+    "f5ca38f7"
+  ],
+  "validation_people": [
+    "2c624232",
+    "44d88da8",
+    "4a44dc15",
+    "4e074085",
+    "535fa30d",
+    "624b60c5",
+    "7902699b",
+    "b17ef6d1",
+    "b7a56873",
+    "c2356069",
+    "c6d2115a",
+    "e29c9c18",
+    "eb1e33e8"
+  ],
+  "validation": {
+    "origins": 382,
+    "auroc": 0.7851753377407301,
+    "ap": 0.4832413724678565
+  },
+  "held_development": {
+    "origins": 537,
+    "auroc": 0.7928349677228601,
+    "ap": 0.34954904901229905
+  },
+  "frozen_at_utc": "2026-11-10T01:50:14.559592+00:00"
+}

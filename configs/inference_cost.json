@@ -1,0 +1,16 @@
+{
+  "version": "hne-normalized-history-inference-cost-20261110",
+  "dataset": "Human-Rhythms previously scored test histories",
+  "origins": 128,
+  "origin_selection": "seed20261110 random subset without using labels or scores",
+  "repetitions": 5,
+  "device": "CPU",
+  "cpu_threads": 1,
+  "batch_size": 8,
+  "input": "In-memory personal-reference-normalized histories; common raw aggregation and initial normalization are outside timing",
+  "hne_scope": "Full per-origin coordinate extraction from available prefix plus fitted risk head; reference-context fitting repeated, without cross-origin caching",
+  "head_scope": "Cached296 coordinates to risk, reported separately",
+  "public_scope": "Input imputation and scaling, all three frozen neural seeds, validation CDF transforms, and ensemble averaging",
+  "excluded": "Data loading, model loading, labels, training, disk writes",
+  "uncertainty": "Median and interquartile spread of repeated measured latency, not confidence intervals"
+}

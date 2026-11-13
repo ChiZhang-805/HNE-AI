@@ -1,0 +1,22 @@
+{
+  "stage": "development_on_previously_exposed_cohorts",
+  "datasets": ["RESILIENT", "BrisT1D-Open"],
+  "reference_hours": 672,
+  "history_hours": 168,
+  "scales_hours": [24, 72, 168],
+  "edge_lags_hours": [0, 6, 24],
+  "context_lags_hours": [0, 6, 24],
+  "minimum_pair_observations": 12,
+  "correlation_shrinkage": 24,
+  "context_ridge": 10.0,
+  "primary_metric": "person_fold_pair_weighted_AUROC",
+  "selection_metric": "validation_AUROC_or_log_loss_if_one_class",
+  "ridge_C": [0.01, 0.1, 1.0],
+  "mlp_weight_decay": [0.001, 0.01],
+  "seeds": [20261110, 20261111, 20261112],
+  "development_folds": [0, 1, 2, 3, 4],
+  "candidates": ["HNE-additive", "HNE-set"],
+  "comparison": ["History-LR", "DNB", "FCM", "CATCH", "previous-HNE"],
+  "goal_absolute_AUROC_gain": 0.04,
+  "test_policy": "New cohort identities are reserved before outcome inspection; development cohort folds are not a new unseen test."
+}

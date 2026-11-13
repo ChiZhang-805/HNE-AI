@@ -1,0 +1,12 @@
+{
+  "test_hashes": {
+    "metadata": "973543f42119462a13de1c0bbeee390fc5603520b990f2404a74e5f80ab0acff",
+    "features": "a7c8a584d3582fd50538e693c4ad73b25aa7fde1ecc6d84b5737ea9ae4c9d88b"
+  },
+  "origins": 2980,
+  "people": 28,
+  "positive": 449,
+  "freeze_manifest_sha256": "97fded6aa2857aace13c7554e88b1bc1cacdde9a66037f6688eab620bc7637a2",
+  "seed_summary": "mean of three independently selected subset-seed metrics, not an ensemble; 100% one fit; fixed-subset-seed person bootstrap averages the same resampled-person metrics",
+  "prediction_at_utc": "2026-11-10T00:26:32.096746+00:00"
+}

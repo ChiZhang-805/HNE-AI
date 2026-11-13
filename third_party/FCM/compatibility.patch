@@ -1,0 +1,55 @@
+diff --git a/layers/SelfAttention_Family.py b/layers/SelfAttention_Family.py
+index 939c4e1..9d25bae 100644
+--- a/layers/SelfAttention_Family.py
++++ b/layers/SelfAttention_Family.py
+@@ -3,7 +3,6 @@ import torch.nn as nn
+ import numpy as np
+ from math import sqrt
+ from utils.masking import TriangularCausalMask, ProbMask
+-from reformer_pytorch import LSHSelfAttention
+ from einops import rearrange, repeat
+ import math
+ from math import sqrt
+@@ -55,7 +54,8 @@ class FullAttention(nn.Module):
+         self.dropout = nn.Dropout(attention_dropout)
+ 
+         window_size = win_size
+-        self.distances = torch.zeros((window_size, window_size)).cuda()
++        # A buffer follows model.to(device), including CPU and non-default GPUs.
++        self.register_buffer('distances', torch.zeros((window_size, window_size)), persistent=False)
+         for i in range(window_size):
+             for j in range(window_size):
+                 self.distances[i][j] = abs(i - j)
+@@ -79,7 +79,7 @@ class FullAttention(nn.Module):
+             sigma = torch.sigmoid(sigma * 5) + 1e-5
+             sigma = torch.pow(3, sigma) - 1
+             sigma = sigma.unsqueeze(-1).repeat(1, 1, 1, window_size)  # B H L L
+-            prior = self.distances.unsqueeze(0).unsqueeze(0).repeat(sigma.shape[0], sigma.shape[1], 1, 1).cuda()
++            prior = self.distances.unsqueeze(0).unsqueeze(0).repeat(sigma.shape[0], sigma.shape[1], 1, 1)
+             prior = 1.0 / (math.sqrt(2 * math.pi) * sigma) * torch.exp(-prior ** 2 / 2 / (sigma ** 2))
+         else:
+             prior = 1
+@@ -245,6 +245,8 @@ class ReformerLayer(nn.Module):
+     def __init__(self, attention, d_model, n_heads, d_keys=None,
+                  d_values=None, causal=False, bucket_size=4, n_hashes=4):
+         super().__init__()
++        # FCM uses FullAttention only; require this optional package on use.
++        from reformer_pytorch import LSHSelfAttention
+         self.bucket_size = bucket_size
+         self.attn = LSHSelfAttention(
+             dim=d_model,
+diff --git a/models/FCM.py b/models/FCM.py
+index ba8b16a..3c871d8 100644
+--- a/models/FCM.py
++++ b/models/FCM.py
+@@ -78,7 +78,9 @@ class Model(nn.Module):
+         means = x_enc.mean(1, keepdim=True).detach()
+         x_enc = x_enc - means
+         stdev = torch.sqrt(torch.var(x_enc, dim=1, keepdim=True, unbiased=False) + 1e-5)
+-        x_enc /= stdev
++        # Context projection outputs require gradients; in-place division would
++        # invalidate the variance backward saved tensor on current PyTorch.
++        x_enc = x_enc / stdev
+ 
+         _, _, N = x_enc.shape
+ 

@@ -1,0 +1,29 @@
+{
+  "method": "HNE-rhythm",
+  "C": 0.1,
+  "trials": [
+    {
+      "C": 0.01,
+      "validation_auroc": 0.7648309178743962
+    },
+    {
+      "C": 0.1,
+      "validation_auroc": 0.7723671497584541
+    },
+    {
+      "C": 1.0,
+      "validation_auroc": 0.7710144927536233
+    }
+  ],
+  "validation_auroc": 0.7723671497584541,
+  "validation": {
+    "origins": 232,
+    "auroc": 0.7723671497584541,
+    "ap": 0.4262842263005022
+  },
+  "held_person": {
+    "origins": 339,
+    "auroc": 0.61369825708061,
+    "ap": 0.24967103561863332
+  }
+}

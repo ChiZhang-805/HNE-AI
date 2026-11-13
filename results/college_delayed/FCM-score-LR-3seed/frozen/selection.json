@@ -1,0 +1,22 @@
+{
+  "source_method": "FCM-score-LR-3seed",
+  "condition": "frozen",
+  "C": 0.0,
+  "trials": [
+    {
+      "C": 0.0,
+      "auroc": 0.5867814775430674,
+      "within_person_auroc": 0.5440169410170095,
+      "person_nll": 0.5718754750223196,
+      "person_brier": 0.19144728958649565,
+      "adapted_fraction": 0.0
+    }
+  ],
+  "validation": {
+    "auroc": 0.5867814775430674,
+    "within_person_auroc": 0.5440169410170095,
+    "person_nll": 0.5718754750223196,
+    "person_brier": 0.19144728958649565,
+    "adapted_fraction": 0.0
+  }
+}

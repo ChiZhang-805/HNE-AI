@@ -1,0 +1,13 @@
+{
+  "version": "tolife-frozen-source-external-20261110",
+  "source": "Frozen RESILIENT+BrisT1D HNE models selected before any TOLIFE values",
+  "test_people": "All17 test IDs fixed by the original participant manifest",
+  "methods": ["HNE-additive", "HNE-history", "DNB", "MM-DEV-daily"],
+  "primary_hne": "HNE-additive",
+  "primary_comparators": ["HNE-history", "DNB", "MM-DEV-daily"],
+  "endpoint": "Unchanged configs/daily_protocol.json sustained multivariate fluctuation endpoint",
+  "input_mapping": "Unchanged daily/schema_mapping.json:32 physiological states,48 environmental/behavioral context coordinates",
+  "calibration": "No target parameter selection; alert thresholds use finite negative scores from the existing87 training origins, because the fixed validation partition has no eligible origins",
+  "comparison": "Frozen-source transfer, not target-training superiority",
+  "bootstrap": {"unit": "participant", "replicates": 2000, "seed": 20261110}
+}

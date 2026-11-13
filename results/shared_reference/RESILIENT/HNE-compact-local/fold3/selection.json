@@ -1,0 +1,83 @@
+{
+  "C": 0.01,
+  "candidates": [
+    {
+      "C": 0.01,
+      "validation": 0.8736905721192587
+    },
+    {
+      "C": 0.1,
+      "validation": 0.8720386784850926
+    },
+    {
+      "C": 1.0,
+      "validation": 0.8388799355358582
+    }
+  ],
+  "personal_ridge": 1.0,
+  "reference_candidates": [
+    {
+      "ridge": 0.1,
+      "validation_reference_huber2": 0.8127293149374629
+    },
+    {
+      "ridge": 1.0,
+      "validation_reference_huber2": 0.7783729058864369
+    },
+    {
+      "ridge": 10.0,
+      "validation_reference_huber2": 0.8059215696940747
+    }
+  ],
+  "training_people": [
+    "327ec92a",
+    "35135aaa",
+    "3d914f93",
+    "3ff1feb9",
+    "403c387d",
+    "41d8fe4e",
+    "4523540f",
+    "4b227777",
+    "4ec9599f",
+    "51841482",
+    "5e86cb4b",
+    "5f9c4ab0",
+    "670671cd",
+    "6b51d431",
+    "6b86b273",
+    "6f4b6612",
+    "76a50887",
+    "785f3ec7",
+    "7a61b537",
+    "8527a891",
+    "93e3d8c5",
+    "9400f1b2",
+    "98010bd9",
+    "aea92132",
+    "bf6dbcba",
+    "c6f3ac57",
+    "d59eced1",
+    "d65ca5bf",
+    "df4f4518",
+    "e7f6c011",
+    "ef2d127d",
+    "f5ca38f7"
+  ],
+  "population_coefficients": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "dataset": "Human-Rhythms",
+  "fold": null,
+  "condition": "affine",
+  "C": 0.1,
+  "candidates": [
+    {
+      "C": 0.01,
+      "auroc": 0.7291874041197757,
+      "within_person_auroc": 0.5679728841656128,
+      "person_nll": 0.3871080607643737,
+      "person_brier": 0.12059870204087357,
+      "adapted_fraction": 0.8428345209817893
+    },
+    {
+      "C": 0.1,
+      "auroc": 0.7552726804304802,
+      "within_person_auroc": 0.511813910766847,
+      "person_nll": 0.37667973289337836,
+      "person_brier": 0.11881864257813059,
+      "adapted_fraction": 0.8428345209817893
+    },
+    {
+      "C": 1.0,
+      "auroc": 0.7511395840408464,
+      "within_person_auroc": 0.45912327987413926,
+      "person_nll": 0.3862468557624711,
+      "person_brier": 0.12304859300870442,
+      "adapted_fraction": 0.8428345209817893
+    }
+  ],
+  "validation_auroc": 0.7552726804304802
+}

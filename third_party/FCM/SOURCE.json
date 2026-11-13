@@ -1,0 +1,24 @@
+{
+  "repository": "https://github.com/mala-lab/FCM",
+  "commit": "67e4c841098a0b4e161b9dfd3b0a5aefb34ec0e8",
+  "source": "Author repository at the recorded commit; apply compatibility.patch after downloading.",
+  "copied_files": [
+    "README.md",
+    "requirements.txt",
+    "models/FCM.py",
+    "layers/Embed.py",
+    "layers/Transformer_EncDec.py",
+    "layers/SelfAttention_Family.py",
+    "utils/masking.py",
+    "models/__init__.py",
+    "layers/__init__.py",
+    "utils/__init__.py"
+  ],
+  "compatibility_patch_summary": "layers/SelfAttention_Family.py | 8 +++++---\n models/FCM.py                  | 4 +++-\n 2 files changed, 8 insertions(+), 4 deletions(-)",
+  "patch_file": "third_party/FCM/compatibility.patch",
+  "empty_files": [
+    "models/__init__.py",
+    "layers/__init__.py",
+    "utils/__init__.py"
+  ]
+}

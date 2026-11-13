@@ -1,0 +1,38 @@
+{
+  "source_method": "History-HGB",
+  "condition": "intercept",
+  "C": 0.1,
+  "trials": [
+    {
+      "C": 0.01,
+      "auroc": 0.6825235411023354,
+      "within_person_auroc": 0.6126939129434321,
+      "person_nll": 0.5264744482837107,
+      "person_brier": 0.17400869252716825,
+      "adapted_fraction": 0.9691587844636748
+    },
+    {
+      "C": 0.1,
+      "auroc": 0.6943043427105553,
+      "within_person_auroc": 0.6000879686664314,
+      "person_nll": 0.5231232997328402,
+      "person_brier": 0.17302049484594806,
+      "adapted_fraction": 0.9691587844636748
+    },
+    {
+      "C": 1.0,
+      "auroc": 0.6832131432040025,
+      "within_person_auroc": 0.565551238789266,
+      "person_nll": 0.5539777250954763,
+      "person_brier": 0.18248812344802656,
+      "adapted_fraction": 0.9691587844636748
+    }
+  ],
+  "validation": {
+    "auroc": 0.6943043427105553,
+    "within_person_auroc": 0.6000879686664314,
+    "person_nll": 0.5231232997328402,
+    "person_brier": 0.17302049484594806,
+    "adapted_fraction": 0.9691587844636748
+  }
+}

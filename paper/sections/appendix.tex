@@ -1,0 +1,130 @@
+\section{Reproducibility Details}
+\label{app:reproducibility}
+
+\subsection{HNE Implementation}
+Personal normalization requires 28 reference observations. Reference standard deviation replaces a zero median absolute deviation; constant variables remain unavailable. Context fitting requires at least 14 dates with the state and supported context observed. Missing context is zero-filled with its observation mask, and the intercept is unpenalized. Four contiguous 14-day reference blocks are each predicted from the other three blocks. Original normalized values replace residuals when context or fitting support is unavailable.
+
+Each context coordinate at lags zero, one, and seven requires four reference observations and is clipped to $[-8,8]$ before concatenation with its observation mask. Context-response targets are clipped to $[-12,12]$ during reference fitting; the resulting residual stream uses the original normalized observations. Node descriptors require four window observations and 14 reference observations. Reference standard-deviation and amplitude denominators are floored at $0.1$ and $0.2$, respectively; the absolute-deviation tail threshold is floored at $0.1$. Population standard deviations and linearly interpolated quantiles are used throughout.
+
+The $E$ group contains 104 pooled adjusted-state, coefficient-norm, and fitting-support coordinates plus 24 context descriptors averaged across context variables. Each of $N$ and $NE$ contains four graph summaries for three windows and three lags. For more than 32 state channels, the reference-only selection rule greedily maximizes coverage times one minus the largest absolute reference correlation with a selected channel. Eligible channels require 28 reference observations; source field names resolve exact ties. The quadratic spline expansion uses three uniform knots, linear extrapolation, and three retained bases per coordinate. Training standardization is applied before and after expansion.
+
+Edges require six jointly observed pairs and nonzero variances in both periods. Zero-lag edges are unordered; lagged edges are directed and exclude self-edges. Risk-coordinate imputation uses training medians, followed by training mean/standard-deviation normalization and clipping to $[-8,8]$. Scaling each expanded group by $m_g^{-1/2}$ implements the group-weighted penalty through ridge logistic regression. Validation AUROC selects $C\in\{0.01,0.1,1\}$; single-class validation uses log loss.
+
+\paragraph{Endpoint eligibility.}
+Reference blocks require five observed days per variable and 20 qualifying blocks. A family is abnormal when any eligible member is abnormal, normal when all members are observed and normal, and otherwise unknown. A future block is positive with two abnormal families, negative when abnormal plus unknown families cannot reach two, and otherwise unlabelled. The preceding seven-day block must be known normal.
+
+\begin{algorithm}[!tb]
+\caption{Fit HNE and issue a prospective score}
+\label{alg:hne}
+\begin{algorithmic}[1]
+\REQUIRE Training and validation people; daily states, context, masks; eligible origins and training endpoints
+\FOR{each person $i$}
+  \STATE $R_i\leftarrow\mathrm{FitReference}(X_{i,1:56},E_{i,1:56})$
+  \STATE Fit context responses and four reference-block residual folds inside $R_i$
+  \FOR{each eligible origin $d$}
+    \STATE $z_{id}\leftarrow\mathrm{Encode}(R_i,X_{i,\leq d},E_{i,\leq d})\in\mathbb{R}^{296}$
+  \ENDFOR
+\ENDFOR
+\FOR{$C\in\{0.01,0.1,1\}$}
+  \STATE $f_C\leftarrow\mathrm{FitRisk}(z_{\mathrm{train}},y_{\mathrm{train}},C)$ using weighted spline logistic regression
+\ENDFOR
+\STATE Select $C$ on validation people; freeze imputation, scaling, basis, coefficients, and prior correction $\kappa$
+\STATE For a monitored person, fit $R$ from the first 56 days
+\STATE At issue time $d$, encode available observations only and return $\sigma(f_C(z_d)-\log\kappa)$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{JAPE Interval-Event Adapter}
+JAPE retains the released DSTR backbone, detached future-graph branch, 13-dimensional structural extractor, and dual-view alerting head. The backbone uses three layers, width 128, eight heads, FFN width 256, maximum lag three, and five graph predecessors; the alert head uses three layers, width 64, and four heads. Both stages use batch size 128, learning rate $10^{-4}$, at most 20 epochs, and patience five. Adam fits the backbone to summed main and auxiliary observed-entry MSE. With the backbone frozen, AdamW fits the alert head using weight decay $10^{-4}$, focal loss ($\alpha=0.25$, $\gamma=2$), and unit gradient clipping. Native selection maximizes validation F1 over 30 thresholds in $[0.05,0.95]$ and drives learning-rate reduction. Training-history medians fill inputs before training-only standardization; missing future values receive no supervision. Participant folds replace the original interleaved timeline split, and three fixed seeds are averaged. The adapter predicts interval events rather than pointwise anomalies or variable explanations.
+
+The AUROC-selection condition retrains each alert head on its frozen forecaster, replacing validation F1 with AUROC for checkpoint selection and learning-rate reduction. All other settings remain fixed. Its 30 head fits and 306 epochs enter the extended strongest-control comparison alongside native F1 selection.
+
+\subsection{Data Availability and Field Mapping}
+
+\begin{table*}[!tb]
+\centering
+\caption{Cohort coverage and input dimensions. Units are available/scorable people or CARE assets; $P/Q$ are state/context dimensions. Span and Observed are median calendar and observed days; $n/n^+$ count eligible/positive origins.}
+\label{tab:cohorts}
+\hnetable{tables/cohorts}
+\end{table*}
+
+Table~\ref{tab:cohorts} summarizes recording coverage and dimensions. RESILIENT v3 is available from Zenodo under CC BY 4.0, with a companion data descriptor \citep{hneD02,hneD03}. We use its sleep-mat and smartwatch tables; 56 of the 73 available participants contribute eligible origins. BrisT1D-Open provides processed device records under CC BY 4.0 \citep{hneD04}. Its study recruited 24 participants; our device-data adapter contains 20, of whom 19 contribute eligible origins. CARE v6 provides 95 cases from 36 turbines under CC BY-SA 4.0: 45 fault-leading cases and 50 normal cases \citep{hneD05,hneD06}. These counts refer to the v6 release.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Human-cohort fields before daily aggregation. Mean and standard-deviation coordinates inherit their source field's family.}
+\label{tab:appendix-fields}
+\begin{tabular}{@{}p{0.21\columnwidth}p{0.45\columnwidth}p{0.22\columnwidth}@{}}
+\hline
+Cohort & State fields & Families \\
+\hline
+RESILIENT & Sleep-mat and watch heart rate; respiration; SDNN; sleep proportion & Heart; respiration; HRV; sleep \\
+BrisT1D & Glucose; heart rate; steps, distance, calories & Glucose; heart; activity \\
+\hline
+\multicolumn{3}{p{0.92\columnwidth}}{Context: step counts for RESILIENT; recorded carbohydrate intake for BrisT1D.} \\
+\hline
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:appendix-fields} groups the measured states into endpoint families. Each state contributes a daily mean and population standard deviation from at least four observed hourly values; context requires one. Missing calendar positions remain explicit. Sleep proportion counts light, deep, and REM sleep by duration. RESILIENT uses UTC; BrisT1D retains its unspecified source timezone. Daily values become available at the following midnight.
+
+Human Rhythms \citep{hneD07} supplies 166 participants with official daily heart-rate summaries, main-sleep summaries, and daily step summaries. The ten state coordinates are resting heart rate; sleep efficiency; minutes asleep, awake, in bed, to fall asleep, and after waking; steps; and the sine and cosine of main-sleep midpoint. The midpoint uses the actual recorded local start and end timestamps and is assigned to the sleep-end date. Heart, sleep, and activity are the three endpoint families. We retain only step segments explicitly marked daily with full-day boundaries; weekly, multiday, and whole-trajectory fitted rhythm files do not enter features. Five context fields are mean air temperature, relative humidity, precipitation, wind speed, and daylight duration from the study-location weather table. Calendar gaps remain missing.
+
+IDs are ordered by SHA-256 of \texttt{20261110:Human-Rhythms:}\textit{ID}; the first 100, next 33, and final 33 form training, validation, and test. Outcomes and coverage do not influence this allocation. Native daily records are aligned to the following local midnight in our retrospective protocol. The source weather consists of historical site-level estimates; its original publication latency is not supplied, so this alignment is an analysis convention rather than a verified real-time feed. The dataset's published rhythm analyses do not provide future-disturbance event labels; our fixed endpoint constructs those labels from subsequent observations.
+
+CARE uses documented non-angle, non-counter average fields, yielding 78/102/438 daily state coordinates in farms A/B/C before the common 32-coordinate reference-based selection. Its 3/5/7 context coordinates measure wind speed, ambient or outside temperature, and, in farm C, external air pressure. Cases remain separate because their years were anonymized independently. Within the published prediction segment, a positive origin has an official fault boundary in $[\mathrm{issue}+1,\mathrm{issue}+8)$ days. Negatives require follow-up through the right endpoint; gap failures and post-failure origins are excluded. Normal-case interval ends are not faults. Event annotations and operating-status labels are excluded from features. This native endpoint does not require the human cohorts' two-family condition.
+
+\paragraph{TOLIFE coverage.}
+We also apply the unchanged physiological field mapping and fluctuation protocol to all 17 originally reserved TOLIFE participants \citep{hneD01}. Their 4,041 calendar days contain 2,635 candidate origins but no eligible normal-start window: preceding-week labels remain unknown under the observation requirements. This cohort contributes a coverage result, not a test AUROC.
+
+\subsection{Released Neural Baselines and Score Adaptation}
+Released FCM and CATCH cores \citep{hneH01,hneC01} are pinned to commits \texttt{67e4c84} and \texttt{3647c69}. Development inputs are $32\times11$ histories, imputed with training-channel medians and standardized on training histories. Both methods complete 20 epochs at batch size eight for seeds 20261110--20261112: 60 fits and 1,200 epochs across cohorts and folds. Training uses an RTX 4060 Laptop GPU and PyTorch 2.8.0+cu128. FCM has 831,243 parameters; CATCH has 1,111,840.
+
+Human Rhythms uses $32\times15$ inputs and six additional 20-epoch fits. FCM fits 7,654/2,099 training/validation origins with 32 complete calendar days of future supervision; incomplete tails are excluded only from fitting. CATCH fits all 9,039/2,526 histories. Both subsequently score all eligible histories. The test feature archive contains no future trajectories.
+
+FCM uses four layers, eight heads, and model/FFN widths 128/128. It retains reconstruction, association-minimax, and future-context objectives, with Adam rate $10^{-3}$, association coefficient 3, and scoring temperature 50. The context branch activates after epoch one; predicted context is detached while its projection receives gradients. Validation forecast MSE selects the checkpoint after activation. Inference sums KL-weighted history reconstruction energy with predicted future context.
+
+CATCH retains full FFT, frequency patches, channel masks, and bilevel updates. It uses three layers, two heads, widths 64/128, patch length 16, and stride eight. Main/mask Adam rates are $10^{-4}/10^{-5}$; frequency and discovery coefficients are both 0.005. Validation reconstruction MSE selects the checkpoint. Scores average temporal reconstruction error plus 0.05 times the frequency criterion. Validation and inference use fixed Gumbel streams.
+
+Neither encoder is trained on event labels. The separate \emph{score-LR} condition fits standardized scalar-score logistic regression on training events, selecting $C\in\{0.01,0.1,1\}$ by validation log loss. For each fold and seed, the ensemble transform is $F_s(a)=\#\{v:y_v=0,a_v\leq a\}/\#\{v:y_v=0\}$. The three frozen validation-negative transforms are averaged equally on every partition. Thus event labels calibrate the ensemble scores while encoder objectives remain unchanged.
+
+\subsection{DNB and MM-DEV}
+DNB uses normalized states from the last 32 days. Among the ten highest-coverage channels, it chooses the largest feasible set of five, four, or three channels, preferring joint coverage, requiring 12 complete observations and nonzero variances. Within that set, it maximizes
+\begin{equation}
+ D(M)=\frac{\overline{\mathrm{SD}}_M\,
+ \overline{|\rho|}_{M,M}}{\overline{|\rho|}_{M,M^c}+10^{-6}}
+\end{equation}
+over two- and three-channel modules with a nonempty complement. Undefined windows remain missing. DNB-tuned selects among 16-, 24-, and 32-day histories by validation AUROC.
+
+The daily MM-DEV adaptation retains ISOMAP, mixed embedding, S-map Jacobians, and dominant-eigenvalue scoring \citep{hneM10}. Each 32-day, 11-coordinate history is median-filled and standardized independently; constant coordinates are dropped. ISOMAP uses a symmetric five-neighbor graph and up to three positive manifold coordinates. A disconnected graph yields an undefined score. Embedding dimension $E\in\{1,\ldots,6\}$ maximizes leave-one-out, one-step prediction correlation of the first coordinate with $\theta=0$; ties favor smaller $E$. Mixed embeddings use contemporaneous manifold coordinates followed by first-coordinate lags. The final 24 embedded days provide S-maps with delay one and $\theta=1$. Each local regression excludes its focal transition and multiplies both sides by exponential distance weights. The score is the mean dominant-eigenvalue modulus. All fitting uses the observed history, unlike fitting ISOMAP once to a complete trajectory. Its separate score-LR uses HNE's participant/class weights and validation AUROC selection.
+
+\subsection{Inference Cost}
+We measure loaded-model CPU time on 128 uniformly sampled Human Rhythms test origins, using one i9-13900HX thread, batches of eight, and five repeated calls after initialization. Inputs are already normalized histories. HNE includes per-origin coordinate extraction and repeated context-reference fitting; history boosting includes its descriptors, and the neural ensembles include all three seeds, imputation, scaling, and score transforms. Data/model loading and common initial normalization are excluded. HNE requires a median 31.49 ms per origin; its separately timed cached-coordinate head takes 1.50 ms. Table~\ref{tab:inference-cost} reports the complete measured scope for each method.
+
+\begin{table}[!htb]
+\centering
+\caption{CPU inference time and saved predictor size. IQR is the spread over five timed calls. Cached-head timing excludes coordinate construction.}
+\label{tab:inference-cost}
+\hnetable{tables/inference_cost}
+\end{table}
+
+\subsection{Statistical Definitions}
+For evaluation fold $k$, let $n_k^+$ and $n_k^-$ count positive and negative origins. The development estimate
+\begin{equation}
+ \widehat{\mathrm{AUC}}=
+ \frac{\sum_k n_k^+n_k^-\widehat{\mathrm{AUC}}_k}
+ {\sum_k n_k^+n_k^-}
+\end{equation}
+compares scores within each fitted model. Its common population requires finite DNB, FCM, CATCH, History-LR, History-HGB, HNE-HGB, and HNE-additive scores; additional methods retain their own coverage. Paired comparisons use the shared origins. Percentile intervals use 2,000 participant resamples (seed 20261110), retaining complete personal timelines and identical draws across methods. Within-person AUROC averages people with both classes. Alarms strictly exceed validation-negative 90th percentiles; average precision pools scores transformed by each fold's validation-score empirical CDF. CARE resampling clusters cases by farm-specific turbine identity.
+
+Reselecting the strongest development comparator in each draw gives gain intervals $[-0.037,0.070]$ for RESILIENT and $[-0.105,0.113]$ for BrisT1D. The external primary set is HNE, DNB, daily MM-DEV, History-LR, History-HGB, and three-seed FCM/CATCH. DNB scores 2,948 of 2,980 Human Rhythms origins; the other primary methods score all origins. Their intersection contains 448 positives and 2,500 negatives. Each method has one frozen scoring function, so external metrics use global AUROC and direct average precision. Each strongest-control draw subtracts the maximum AUROC of the six controls from HNE's score; paired intervals instead retain a fixed comparator.
+
+Human Rhythms sample-efficiency subsets select 22 or 43 of the 85 eligible training people by fixed ID hashes with seeds 20261110--20261112, independently of outcomes. Conditions share subsets and the complete validation/test sets. Estimates average the three subset-specific metrics; joint test-participant resampling applies identical weights across all conditions and subsets before averaging. These intervals measure test-participant uncertainty for the three fixed training subsets. The 85-person target-only condition is the primary target-trained HNE model.
+
+\subsection{Context and Future-Block Sensitivity}
+The primary context-response ridge coefficient is 10. A separate grid selects this coefficient from $\{0.1,1,10\}$ jointly with $C\in\{0.01,0.1,1\}$ by validation AUROC. Only the context-adjusted coordinates change; the raw history and relation coordinates remain identical. Human Rhythms selects ridge $0.1$ and $C=0.01$. The pooled-domain model uses the same nine candidates and the same Human Rhythms validation set, selecting the same pair. It fits on 12,267 origins from 160 eligible training participants across the three cohorts, with equal domain weights.
+
+The forecast-distance comparison in Appendix~\ref{app:additional-results} moves the future seven-day block to gaps of one, three, or seven complete days while keeping every fitted model unchanged. It retains only origins whose labels are known at every evaluated gap. This measures ranking for progressively more distant intervals, rather than estimating the exact onset time of a clinical event. Both aggregate and within-person AUROC are reported to separate stable between-person risk from temporal discrimination.
+
+

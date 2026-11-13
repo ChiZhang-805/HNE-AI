@@ -1,0 +1,27 @@
+\section{Introduction}
+\label{sec:introduction}
+
+% Declare the figure after the section heading so the heading stays below the abstract.
+\begin{figure}[t]
+\centering
+\emptyframe{\columnwidth}{8.0cm}
+\caption{Personal-reference disturbance warning.}
+\label{fig:concept}
+\end{figure}
+
+Sleep, activity, and physiological measurements fluctuate as people follow their daily routines. The warning problem begins before those fluctuations become unusually large or persistently displaced: which changes in an apparently normal history anticipate a coming disruption? Sleep-based circadian features and personal activity patterns have supported mood-event and relapse prediction \citep{hneA08,hneA10}. We bring this question to multivariate monitoring, where the signal can involve the persistence of a deviation, a change in context response, or a changing relationship between indicators. The learning target is a sustained disturbance in a subsequent interval.
+
+Existing approaches provide complementary ways to describe changing dynamics. Noise-aware signal combinations and spatial--temporal PCA summarize multivariate fluctuations \citep{hneM01,hneM07}, while graph--recurrent models and TipPFN learn transition-related representations \citep{hneM08,hneM12}. FCM predicts future context for abnormality forecasting, and CATCH learns channel dependencies within frequency patches \citep{hneH01,hneC01}. A transferable personal warning system must express such changes relative to ordinary individual behavior and preserve their meaning when the measured variables change. This connects three design decisions: how normal behavior is referenced, how multivariate changes are represented, and how the representation predicts a future event.
+
+We introduce HNE to connect a personal reference with a shared future-disturbance objective (Figure~\ref{fig:concept}). An initial history defines usual variability and expected responses to measured context. Since environmental changes can also contribute to instability \citep{hneM06}, HNE preserves original observations alongside context-adjusted responses. It measures relationship changes relative to the same reference and reduces the influence of edges supported by few observations. These choices distinguish personal deviations, context responses, and changes in joint behavior within one representation.
+
+To support different measurement sets, HNE pools multiscale node and relationship descriptors into fixed coordinates (Figure~\ref{fig:framework}). An additive predictor learns how these coordinates anticipate a separated future interval. Their definitions remain unchanged across datasets, enabling a source rule to score a new domain directly or guide target fitting through a coefficient prior. Comparing this prior with transfer of the source basis alone isolates the value of the learned warning rule.
+
+We evaluate HNE through participant-disjoint development comparisons, held-out cohort tests, and transfer across human and operational records. Development AUROC gains over the strongest comparator are $0.036$ on RESILIENT and $0.055$ on BrisT1D-Open; held-out comparisons reveal cohort-dependent module contributions. Source-rule transfer further improves adaptation with 22 Human Rhythms training participants, connecting the shared representation to a concrete low-data benefit.
+
+Our contributions are threefold:
+\begin{itemize}
+\item We formulate interval warning relative to personal history, linking a normal observed period to sustained multivariate fluctuation or displacement in a subsequent interval.
+\item We present HNE, a shared representation of multiscale personal deviations, context-adjusted responses, and observation-supported relationship changes for warning across different measurement dimensions.
+\item We evaluate the representation through participant-disjoint comparisons, component ablations, and controlled transfer, identifying network gains in both development cohorts and improved low-data adaptation.
+\end{itemize}

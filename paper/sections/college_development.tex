@@ -1,0 +1,42 @@
+\section{College Development: Scale and Future Targets}
+\label{sec:college-development}
+
+College Experience provides multi-year smartphone observations \citep{hneD08}. We use the public v5 release, whose 220 participant identifiers are assigned by a fixed hash to 132/44/44 training, validation, and evaluation participants. Nine daily states describe phone-derived sleep, stationary and vehicle duration, cycling and walking activity, phone unlock duration and count, travel distance, and visited locations. Four observed contexts describe home, study and social duration, and campus distance. Phone-derived sleep and phone use share one measurement family; the remaining families are activity and mobility. We apply the same 56-day reference, 32-day history, one-day gap, and seven-day disturbance target.
+
+Training and validation contain 54,691 and 19,876 eligible origins from 126 and 44 participants, with 11,904 and 4,330 positive origins. Among these participants, median calendar spans are 1,311 and 1,317.5 days; median days with at least one observed state are 1,139 and 1,148.5. These counts measure actual longitudinal coverage, including gaps in the source records. Table~\ref{tab:college-learning} reports validation development comparisons.
+
+\subsection{Preserving Personal Units}
+The temporal head applies a shared global scaler after personal-reference normalization. On College training histories, the fitted state and context standard deviations are 638.44 and 122,046.70. Consequently, 96.89\% of state observations and 94.70\% of context observations lie within 0.01 of the transformed numerical zero. We compare a head that retains personal units, setting only these two scaler means and scales to zero and one. Node and relationship scaling, clipping, observation masks, architecture, and optimization remain fixed.
+
+The three-seed validation AUROC increases from 0.636 to 0.671. The same change gives 0.750 versus 0.745 on RESILIENT and 0.527 versus 0.540 on BrisT1D-Open under the same five development folds and three seeds (Table~\ref{tab:reference-units}). A separate training-rank transform of the additive model's 296 coordinates yields College validation AUROC 0.647, compared with 0.650 for its original scaling.
+
+\subsection{Direct Supervision of Future Fluctuation}
+FCM uses future values to learn representations, while F2A and JAPE combine future prediction and anomaly objectives \citep{hneH01,hneP01,hneP02}. We compare auxiliary point targets with statistics of the actual future interval. Both variants retain the temporal risk encoder and add a shared node decoder whose outputs do not enter the risk head. The point decoder predicts seven future values. The statistic decoder predicts the signed mean, $\log(1+V)$ for population variance $V$, and the fraction of days beyond the personal reference's absolute 90th percentile. Nodes require five observed future days and 28 reference observations.
+
+Both conditions use learning rate 0.001, selected by the preceding BCE experiment, and select an auxiliary weight from $\{0.1,1\}$ on validation participants. They share three fixed seeds, AdamW, an 80-epoch limit, and patience 12. Huber loss uses training-only target scales and equal-participant weighting; the event loss retains participant and class balancing. Both choose weight one. Future-value supervision reaches validation AUROC 0.637 and future-statistic supervision 0.642, compared with 0.636 for BCE.
+
+Table~\ref{tab:future-targets} evaluates the auxiliary predictions on 169,745 common valid nodes from all 19,876 validation origins. Losses first average nodes within an origin, then origins within a participant, then participants. Direct statistics reduce log-variance MAE from 0.673 for the previous seven days to 0.646; the paired difference is $-0.027$ with participant-bootstrap interval $[-0.047,-0.007]$. Mean prediction is worse than past-statistic continuation, and tail-frequency errors are similar. Thus, better estimation of one future fluctuation statistic produces a smaller change in event discrimination.
+
+\begin{table}[t]
+\centering
+\caption{College validation development on 19,876 origins. Neural entries average three seeds.}
+\label{tab:college-learning}
+\small\setlength{\tabcolsep}{5pt}
+\input{tables/college_learning}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Temporal input scaling: three-seed, five-fold development AUROC on identical origins.}
+\label{tab:reference-units}
+\small\setlength{\tabcolsep}{4pt}
+\input{tables/reference_units}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{College validation future-target errors. The first three columns are MAE; Huber uses training-standardized targets.}
+\label{tab:future-targets}
+\small\setlength{\tabcolsep}{3pt}
+\input{tables/future_targets}
+\end{table}

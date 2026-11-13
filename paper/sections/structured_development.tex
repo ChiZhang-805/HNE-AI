@@ -1,0 +1,12 @@
+\section{Structured Targets and Within-Day Coordinates}
+
+\subsection{Shared Future-Family Supervision}
+The binary endpoint is accompanied by the future normal, disturbed, or unknown status of each measurement family. We retain these labels in a shared conditional random field \citep{hneC06}. Its unary term uses the family's existing history and context-adjusted descriptors; its pair term uses the original relationship descriptors restricted to cross-family edges. The same unary and pair functions apply to every family and pair, without family identifiers. We sum over unknown statuses during training and over configurations containing at least two disturbed families when predicting the event. This uses standard conditional and cardinality inference \citep{hneC05}; all eight or sixteen configurations are enumerated for the three- or four-family cohorts.
+
+The independent, constant-edge, and conditional-edge variants share the spline basis, participant weighting, and three regularization candidates. Conditional edges give AUROC 0.840/0.648 on RESILIENT/BrisT1D, compared with 0.839/0.658 for independent families. A fixed arithmetic mean of the original global risk and conditional-family risk gives 0.826/0.710. Table~\ref{tab:structured-development} also reports within-person ranking, separating event timing from differences in aggregate risk across people.
+
+\subsection{Observed Hourly Waveforms}
+We extract past-only harmonic coordinates \citep{hneC07} from actual hourly records in all three cohorts. They describe amplitude, waveform timing, and cross-family phase relations relative to the initial reference.
+
+The 24-hour fit weights days equally, penalizes harmonic coefficients with ridge 0.01, and requires six clock hours across three six-hour intervals. Local fits require three observed days and 24 hours; reference fits require 28 days. Raw and context-adjusted streams add 228 coordinates. Labels, original HNE features, folds, and regularization candidates remain fixed. Raw-history additions, all additions, and an equally informed history-boosting control reach College validation AUROC 0.647, 0.647, and 0.674.
+

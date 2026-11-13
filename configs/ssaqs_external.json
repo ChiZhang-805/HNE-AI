@@ -1,0 +1,26 @@
+{
+  "version": "ssaqs-source-transfer-20261110",
+  "data": "Zenodo 18706837 version1; 35 participant folders, 32 with wearable records",
+  "population": "all35 original IDs, no outcome-based participant selection",
+  "sources": ["RESILIENT", "BrisT1D-Open"],
+  "methods": ["HNE-additive", "HNE-history", "H-pooled-HGB", "HNE-pooled-HGB", "DNB", "MM-DEV-daily"],
+  "primary": "HNE-additive",
+  "comparators": ["HNE-history", "H-pooled-HGB", "HNE-pooled-HGB", "DNB", "MM-DEV-daily"],
+  "endpoint": "unchanged configs/daily_protocol.json; 56day reference/32day history/1day gap/7day future; >=2 abnormal families",
+  "state_mapping": {
+    "hrv": "rmssd,low_frequency,high_frequency daily mean and population SD, >=4 recorded intervals with coverage>0; all six belong to HRV family",
+    "sleep": "overall_score and deep_sleep_in_minutes daily means; one sleep family",
+    "self-report": "completed questionnaire stress and anxiety, grouped by actual local completion day; one self-report family"
+  },
+  "state_count": 10,
+  "context_mapping": "daily step sum; fractions of four recorded activity levels; registered-class scheduled minutes from released course calendar",
+  "context_count": 6,
+  "omitted_fields": "SpO2 omitted as a modality because the paper documents pervasive measurement artifacts without a quality flag; proprietary Fitbit stress omitted because it recombines other physiological inputs",
+  "timestamps": "explicit-Z Fitbit timestamps converted to the participant's first recorded timezone offset; naive HRV timestamps retained as source-local; questionnaires use Unix seconds plus row timezone offset; all daily values available at end of their assigned day",
+  "availability_scope": "replay of device-side records, not the monthly investigator-upload times; actual server delivery times are absent",
+  "aggregation": "duplicate rows removed; duplicate timestamps averaged for numeric measurements; no interpolation; daily grid from first to last recorded sensor/questionnaire day; measured zeros retained",
+  "source_model_selection": "original HNE source models reused; pooled HGB uses same .01/.1/1 C grid and source fivefold/domain-balanced selection; no SSAQS fitting or threshold tuning",
+  "primary_metrics": ["AUROC", "within-person AUROC", "average precision"],
+  "bootstrap": {"unit": "participant", "replicates": 2000, "seed": 20261110},
+  "comparison_scope": "frozen-source transfer with differing sensor semantics and variable context counts"
+}

@@ -1,0 +1,80 @@
+{
+  "identity": {
+    "source": "results\\jape_development\\BrisT1D-Open\\fold0",
+    "source_sha256": {
+      "seed20261110/forecaster.pt": "4d19bb32c6aebb8e5789f2254dfaa86473e2331c71e71fe0d5e32e096edb6701",
+      "seed20261110/preprocessing.npz": "b3853d994405fb50bf6918a8cf9e7556d194dcb1b7c0b976ac73ec20da26e13a",
+      "seed20261111/forecaster.pt": "7d92a23a28e78c31ce2e3962260bd7cca42dc51eaa46a73fc9ee617cbb334de7",
+      "seed20261111/preprocessing.npz": "2db712870ebea5c76f30efe8f1e0c19a6a6ce3542656127f536ac14a69b0eb71",
+      "seed20261112/forecaster.pt": "3eca166e1f76b7ffe6b9fbe110175a8ef7d77667abc11c8455a13bd6241faf4b",
+      "seed20261112/preprocessing.npz": "bd183ddd8701c40b3481ca51257349e5fe9c2455829225d7b86fb3b409d047b1"
+    },
+    "head_adapter_sha256": "2127d00f269ea740460e50f430bfc31701cf4e30db36253dc1d00eeef3a84eeb",
+    "configuration": {
+      "version": "jape-matched-primary-metric-v1-20261110",
+      "declared_stage": "development results available; College test unconstructed",
+      "method": "JAPE-event-AUC-3seed",
+      "change": "Select alert-head epochs and ReduceLROnPlateau updates using validation AUROC instead of F1",
+      "architecture_and_loss": "same released DualViewAlertingHead, event mean-logit pooling and native focal loss",
+      "frozen_forecaster": "reuse each original seed's validation-MSE-selected DSTR checkpoint and training-only preprocessing",
+      "budget": "20 alert epochs maximum,patience5,batch128,AdamW1e-4,weight_decay1e-4,clip1; same seed numbers",
+      "seeds": [
+        20261110,
+        20261111,
+        20261112
+      ],
+      "ensemble": "equal mean of all3 probabilities",
+      "original_f1_results": "retained as the separately named JAPE-event condition",
+      "comparison": "include both native-F1 and AUROC-selected event ensembles in strongest extended controls"
+    }
+  },
+  "method": "JAPE-event-AUC-3seed",
+  "seeds": [
+    20261110,
+    20261111,
+    20261112
+  ],
+  "validation": {
+    "origins": 185,
+    "positive": 3,
+    "auroc": 0.8406593406593407,
+    "ap": 0.16629129129129128
+  },
+  "individual_seed": [
+    {
+      "seed": 20261110,
+      "epochs_run": 6,
+      "best_epoch": 1,
+      "origins": 185,
+      "positive": 3,
+      "auroc": 0.402930402930403,
+      "ap": 0.018553030892537545
+    },
+    {
+      "seed": 20261111,
+      "epochs_run": 15,
+      "best_epoch": 10,
+      "origins": 185,
+      "positive": 3,
+      "auroc": 0.9926739926739926,
+      "ap": 0.7222222222222222
+    },
+    {
+      "seed": 20261112,
+      "epochs_run": 6,
+      "best_epoch": 1,
+      "origins": 185,
+      "positive": 3,
+      "auroc": 0.6868131868131867,
+      "ap": 0.042685102586975915
+    }
+  ],
+  "threshold_val_negative_p90": 0.30207210779190063,
+  "checkpoint_sha256": {
+    "seed20261110/head.pt": "b7e9597ba6c16a1d5ad058d799b10d817ac48df6d66a5234e238f4c91c0159d1",
+    "seed20261111/head.pt": "be0621ecd6798eb7a67a7ea5102e3b4ff4fa3dfd2caa4def4633dddede3b7653",
+    "seed20261112/head.pt": "63e5a1a585ea73486240d4dcb2442c5a5ac34ceea0641856c51662fdf5c5d9d4"
+  },
+  "frozen_at_utc": "2026-11-10T03:03:25.855470+00:00",
+  "test_partition_read": false
+}

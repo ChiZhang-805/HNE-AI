@@ -1,0 +1,67 @@
+{
+  "config": {
+    "version": "college-future-objective-v1-20261110",
+    "dataset": "College-Experience",
+    "role": "prespecified supplementary RQ2 auxiliary-objective comparison",
+    "conditions": [
+      "future-values",
+      "future-moments"
+    ],
+    "learning_rate": 0.001,
+    "auxiliary_weights": [
+      0.1,
+      1.0
+    ],
+    "seeds": [
+      20261110,
+      20261111,
+      20261112
+    ],
+    "max_epochs": 80,
+    "patience": 12,
+    "batch_size": 128,
+    "weight_decay": 0.001,
+    "reference_days": 56,
+    "minimum_reference_observations": 28,
+    "future_start_offset": 2,
+    "future_end_offset": 8,
+    "minimum_future_observations": 5,
+    "future_values": "seven normalized state values on calendar days d+2 through d+8; internal missing observations masked",
+    "future_moments": [
+      "signed finite mean of normalized z",
+      "log1p population variance of normalized z",
+      "fraction of finite future days with abs(z)>max(reference abs(z)90th percentile,0.1)"
+    ],
+    "eligibility": "identical node mask for both conditions; at least28 reference and5 future finite normalized observations; retain every original event origin",
+    "target_scaling": "training-only equal-person base weights; each supported origin normalized by its valid coordinates; one shared scalar for values,one scalar per moment statistic; standard deviation fallback1 for constant targets",
+    "auxiliary_loss": "Huber delta1 on standardized targets; mean over each origin's valid node/coordinate entries; zero for unsupported origins; average using equal-person base weights without class balancing",
+    "event_loss": "unchanged person/class-balanced BCE and prediction prior-logit correction",
+    "decoder": "shared WIDTH32->WIDTH32 GELU->7 or3 linear node decoder on graph_norm output; decoder outputs never enter the original risk head",
+    "selection": "first seed selects lambda by validation AUROC,negative logloss for single class; exact ties retain0.1; selected lambda repeated for the other2 fixed seeds",
+    "ensemble": "equal arithmetic mean of all3 fixed seed risk probabilities",
+    "fit_partitions": [
+      "train",
+      "validation"
+    ],
+    "refit_on_validation": false,
+    "test_policy": "test remains unopened until all study methods are frozen; prediction does not construct auxiliary targets",
+    "interpretation": "tests auxiliary target alignment; Huber/log-variance head is not an estimator of original-scale expected variance and no multitask novelty claim is made"
+  },
+  "train": {
+    "metadata": "ead0b7312c68930408fdbc4e18a97b15e3c8e5a9c017161aa3af7199ebf4ab51",
+    "features": "75b57875ddd9c5739eea1cb29dce2cb058be65a836d6f13a98279a31d3e29dda"
+  },
+  "validation": {
+    "metadata": "6a5d6688e5fe3498989d33d92f44279f04faf82ba170e1430b8e6005f961ada8",
+    "features": "1dccfb576f2cea1b0e1da89938c16fdb0bd870c7c0f343c7eebad409dfd76e6f"
+  },
+  "targets": {
+    "train": "195ef51d712281ddacf57f8614e7c3067c7c1c41b3eb00599ec59e72ad6d7f44",
+    "validation": "5ed1ee7d20a542a8e44480e314168753948eee33ea1be759a7112a1525af6853"
+  },
+  "core": {
+    "hne_future.py": "c9f13076822348a9d8eeac162d3a96c12b5e80c45c671cde098d142e0c0d1273",
+    "hne_temporal.py": "ba85e878313dd85781c6bf7386857c081e9dceb55bbb08406ca803fc883bff7b",
+    "hne_set.py": "1ab2bf1cad531bd75eff9d4e044a6832f8f4f31346d6ac35740cd1f60d8cb0e6"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "source_method": "DNB-score-LR",
+  "condition": "frozen",
+  "C": 0.0,
+  "trials": [
+    {
+      "C": 0.0,
+      "auroc": 0.4436956338086461,
+      "within_person_auroc": 0.5124212454982224,
+      "person_nll": 0.573972874087583,
+      "person_brier": 0.19237446559475746,
+      "adapted_fraction": 0.0
+    }
+  ],
+  "validation": {
+    "auroc": 0.4436956338086461,
+    "within_person_auroc": 0.5124212454982224,
+    "person_nll": 0.573972874087583,
+    "person_brier": 0.19237446559475746,
+    "adapted_fraction": 0.0
+  }
+}

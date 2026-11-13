@@ -1,0 +1,235 @@
+{
+  "identity": {
+    "config": {
+      "version": "human-rhythms-sample-efficiency-v1-20261110",
+      "conditions": [
+        "target-only-basis",
+        "source-basis-zero",
+        "source-basis-prior"
+      ],
+      "C_candidates": [
+        0.01,
+        0.1,
+        1.0
+      ],
+      "fractions": [
+        0.25,
+        0.5,
+        1.0
+      ],
+      "subset_seeds": [
+        20261110,
+        20261111,
+        20261112
+      ],
+      "full_fraction_seeds": [
+        20261110
+      ],
+      "expected_training_people": 85,
+      "expected_subset_people": {
+        "25": 22,
+        "50": 43,
+        "100": 85
+      },
+      "subset": "sort train person_id by sha256(f'{seed}:{person_id}'); take ceil(fraction*85); no label stratification, no resampling",
+      "same_subset_across_conditions": true,
+      "context_ridge": 10,
+      "source": "earlier frozen Humans HNE-additive; no Human Rhythms source refit",
+      "parameter_prior": "unchanged SourcePriorWarning; raw-logit source or zero coefficient center; intercept unpenalized; target-prior correction",
+      "full_target_only": "reuse existing frozen Human Rhythms HNE-additive model and scores, without another fit",
+      "selection": "maximum validation AUROC; single-class negative logloss; exact ties smaller C",
+      "weighting": "equal target training-person base mass, then class balance",
+      "threshold": "linear90th percentile of finite validation negative scores; alert strictly greater than threshold",
+      "test_bootstrap": {
+        "replicates": 2000,
+        "seed": 20261110,
+        "unit": "whole person",
+        "interval": "percentile95"
+      },
+      "seed_summary": "mean of three independently selected subset-seed metrics, not an ensemble; 100% one fit; fixed-subset-seed person bootstrap averages the same resampled-person metrics",
+      "no_test_model_selection": true
+    },
+    "train": {
+      "metadata": "322427826f841dc25a09df1dda2f3857107b96510486fa44fd9bf7556ddf96ef",
+      "features": "49aaa75d649ee00e1965a5959f7f9db6cdc0851bc0a0ccc2fdf46a1e82289916"
+    },
+    "validation": {
+      "metadata": "a03702734ce6c9a6562b083393aec79b06edfbe0dbe13c96d309b5b46d7750e3",
+      "features": "4b4e085f9f214667b25f239644dfc675538d378d1f721bd42a00669d7884d76e"
+    },
+    "core": {
+      "hne_additive.py": "caf7123ea343e392b2f979299139ff7ae1e10101fe7caa55fb3ad627362e791a",
+      "hne_transfer.py": "d86b99aa8f4d99de7a739155cc1799e78b9ecfcee73df8c18239e875a58c718b"
+    },
+    "source_model_sha256": "c7ddd2b28240512dec5b2d90356cff926acf4badd8c119e8b653745629fa2ca0",
+    "full_target_model_sha256": "23cc63c04bac67e108e84674a11caa7789978942e5fb363da089e17a38b56911"
+  },
+  "subset": {
+    "fraction": 0.25,
+    "budget": 25,
+    "seed": 20261112,
+    "training_population": 85,
+    "selected_people": [
+      "aiz",
+      "bg7",
+      "bn0",
+      "eix",
+      "fv6",
+      "gz2",
+      "h58",
+      "heh",
+      "i48",
+      "i4j",
+      "js7",
+      "kev",
+      "mst",
+      "n3n",
+      "op9",
+      "su5",
+      "tgh",
+      "w80",
+      "xhq",
+      "yeb",
+      "za7",
+      "zvy"
+    ],
+    "selection_order": [
+      "bg7",
+      "n3n",
+      "yeb",
+      "aiz",
+      "i48",
+      "xhq",
+      "eix",
+      "js7",
+      "su5",
+      "bn0",
+      "zvy",
+      "heh",
+      "gz2",
+      "tgh",
+      "i4j",
+      "w80",
+      "mst",
+      "fv6",
+      "kev",
+      "za7",
+      "op9",
+      "h58"
+    ],
+    "selected_person_count": 22,
+    "labels_used_for_selection": false
+  },
+  "condition": "source-basis-zero",
+  "selected_C": 0.01,
+  "candidates": [
+    {
+      "C": 0.01,
+      "validation_selection_score": 0.6004283137962129,
+      "origins": 2526,
+      "positive": 308,
+      "auroc": 0.6004283137962129,
+      "ap": 0.18381411764508926,
+      "optimization": {
+        "success": true,
+        "iterations": 13,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "objective": 1354.3639999339846,
+        "maximum_absolute_gradient": 2.4456725100208132e-05,
+        "squared_distance_to_center": 0.7338098266489961,
+        "source_basis_dimensions": 888
+      }
+    },
+    {
+      "C": 0.1,
+      "validation_selection_score": 0.5712953637886009,
+      "origins": 2526,
+      "positive": 308,
+      "auroc": 0.5712953637886009,
+      "ap": 0.18679421814768,
+      "optimization": {
+        "success": true,
+        "iterations": 35,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "objective": 1207.8967644756822,
+        "maximum_absolute_gradient": 0.00024370591263789265,
+        "squared_distance_to_center": 18.304560281569096,
+        "source_basis_dimensions": 888
+      }
+    },
+    {
+      "C": 1.0,
+      "validation_selection_score": 0.5389566475003806,
+      "origins": 2526,
+      "positive": 308,
+      "auroc": 0.5389566475003806,
+      "ap": 0.17205552177662686,
+      "optimization": {
+        "success": true,
+        "iterations": 89,
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+        "objective": 956.4521245243427,
+        "maximum_absolute_gradient": 0.0010290157682888434,
+        "squared_distance_to_center": 239.92748108768035,
+        "source_basis_dimensions": 888
+      }
+    }
+  ],
+  "reused_from": null,
+  "train": {
+    "origins": 2028,
+    "positive": 305,
+    "auroc": 0.6985147902533705,
+    "ap": 0.3256955038841165
+  },
+  "validation": {
+    "origins": 2526,
+    "positive": 308,
+    "auroc": 0.6004283137962129,
+    "ap": 0.18381411764508926
+  },
+  "validation_people": [
+    "bln",
+    "csv",
+    "dbf",
+    "e6n",
+    "e89",
+    "eg5",
+    "ezs",
+    "f98",
+    "gtw",
+    "gw6",
+    "hht",
+    "koj",
+    "n1a",
+    "ng4",
+    "qup",
+    "qyv",
+    "rve",
+    "s1i",
+    "sih",
+    "tmw",
+    "tve",
+    "uxg",
+    "vb5",
+    "wy3",
+    "x50",
+    "xbk",
+    "xfe",
+    "zcx"
+  ],
+  "threshold_val_negative_p90": 0.1606611266410468,
+  "optimization": {
+    "success": true,
+    "iterations": 13,
+    "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+    "objective": 1354.3639999339846,
+    "maximum_absolute_gradient": 2.4456725100208132e-05,
+    "squared_distance_to_center": 0.7338098266489961,
+    "source_basis_dimensions": 888
+  },
+  "model_sha256": "b090d0524751745ca3b3786c838cede49e46b9ab1ec42f4a52a2ed71b255af92",
+  "train_scores_sha256": "48bfe0eb3830d22499b1e49c832175267a44b39c2d845fd69edbe668d2261660",
+  "validation_scores_sha256": "df59bcb4d57515295cb4414fc813d9a862db9ea72637ec6c0e60e6a81b505153",
+  "frozen_at_utc": "2026-11-10T00:02:11.262679+00:00"
+}

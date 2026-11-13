@@ -1,0 +1,17 @@
+{
+  "version": "hne-family-cardinality-development-20261110",
+  "datasets": ["RESILIENT", "BrisT1D-Open"],
+  "feature_rule": "For each schema family pool its existing H96 and adjusted-state E104; retain common N36, context24 and NE36. Shared296 coordinates, no family identity input.",
+  "target": "Existing future block_family_status at origin+8; known statuses supervise family heads, reference-ineligible families are absent",
+  "aggregation": "Probability at least2 active families under conditionally independent Bernoulli outputs; exact capped-count recurrence",
+  "head": "One shared additive logistic rule across all families; existing3-knot quadratic splines, scaling and group penalties",
+  "objective": "Equal-person weighted mean observed-family BCE plus lambda times existing global-event BCE; L2 on shared coefficients; unpenalized intercept",
+  "global_loss_weights": [0, 1],
+  "C": [0.01, 0.1, 1.0],
+  "selection": "AUROC on the existing validation-participant fold; same folds as all development comparisons",
+  "maximum_iterations": 400,
+  "primary_comparison": "Existing HNE-additive on identical origins",
+  "secondary_outputs": ["family-level predictions", "held-fold probabilities", "same-fold strongest-control comparison"],
+  "scope": "Development only; no Human Rhythms or College test access",
+  "prior_art": "Count potentials and Bernoulli-count recurrences are established; Tarlow et al., UAI2012. This experiment tests structured target supervision within HNE, not novelty of the recurrence."
+}

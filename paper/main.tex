@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{icml2026}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\definecolor{hnegray}{gray}{0.93}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage{stfloats}
+\usepackage[section]{placeins}
+\hypersetup{colorlinks=true,allcolors=black,pdftitle={HNE: Shared Representations for Early Warning of Rhythm Disruptions}}
+\icmltitlerunning{HNE: Early Warning of Rhythm Disruptions}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\setcounter{dbltopnumber}{2}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\dbltopfraction}{0.7}
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\floatpagefraction}{0.8}
+\renewcommand{\dblfloatpagefraction}{0.8}
+\newcommand{\hnetable}[1]{\begingroup\small\setlength{\tabcolsep}{3pt}\begin{minipage}{0.98\linewidth}\centering\input{#1}\end{minipage}\endgroup}
+\newcommand{\emptyframe}[2]{\begingroup\setlength{\fboxsep}{0pt}\fbox{\rule{0pt}{#2}\rule{\dimexpr#1-2\fboxrule\relax}{0pt}}\endgroup}
+
+\begin{document}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+\twocolumn[
+\icmltitle{HNE: Shared Representations for Early Warning of Rhythm Disruptions}
+\begin{icmlauthorlist}
+\icmlauthor{Anonymous Authors}{anon}
+\end{icmlauthorlist}
+\icmlaffiliation{anon}{Anonymous Institution}
+\icmlcorrespondingauthor{Anonymous Author}{anon.email@domain.com}
+\icmlkeywords{Early warning, multivariate time series, rhythm disruption, transfer learning}
+\vskip 0.3in
+]
+\printAffiliationsAndNotice{}
+\raggedbottom
+
+\begin{abstract}
+We introduce HNE, a history--network--environment representation for warning of sustained multivariate rhythm disruptions relative to an individual's usual fluctuations. HNE combines multiscale personal deviations, context-adjusted responses, and observation-supported relationship changes to predict disturbance in a separated future interval. Pooling these signals into shared coordinates supports additive risk learning across measurement sets and adaptation through a prior centered on source coefficients. Participant-disjoint development evaluations yield absolute AUROC gains of $0.036$ on RESILIENT and $0.055$ on BrisT1D-Open over CATCH, the strongest evaluated comparator, with network coordinates improving both cohorts. On two held-out cohorts, HNE exceeds FCM and CATCH, while history-based boosting attains higher AUROC and module contributions vary by cohort. With 22 Human Rhythms training participants, source-rule transfer raises mean AUROC from $0.593$ to $0.639$, outperforming both target-only fitting and basis-only transfer.
+\end{abstract}
+
+\suppressfloats[t]
+
+
+\input{sections/introduction}
+
+\begin{figure*}[t]
+\centering
+\emptyframe{\textwidth}{8.5cm}
+\caption{Shared history--network--environment coordinates and future warning objective.}
+\label{fig:framework}
+\end{figure*}
+
+\begingroup
+\let\FloatBarrier\relax
+\input{sections/related_work}
+\input{sections/problem}
+\endgroup
+\input{sections/method}
+
+
+\input{sections/experimental_setup}
+
+
+
+\input{sections/results}
+
+\input{sections/external}
+\input{sections/transfer}
+
+\input{sections/robustness}
+\input{sections/conclusion}
+\section*{Impact Statement}
+HNE supports research on longitudinal warning from physiological, behavioral, and operational records. Personal histories contain sensitive information, making controlled access and informed data use important. Warning systems also affect follow-up workload; application studies should evaluate alarm burden and decision consequences alongside predictive discrimination.
+
+\bibliography{../literature/references}
+\bibliographystyle{icml2026}
+
+\appendix
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+\renewcommand{\contentsname}{Appendix Contents}
+\noindent\begin{minipage}{\columnwidth}
+\tableofcontents
+\end{minipage}\par
+\input{sections/appendix}
+\input{sections/supplementary_results}
+
+\input{sections/college_confirmatory}
+\input{sections/esa_external}
+\input{sections/ssaqs_external}
+
+\end{document}

@@ -1,0 +1,28 @@
+{
+  "method": "DNB",
+  "training": "none",
+  "score": "original SD*abs(PCCin)/abs(PCCout)",
+  "input_shape": [
+    256,
+    6
+  ],
+  "input_interval_hours": 3,
+  "history_days": 32,
+  "train_windows": 1190,
+  "validation_windows": 537,
+  "seed": 20261113,
+  "imputation_medians": [
+    0.003147635143250227,
+    0.04269395396113396,
+    0.11363822966814041,
+    -0.0953437089920044,
+    0.0,
+    -0.07099901139736176
+  ],
+  "score_calibration_C": 0.01,
+  "adaptations": [
+    "three-hour 256x6 observations; original modules and objectives",
+    "training-only imputation and scaling",
+    "held-person scoring uses history only"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "dataset": "RESILIENT",
+  "fold": 0,
+  "condition": "affine",
+  "C": 1.0,
+  "candidates": [
+    {
+      "C": 0.01,
+      "auroc": 0.7028612303290415,
+      "within_person_auroc": 0.4618823529411765,
+      "person_nll": 0.464151598602794,
+      "person_brier": 0.14859593848703545,
+      "adapted_fraction": 0.5817490494296578
+    },
+    {
+      "C": 0.1,
+      "auroc": 0.7934191702432045,
+      "within_person_auroc": 0.45798039215686276,
+      "person_nll": 0.4431573014883889,
+      "person_brier": 0.14197184558389708,
+      "adapted_fraction": 0.5817490494296578
+    },
+    {
+      "C": 1.0,
+      "auroc": 0.8240343347639484,
+      "within_person_auroc": 0.4909542483660131,
+      "person_nll": 0.4206514803750411,
+      "person_brier": 0.13708665912177373,
+      "adapted_fraction": 0.5817490494296578
+    }
+  ],
+  "validation_auroc": 0.8240343347639484,
+  "development_auroc": 0.7132367149758454,
+  "development_within_person_auroc": 0.3748069153069153,
+  "development_person_nll": 0.42227671358691643,
+  "development_person_brier": 0.1323851296910993,
+  "development_adapted_fraction": 0.7093333333333334
+}

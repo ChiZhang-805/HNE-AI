@@ -1,0 +1,14 @@
+{
+  "version": "recorded-insulin-context-development-20261110",
+  "dataset": "BrisT1D-Open",
+  "source": "https://data.bris.ac.uk/datasets/33z5jc8fa6tob21ptrugzqog08/README.txt",
+  "added_field": "insulin: total units received during the preceding five minutes",
+  "mapping": "same timestamp deduplication and right-closed hourly sum as carbohydrate intake; daily mean over observed hourly totals; missing hours remain missing",
+  "reference": "unchanged first56-day median/MAD normalization, minimum28 daily observations",
+  "state_and_endpoint": "reuse every original state, participant fold, origin and future-block label",
+  "models": ["HNE-additive", "HNE-context-append", "History-LR", "History-HGB"],
+  "C": [0.01, 0.1, 1.0],
+  "folds": [0, 1, 2, 3, 4],
+  "scope": "recorded-treatment-context ablation on already-exposed development participants; no new clinical intervention claim",
+  "selection": "original participant-disjoint validation-fold AUROC; same core functions as the primary models"
+}

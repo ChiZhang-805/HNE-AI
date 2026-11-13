@@ -1,0 +1,209 @@
+{
+  "method": "FCM",
+  "config": {
+    "seed": 20261113,
+    "epochs": 20,
+    "batch_size": 8,
+    "device": "cuda",
+    "learning_rate": 0.001,
+    "d_model": 128,
+    "d_ff": 128,
+    "e_layers": 4,
+    "n_heads": 8,
+    "dropout": 0.1,
+    "factor": 3,
+    "k": 3.0,
+    "temperature": 50.0,
+    "context_start_epoch": 1,
+    "score_reduction": "sum"
+  },
+  "model_config": {
+    "task_name": "long_term_forecast",
+    "seq_len": 256,
+    "pred_len": 256,
+    "enc_in": 6,
+    "c_out": 6,
+    "d_model": 128,
+    "d_ff": 128,
+    "e_layers": 4,
+    "n_heads": 8,
+    "dropout": 0.1,
+    "factor": 3,
+    "output_attention": false,
+    "embed": "timeF",
+    "freq": "d",
+    "activation": "gelu"
+  },
+  "epochs_completed": 20,
+  "best_epoch": 5,
+  "train_windows": 519,
+  "validation_windows": 268,
+  "history": [
+    {
+      "epoch": 1,
+      "forecast_mse": 0.9853724993192232,
+      "reconstruction_mse": 0.5993333252576681,
+      "validation_forecast_mse": 1.4915864734507318,
+      "seconds": 5.909437799999068
+    },
+    {
+      "epoch": 2,
+      "forecast_mse": 0.8928909686895518,
+      "reconstruction_mse": 1.046051275730133,
+      "validation_forecast_mse": 1.4584851709764395,
+      "seconds": 12.515252299999702
+    },
+    {
+      "epoch": 3,
+      "forecast_mse": 0.87154964025204,
+      "reconstruction_mse": 0.9984038398816035,
+      "validation_forecast_mse": 1.4534957533452049,
+      "seconds": 19.2130460999997
+    },
+    {
+      "epoch": 4,
+      "forecast_mse": 0.8589989368732159,
+      "reconstruction_mse": 0.9873918019808255,
+      "validation_forecast_mse": 1.454255384295734,
+      "seconds": 25.704135099998894
+    },
+    {
+      "epoch": 5,
+      "forecast_mse": 0.8526423720213083,
+      "reconstruction_mse": 0.9860550880432128,
+      "validation_forecast_mse": 1.4485466337915678,
+      "seconds": 32.56706209999902
+    },
+    {
+      "epoch": 6,
+      "forecast_mse": 0.8478508454102737,
+      "reconstruction_mse": 0.9822932335046621,
+      "validation_forecast_mse": 1.4507127350835658,
+      "seconds": 39.37913309999931
+    },
+    {
+      "epoch": 7,
+      "forecast_mse": 0.8465298588459308,
+      "reconstruction_mse": 0.9824338692885178,
+      "validation_forecast_mse": 1.4508738348733132,
+      "seconds": 46.04773949999981
+    },
+    {
+      "epoch": 8,
+      "forecast_mse": 0.8457041905476497,
+      "reconstruction_mse": 0.9806367168059715,
+      "validation_forecast_mse": 1.4511634031338478,
+      "seconds": 52.769839699998556
+    },
+    {
+      "epoch": 9,
+      "forecast_mse": 0.844568945811345,
+      "reconstruction_mse": 0.9795567576701825,
+      "validation_forecast_mse": 1.4512828739721384,
+      "seconds": 59.06861740000022
+    },
+    {
+      "epoch": 10,
+      "forecast_mse": 0.8447395755694462,
+      "reconstruction_mse": 0.9794051262048574,
+      "validation_forecast_mse": 1.451367156719094,
+      "seconds": 65.46007829999871
+    },
+    {
+      "epoch": 11,
+      "forecast_mse": 0.8439648719934317,
+      "reconstruction_mse": 0.9800149092307457,
+      "validation_forecast_mse": 1.4513981609202142,
+      "seconds": 71.76484739999978
+    },
+    {
+      "epoch": 12,
+      "forecast_mse": 0.8433933991652268,
+      "reconstruction_mse": 0.980105944780203,
+      "validation_forecast_mse": 1.4514755757886972,
+      "seconds": 78.84013899999991
+    },
+    {
+      "epoch": 13,
+      "forecast_mse": 0.844087957418882,
+      "reconstruction_mse": 0.9792689928641686,
+      "validation_forecast_mse": 1.4514662997046512,
+      "seconds": 85.2321684999988
+    },
+    {
+      "epoch": 14,
+      "forecast_mse": 0.8439418480946468,
+      "reconstruction_mse": 0.9798738442934476,
+      "validation_forecast_mse": 1.4514733926573795,
+      "seconds": 91.77827419999994
+    },
+    {
+      "epoch": 15,
+      "forecast_mse": 0.8441454300513634,
+      "reconstruction_mse": 0.9795928340691786,
+      "validation_forecast_mse": 1.451473118653938,
+      "seconds": 98.40562429999954
+    },
+    {
+      "epoch": 16,
+      "forecast_mse": 0.8445394543501047,
+      "reconstruction_mse": 0.9800385090020987,
+      "validation_forecast_mse": 1.4514719043205033,
+      "seconds": 105.05354879999868
+    },
+    {
+      "epoch": 17,
+      "forecast_mse": 0.843675028360807,
+      "reconstruction_mse": 0.9789207972013033,
+      "validation_forecast_mse": 1.4514738881765907,
+      "seconds": 111.86134209999909
+    },
+    {
+      "epoch": 18,
+      "forecast_mse": 0.8438427026455219,
+      "reconstruction_mse": 0.9796837715002207,
+      "validation_forecast_mse": 1.4514735421138023,
+      "seconds": 118.48116069999924
+    },
+    {
+      "epoch": 19,
+      "forecast_mse": 0.8447374252172617,
+      "reconstruction_mse": 0.9806137350889352,
+      "validation_forecast_mse": 1.4514742235639202,
+      "seconds": 125.08819620000031
+    },
+    {
+      "epoch": 20,
+      "forecast_mse": 0.8437417644720812,
+      "reconstruction_mse": 0.979037200487577,
+      "validation_forecast_mse": 1.4514743418835883,
+      "seconds": 131.68998549999924
+    }
+  ],
+  "parameter_count": 1015494,
+  "training_seconds": 131.6957351000001,
+  "selected_context_weight_max_change": 0.03604524955153465,
+  "checkpoint_selection": "minimum validation forecast MSE after context activation; all20 epochs run",
+  "score": "author KL-weighted history reconstruction energy summed over32 days; predicted future only at inference",
+  "adaptations": [
+    "three-hour 256x6 observations; original modules and objectives",
+    "training-only imputation and scaling",
+    "held-person scoring uses history only"
+  ],
+  "input_shape": [
+    256,
+    6
+  ],
+  "input_interval_hours": 3,
+  "history_days": 32,
+  "seed": 20261113,
+  "imputation_medians": [
+    -0.15873552858829498,
+    -0.05228284373879433,
+    -0.2802571654319763,
+    -0.27330633997917175,
+    0.012413321062922478,
+    0.0
+  ],
+  "score_calibration_C": 1.0
+}

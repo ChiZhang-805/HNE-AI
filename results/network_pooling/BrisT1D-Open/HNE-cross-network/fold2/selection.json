@@ -1,0 +1,35 @@
+{
+  "C": 0.01,
+  "candidates": [
+    {
+      "C": 0.01,
+      "validation_selection_score": 0.6139025054466231
+    },
+    {
+      "C": 0.1,
+      "validation_selection_score": 0.5697167755991285
+    },
+    {
+      "C": 1.0,
+      "validation_selection_score": 0.5926606753812637
+    }
+  ],
+  "metrics": [
+    {
+      "part": "validation",
+      "origins": 339,
+      "positive": 51,
+      "auroc": 0.6139025054466231,
+      "ap": 0.42636699814555534
+    },
+    {
+      "part": "held_development",
+      "origins": 288,
+      "positive": 45,
+      "auroc": 0.3616826703246457,
+      "ap": 0.12111345219907357
+    }
+  ],
+  "selected_train_model": true,
+  "context_ridge": 10
+}

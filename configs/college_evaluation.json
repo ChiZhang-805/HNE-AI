@@ -1,0 +1,44 @@
+{
+  "version": "college-experience-external-v1-20261110",
+  "dataset": "College-Experience",
+  "feature_directory": "data/features/college_experience",
+  "output_directory": "results/college_experience",
+  "expected_pooled": 296,
+  "expected_nodes": [9, 50],
+  "expected_window": [32, 13],
+  "primary_hne": "HNE-additive",
+  "primary_hne_context_ridge": 10,
+  "primary_selection": "C in [0.01,0.1,1] using training and validation only; no train+validation refit",
+  "primary_comparators": ["DNB", "MM-DEV-daily", "History-LR", "History-HGB", "FCM-3seed", "CATCH-3seed"],
+  "primary_population": "origins scoreable by all primary methods; also report all scored origins and coverage",
+  "primary_metric": "test AUROC with 2000 participant cluster bootstrap replicates",
+  "strongest_control_difference": "HNE AUROC minus maximum AUROC among predeclared controls; repeat control maximization inside each bootstrap draw",
+  "endpoint": "unchanged configs/daily_protocol.json:56 reference days,32 history days,1 gap day,7 future days,at least2 abnormal families",
+  "dnb": {
+    "history_days": 32,
+    "minimum_joint_observations": 12,
+    "input": "9 state coordinates; state count comes from the node array"
+  },
+  "mmdev": {
+    "input": "all9 state and4 behavior/context coordinates",
+    "adaptation": "past-only median-filled ISOMAP/S-map, daily32 history and24 local window, E1..6; retain undefined scores as NaN"
+  },
+  "zero_shot": "frozen earlier Humans source risk mappings trained on RESILIENT and BrisT1D-Open; no College model fitting or C selection; P90 threshold calibration uses College validation negatives",
+  "zero_shot_source": {
+    "datasets": ["RESILIENT", "BrisT1D-Open"],
+    "model_root": "results/transfer/source_models/Humans",
+    "extra_source_data": true
+  },
+  "public_baselines": {
+    "methods": ["FCM", "CATCH"],
+    "seeds": [20261110, 20261111, 20261112],
+    "epochs": 20,
+    "batch_size": 8,
+    "checkpoint_selection": "unchanged original validation loss in vendor runners",
+    "FCM_future": "32-day same-channel future array; only future_available=true training/validation windows enter network fitting",
+    "imputation": "per-channel training-history median; all-missing channel numerical placeholder0; no temporal padding",
+    "ensemble": "all3 fixed seeds; arithmetic mean of validation-negative ECDF scores",
+    "score_LR": "separate supplementary one-score readout; C in [0.01,0.1,1] by validation logloss"
+  },
+  "test_policy": "fit opens train/validation only; predict requires explicit all-methods-frozen confirmation and uses selected checkpoints without fitting"
+}

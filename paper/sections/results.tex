@@ -1,0 +1,39 @@
+
+\subsection{Early Warning Performance}
+\label{sec:results}
+HNE leads the main comparison with AUROC $0.802$ on RESILIENT and $0.709$ on BrisT1D-Open (Table~\ref{tab:main}, Figure~\ref{fig:main}). Relative to CATCH, the strongest baseline, the paired gains are $0.036$ (95\% CI: $[-0.031,0.124]$) and $0.055$ ($[-0.024,0.162]$), respectively. Average precision also increases, from $0.358$ to $0.449$ on RESILIENT and from $0.211$ to $0.296$ on BrisT1D. The improvement therefore appears in both ROC and precision--recall performance; complete comparator-selection intervals are reported in Appendix~\ref{app:reproducibility}.
+
+
+
+
+\subsection{RQ1: Multivariate Rhythm Precursors}
+We compare three temporal scales and four descriptor classes using the same future labels and participant folds (Table~\ref{tab:temporal-ablations}). Combining scales raises BrisT1D AUROC from $0.685$ for the best single scale to $0.709$, whereas RESILIENT favors the eight-day window over the combined representation ($0.809$ versus $0.802$). The useful temporal scale therefore differs between cohorts.
+
+\begin{table}[H]
+\centering
+\caption{Temporal scales and fluctuation descriptors under the same labels and participant folds.}
+\label{tab:temporal-ablations}
+\hnetable{tables/temporal_ablations}
+\end{table}
+
+Removing location, temporal-memory, or tail-frequency descriptors lowers AUROC in both cohorts. Amplitude descriptors improve RESILIENT, while their removal raises BrisT1D AUROC to $0.716$. The precursor signal therefore includes the persistence, displacement, and frequency of unusual observations. HNE exposes these distinct changes to the risk learner through the same multiscale coordinates.
+
+\subsection{RQ2: Learning from History, Networks, and Context}
+
+\begin{table}[H]
+\centering
+\caption{HNE module ablations on common origins. Human denotes Human Rhythms.}
+\label{tab:ablations}
+\hnetable{tables/modules}
+\end{table}
+
+Network coordinates add $0.024$ and $0.032$ AUROC on RESILIENT and BrisT1D, respectively (Table~\ref{tab:ablations}). These gains connect the warning task to changes in joint behavior: the predictor benefits from knowing how indicators move together relative to their personal reference. Environment adds $0.009$ on RESILIENT and reduces BrisT1D AUROC by $0.008$. On both cohorts, the conditional-reference construction outperforms direct context appending, supporting the design that encodes ordinary context responses alongside their departures.
+
+\begin{table}[H]
+\centering
+\caption{Risk heads on the shared HNE representation.}
+\label{tab:heads}
+\hnetable{tables/heads}
+\end{table}
+
+Keeping the representation fixed, the additive predictor exceeds the evaluated boosting, set, temporal, and pairwise heads (Table~\ref{tab:heads}). Within-person AUROC is $0.541$ on RESILIENT and $0.629$ on BrisT1D, complementing the pooled evaluation.

@@ -1,0 +1,27 @@
+{
+  "method": "CATCH-score-LR",
+  "seed": 20261111,
+  "C": 1.0,
+  "candidates": [
+    {
+      "C": 0.01,
+      "validation_log_loss": 0.3658772416919474
+    },
+    {
+      "C": 0.1,
+      "validation_log_loss": 0.36575182552615043
+    },
+    {
+      "C": 1.0,
+      "validation_log_loss": 0.36574031223519526
+    }
+  ],
+  "fit": "training labels on one frozen raw anomaly score only",
+  "selection": "minimum validation log-loss",
+  "score_mean": 0.025901386656801823,
+  "score_scale": 0.009467268712494746,
+  "coefficient": 0.20005981247523452,
+  "intercept": -1.8262871029019685,
+  "train_windows": 9039,
+  "validation_windows": 2526
+}

@@ -1,0 +1,15 @@
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrr@{}}
+\toprule
+& \multicolumn{4}{c}{RESILIENT} & \multicolumn{4}{c}{BrisT1D-Open} \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}
+Method & AUROC & 95\% CI & AP & Within & AUROC & 95\% CI & AP & Within \\
+\midrule
+DNB & 0.475 & [0.391, 0.569] & 0.152 & 0.480 & 0.489 & [0.378, 0.599] & 0.135 & \underline{0.544} \\
+FCM (3 seeds) & 0.749 & [0.645, 0.804] & 0.350 & \textbf{0.548} & 0.597 & [0.481, 0.650] & 0.179 & 0.496 \\
+CATCH (3 seeds) & \underline{0.766} & [0.637, 0.824] & \underline{0.358} & 0.487 & \underline{0.654} & [0.491, 0.755] & \underline{0.211} & 0.477 \\
+JAPE (F1) & 0.735 & [0.611, 0.809] & 0.342 & \textbf{0.548} & 0.550 & [0.382, 0.757] & 0.209 & 0.535 \\
+JAPE (AUROC) & 0.733 & [0.604, 0.808] & 0.319 & \underline{0.547} & 0.549 & [0.388, 0.739] & 0.160 & 0.537 \\
+History HGB & 0.754 & [0.643, 0.818] & 0.318 & 0.525 & 0.545 & [0.392, 0.702] & 0.156 & 0.513 \\
+\cellcolor{hnegray}HNE & \textbf{0.802} & [0.693, 0.856] & \textbf{0.449} & 0.541 & \textbf{0.709} & [0.537, 0.806] & \textbf{0.296} & \textbf{0.629} \\
+\bottomrule
+\end{tabular*}

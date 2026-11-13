@@ -1,0 +1,15 @@
+{
+  "method": "MultiDomain-HNE",
+  "selected_context_ridge": 0.1,
+  "selected_C": 0.01,
+  "threshold_val_negative_p90": 0.2948905821756312,
+  "threshold_source": "unchanged frozen validation-negative P90",
+  "source_model": "Q:\\NAVA-Workspace\\HNE-Research\\results\\multidomain_hne\\Human-Rhythms\\model.joblib",
+  "source_model_sha256": "1561b8dd6594c013ac762e130b8a1b1a523edf8a2e1294e96b0b44264692315c",
+  "source_selection_sha256": "b69c2ed4e382ffd5799b6b36d4eb496d0ff59c8bd136f05f314a180219646f8c",
+  "source_validation_scores_sha256": "80a820d487ea81739c93b93387b7680f2eb7f75866c7d10e65e96c1a6a2b45fd",
+  "comparison_role": "RQ3 additional labeled-source-data multidomain training",
+  "fit_performed": false,
+  "test_score_column": "score",
+  "validation_score_column": "score"
+}

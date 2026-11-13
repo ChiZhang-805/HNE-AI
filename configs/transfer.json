@@ -1,0 +1,35 @@
+{
+  "version": "hne-source-only-transfer-v1-20261110",
+  "C_candidates": [0.01, 0.1, 1.0],
+  "methods": ["HNE-additive", "HNE-history"],
+  "source_groups": {
+    "RESILIENT": ["RESILIENT"],
+    "BrisT1D-Open": ["BrisT1D-Open"],
+    "Humans": ["RESILIENT", "BrisT1D-Open"]
+  },
+  "transfers": [
+    {"source": "RESILIENT", "target": "BrisT1D-Open"},
+    {"source": "BrisT1D-Open", "target": "RESILIENT"},
+    {"source": "Humans", "target": "CARE-v6"},
+    {"source": "Humans", "target": "TOLIFE-CSA"}
+  ],
+  "source_cv": "original person folds 0..4; train on four folds and validate on the remaining fold in every source domain",
+  "source_selection": "mean of per-domain mean five-fold AUROC; single-class folds have no AUROC and are excluded; exact ties choose smaller C",
+  "weighting": "domain-prefixed person IDs; inverse person origin count; equal domain base mass; then global class balance and training-prior logit correction",
+  "feature_dimensions": {"HNE-additive": 296, "HNE-history": 96},
+  "final_fit": "all source rows only; store source config, CV trials, OOF predictions and model before any target inference",
+  "target_endpoints": {
+    "RESILIENT": "fixed daily future persistent fluctuation",
+    "BrisT1D-Open": "fixed daily future persistent fluctuation",
+    "CARE-v6": "official industrial fault event_end in [issue+1d,issue+8d); separate native disruption endpoint",
+    "TOLIFE-CSA": "fixed daily future persistent fluctuation; prepared train/validation identities only"
+  },
+  "tolife_allowed_splits": ["train", "validation"],
+  "dnb": "native score_window on past32 selected normalized states, minimum12; higher is risk; no calibration or direction selection",
+  "bootstrap_replicates": 2000,
+  "bootstrap_seed": 20261110,
+  "bootstrap": "resample complete assets for CARE and complete people for human cohorts; percentile95 intervals",
+  "within_cluster_auroc": "equal-weight mean AUROC over clusters containing both classes; bootstrap uses the same cluster multiplicities",
+  "auprc": "average precision on the native probability/score ordering",
+  "target_fit_or_selection": false
+}

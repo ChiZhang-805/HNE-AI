@@ -1,0 +1,5 @@
+dataset,population,origins,positive,fold_pair_weighted_auroc
+RESILIENT,all,1990,317,0.806037367288249
+RESILIENT,common,1964,315,0.8075624082232011
+BrisT1D-Open,all,1238,152,0.69476550344521
+BrisT1D-Open,common,1230,152,0.6946174377224199

@@ -1,0 +1,29 @@
+{
+  "source": "results\\jape_development\\RESILIENT\\fold2",
+  "source_sha256": {
+    "seed20261110/forecaster.pt": "0d65fe2705c2d4af2717a7101620b6ef2b30514f40e347aeda20617a558bd76a",
+    "seed20261110/preprocessing.npz": "a3f8b386e07d7872a45ea4fd71d002ef49582ad12405fc783590a404c299e998",
+    "seed20261111/forecaster.pt": "9df012785dbb73c70cbee0b79b0d8da16b769d468c7a396e330bd55a5fed2e58",
+    "seed20261111/preprocessing.npz": "e70b55874aace9a9bbd3f23f7ea18e96492e701b6cd8bedb564fc09e0d7422cb",
+    "seed20261112/forecaster.pt": "f77850829a10182f4e34af9d5c6cc10fb5abc5278db9761d9005cd88ed61f948",
+    "seed20261112/preprocessing.npz": "82e4fd93998cfff80075670f9636386a8300a478b220b58f115f0f6ca63a5e6b"
+  },
+  "head_adapter_sha256": "2127d00f269ea740460e50f430bfc31701cf4e30db36253dc1d00eeef3a84eeb",
+  "configuration": {
+    "version": "jape-matched-primary-metric-v1-20261110",
+    "declared_stage": "development results available; College test unconstructed",
+    "method": "JAPE-event-AUC-3seed",
+    "change": "Select alert-head epochs and ReduceLROnPlateau updates using validation AUROC instead of F1",
+    "architecture_and_loss": "same released DualViewAlertingHead, event mean-logit pooling and native focal loss",
+    "frozen_forecaster": "reuse each original seed's validation-MSE-selected DSTR checkpoint and training-only preprocessing",
+    "budget": "20 alert epochs maximum,patience5,batch128,AdamW1e-4,weight_decay1e-4,clip1; same seed numbers",
+    "seeds": [
+      20261110,
+      20261111,
+      20261112
+    ],
+    "ensemble": "equal mean of all3 probabilities",
+    "original_f1_results": "retained as the separately named JAPE-event condition",
+    "comparison": "include both native-F1 and AUROC-selected event ensembles in strongest extended controls"
+  }
+}

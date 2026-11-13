@@ -1,0 +1,104 @@
+diff --git a/ts_benchmark/baselines/catch/CATCH.py b/ts_benchmark/baselines/catch/CATCH.py
+index fbef9b0..31dd7c2 100644
+--- a/ts_benchmark/baselines/catch/CATCH.py
++++ b/ts_benchmark/baselines/catch/CATCH.py
+@@ -10,8 +10,6 @@ from torch.optim import lr_scheduler
+ from ts_benchmark.baselines.catch.models.CATCH_model import (
+     CATCHModel,
+ )
+-from ts_benchmark.baselines.utils import anomaly_detection_data_provider
+-from ts_benchmark.baselines.utils import train_val_split
+ from ts_benchmark.baselines.catch.utils.fre_rec_loss import frequency_loss, frequency_criterion
+ from ts_benchmark.baselines.catch.utils.tools import EarlyStopping, adjust_learning_rate
+ 
+@@ -146,6 +144,9 @@ class CATCH:
+         :param train_data: Time series data used for training.
+         """
+ 
++        # Keep unrelated benchmark models optional when importing CATCH's core.
++        from ts_benchmark.baselines.utils import anomaly_detection_data_provider, train_val_split
++
+         self.detect_hyper_param_tune(train_data)
+         setattr(self.config, "task_name", "anomaly_detection")
+         self.config.c_in = train_data.shape[1]
+@@ -223,7 +224,7 @@ class CATCH:
+             epoch_time = time.time()
+             self.model.train()
+ 
+-            step = min(int(len(self.train_data_loader) / 10), 100)
++            step = max(1, min(int(len(self.train_data_loader) / 10), 100))
+             for i, (input, target) in enumerate(self.train_data_loader):
+                 iter_count += 1
+                 self.optimizer.zero_grad()
+@@ -286,6 +287,8 @@ class CATCH:
+             adjust_learning_rate(self.optimizerM, schedulerM, epoch + 1, self.config, printout=False)
+ 
+     def detect_score(self, test: pd.DataFrame) -> np.ndarray:
++        from ts_benchmark.baselines.utils import anomaly_detection_data_provider
++
+         test = pd.DataFrame(
+             self.scaler.transform(test.values), columns=test.columns, index=test.index
+         )
+@@ -334,6 +337,8 @@ class CATCH:
+         return test_energy, test_energy
+ 
+     def detect_label(self, test: pd.DataFrame) -> np.ndarray:
++        from ts_benchmark.baselines.utils import anomaly_detection_data_provider
++
+         test = pd.DataFrame(
+             self.scaler.transform(test.values), columns=test.columns, index=test.index
+         )
+@@ -431,4 +436,4 @@ class CATCH:
+             threshold = np.percentile(combined_energy, 100 - ratio)
+             preds[ratio] = (test_energy > threshold).astype(int)
+ 
+-        return preds, test_energy
+\ No newline at end of file
++        return preds, test_energy
+diff --git a/ts_benchmark/baselines/catch/layers/cross_channel_Transformer.py b/ts_benchmark/baselines/catch/layers/cross_channel_Transformer.py
+index 9db99c3..4168286 100644
+--- a/ts_benchmark/baselines/catch/layers/cross_channel_Transformer.py
++++ b/ts_benchmark/baselines/catch/layers/cross_channel_Transformer.py
+@@ -125,5 +125,6 @@ class Trans_C(nn.Module):
+         x = self.to_patch_embedding(x)
+         x, attn, dcloss = self.transformer(x, attn_mask)
+         x = self.dropout(x)
+-        x = self.mlp_head(x).squeeze()
++        # Preserve the batch/channel axes for singleton inference batches.
++        x = self.mlp_head(x)
+         return x, dcloss  # ,attn
+diff --git a/ts_benchmark/baselines/catch/utils/fre_rec_loss.py b/ts_benchmark/baselines/catch/utils/fre_rec_loss.py
+index 57536e2..99b40ad 100644
+--- a/ts_benchmark/baselines/catch/utils/fre_rec_loss.py
++++ b/ts_benchmark/baselines/catch/utils/fre_rec_loss.py
+@@ -121,7 +121,9 @@ class frequency_criterion(torch.nn.Module):
+         main_loss.scatter_(dim=2, index=indices, src=main_part_loss)
+ 
+         non_zero_cnt = torch.count_nonzero(main_loss, dim=1)
+-        main_loss = main_loss.sum(1) / non_zero_cnt
++        # A perfectly reconstructed constant channel has zero numerator and
++        # zero nonzero contributors; its error is zero, not NaN.
++        main_loss = main_loss.sum(1) / non_zero_cnt.clamp_min(1)
+ 
+         if self.padding_length > 0:
+             padding_loss = self.metric(outputs[:, -self.padding_length:, :], batch_y[:, -self.padding_length:, :])
+diff --git a/ts_benchmark/baselines/catch/utils/tools.py b/ts_benchmark/baselines/catch/utils/tools.py
+index 3a57263..610a0f9 100644
+--- a/ts_benchmark/baselines/catch/utils/tools.py
++++ b/ts_benchmark/baselines/catch/utils/tools.py
+@@ -51,7 +51,7 @@ class EarlyStopping:
+         self.counter = 0
+         self.best_score = None
+         self.early_stop = False
+-        self.val_loss_min = np.Inf
++        self.val_loss_min = np.inf
+         self.delta = delta
+ 
+     def __call__(self, val_loss, model):
+@@ -146,4 +146,4 @@ def adjustment(gt, pred):
+     return gt, pred
+ 
+ def cal_accuracy(y_pred, y_true):
+-    return np.mean(y_pred == y_true)
+\ No newline at end of file
++    return np.mean(y_pred == y_true)

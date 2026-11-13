@@ -1,0 +1,29 @@
+{
+  "method": "History-HGB-rhythm",
+  "C": 0.01,
+  "trials": [
+    {
+      "C": 0.01,
+      "validation_auroc": 0.742039586919105
+    },
+    {
+      "C": 0.1,
+      "validation_auroc": 0.6478055077452668
+    },
+    {
+      "C": 1.0,
+      "validation_auroc": 0.47590361445783136
+    }
+  ],
+  "validation_auroc": 0.742039586919105,
+  "validation": {
+    "origins": 194,
+    "auroc": 0.742039586919105,
+    "ap": 0.30585647294358803
+  },
+  "held_person": {
+    "origins": 232,
+    "auroc": 0.7701449275362319,
+    "ap": 0.24781608664541266
+  }
+}

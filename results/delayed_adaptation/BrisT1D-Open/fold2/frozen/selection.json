@@ -1,0 +1,22 @@
+{
+  "dataset": "BrisT1D-Open",
+  "fold": 2,
+  "condition": "frozen",
+  "C": 0.0,
+  "candidates": [
+    {
+      "C": 0.0,
+      "auroc": 0.7150735294117648,
+      "within_person_auroc": 0.6101153888838461,
+      "person_nll": 0.47786734886953375,
+      "person_brier": 0.13604656079567629,
+      "adapted_fraction": 0.0
+    }
+  ],
+  "validation_auroc": 0.7150735294117648,
+  "development_auroc": 0.6008230452674898,
+  "development_within_person_auroc": 0.42877545676942225,
+  "development_person_nll": 0.7753634356671674,
+  "development_person_brier": 0.21286340125665698,
+  "development_adapted_fraction": 0.0
+}

@@ -1,0 +1,22 @@
+{
+  "source_method": "HNE-additive",
+  "condition": "frozen",
+  "C": 0.0,
+  "trials": [
+    {
+      "C": 0.0,
+      "auroc": 0.6502282728542486,
+      "within_person_auroc": 0.6030595894320315,
+      "person_nll": 0.5464397033179252,
+      "person_brier": 0.180311471075108,
+      "adapted_fraction": 0.0
+    }
+  ],
+  "validation": {
+    "auroc": 0.6502282728542486,
+    "within_person_auroc": 0.6030595894320315,
+    "person_nll": 0.5464397033179252,
+    "person_brier": 0.180311471075108,
+    "adapted_fraction": 0.0
+  }
+}

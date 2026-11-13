@@ -1,0 +1,13 @@
+model,baseline,metric,difference,ci_low,ci_high
+future-moments,future-values-statistics,standardized_huber,-0.8278742222543573,-0.8911706984391969,-0.7741434527296375
+future-moments,future-values-statistics,signed_mean_mae,1.0363265193290294,0.825081267691078,1.2546704678196028
+future-moments,future-values-statistics,log1p_variance_mae,-1.6513299425314083,-1.8013021976960142,-1.526991808883656
+future-moments,future-values-statistics,tail_fraction_mae,-0.4030330641151405,-0.4296771973098202,-0.37929313560327815
+future-moments,previous-seven-days,standardized_huber,-0.03219431138209819,-0.036210178318380776,-0.028116051182794803
+future-moments,previous-seven-days,signed_mean_mae,2.2206922998952656,1.9917371395496088,2.4588267132907338
+future-moments,previous-seven-days,log1p_variance_mae,-0.027394022081830727,-0.04705755799716629,-0.006603062754598268
+future-moments,previous-seven-days,tail_fraction_mae,0.0019015800569635172,-0.0011566668996004054,0.0046275905724012315
+future-moments,training-constant,standardized_huber,-0.09057111497893788,-0.10503444793345472,-0.07675095573828515
+future-moments,training-constant,signed_mean_mae,2.1675364797998995,1.9477152797946249,2.3860927274613135
+future-moments,training-constant,log1p_variance_mae,-0.10384514345469986,-0.14612999762796208,-0.06569131137843716
+future-moments,training-constant,tail_fraction_mae,-0.025864970802983847,-0.03415235753564254,-0.018360382929850406

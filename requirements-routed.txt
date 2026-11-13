@@ -1,0 +1,7 @@
+chronos-forecasting==2.3.2
+torch==2.8.0
+transformers==5.17.0
+numpy==2.5.3
+pandas==3.0.6
+scikit-learn==1.9.1
+matplotlib==3.11.2

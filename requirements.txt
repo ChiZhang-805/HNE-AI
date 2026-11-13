@@ -1,0 +1,14 @@
+# Measured working environment: Python 3.13.0 on Windows, PyTorch CUDA 12.8.
+numpy==2.5.3
+pandas==3.0.6
+scipy==1.18.1
+scikit-learn==1.9.1
+torch==2.8.0+cu128
+einops==0.8.1
+matplotlib==3.11.2
+joblib==1.6.0
+threadpoolctl==3.7.0
+pyarrow==26.0.1
+requests==2.34.2
+# ESA outer archives use Deflate64; current installation is local tools/python.
+zipfile-deflate64==0.2.0

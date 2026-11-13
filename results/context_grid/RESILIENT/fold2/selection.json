@@ -1,0 +1,108 @@
+{
+  "unit": "RESILIENT/fold2",
+  "selected_context_ridge": 10.0,
+  "selected_C": 0.01,
+  "validation_selection_score": 0.8202069560218453,
+  "candidates": [
+    {
+      "unit": "RESILIENT/fold2",
+      "context_ridge": 0.1,
+      "C": 0.01,
+      "validation_selection_score": 0.8175122161540672,
+      "origins": 382,
+      "positive": 98,
+      "auroc": 0.8175122161540672,
+      "ap": 0.6447428822313134
+    },
+    {
+      "unit": "RESILIENT/fold2",
+      "context_ridge": 0.1,
+      "C": 0.1,
+      "validation_selection_score": 0.8111885599310147,
+      "origins": 382,
+      "positive": 98,
+      "auroc": 0.8111885599310147,
+      "ap": 0.6529722906059096
+    },
+    {
+      "unit": "RESILIENT/fold2",
+      "context_ridge": 0.1,
+      "C": 1.0,
+      "validation_selection_score": 0.7501077895947111,
+      "origins": 382,
+      "positive": 98,
+      "auroc": 0.7501077895947111,
+      "ap": 0.5815995659246069
+    },
+    {
+      "unit": "RESILIENT/fold2",
+      "context_ridge": 1.0,
+      "C": 0.01,
+      "validation_selection_score": 0.8191290600747342,
+      "origins": 382,
+      "positive": 98,
+      "auroc": 0.8191290600747342,
+      "ap": 0.6470653890377642
+    },
+    {
+      "unit": "RESILIENT/fold2",
+      "context_ridge": 1.0,
+      "C": 0.1,
+      "validation_selection_score": 0.8057990801954584,
+      "origins": 382,
+      "positive": 98,
+      "auroc": 0.8057990801954584,
+      "ap": 0.6511288922258632
+    },
+    {
+      "unit": "RESILIENT/fold2",
+      "context_ridge": 1.0,
+      "C": 1.0,
+      "validation_selection_score": 0.74137683242311,
+      "origins": 382,
+      "positive": 98,
+      "auroc": 0.74137683242311,
+      "ap": 0.5795481260629606
+    },
+    {
+      "unit": "RESILIENT/fold2",
+      "context_ridge": 10.0,
+      "C": 0.01,
+      "validation_selection_score": 0.8202069560218453,
+      "origins": 382,
+      "positive": 98,
+      "auroc": 0.8202069560218453,
+      "ap": 0.6527232291932675
+    },
+    {
+      "unit": "RESILIENT/fold2",
+      "context_ridge": 10.0,
+      "C": 0.1,
+      "validation_selection_score": 0.8107214716872665,
+      "origins": 382,
+      "positive": 98,
+      "auroc": 0.8107214716872665,
+      "ap": 0.6587519763438929
+    },
+    {
+      "unit": "RESILIENT/fold2",
+      "context_ridge": 10.0,
+      "C": 1.0,
+      "validation_selection_score": 0.7617490658235125,
+      "origins": 382,
+      "positive": 98,
+      "auroc": 0.7617490658235125,
+      "ap": 0.603379309073566
+    }
+  ],
+  "threshold_val_negative_p90": 0.3808745576350874,
+  "fit": "training people only, selected by validation; no refit",
+  "validation": {
+    "origins": 382,
+    "positive": 98,
+    "auroc": 0.8202069560218453,
+    "ap": 0.6527232291932675
+  },
+  "selected_at_utc": "2026-11-10T00:03:17.478824+00:00",
+  "model_sha256": "894f3dbf82fce4d23ee4d4d92f7377e076e14f1308ca5f04e03d49ad265bbd0f"
+}

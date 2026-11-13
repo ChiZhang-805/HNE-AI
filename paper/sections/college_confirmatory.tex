@@ -1,0 +1,49 @@
+\section{College Participant-Held-Out Evaluation}
+\label{app:college-test}
+\input{tables/college_numbers}
+
+College Experience v5 contains 220 identifiers, assigned by a fixed hash to 132/44/44 training/validation/test participants \citep{hneD08}. Nine states describe phone-derived sleep, stationary and vehicle duration, cycling and walking, phone unlock duration and count, travel distance, and visited locations. Four contexts describe home, study and social duration, and campus distance. Phone-derived sleep and phone use share one measurement family; activity and mobility form the other two. The same 56-day reference, 32-day history, one-day gap, and seven-day target yield 54,691/19,876 training/validation origins from 126/44 eligible people.
+
+The 44 participants reserved at the initial identifier split enter evaluation only after all selected models are frozen. The fixed event protocol yields \CollegeAllN{} origins from \CollegePeople{} eligible participants, including \CollegePositive{} positives. The primary comparison uses \CollegeN{} origins scoreable by every prespecified control. As in Human Rhythms, confidence intervals resample participants, and the strongest comparator is selected again within each bootstrap draw.
+
+\begin{table}[!htb]
+\centering
+\caption{College prediction on 14,963 common test origins. Within is mean within-participant AUROC; TPR/FPR use validation-selected thresholds.}
+\label{tab:college-test}
+\hnetable{tables/college_test}
+\end{table}
+
+Table~\ref{tab:college-test} reports the complete primary comparison. HNE reaches AUROC \CollegeHNE{}, compared with \CollegeFCM{} for FCM and \CollegeCATCH{} for CATCH. The strongest prespecified comparator is \CollegeBestName{} at \CollegeBestAUC{}; HNE's difference is $\CollegeBestDelta$ with paired interval $[\CollegeBestLow,\CollegeBestHigh]$.
+
+\FloatBarrier
+Table~\ref{tab:college-test-variants} isolates the representation groups on the same test origins. Full HNE reaches AUROC $0.655$ versus $0.647$ for history alone; removing network or environmental coordinates gives $0.663$ and $0.638$, respectively.
+
+\begin{table}[!htb]
+\centering
+\caption{College representation ablations on the common test population.}
+\label{tab:college-test-variants}
+\hnetable{tables/college_core_variants}
+\end{table}
+
+\subsection{Source-Rule Adaptation}
+The fixed source-basis and source-prior experiment repeats the Human Rhythms design with 32, 63, and all 126 eligible College training participants. The two smaller budgets each use three predetermined identifier subsets; validation and test participants remain the same across conditions. Table~\ref{tab:college-adaptation} reports the mean AUROC across these fixed subsets.
+
+\begin{table}[!htb]
+\centering
+\caption{College transfer at fixed target-training budgets.}
+\label{tab:college-adaptation}
+\hnetable{tables/college_adaptation}
+\end{table}
+
+\subsection{Learning from Matured Personal Outcomes}
+The prequential experiment exposes the same delayed feedback to every method. At issue day $d$, only outcomes originating at $s\le d-8$ can update the predictor. Updates use a 90-day memory, occur every seven days, and require at least eight matured origins. Intercept and positive-affine updates recalibrate the frozen score; HNE also permits source-regularized updates to its spline coefficients. Native public scores receive a training-participant logistic readout before the same calibration experiment.
+
+\begin{table}[!htb]
+\centering
+\caption{College prequential AUROC with matched availability of matured outcomes. Coefficient updates apply to HNE spline models.}
+\label{tab:college-delayed}
+\hnetable{tables/college_delayed}
+\end{table}
+
+Frozen HNE, intercept adaptation, affine adaptation, and coefficient learning reach AUROC \CollegeDelayedFrozen{}, \CollegeDelayedIntercept{}, \CollegeDelayedAffine{}, and \CollegeDelayedCoefficients{}, respectively (Table~\ref{tab:college-delayed}). The highest point estimate among all declared conditions is \CollegeDelayedBestAUC{} for \CollegeDelayedBestName{}. These evaluations follow one fixed learning rule through the held-out participants' timelines; their feedback regime is separate from the static primary comparison.
+

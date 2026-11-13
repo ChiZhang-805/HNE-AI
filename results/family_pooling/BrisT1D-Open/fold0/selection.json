@@ -1,0 +1,109 @@
+{
+  "unit": "BrisT1D-Open/fold0",
+  "selected_context_ridge": 10.0,
+  "selected_C": 0.01,
+  "validation_selection_score": 0.9413919413919414,
+  "candidates": [
+    {
+      "unit": "BrisT1D-Open/fold0",
+      "context_ridge": 0.1,
+      "C": 0.01,
+      "validation_selection_score": 0.9358974358974359,
+      "origins": 185,
+      "positive": 3,
+      "auroc": 0.9358974358974359,
+      "ap": 0.23860727086533537
+    },
+    {
+      "unit": "BrisT1D-Open/fold0",
+      "context_ridge": 0.1,
+      "C": 0.1,
+      "validation_selection_score": 0.8864468864468864,
+      "origins": 185,
+      "positive": 3,
+      "auroc": 0.8864468864468864,
+      "ap": 0.08888888888888889
+    },
+    {
+      "unit": "BrisT1D-Open/fold0",
+      "context_ridge": 0.1,
+      "C": 1.0,
+      "validation_selection_score": 0.8663003663003663,
+      "origins": 185,
+      "positive": 3,
+      "auroc": 0.8663003663003663,
+      "ap": 0.08526487518084157
+    },
+    {
+      "unit": "BrisT1D-Open/fold0",
+      "context_ridge": 1.0,
+      "C": 0.01,
+      "validation_selection_score": 0.9340659340659341,
+      "origins": 185,
+      "positive": 3,
+      "auroc": 0.9340659340659341,
+      "ap": 0.22670250896057348
+    },
+    {
+      "unit": "BrisT1D-Open/fold0",
+      "context_ridge": 1.0,
+      "C": 0.1,
+      "validation_selection_score": 0.8791208791208791,
+      "origins": 185,
+      "positive": 3,
+      "auroc": 0.8791208791208791,
+      "ap": 0.08136645962732919
+    },
+    {
+      "unit": "BrisT1D-Open/fold0",
+      "context_ridge": 1.0,
+      "C": 1.0,
+      "validation_selection_score": 0.8589743589743589,
+      "origins": 185,
+      "positive": 3,
+      "auroc": 0.8589743589743589,
+      "ap": 0.06913580246913581
+    },
+    {
+      "unit": "BrisT1D-Open/fold0",
+      "context_ridge": 10.0,
+      "C": 0.01,
+      "validation_selection_score": 0.9413919413919414,
+      "origins": 185,
+      "positive": 3,
+      "auroc": 0.9413919413919414,
+      "ap": 0.2857142857142857
+    },
+    {
+      "unit": "BrisT1D-Open/fold0",
+      "context_ridge": 10.0,
+      "C": 0.1,
+      "validation_selection_score": 0.8974358974358974,
+      "origins": 185,
+      "positive": 3,
+      "auroc": 0.8974358974358974,
+      "ap": 0.101536521041165
+    },
+    {
+      "unit": "BrisT1D-Open/fold0",
+      "context_ridge": 10.0,
+      "C": 1.0,
+      "validation_selection_score": 0.9102564102564102,
+      "origins": 185,
+      "positive": 3,
+      "auroc": 0.9102564102564102,
+      "ap": 0.1173611111111111
+    }
+  ],
+  "threshold_val_negative_p90": 0.21270469940847947,
+  "fit": "training people only, selected by validation; no refit",
+  "validation": {
+    "origins": 185,
+    "positive": 3,
+    "auroc": 0.9413919413919414,
+    "ap": 0.2857142857142857
+  },
+  "selected_at_utc": "2026-11-10T00:11:33.033300+00:00",
+  "model_sha256": "8e057a19b67b49b9b78c1a6a77176e78942603298c1b26f2205f808319fbcb4e",
+  "representation": "family_max_then_original_pool_nodes"
+}

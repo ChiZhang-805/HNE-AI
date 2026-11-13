@@ -1,0 +1,23 @@
+{
+  "version": "hne-dynamic-reference-development-20261110",
+  "question": "Does warning from deviations from a personal H/N/E conditional trajectory outperform warning from context-only residuals?",
+  "datasets": ["RESILIENT", "BrisT1D-Open"],
+  "reference_days": 56,
+  "state_lags": [1, 7],
+  "context_lags": [0, 1, 7],
+  "ridge_per_observation": 0.1,
+  "group_normalization": "own-history, other-state history, and context predictor values and observation masks each divided by sqrt(group width)",
+  "minimum_predictor_observations": 4,
+  "minimum_target_observations": 14,
+  "reference_residuals": "four held14-day blocks; training excludes held targets plus a seven-day buffer on each side; monitoring predictor fits all first56 days",
+  "variants": ["HNE-dynamic-reference", "HNE-own-history-reference"],
+  "control": "own-history-reference changes the residual predictor only; raw H/N and context descriptors remain present and it is not a full network/environment ablation",
+  "shared": "same296 coordinates, raw H/N, three8/16/32-day windows, risk head, original outcome and original participant folds",
+  "effect_coordinates": "context coefficient L2 normalized by sqrt(supported context value count), and supported target fraction, same role as original context predictor",
+  "C_candidates": [0.01, 0.1, 1.0],
+  "selection": "validation AUROC, ties smaller C; both fixed variants reported on held development fold",
+  "comparison": ["HNE-additive", "DNB", "FCM-ensemble", "CATCH-ensemble", "History-LR", "History-HGB", "HNE-HGB", "JAPE-event", "JAPE-event-AUC"],
+  "external_test_use": "none; already exposed external tests do not select this model",
+  "motivation": ["FCM forecasts normal temporal structure, but does not use a personal environmental reference", "VAR EWS models dynamics directly, while short personal references require regularization", "Original HNE context-only reference does not model own and cross-variable lag dynamics jointly"],
+  "novelty_scope": "regularized VARX and predictive residuals have prior art; this experiment examines their role in a shared sustained-disturbance warning framework"
+}

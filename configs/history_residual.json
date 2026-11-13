@@ -1,0 +1,15 @@
+{
+  "version": "hne-history-residual-development-v1",
+  "hypothesis": "A separately learned historical risk provides an anchor; relation and environment descriptors learn residual future-event information rather than re-estimating that anchor jointly.",
+  "history_C": [0.01, 0.1, 1.0],
+  "correction_C": [0.01, 0.1, 1.0],
+  "correction_groups": ["N", "E", "NE"],
+  "history_crossfit_folds": 3,
+  "history_crossfit_seed": 20261110,
+  "context_ridge": 10.0,
+  "selection": "history C then correction C by validation AUROC; ties use smaller C",
+  "development_only": ["RESILIENT", "BrisT1D-Open", "Human-Rhythms train/validation"],
+  "unopened_inputs": ["Human-Rhythms test features and labels", "future independent confirmation cohort outcomes"],
+  "comparisons": ["existing joint HNE", "existing history-only HNE", "cross-fitted history residual HNE", "in-sample history residual HNE"],
+  "core_consistency": "same history anchor, cross-fit procedure, N/E/NE correction and fixed 296 coordinates in every cohort; no dataset-specific module switch"
+}

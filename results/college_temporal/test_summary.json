@@ -1,0 +1,29 @@
+{
+  "test_hashes": {
+    "metadata": "8a2f51a4b07bb38d88e31f1528acb7a3cdabd7b78ee7b11496173eedf9939487",
+    "features": "7e0e2c40f480b19318419435406d4166f170823d3dda93c0921507f575b5857f"
+  },
+  "selection_sha256": "7e7a0bcb99782506544395c91aa3436b3c55e8d1be092cb841e44ecd1cdb9a20",
+  "metrics": {
+    "method": "HNE-temporal",
+    "origins": 15137,
+    "people": 41,
+    "positive": 4074,
+    "people_with_both_classes": 41,
+    "auroc": 0.6534549681120726,
+    "auroc_ci_low": 0.6119597038352912,
+    "auroc_ci_high": 0.6918655368669353,
+    "within_person_auroc": 0.6050791824882319,
+    "within_person_auroc_ci_low": 0.5694665053937417,
+    "within_person_auroc_ci_high": 0.6386150495502619,
+    "ap": 0.40041700081652243,
+    "ap_ci_low": 0.33093931322810766,
+    "ap_ci_high": 0.4738439552641731,
+    "tpr_val_p90": 0.32621502209131076,
+    "tpr_val_p90_ci_low": 0.23655883142648307,
+    "tpr_val_p90_ci_high": 0.4110154030721152,
+    "fpr_val_p90": 0.15511163337250294,
+    "fpr_val_p90_ci_low": 0.10570304245181868,
+    "fpr_val_p90_ci_high": 0.21444754774027142
+  }
+}

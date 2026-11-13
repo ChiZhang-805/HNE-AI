@@ -1,0 +1,9 @@
+dataset,condition,population,origins,auroc
+RESILIENT,crossfit,all,1990,0.8017327135596592
+RESILIENT,crossfit,common,1964,0.80359765051395
+RESILIENT,in-sample,all,1990,0.8003671616415562
+RESILIENT,in-sample,common,1964,0.8022944199706314
+BrisT1D-Open,crossfit,all,1238,0.6691486997110468
+BrisT1D-Open,crossfit,common,1230,0.6691503558718861
+BrisT1D-Open,in-sample,all,1238,0.6901811513669704
+BrisT1D-Open,in-sample,common,1230,0.6901968416370107

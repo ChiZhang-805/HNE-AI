@@ -1,0 +1,109 @@
+{
+  "unit": "RESILIENT/fold0",
+  "selected_context_ridge": 10.0,
+  "selected_C": 0.01,
+  "validation_selection_score": 0.7254649499284692,
+  "candidates": [
+    {
+      "unit": "RESILIENT/fold0",
+      "context_ridge": 0.1,
+      "C": 0.01,
+      "validation_selection_score": 0.6982832618025752,
+      "origins": 263,
+      "positive": 30,
+      "auroc": 0.6982832618025752,
+      "ap": 0.18360328773746942
+    },
+    {
+      "unit": "RESILIENT/fold0",
+      "context_ridge": 0.1,
+      "C": 0.1,
+      "validation_selection_score": 0.6460658082975679,
+      "origins": 263,
+      "positive": 30,
+      "auroc": 0.6460658082975679,
+      "ap": 0.15359913579098255
+    },
+    {
+      "unit": "RESILIENT/fold0",
+      "context_ridge": 0.1,
+      "C": 1.0,
+      "validation_selection_score": 0.6123032904148784,
+      "origins": 263,
+      "positive": 30,
+      "auroc": 0.6123032904148784,
+      "ap": 0.13731997279504699
+    },
+    {
+      "unit": "RESILIENT/fold0",
+      "context_ridge": 1.0,
+      "C": 0.01,
+      "validation_selection_score": 0.7233190271816882,
+      "origins": 263,
+      "positive": 30,
+      "auroc": 0.7233190271816882,
+      "ap": 0.2040738607292131
+    },
+    {
+      "unit": "RESILIENT/fold0",
+      "context_ridge": 1.0,
+      "C": 0.1,
+      "validation_selection_score": 0.669098712446352,
+      "origins": 263,
+      "positive": 30,
+      "auroc": 0.669098712446352,
+      "ap": 0.16549985095686212
+    },
+    {
+      "unit": "RESILIENT/fold0",
+      "context_ridge": 1.0,
+      "C": 1.0,
+      "validation_selection_score": 0.6211731044349069,
+      "origins": 263,
+      "positive": 30,
+      "auroc": 0.6211731044349069,
+      "ap": 0.13861459861509237
+    },
+    {
+      "unit": "RESILIENT/fold0",
+      "context_ridge": 10.0,
+      "C": 0.01,
+      "validation_selection_score": 0.7254649499284692,
+      "origins": 263,
+      "positive": 30,
+      "auroc": 0.7254649499284692,
+      "ap": 0.2077127211460966
+    },
+    {
+      "unit": "RESILIENT/fold0",
+      "context_ridge": 10.0,
+      "C": 0.1,
+      "validation_selection_score": 0.6984263233190272,
+      "origins": 263,
+      "positive": 30,
+      "auroc": 0.6984263233190272,
+      "ap": 0.1853292889164113
+    },
+    {
+      "unit": "RESILIENT/fold0",
+      "context_ridge": 10.0,
+      "C": 1.0,
+      "validation_selection_score": 0.6895565092989986,
+      "origins": 263,
+      "positive": 30,
+      "auroc": 0.6895565092989986,
+      "ap": 0.17790784916914432
+    }
+  ],
+  "threshold_val_negative_p90": 0.30530435270478834,
+  "fit": "training people only, selected by validation; no refit",
+  "validation": {
+    "origins": 263,
+    "positive": 30,
+    "auroc": 0.7254649499284692,
+    "ap": 0.2077127211460966
+  },
+  "selected_at_utc": "2026-11-10T00:11:26.521335+00:00",
+  "model_sha256": "91dcdba9b1f0368f62b6f151745bfe00c96bdb54e2d3bad243702c75030b5447",
+  "representation": "family_max_then_original_pool_nodes"
+}

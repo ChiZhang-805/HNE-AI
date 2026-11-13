@@ -1,0 +1,18 @@
+{
+  "version": "hne-family-conditional-graph-development-20261110",
+  "datasets": ["RESILIENT", "BrisT1D-Open"],
+  "unary": "Shared family H96 and E128 from the existing node descriptors and context summaries",
+  "edge": "For each unordered family pair: original36 raw and36 context-adjusted correlation-change descriptors, restricted to edges connecting the two families",
+  "probability": "Conditional binary graphical model: sum unary_f*y_f plus sum pair_fg*y_f*y_g; enumerate all family states; risk=sum probability where active family count>=2",
+  "supervision": "Marginal log likelihood of observed future family statuses; reference-ineligible families fixed to0; unknown statuses marginalized",
+  "methods": ["independent", "constant-coupling", "conditional-graph"],
+  "constant_coupling": "One shared learned pair intercept without network descriptors",
+  "conditional_graph": "Same pair intercept plus shared additive spline function of72 pair descriptors",
+  "C": [0.01, 0.1, 1.0],
+  "selection": "Existing validation participant fold AUROC; no exposed test used for tuning",
+  "weighting": "Equal person; each origin log likelihood divided by number of known family targets",
+  "maximum_iterations": 400,
+  "primary_comparison": "conditional graph against independent and constant coupling on identical origins",
+  "scope": "Development only; original HNE-additive comparisons retained",
+  "prior_art": "Conditional random fields and count potentials are established; contribution assessed here is shared reference-relative H/N/E factorization for future family disturbance across schemas."
+}

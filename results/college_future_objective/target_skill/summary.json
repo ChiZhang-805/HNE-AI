@@ -1,0 +1,23 @@
+{
+  "partition": "validation",
+  "people": 44,
+  "origins": 19876,
+  "common_nodes": 169745,
+  "all_origins": 19876,
+  "weighting": "valid nodes equally within origin; origins equally within person; people equally",
+  "bootstrap": "2000 whole-person draws, seed20261110",
+  "target_scale": [
+    265.2586669921875,
+    1.6555908918380737,
+    0.21403619647026062
+  ],
+  "constant": [
+    0.05721011012792587,
+    0.4686500132083893,
+    0.0
+  ],
+  "future_values": "statistics of the three-seed mean future trajectory",
+  "future_moments": "three-seed mean decoder output; no post-hoc clipping",
+  "past_baseline": "last7 observed input days ending d; at least5 days per node",
+  "interpretation": "validation diagnostic after model selection, not independent confirmation"
+}

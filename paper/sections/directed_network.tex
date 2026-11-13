@@ -1,0 +1,12 @@
+\subsection{Directed Prediction-Gain Networks}
+CNM-GC averages first-order Granger influence from a dominant group to the remaining indicators, then takes the reciprocal \citep{hneM16}. Our past-only adaptation forms two variance clusters from the available 32-day history. It requires at least 12 jointly observed triples per directed edge and retains the score's original increasing-risk direction. A separate scalar logistic readout learns its orientation on training participants. Table~\ref{tab:directed} uses 1,942 origins from 55 RESILIENT participants and 1,199 origins from 19 BrisT1D participants, where CNM and the original primary methods are all defined.
+
+Two representation comparisons retain HNE's history, environment, reference fit, and additive predictor. They replace correlation summaries by first-order prediction-gain changes over 8, 16, and 32 days. The second subtracts the Gaussian independent-row null expectation, $\psi((n-2)/2)-\psi((n-3)/2)$, from each gain estimated with $n$ triples. On the original primary populations, their AUROCs are 0.797/0.796 for RESILIENT and 0.623/0.626 for BrisT1D, versus 0.802/0.709 for the original representation. The correlation-based representation remains the main HNE model.
+
+\begin{table*}[t]
+\centering
+\small\setlength{\tabcolsep}{5pt}
+\caption{Past-only directed markers and network representations on their common scored origins. Within is mean within-participant AUROC; intervals resample participants.}
+\label{tab:directed}
+\input{tables/directed_network}
+\end{table*}

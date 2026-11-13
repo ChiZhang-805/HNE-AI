@@ -1,0 +1,38 @@
+{
+  "source_method": "HNE-additive",
+  "condition": "coefficients",
+  "C": 0.1,
+  "trials": [
+    {
+      "C": 0.01,
+      "auroc": 0.659072471803118,
+      "within_person_auroc": 0.6034687642960105,
+      "person_nll": 0.5418603046249975,
+      "person_brier": 0.17875766410893318,
+      "adapted_fraction": 0.9691587844636748
+    },
+    {
+      "C": 0.1,
+      "auroc": 0.6703741024550844,
+      "within_person_auroc": 0.5932746631130349,
+      "person_nll": 0.5453638910420741,
+      "person_brier": 0.17899244048217297,
+      "adapted_fraction": 0.9691587844636748
+    },
+    {
+      "C": 1.0,
+      "auroc": 0.6626029760742833,
+      "within_person_auroc": 0.5698013013817307,
+      "person_nll": 0.5968862530224608,
+      "person_brier": 0.1896948187182973,
+      "adapted_fraction": 0.9691587844636748
+    }
+  ],
+  "validation": {
+    "auroc": 0.6703741024550844,
+    "within_person_auroc": 0.5932746631130349,
+    "person_nll": 0.5453638910420741,
+    "person_brier": 0.17899244048217297,
+    "adapted_fraction": 0.9691587844636748
+  }
+}

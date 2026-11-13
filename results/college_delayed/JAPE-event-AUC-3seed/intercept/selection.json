@@ -1,0 +1,38 @@
+{
+  "source_method": "JAPE-event-AUC-3seed",
+  "condition": "intercept",
+  "C": 0.01,
+  "trials": [
+    {
+      "C": 0.01,
+      "auroc": 0.6890838601911218,
+      "within_person_auroc": 0.6214712458980023,
+      "person_nll": 0.5425458575898067,
+      "person_brier": 0.17968563360699782,
+      "adapted_fraction": 0.9691587844636748
+    },
+    {
+      "C": 0.1,
+      "auroc": 0.682496199166357,
+      "within_person_auroc": 0.5646738828207098,
+      "person_nll": 0.530207105420006,
+      "person_brier": 0.1753540386948519,
+      "adapted_fraction": 0.9691587844636748
+    },
+    {
+      "C": 1.0,
+      "auroc": 0.6657391057872206,
+      "within_person_auroc": 0.5305644847997514,
+      "person_nll": 0.5539980650927566,
+      "person_brier": 0.1832246664733854,
+      "adapted_fraction": 0.9691587844636748
+    }
+  ],
+  "validation": {
+    "auroc": 0.6890838601911218,
+    "within_person_auroc": 0.6214712458980023,
+    "person_nll": 0.5425458575898067,
+    "person_brier": 0.17968563360699782,
+    "adapted_fraction": 0.9691587844636748
+  }
+}

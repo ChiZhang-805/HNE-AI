@@ -1,0 +1,22 @@
+{
+  "dataset": "RESILIENT",
+  "method": "HNE-fg-boundary",
+  "fold": 1,
+  "C": 0.01,
+  "validation_auroc": 0.8449218942492486,
+  "auroc": 0.8719599427753935,
+  "trials": [
+    {
+      "C": 0.01,
+      "validation_auroc": 0.8449218942492486
+    },
+    {
+      "C": 0.1,
+      "validation_auroc": 0.8375301828216627
+    },
+    {
+      "C": 1.0,
+      "validation_auroc": 0.7899768393041935
+    }
+  ]
+}

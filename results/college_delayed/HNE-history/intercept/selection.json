@@ -1,0 +1,38 @@
+{
+  "source_method": "HNE-history",
+  "condition": "intercept",
+  "C": 0.1,
+  "trials": [
+    {
+      "C": 0.01,
+      "auroc": 0.6559449435468129,
+      "within_person_auroc": 0.5866179660187528,
+      "person_nll": 0.5407860075814432,
+      "person_brier": 0.18013300856528283,
+      "adapted_fraction": 0.9691587844636748
+    },
+    {
+      "C": 0.1,
+      "auroc": 0.6702804669090524,
+      "within_person_auroc": 0.5805129145118032,
+      "person_nll": 0.539374384866015,
+      "person_brier": 0.17908637059016386,
+      "adapted_fraction": 0.9691587844636748
+    },
+    {
+      "C": 1.0,
+      "auroc": 0.6678899304723017,
+      "within_person_auroc": 0.560309448006275,
+      "person_nll": 0.5727376456674942,
+      "person_brier": 0.1872802018880342,
+      "adapted_fraction": 0.9691587844636748
+    }
+  ],
+  "validation": {
+    "auroc": 0.6702804669090524,
+    "within_person_auroc": 0.5805129145118032,
+    "person_nll": 0.539374384866015,
+    "person_brier": 0.17908637059016386,
+    "adapted_fraction": 0.9691587844636748
+  }
+}

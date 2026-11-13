@@ -1,0 +1,84 @@
+{
+  "identity": {
+    "configuration": {
+      "version": "jape-shared-development-event-v1-20261110",
+      "method": "JAPE-event-3seed",
+      "source": "https://anonymous.4open.science/r/JAPE-B74E/",
+      "paper": "https://arxiv.org/html/2608.11801v2",
+      "seeds": [
+        20261110,
+        20261111,
+        20261112
+      ],
+      "seq_len": 32,
+      "pred_len": 8,
+      "patch_len": 4,
+      "stride": 2,
+      "forecast_layers": 3,
+      "forecast_width": 128,
+      "forecast_heads": 8,
+      "forecast_ff_width": 256,
+      "forecast_dropout": 0.1,
+      "forecast_head_dropout": 0.1,
+      "dependency_lags": 3,
+      "dependency_topk": 5,
+      "head_width": 64,
+      "head_heads": 4,
+      "head_layers": 3,
+      "tail_ratio": 0.3,
+      "batch_size": 128,
+      "learning_rate": 0.0001,
+      "weight_decay": 0.0001,
+      "max_epochs": 20,
+      "patience": 5,
+      "focal_alpha": 0.25,
+      "focal_gamma": 2.0,
+      "head_gradient_clip": 1.0,
+      "fit_partitions": [
+        "train",
+        "validation"
+      ],
+      "forecast_selection": "minimum validation main-plus-auxiliary observed-entry MSE; strict improvement, patience5",
+      "head_selection": "original maximum validation F1 over30 thresholds from0.05to0.95; strict improvement, patience5",
+      "head_scheduler": "original ReduceLROnPlateau on validation F1, factor0.5,patience2,min_lr1e-6",
+      "preprocessing": "same public-baseline training-history channel median and StandardScaler; retain all event origins",
+      "adaptation": "daily32 history; forecast days d+1 through d+8; original pointwise head logits averaged over d+2 through d+8 before focal loss against one interval event label; patch4,stride2 fit the daily horizon",
+      "missing_targets": "observed-entry MSE, no imputed future targets; main and auxiliary terms retain equal weights",
+      "original_modules": "unmodified JAPEModel,DSTR,future-graph branch,StructuralFeatureExtractor,DualViewAlertingHead,BinaryFocalLossWithLogits",
+      "weighting": "original equal-window objective; no additional person or class weights beyond focal alpha",
+      "ensemble": "arithmetic mean of all3 seed event probabilities",
+      "threshold": "validation-negative probability90th percentile; alerts strictly greater",
+      "explanations": "NPE is available in the downloaded source but is not evaluated by this event-risk comparison",
+      "partition": "same existing5 participant folds; next fold validation, remaining3 training; previously exposed development cohorts"
+    },
+    "dataset": "RESILIENT",
+    "fold": 1,
+    "source_feature_sha256": "072a83c84f86b7508e81b4ba3815c9d1c1f35e8aca1ce6a10c73cf7bfd21053d",
+    "adapter_sha256": "ca357d2235024acb37732f181d8f5f43570d27d40e1af143d53c03b8271759d9"
+  },
+  "seeds": [
+    20261110,
+    20261111,
+    20261112
+  ],
+  "training": [
+    {
+      "seed": 20261110,
+      "forecast_epochs": 15,
+      "head_epochs": 9
+    },
+    {
+      "seed": 20261111,
+      "forecast_epochs": 20,
+      "head_epochs": 16
+    },
+    {
+      "seed": 20261112,
+      "forecast_epochs": 14,
+      "head_epochs": 7
+    }
+  ],
+  "validation_auroc": 0.7574779480609076,
+  "held_person_auroc": 0.8147353361945637,
+  "threshold_val_negative_p90": 0.36982715129852295
+}

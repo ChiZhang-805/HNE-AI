@@ -1,0 +1,19 @@
+{
+  "version": "hne-family-pair-network-20261110",
+  "question": "Does equal family-pair weighting improve future warnings when measurement families have unequal field counts?",
+  "variants": ["HNE-block-network", "HNE-cross-network"],
+  "unchanged": "56/32/1/7 event protocol; all H/E descriptors; 296 coordinates; reference normalization; lags0/1/7; paired-observation correlations; support shrinkage; additive spline objective",
+  "context_ridge": 10,
+  "C_candidates": [0.01, 0.1, 1.0],
+  "group_rule": "Use existing source-schema state_families without outcome-driven merging or splitting",
+  "family_pairs": "unordered at lag0, directed at positive lags; exclude diagonal variable edges as before",
+  "means": "Original reliability-weighted mean within each nonempty family-pair block, then unweighted mean of blocks; retain original delta=reliability*(recent-reference)",
+  "maximum": "Original maximum absolute shrunk change over all retained edges",
+  "cross_variant": "Identical block weighting after excluding within-family edges; this is a relation ablation",
+  "missing": "Omit empty blocks; all-empty graph remainsNaN",
+  "selection": "C selected by validation AUROC; ties smallerC; no train+validation refit",
+  "development": "RESILIENT, BrisT1D-Open and IFH-Affect fixed5fold; heldk, validation(k+1)%5, train remaining3",
+  "external_development": "Human Rhythms train/validation only; no previously exposed test re-scoring",
+  "college": "Run train/validation once original feature construction completes; test remains unopened until study-wide model freeze",
+  "duplication_claim": "No claim of invariance to individual-channel duplication; only three means remove family-block edge-count weighting"
+}

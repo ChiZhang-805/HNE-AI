@@ -1,0 +1,77 @@
+\section{HNE: Learning from Personal References}
+\label{sec:method}
+
+HNE maps state observations $x_{pj}(t)$ and context $e_p(t)$ into four coordinate groups: history ($H$), indicator relationships ($N$), context-adjusted fluctuations ($E$), and adjusted relationships ($NE$). Figure~\ref{fig:framework} connects the personal reference, shared coordinates, and future-event predictor.
+
+The representation separates three questions that arise at every warning time: how individual indicators have changed, how much of that change follows their usual context response, and how their relationships have changed. Each incoming history updates these descriptors against the same personal reference. Pooling gives the predictor a stable meaning for each coordinate even when another cohort measures different variables.
+
+\subsection{Personal and Contextual References}
+\label{sec:reference}
+
+The initial 56 days form a fixed reference $\mathcal R_p$. Each variable is centered by its observed reference median $\mu_{pj}$ and divided by its median absolute deviation:
+\begin{equation}
+\begin{aligned}
+z_{pj}(t)&=(x_{pj}(t)-\mu_{pj})/s_{pj},\\
+s_{pj}&=1.4826\operatorname{median}_{t\in\mathcal R_p}|x_{pj}(t)-\mu_{pj}|.
+\end{aligned}
+\end{equation}
+Context receives the same normalization; observation requirements appear in Appendix~\ref{app:reproducibility}.
+
+For expected context responses, $u_p(t)$ concatenates an intercept, normalized context at lags $0,1,7$, and observation masks. On reference dates $\mathcal O_{pj}$ with observed state and supported context, we fit
+\begin{equation}
+\begin{split}
+\hat\beta_{pj}=\arg\min_\beta\;&\frac{1}{|\mathcal O_{pj}|}
+\sum_{t\in\mathcal O_{pj}}[\tilde z_{pj}(t)-u_p(t)^\top\beta]^2\\
+&+10\|\beta_{-0}\|_2^2.
+\end{split}
+\end{equation}
+Monitoring residuals are $r_{pj}(t)=z_{pj}(t)-u_p(t)^\top\hat\beta_{pj}$. Four-block prediction within the reference supplies an out-of-block residual baseline. HNE keeps original observations and context descriptors alongside residuals, preserving both expected responses and warning information associated with context.
+
+\subsection{Fluctuations and Relationship Changes}
+\label{sec:descriptors}
+
+For trailing windows of $8,16,32$ days, each original or adjusted state receives eight descriptors: signed and absolute mean deviation, amplitude ratio, standard-deviation ratio, tail frequency, half-window drift, and autocorrelation changes at lags one and seven. For a window $W$ and reference $R$, the first six are
+\begin{equation}
+\begin{split}
+\psi(W,R)=\big[&b,|b|,\log(1+A_W/A_R),\log(1+s_W/s_R),\\
+&\operatorname{mean}_{t\in W_{\rm obs}}\mathbf1\{|v_t-c_R|>q_R\},h\big].
+\end{split}
+\end{equation}
+Here $b=(\bar v_W-c_R)/s_R$, where $c_R$ and $s_R$ are the reference median and standard deviation; $A$ is the 90th--10th percentile range, and $h$ is the normalized difference between half-window means. The tail threshold $q_R$ is the reference 90th percentile of absolute deviations; all statistics use observed entries.
+
+For each window and lag $\ell\in\{0,1,7\}$, correlations use jointly observed pairs. With window support $n_{pij}^{w,\ell}$, HNE shrinks the change from reference correlation:
+\begin{equation}
+\begin{aligned}
+a_{pij}^{w,\ell}&=\frac{n_{pij}^{w,\ell}-3}{n_{pij}^{w,\ell}-3+24},\\
+\Delta_{pij}^{w,\ell}&=a_{pij}^{w,\ell}(\rho_{pij}^{w,\ell}-\rho_{pij}^{R,\ell}).
+\end{aligned}
+\end{equation}
+Each graph is summarized by its support-weighted mean absolute adjusted correlation and mean absolute, maximum absolute, and signed mean changes. Adjusted correlation is $\rho^R+\Delta$, with weight $a$; autocorrelation changes use the same shrinkage. The resulting coordinates describe dependence and its departure from the personal reference.
+
+\subsection{Shared Coordinates and Risk Learning}
+\label{sec:risk}
+
+We pool node descriptors across variables using the mean, standard deviation, maximum, and mean of the largest two values. Together with context and graph summaries, this produces $\phi_{pd}\in\mathbb R^{296}$: 96 $H$, 128 $E$, and 36 coordinates for each of $N$ and $NE$. These symmetric summaries give the same coordinate definitions across channel orderings and input dimensions.
+
+After training-only imputation and normalization, quadratic B-spline bases $B_k$ provide a nonlinear additive risk logit:
+\begin{equation}
+f(\phi)=b+\sum_{k=1}^{296}\theta_k^\top B_k(\phi_k).
+\end{equation}
+For origin $i$ from person $p_i$, define $a_i=1/n_{p_i}$ and $\kappa=\sum_{y_i=0}a_i/\sum_{y_i=1}a_i$. Weights $\omega_i\propto a_i\kappa^{y_i}$ sum to the number of training origins. HNE minimizes
+\begin{equation}
+\begin{split}
+&\sum_i\omega_i\operatorname{BCE}(y_i,\sigma(f(\phi_i)))\\
+&+\frac{1}{2C}\sum_{g\in\{H,N,E,NE\}}m_g\|\theta_g\|_2^2,
+\end{split}
+\end{equation}
+where $m_g$ counts expanded bases in group $g$ and $C$ is validation-selected. Weights balance participants and classes; prediction removes the class multiplier as $\hat p=\sigma(f-\log\kappa)$. Multivariate structure enters through the context and relationship coordinates, while the additive head learns their nonlinear risk responses.
+
+\paragraph{Transferring the learned rule.}
+Let $q_S$ be the frozen source preprocessing, spline basis, and group scaling, with fitted coefficients $w_S$. Target adaptation minimizes
+\begin{equation}
+\begin{split}
+&\sum_i\omega_i\operatorname{BCE}(y_i,\sigma(b+q_S(\phi_i)^\top w))\\
+&+\frac{\|w-w_0\|_2^2}{2C}.
+\end{split}
+\end{equation}
+Setting $w_0=0$ transfers the basis; setting $w_0=w_S$ additionally transfers the source rule. Both use the same feature extractor, target participants, unpenalized intercept, and target class correction. Pooled-domain fitting instead learns one basis and predictor with weights equalizing domains before participants and classes.

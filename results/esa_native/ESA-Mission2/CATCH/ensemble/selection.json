@@ -1,0 +1,27 @@
+{
+  "method": "CATCH-3seed-ECDF",
+  "seeds": [
+    20261110,
+    20261111,
+    20261112
+  ],
+  "weights": [
+    0.3333333333333333,
+    0.3333333333333333,
+    0.3333333333333333
+  ],
+  "transform": "frozen per-seed validation-negative right-continuous ECDF",
+  "aggregation": "arithmetic mean",
+  "selection": "all three prespecified seeds; no seed selection",
+  "validation_metrics": {
+    "origins": 85,
+    "positives": 0,
+    "auroc": null,
+    "ap": 0.0
+  },
+  "validation_negative_counts": {
+    "20261110": 85,
+    "20261111": 85,
+    "20261112": 85
+  }
+}

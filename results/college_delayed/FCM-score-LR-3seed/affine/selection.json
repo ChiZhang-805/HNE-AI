@@ -1,0 +1,38 @@
+{
+  "source_method": "FCM-score-LR-3seed",
+  "condition": "affine",
+  "C": 1.0,
+  "trials": [
+    {
+      "C": 0.01,
+      "auroc": 0.6440834457167866,
+      "within_person_auroc": 0.502409006490926,
+      "person_nll": 0.5594503056390809,
+      "person_brier": 0.18706912352151495,
+      "adapted_fraction": 0.9691587844636748
+    },
+    {
+      "C": 0.1,
+      "auroc": 0.6494271637862928,
+      "within_person_auroc": 0.5057361897688393,
+      "person_nll": 0.5476366413692352,
+      "person_brier": 0.18140001810108666,
+      "adapted_fraction": 0.9691587844636748
+    },
+    {
+      "C": 1.0,
+      "auroc": 0.6498811914517861,
+      "within_person_auroc": 0.5056363960061762,
+      "person_nll": 0.5840493433548445,
+      "person_brier": 0.19025094151181257,
+      "adapted_fraction": 0.9691587844636748
+    }
+  ],
+  "validation": {
+    "auroc": 0.6498811914517861,
+    "within_person_auroc": 0.5056363960061762,
+    "person_nll": 0.5840493433548445,
+    "person_brier": 0.19025094151181257,
+    "adapted_fraction": 0.9691587844636748
+  }
+}

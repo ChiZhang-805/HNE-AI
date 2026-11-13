@@ -1,0 +1,23 @@
+{
+  "version": "esa-native-subsequence-warning-20261110",
+  "reason": "Fixed initial-reference fluctuation endpoint yields zero normal-start origins on Mission1 training/validation; retain that result and evaluate the independent expert endpoint separately",
+  "target_event": {"Category": "Anomaly", "Dimensionality": "Multivariate", "Length": "Subsequence"},
+  "event_start": "Earliest annotated channel start for the same event ID",
+  "event_end": "Latest annotated channel end for the same event ID",
+  "reference_days": 56,
+  "history_days": 32,
+  "first_origin_day": 87,
+  "forecast_gap_days": 1,
+  "forecast_horizon_days": 7,
+  "issue_time": "Midnight after completed origin day d",
+  "future_interval": "[issue+1 day,issue+8 days)",
+  "past_normal": "No expert Category=Anomaly interval overlaps [issue-7days,issue)",
+  "gap_exclusion": "Any expert anomaly onset during [issue,issue+1day)",
+  "negative": "No expert anomaly onset of any dimensionality/length in the future interval; complete annotated followup",
+  "other_anomaly": "Future univariate or point anomaly without a selected multivariate subsequence event is excluded from the negative class",
+  "rare_event": "Author Category=Rare Event remains a benign event; report its future-window false-positive rate separately",
+  "reference_and_features": "Unchanged HNE personal-prefix normalization, channel-budget selection, Sampling.daily, all296 coordinates, observed-only telemetry and executed-command context",
+  "time_split": "Same original ESA half-time split and final three training months for validation",
+  "test_status": "Protocol fixed from training/validation annotation taxonomy and coverage; test outcomes not constructed",
+  "units": "All periods use anonymized published clock units; not physical days"
+}

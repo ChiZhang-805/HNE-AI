@@ -1,0 +1,24 @@
+{
+  "total_origins": 2980,
+  "common_origins": 2948,
+  "test_people": 28,
+  "test_positive": 449,
+  "primary_methods": [
+    "HNE-additive",
+    "DNB",
+    "MM-DEV-daily",
+    "History-LR",
+    "History-HGB",
+    "FCM-3seed",
+    "CATCH-3seed"
+  ],
+  "strongest_control": {
+    "method": "History-HGB",
+    "auroc": 0.6101696428571428,
+    "hne_auroc": 0.6030357142857142,
+    "difference": -0.007133928571428583,
+    "ci_low": -0.07349969320591689,
+    "ci_high": 0.04228396014930499,
+    "bootstrap_rule": "maximum across all predeclared controls in every participant-resampled draw"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "test_hashes": {
+    "metadata": "8a2f51a4b07bb38d88e31f1528acb7a3cdabd7b78ee7b11496173eedf9939487",
+    "features": "7e0e2c40f480b19318419435406d4166f170823d3dda93c0921507f575b5857f"
+  },
+  "freeze_manifest_sha256": "52f1b84a4dbf530e89c4947a1656ac7514a512405d65684abf7763f88875411a",
+  "origins": 15137,
+  "people": 41,
+  "positive": 4074,
+  "common_origins": 14963,
+  "common_people": 41,
+  "common_methods": [
+    "HNE-additive",
+    "HNE-history",
+    "HNE-no-network",
+    "HNE-no-environment",
+    "HNE-context-append",
+    "History-LR",
+    "History-HGB",
+    "HNE-HGB",
+    "Missingness-LR",
+    "DNB",
+    "MM-DEV-daily",
+    "ZeroShot-HNE-additive",
+    "ZeroShot-HNE-history"
+  ],
+  "prediction_at_utc": "2026-11-10T06:35:09.287308+00:00"
+}

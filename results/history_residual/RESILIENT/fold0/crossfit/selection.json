@@ -1,0 +1,55 @@
+{
+  "dataset": "RESILIENT",
+  "fold": 0,
+  "crossfit": true,
+  "history_C": 0.01,
+  "correction_C": 0.1,
+  "history_candidates": [
+    {
+      "C": 0.01,
+      "validation_auroc": 0.5636623748211731
+    },
+    {
+      "C": 0.1,
+      "validation_auroc": 0.5462088698140201
+    },
+    {
+      "C": 1.0,
+      "validation_auroc": 0.5290414878397711
+    }
+  ],
+  "candidates": [
+    {
+      "correction_C": 0.01,
+      "validation_auroc": 0.613304721030043,
+      "optimization": {
+        "success": true,
+        "iterations": 10,
+        "objective": 761.3553852292457,
+        "max_abs_gradient": 0.00012135855118371175
+      }
+    },
+    {
+      "correction_C": 0.1,
+      "validation_auroc": 0.6839771101573677,
+      "optimization": {
+        "success": true,
+        "iterations": 19,
+        "objective": 641.9816617436293,
+        "max_abs_gradient": 5.83950338253203e-05
+      }
+    },
+    {
+      "correction_C": 1.0,
+      "validation_auroc": 0.6758226037195995,
+      "optimization": {
+        "success": true,
+        "iterations": 57,
+        "objective": 508.7229253784587,
+        "max_abs_gradient": 0.00023886369983205924
+      }
+    }
+  ],
+  "validation_auroc": 0.6839771101573677,
+  "development_auroc": 0.7384541062801933
+}

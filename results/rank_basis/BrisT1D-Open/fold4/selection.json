@@ -1,0 +1,74 @@
+{
+  "method": "HNE-rank-basis",
+  "C": 0.01,
+  "trials": [
+    {
+      "C": 0.01,
+      "validation_auroc": 0.7211703958691911
+    },
+    {
+      "C": 0.1,
+      "validation_auroc": 0.6469449225473322
+    },
+    {
+      "C": 1.0,
+      "validation_auroc": 0.544750430292599
+    }
+  ],
+  "config": {
+    "version": "hne-rank-basis-v1-20261110",
+    "method": "HNE-rank-basis",
+    "reason": "Training-only diagnostic: 37% of varying H and 35% of varying E coordinates in College have IQR/SD below0.1; compare one common training-rank transform before the unchanged additive risk rule.",
+    "unchanged": "296 H/N/E/NE descriptors, context_ridge10, endpoint, origins, folds, three quadratic basis coordinates, group penalties, person/class weights and prior correction",
+    "transform": "training median imputation, then per-coordinate empirical quantile to uniform using min(1001,N) quantiles and all training origins; no outcome labels in transform; original three-knot spline and basis StandardScaler",
+    "C_candidates": [
+      0.01,
+      0.1,
+      1.0
+    ],
+    "selection": "maximum validation AUROC; negative logloss if single class; exact ties retain smaller C; no validation refit",
+    "role": "preprocessing mechanism comparison; quantile normalization and spline encoding are established methods, not new algorithm claims",
+    "development": [
+      "RESILIENT",
+      "BrisT1D-Open",
+      "IFH-Affect"
+    ],
+    "prospective_cohort": "College-Experience, train/validation only until global freeze",
+    "documentation": "https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.QuantileTransformer.html"
+  },
+  "model_sha256": "31d7509dd7125e9522ffb2b27a5c48ec3d0e4e6738ec2596be5ebfad66ca14bc",
+  "core": {
+    "hne_rank_basis.py": "8e158f1d36a1c62114f7143ebc42fa1dc614e62ea8b5083d68ce782c24acadcd",
+    "hne_additive.py": "caf7123ea343e392b2f979299139ff7ae1e10101fe7caa55fb3ad627362e791a"
+  },
+  "train_people": [
+    "P04",
+    "P06",
+    "P07",
+    "P10",
+    "P11",
+    "P12",
+    "P15",
+    "P16",
+    "P19",
+    "P22",
+    "P24"
+  ],
+  "validation_people": [
+    "P01",
+    "P02",
+    "P03",
+    "P18"
+  ],
+  "validation": {
+    "origins": 194,
+    "auroc": 0.7211703958691911,
+    "ap": 0.26194314546019964
+  },
+  "held_development": {
+    "origins": 232,
+    "auroc": 0.701256038647343,
+    "ap": 0.20901018894178813
+  },
+  "frozen_at_utc": "2026-11-10T01:50:20.761963+00:00"
+}

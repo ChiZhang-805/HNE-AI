@@ -1,0 +1,30 @@
+{
+  "version": "esa-ad-v2-daily-hne-20261110",
+  "data_record": "https://zenodo.org/records/15237121",
+  "paper": "https://data.mlr.press/assets/pdf/v03-23.pdf",
+  "missions": [1, 2],
+  "exclude_mission3": "Original benchmark excludes it from algorithm comparison",
+  "state": "All numeric Target=YES channels; hourly observed means, then daily mean and population SD",
+  "family": "Published Subsystem metadata; both daily summaries retain the same family",
+  "context": "All numeric Target=NO channels as daily means; four daily telecommand execution counts by Priority=0,1,2,3",
+  "categorical_channels": "Excluded from numerical fluctuation states and numerical context",
+  "command_count": "Count original event rows; no execution in a complete log interval is zero",
+  "resampling": "Left-closed hourly bins, then daily; no interpolation or forward fill",
+  "daily_protocol": "configs/daily_protocol.json",
+  "hne_sampling": "Sampling.daily()",
+  "state_feature_budget": "Existing select_reference_channels, budget32, same rule across cohorts",
+  "clock": "Published anonymized clock: time scaled by an undisclosed factor above 1; reported days are anonymized units",
+  "split": {
+    "1": {"start": "2000-01-01", "train_end_exclusive": "2006-10-01", "validation_end_exclusive": "2007-01-01", "end_exclusive": "2014-01-01"},
+    "2": {"start": "2000-01-01", "train_end_exclusive": "2001-07-01", "validation_end_exclusive": "2001-10-01", "end_exclusive": "2003-07-01"}
+  },
+  "temporal_split_origin_rule": "Training future_end_date precedes train_end; validation issue_time is at/after train_end and future_end precedes validation_end; test issue_time is at/after validation_end",
+  "endpoint": "Existing HNE sustained multivariate fluctuation/displacement labels; original expert anomaly annotations remain a separate endpoint",
+  "primary_comparison": "HNE source model frozen from RESILIENT+BrisT1D, compared with its history-only source model and DNB on each mission",
+  "secondary_comparison": "Target-trained models use the same temporal train/validation boundaries and fixed HNE core",
+  "public_baselines": {"methods": ["FCM", "CATCH"], "seeds": [20261110, 20261111, 20261112], "epochs": 20, "batch_size": 8, "phase": "target-domain training; separate from human-only source transfer"},
+  "statistical_unit": "Temporal blocks within each mission; report each mission separately, do not treat days as independent spacecraft",
+  "bootstrap_block_days": 64,
+  "bootstrap_draws": 2000,
+  "bootstrap_seed": 20261110
+}

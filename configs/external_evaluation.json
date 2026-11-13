@@ -1,0 +1,16 @@
+{
+  "dataset": "Human-Rhythms",
+  "primary_hne": "HNE-additive",
+  "primary_hne_context_ridge": 10,
+  "primary_selection": "C in [0.01,0.1,1] using validation AUROC only",
+  "primary_comparators": ["DNB", "MM-DEV-daily", "History-LR", "History-HGB", "FCM-3seed", "CATCH-3seed"],
+  "primary_population": "origins scoreable by all primary methods; also report all scored origins and coverage",
+  "primary_metric": "test AUROC; one selected model per method; 2000 participant cluster bootstrap",
+  "secondary_metrics": ["within-person AUROC", "average precision", "sensitivity", "false-positive rate"],
+  "threshold": "validation-negative 90th percentile; no test threshold tuning",
+  "strongest_control_difference": "HNE AUROC minus maximum AUROC among predeclared controls; repeat control maximization inside each bootstrap draw",
+  "parameter_sensitivity": "HNE-context-grid selected lambda in [0.1,1,10] and C in [0.01,0.1,1], separate from primary",
+  "family_pooling": "development structural ablation only; not adopted or evaluated on test",
+  "transfer": "frozen source, target-only, source-basis-zero, source-prior at fixed training-person budgets, and equal-domain pooled training; extra source data declared",
+  "test_policy": "single frozen evaluation; no subsequent test-directed changes or seed selection"
+}

@@ -1,0 +1,21 @@
+\section{Problem Formulation}
+\label{sec:problem}
+
+Let $X_{p,\leq d}$ and $E_{p,\leq d}$ contain the state and context observations available for person or system $p$ at origin $d$. An initial reference $\mathcal R_p$ defines that individual's usual fluctuations. We learn a risk score
+\begin{equation}
+\hat p_{pd}=f_\theta(X_{p,\leq d},E_{p,\leq d};\mathcal R_p)
+\end{equation}
+for disturbance in a future interval. In human cohorts, the target is sustained fluctuation or displacement across measurement families, relative to $\mathcal R_p$. In operational transfer, native fault or expert-event annotations define the target. Training uses completed histories with observed future outcomes; monitoring applies the fitted predictor to the currently available history.
+
+\paragraph{Future disturbance.}
+The endpoint compares a future seven-day block against an individual's initial 56 days. For amplitude $A$ (90th--10th percentile range) and absolute normalized mean $B$, thresholds are
+\begin{equation}
+\begin{aligned}
+\tau_A&=\max\{Q_{.95}(A_R),1.5\operatorname{median}(A_R)\},\\
+\tau_B&=\max\{Q_{.95}(B_R),1.5\}.
+\end{aligned}
+\end{equation}
+A variable is abnormal when $A>\tau_A$ with two days exceeding reference $Q_{.90}(|z|)$, or $B>\tau_B$ with three days above $1.5$ or below $-1.5$. Thus, the event captures unusual fluctuation or sustained displacement relative to history.
+
+A positive block requires two abnormal physiological or behavioral families, with a family abnormal when any eligible member is abnormal. Origins require a known-normal preceding week; the 32-day input ends at $d$, followed by a complete gap day and the target $[d+2,d+8]$. Monitoring begins after the reference, using observations available at issue time; Appendix~\ref{app:reproducibility} specifies missing-data eligibility.
+

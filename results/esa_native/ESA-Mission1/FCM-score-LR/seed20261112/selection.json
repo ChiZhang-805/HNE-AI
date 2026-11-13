@@ -1,0 +1,27 @@
+{
+  "method": "FCM-score-LR",
+  "seed": 20261112,
+  "C": 0.01,
+  "candidates": [
+    {
+      "C": 0.01,
+      "validation_log_loss": 0.3270803847566907
+    },
+    {
+      "C": 0.1,
+      "validation_log_loss": 0.32716162621410244
+    },
+    {
+      "C": 1.0,
+      "validation_log_loss": 0.32718688775265176
+    }
+  ],
+  "fit": "training labels on one frozen raw anomaly score only",
+  "selection": "minimum validation log-loss",
+  "score_mean": 1.0347322201927502,
+  "score_scale": 14.986211125576501,
+  "coefficient": -0.020668081474213697,
+  "intercept": -1.9972059895647982,
+  "train_windows": 1875,
+  "validation_windows": 40
+}

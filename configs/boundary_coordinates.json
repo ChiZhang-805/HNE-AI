@@ -1,0 +1,20 @@
+{
+  "version": "hne-personal-boundary-coordinates-20261110",
+  "datasets": ["RESILIENT", "BrisT1D-Open"],
+  "past_block_end_lags": [0, 7, 14, 21],
+  "block_days": 7,
+  "reference": "Unchanged first56 days and unchanged event thresholds",
+  "amplitude_margin": "min((past_amplitude-reference_cut)/(1+reference_cut),(past_extreme_days-2+0.5)/2)",
+  "bias_margin": "min((past_absolute_mean-reference_cut)/(1+reference_cut),(past_same_sign_days-3+0.5)/3)",
+  "variable_margin": "max(amplitude_margin,bias_margin); only observed, reference-eligible variables",
+  "family_coordinates_per_lag": ["maximum_amplitude_margin", "maximum_bias_margin", "maximum_union_margin", "fraction_of_observed_variables_abnormal", "fraction_of_reference_eligible_variables_observed"],
+  "global_coordinates": "Original4-summary pool across families, for all20 family coordinates;80 new H coordinates",
+  "family_graph_coordinates": "Append20 H coordinates to existing224 H/E unary; original72 N/NE pair descriptors retained",
+  "methods": ["HNE-boundary", "HNE-history-boundary", "HNE-fg-boundary"],
+  "C": [0.01, 0.1, 1.0],
+  "maximum_iterations": 400,
+  "selection": "Original participant validation fold AUROC",
+  "information": "All new measurements lie inside original32-day history; no extra historical days or future inputs",
+  "task": "Existing future7-day sustained multivariate event; label rules unchanged",
+  "scope": "Development, before any College test; original models retained"
+}

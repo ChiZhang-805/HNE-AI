@@ -1,0 +1,38 @@
+{
+  "source_method": "MM-DEV-score-LR",
+  "condition": "intercept",
+  "C": 1.0,
+  "trials": [
+    {
+      "C": 0.01,
+      "auroc": 0.6395235627037593,
+      "within_person_auroc": 0.5004547423637546,
+      "person_nll": 0.5673305475392255,
+      "person_brier": 0.18998393910432432,
+      "adapted_fraction": 0.9689607952528275
+    },
+    {
+      "C": 0.1,
+      "auroc": 0.6437330859708468,
+      "within_person_auroc": 0.5021076093562967,
+      "person_nll": 0.549417056096337,
+      "person_brier": 0.18295810119021433,
+      "adapted_fraction": 0.9689607952528275
+    },
+    {
+      "C": 1.0,
+      "auroc": 0.6475542740561453,
+      "within_person_auroc": 0.5057325610753408,
+      "person_nll": 0.5681564198097717,
+      "person_brier": 0.18710484910894767,
+      "adapted_fraction": 0.9689607952528275
+    }
+  ],
+  "validation": {
+    "auroc": 0.6475542740561453,
+    "within_person_auroc": 0.5057325610753408,
+    "person_nll": 0.5681564198097717,
+    "person_brier": 0.18710484910894767,
+    "adapted_fraction": 0.9689607952528275
+  }
+}

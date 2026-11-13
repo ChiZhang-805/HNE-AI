@@ -1,0 +1,35 @@
+{
+  "method": "HNE-fg-conditional-graph",
+  "C": 1.0,
+  "validation_auroc": 0.6560960558384579,
+  "trials": [
+    {
+      "C": 0.01,
+      "validation_auroc": 0.6522765485667358,
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "iterations": 37,
+      "objective": 0.5170578254388096,
+      "maximum_gradient": 5.576646396922291e-07
+    },
+    {
+      "C": 0.1,
+      "validation_auroc": 0.6560695086830145,
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "iterations": 107,
+      "objective": 0.5000746606197981,
+      "maximum_gradient": 2.824138397847231e-06
+    },
+    {
+      "C": 1.0,
+      "validation_auroc": 0.6560960558384579,
+      "success": true,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "iterations": 307,
+      "objective": 0.49055903738068257,
+      "maximum_gradient": 9.325961238919322e-07
+    }
+  ],
+  "threshold": 0.47028826663530765
+}

@@ -1,0 +1,18 @@
+{
+  "version": "hne-delayed-feedback-development-v1",
+  "hypothesis": "Individual risk coefficients may track changing context after completed disturbances; compare against changes in baseline risk alone.",
+  "conditions": ["frozen", "intercept", "affine", "coefficients"],
+  "C_candidates": [0.01, 0.1, 1.0],
+  "feedback_maturity_days": 8,
+  "memory_calendar_days": 90,
+  "update_calendar_days": 7,
+  "minimum_mature_origins": 8,
+  "source": "frozen training-person HNE model, unchanged basis and coefficients as prior center",
+  "feedback": "only same-person labels whose full target block ends by the completed current day",
+  "prior": "L2 around source coefficient and natural-prior intercept; intercept/affine controls center at 0/1",
+  "loss": "unweighted Bernoulli negative log-likelihood over past mature origins plus prior penalty; single-class buffers are allowed",
+  "selection": "validation-person prequential AUROC, ties lower C; all conditions reported",
+  "evaluation_metrics": ["AUROC", "equal-person within-person AUROC", "equal-person NLL", "equal-person Brier"],
+  "development_inputs": ["RESILIENT five development folds", "BrisT1D-Open five development folds", "Human Rhythms train/validation only"],
+  "forbidden_for_selection": ["Human Rhythms previously exposed test", "College Experience test"]
+}

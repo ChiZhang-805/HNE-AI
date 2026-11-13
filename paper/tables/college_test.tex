@@ -1,0 +1,15 @@
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrr@{}}
+\toprule
+Method & \shortstack{AUROC\\{}[95\% CI]} & Within & AP & \shortstack{TPR/FPR\\(\%)} \\
+\midrule
+DNB & \shortstack[r]{0.538 \\ {}[0.487, 0.585]} & 0.530 & 0.294 & 22.9/21.5 \\
+MM-DEV & \shortstack[r]{0.502 \\ {}[0.487, 0.519]} & 0.511 & 0.269 & 9.3/9.5 \\
+FCM & \shortstack[r]{0.606 \\ {}[0.569, 0.640]} & 0.543 & 0.352 & 19.8/10.4 \\
+CATCH & \shortstack[r]{0.581 \\ {}[0.528, 0.625]} & 0.486 & 0.326 & 23.0/14.8 \\
+JAPE (F1) & \shortstack[r]{\textbf{0.668} \\ {}[0.630, 0.702]} & 0.619 & \underline{0.419} & 32.6/14.0 \\
+JAPE (AUROC) & \shortstack[r]{\underline{0.667} \\ {}[0.630, 0.701]} & \underline{0.624} & \textbf{0.422} & 31.3/12.9 \\
+History LR & \shortstack[r]{0.619 \\ {}[0.575, 0.661]} & 0.584 & 0.397 & 25.6/11.4 \\
+History HGB & \shortstack[r]{\textbf{0.668} \\ {}[0.625, 0.704]} & \textbf{0.632} & 0.412 & 30.8/13.2 \\
+\cellcolor{hnegray}HNE & \shortstack[r]{0.655 \\ {}[0.621, 0.687]} & 0.596 & 0.410 & 29.8/13.1 \\
+\bottomrule
+\end{tabular*}

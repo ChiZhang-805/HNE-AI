@@ -1,0 +1,89 @@
+\section{Additional Warning Comparisons}
+\label{app:additional-results}
+
+\subsection{Development Controls and Alarm Operating Points}
+DNB tuning and daily MM-DEV probe whether the development ranking follows from the choice of a particular baseline window or score mapping. Table~\ref{tab:additional-baselines} reports each method on its scoreable origins; the main comparison in Section~\ref{sec:results} uses only origins scored by all primary methods.
+\begin{table}[!htb]
+\centering
+\caption{Additional controls on their scored origins within the primary evaluation population.}
+\label{tab:additional-baselines}
+\hnetable{tables/additional_baselines}
+\end{table}
+
+Table~\ref{tab:operating-points} converts ranking performance into alarm operating points. Each threshold is the 90th percentile of validation-negative scores, applied unchanged to evaluation origins. TPR measures detected positive intervals and FPR measures alarms among normal intervals.
+\begin{table}[!htb]
+\centering
+\caption{Development operating points at validation-selected thresholds. FCM/CATCH here use individual-seed scores.}
+\label{tab:operating-points}
+\hnetable{tables/operating_points}
+\end{table}
+
+At the fixed operating point, HNE detects 46.0\% of positive RESILIENT intervals versus 35.2\% for CATCH, with false-positive rates of 12.4\% and 12.2\%. On BrisT1D, detection rises from 25.1\% to 32.9\% while false positives fall from 12.9\% to 11.3\%. The ranking gains therefore also produce more detected events at these validation-selected thresholds.
+
+\subsection{Human Rhythms: Complete Comparison}
+Table~\ref{tab:external-main} gives all discrimination and alarm metrics on the same 2,948 test origins. HNE reaches AUROC $0.603$, compared with $0.547$ for FCM and $0.542$ for CATCH; History HGB reaches $0.610$. Pairing each comparison on the same participants separates model differences from observation coverage.
+\begin{table}[!htb]
+\centering
+\caption{Human Rhythms on 2,948 common test origins. Neural methods average three seeds; TPR/FPR use validation-negative 90th-percentile thresholds.}
+\label{tab:external-main}
+\hnetable{tables/external_main}
+\end{table}
+
+\paragraph{Representation and source data.}
+Table~\ref{tab:external-variants} compares changes to the representation and the use of source data. The context grid selects the reference regression strength on validation people; frozen-source and pooled-domain models add source information through different fitting routes. Each scores the same target origins.
+\begin{table}[!htb]
+\centering
+\caption{Human Rhythms representation and source-data variants.}
+\label{tab:external-variants}
+\hnetable{tables/external_variants}
+\end{table}
+
+The source-data conditions distinguish two routes to better target scores. Frozen-source HNE reaches AUROC $0.663$ without target fitting; pooled-domain training reaches $0.675$, compared with $0.603$ for target-only HNE. Selecting the context-reference strength separately reaches $0.639$. These controls locate the changes in the training population and reference fit while retaining the shared coordinate definitions.
+
+\paragraph{Neural scores and supervised readout.}
+Table~\ref{tab:external-seeds} separates individual seeds from the supervised scalar readout of each frozen encoder. The readout learns a score-to-event mapping from training people; the encoder remains fixed. The main comparison averages all three predetermined neural seeds.
+\begin{table}[!htb]
+\centering
+\caption{Human Rhythms seeds. Each cell reports native / supervised scalar-readout scores.}
+\label{tab:external-seeds}
+\hnetable{tables/external_seeds}
+\end{table}
+
+\FloatBarrier
+\subsection{Target-Sample Budgets}
+Table~\ref{tab:human-adaptation} reports the complete Human Rhythms sample-efficiency comparison. At 22 training people, the source-coefficient prior improves AUROC by $0.046$ over target-only fitting and $0.093$ over basis-only transfer. The 43- and 85-person conditions track how that advantage changes as target data grow.
+\begin{table}[!htb]
+\centering
+\caption{Human Rhythms AUROC by target-training budget. Smaller budgets average three fixed subsets.}
+\label{tab:human-adaptation}
+\hnetable{tables/human_adaptation}
+\end{table}
+
+CARE repeats the adaptation comparison with six or eleven training assets per fold, corresponding to 25\% and 50\% of the available assets (Table~\ref{tab:care-adaptation}). The target-only, source-basis, and source-prior conditions share the same asset subsets and evaluation folds.
+\begin{table}[!htb]
+\centering
+\caption{CARE adaptation with matched training-asset budgets.}
+\label{tab:care-adaptation}
+\hnetable{tables/care_adaptation}
+\end{table}
+
+The source-prior advantage over target-only fitting is $0.041$, $0.018$, and $0.020$ at the three asset budgets. At the smallest budget, source-basis transfer alone reaches $0.548$, slightly above the coefficient prior's $0.546$. At the two larger budgets, adding the coefficient prior improves on basis transfer by $0.011$ and $0.013$. The matched conditions separate transferable scaling from the learned risk coefficients.
+
+\subsection{Forecast Distance and Observation Quality}
+Table~\ref{tab:lead-time} evaluates the same fitted predictor at one-, three-, and seven-day gaps before the seven-day target interval. Each comparison retains origins labelable at all gaps, exposing how forecast distance changes ranking while holding the fitted model fixed.
+\begin{table}[!htb]
+\centering
+\caption{Seven-day target intervals at three forecast gaps. Models are frozen from the one-day-gap task.}
+\label{tab:lead-time}
+\hnetable{tables/lead_time}
+\end{table}
+
+RESILIENT AUROC stays between $0.810$ and $0.825$ across the three gaps, exceeding CATCH at each distance. BrisT1D falls from $0.720$ to $0.663$ as the gap increases, while remaining above CATCH. The same frozen rule thus retains useful ranking at longer horizons, with the size of the change determined by the cohort.
+
+Table~\ref{tab:robustness} reports every perturbation score. Additional missingness is applied to state and context observations, and noise is added in normalized units; the reference and future endpoint remain fixed. The standard deviations summarize the three predetermined perturbation seeds.
+\begin{table}[!htb]
+\centering
+\caption{Observation perturbations: AUROC mean and standard deviation over three seeds.}
+\label{tab:robustness}
+\hnetable{tables/robustness}
+\end{table}

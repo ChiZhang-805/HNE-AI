@@ -1,0 +1,17 @@
+dataset,population,target,comparator,strongest,delta,ci_low,ci_high
+RESILIENT,all,HNE-dynamic-reference,HNE-additive,HNE-additive,-0.012217620141438679,-0.03837612580076097,0.009204831305010189
+RESILIENT,all,HNE-dynamic-reference,strongest-control,CATCH-ensemble,0.024281502649713294,-0.05440114715899796,0.059938270375506364
+RESILIENT,all,HNE-own-history-reference,HNE-additive,HNE-additive,-0.00900721662536852,-0.027191250378177413,0.008090671840494102
+RESILIENT,all,HNE-own-history-reference,strongest-control,CATCH-ensemble,0.027491906165783453,-0.04916565620812565,0.06323078328243864
+RESILIENT,primary-common,HNE-dynamic-reference,HNE-additive,HNE-additive,-0.012316446402349523,-0.03861603947164928,0.00910604968292669
+RESILIENT,primary-common,HNE-dynamic-reference,strongest-control,CATCH-ensemble,0.023348017621145356,-0.055375902782108494,0.06028224873198332
+RESILIENT,primary-common,HNE-own-history-reference,HNE-additive,HNE-additive,-0.009783406754772406,-0.028022594095188567,0.007137178122681331
+RESILIENT,primary-common,HNE-own-history-reference,strongest-control,CATCH-ensemble,0.025881057268722474,-0.05065328955917876,0.06296179706396224
+BrisT1D-Open,all,HNE-dynamic-reference,HNE-additive,HNE-additive,-0.06940431206934872,-0.14588382261709176,0.024693153520619838
+BrisT1D-Open,all,HNE-dynamic-reference,strongest-control,CATCH-ensemble,-0.014739386530340015,-0.18908109989551142,0.0987293961354806
+BrisT1D-Open,all,HNE-own-history-reference,HNE-additive,HNE-additive,-0.09899422093798615,-0.19189512724572855,-0.0056312202253761285
+BrisT1D-Open,all,HNE-own-history-reference,strongest-control,CATCH-ensemble,-0.04432929539897745,-0.20509018686779562,0.06804160521850221
+BrisT1D-Open,primary-common,HNE-dynamic-reference,HNE-additive,HNE-additive,-0.06950622775800719,-0.14591218307524484,0.024692558663876547
+BrisT1D-Open,primary-common,HNE-dynamic-reference,strongest-control,CATCH-ensemble,-0.01458240658362997,-0.18908109989551142,0.09872081430198063
+BrisT1D-Open,primary-common,HNE-own-history-reference,HNE-additive,HNE-additive,-0.09925489323843417,-0.1920872779216877,-0.006676596232943389
+BrisT1D-Open,primary-common,HNE-own-history-reference,strongest-control,CATCH-ensemble,-0.04433107206405695,-0.20510378902367543,0.06804160521850221

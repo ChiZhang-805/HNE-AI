@@ -1,0 +1,15 @@
+{
+  "method": "HNE-context-grid",
+  "selected_context_ridge": 0.1,
+  "selected_C": 0.01,
+  "threshold_val_negative_p90": 0.20474834665446034,
+  "threshold_source": "unchanged frozen validation-negative P90",
+  "source_model": "Q:\\NAVA-Workspace\\HNE-Research\\results\\context_grid\\Human-Rhythms\\model.joblib",
+  "source_model_sha256": "261e91e92fa39f24915ced3b9bdd24de1f0142a0491ebaeebeb72ac11da8feff",
+  "source_selection_sha256": "b21966991c18e83f14bf5bfd8c62d65a2dcb714c0f773672614ad7b6378bde28",
+  "source_validation_scores_sha256": "d127080be2bbfc157a156453a0df9741b02eade4e123a94440c608999f93fdfc",
+  "comparison_role": "parameter sensitivity",
+  "fit_performed": false,
+  "test_score_column": "score",
+  "validation_score_column": "score"
+}

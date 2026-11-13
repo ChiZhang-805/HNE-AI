@@ -1,0 +1,54 @@
+{
+  "dataset": "Human-Rhythms",
+  "fold": null,
+  "crossfit": false,
+  "history_C": 0.01,
+  "correction_C": 0.01,
+  "history_candidates": [
+    {
+      "C": 0.01,
+      "validation_auroc": 0.7093160446406613
+    },
+    {
+      "C": 0.1,
+      "validation_auroc": 0.6712098766877848
+    },
+    {
+      "C": 1.0,
+      "validation_auroc": 0.6697504479289871
+    }
+  ],
+  "candidates": [
+    {
+      "correction_C": 0.01,
+      "validation_auroc": 0.6913198388626702,
+      "optimization": {
+        "success": true,
+        "iterations": 16,
+        "objective": 5810.791493312023,
+        "max_abs_gradient": 0.001023076598357875
+      }
+    },
+    {
+      "correction_C": 0.1,
+      "validation_auroc": 0.6675005562516834,
+      "optimization": {
+        "success": true,
+        "iterations": 48,
+        "objective": 5475.503043661996,
+        "max_abs_gradient": 0.0021610976081660738
+      }
+    },
+    {
+      "correction_C": 1.0,
+      "validation_auroc": 0.669592355345286,
+      "optimization": {
+        "success": true,
+        "iterations": 137,
+        "objective": 4988.677987620508,
+        "max_abs_gradient": 0.006164123133515886
+      }
+    }
+  ],
+  "validation_auroc": 0.6913198388626702
+}

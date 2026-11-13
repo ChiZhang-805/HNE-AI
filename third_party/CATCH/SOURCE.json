@@ -1,0 +1,27 @@
+{
+  "repository": "https://github.com/decisionintelligence/CATCH",
+  "commit": "3647c69be5eb56649b072596cf89098e689e20c3",
+  "source": "Author repository at the recorded commit; apply compatibility.patch after downloading.",
+  "copied_files": [
+    "README.md",
+    "requirements.txt",
+    "ts_benchmark/baselines/catch/CATCH.py",
+    "ts_benchmark/baselines/catch/__init__.py",
+    "ts_benchmark/baselines/catch/layers/channel_mask.py",
+    "ts_benchmark/baselines/catch/layers/cross_channel_Transformer.py",
+    "ts_benchmark/baselines/catch/layers/RevIN.py",
+    "ts_benchmark/baselines/catch/models/CATCH_model.py",
+    "ts_benchmark/baselines/catch/models/__init__.py",
+    "ts_benchmark/baselines/catch/utils/ch_discover_loss.py",
+    "ts_benchmark/baselines/catch/utils/fre_rec_loss.py",
+    "ts_benchmark/baselines/catch/utils/tools.py",
+    "ts_benchmark/baselines/catch/utils/__init__.py",
+    "ts_benchmark/__init__.py",
+    "ts_benchmark/baselines/__init__.py"
+  ],
+  "compatibility_patch_summary": "ts_benchmark/baselines/catch/CATCH.py                       | 13 +++++++++----\n .../baselines/catch/layers/cross_channel_Transformer.py     |  3 ++-\n ts_benchmark/baselines/catch/utils/fre_rec_loss.py          |  4 +++-\n ts_benchmark/baselines/catch/utils/tools.py                 |  4 ++--\n 4 files changed, 16 insertions(+), 8 deletions(-)",
+  "patch_file": "third_party/CATCH/compatibility.patch",
+  "empty_files": [
+    "ts_benchmark/baselines/catch/utils/__init__.py"
+  ]
+}

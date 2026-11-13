@@ -1,0 +1,55 @@
+{
+  "dataset": "BrisT1D-Open",
+  "fold": 4,
+  "crossfit": true,
+  "history_C": 0.01,
+  "correction_C": 0.01,
+  "history_candidates": [
+    {
+      "C": 0.01,
+      "validation_auroc": 0.7732358003442341
+    },
+    {
+      "C": 0.1,
+      "validation_auroc": 0.7177280550774527
+    },
+    {
+      "C": 1.0,
+      "validation_auroc": 0.6817986230636833
+    }
+  ],
+  "candidates": [
+    {
+      "correction_C": 0.01,
+      "validation_auroc": 0.7938898450946643,
+      "optimization": {
+        "success": true,
+        "iterations": 9,
+        "objective": 516.7593346971014,
+        "max_abs_gradient": 1.6554699504567338e-06
+      }
+    },
+    {
+      "correction_C": 0.1,
+      "validation_auroc": 0.7448364888123924,
+      "optimization": {
+        "success": true,
+        "iterations": 18,
+        "objective": 410.2835101012736,
+        "max_abs_gradient": 3.760830022514483e-05
+      }
+    },
+    {
+      "correction_C": 1.0,
+      "validation_auroc": 0.5688468158347676,
+      "optimization": {
+        "success": true,
+        "iterations": 46,
+        "objective": 269.13679559343484,
+        "max_abs_gradient": 6.808128535462643e-05
+      }
+    }
+  ],
+  "validation_auroc": 0.7938898450946643,
+  "development_auroc": 0.7628985507246377
+}

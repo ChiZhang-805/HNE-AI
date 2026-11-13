@@ -1,0 +1,15 @@
+{
+  "C": [
+    0.01,
+    0.1,
+    1.0
+  ],
+  "alpha": [
+    0.25,
+    1.0
+  ],
+  "reason": "Separate within-person advance warning from between-person susceptibility.",
+  "pair_sampling": "Every positive-negative pair within each training person; equal mass per person with both classes.",
+  "selection": "Mean of validation aggregate AUROC and mean within-person AUROC; aggregate only when no validation person has both classes.",
+  "shared": "Same296 HNE coordinates, reference, core modules, spline bases, prior correction, origin labels and person folds."
+}

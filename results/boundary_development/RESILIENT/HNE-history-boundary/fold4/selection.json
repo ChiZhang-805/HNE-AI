@@ -1,0 +1,22 @@
+{
+  "dataset": "RESILIENT",
+  "method": "HNE-history-boundary",
+  "fold": 4,
+  "C": 0.01,
+  "validation_auroc": 0.7942995169082125,
+  "auroc": 0.8816277195809831,
+  "trials": [
+    {
+      "C": 0.01,
+      "validation_auroc": 0.7942995169082125
+    },
+    {
+      "C": 0.1,
+      "validation_auroc": 0.7868599033816425
+    },
+    {
+      "C": 1.0,
+      "validation_auroc": 0.7392270531400966
+    }
+  ]
+}

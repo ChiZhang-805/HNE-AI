@@ -1,0 +1,38 @@
+{
+  "source_method": "CATCH-score-LR-3seed",
+  "condition": "intercept",
+  "C": 0.1,
+  "trials": [
+    {
+      "C": 0.01,
+      "auroc": 0.6440122274385576,
+      "within_person_auroc": 0.5174822284372189,
+      "person_nll": 0.5626768405156668,
+      "person_brier": 0.18828737147981112,
+      "adapted_fraction": 0.9691587844636748
+    },
+    {
+      "C": 0.1,
+      "auroc": 0.6539236458053861,
+      "within_person_auroc": 0.5050673230841024,
+      "person_nll": 0.5463477063696531,
+      "person_brier": 0.18191834027320047,
+      "adapted_fraction": 0.9691587844636748
+    },
+    {
+      "C": 1.0,
+      "auroc": 0.6533874883419809,
+      "within_person_auroc": 0.5037930838098831,
+      "person_nll": 0.5660397394001377,
+      "person_brier": 0.18639986740170586,
+      "adapted_fraction": 0.9691587844636748
+    }
+  ],
+  "validation": {
+    "auroc": 0.6539236458053861,
+    "within_person_auroc": 0.5050673230841024,
+    "person_nll": 0.5463477063696531,
+    "person_brier": 0.18191834027320047,
+    "adapted_fraction": 0.9691587844636748
+  }
+}

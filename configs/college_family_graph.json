@@ -1,0 +1,13 @@
+{
+  "version": "college-family-graph-before-test-20261110",
+  "core_configuration": "configs/family_graph.json",
+  "methods": ["independent", "constant-coupling", "conditional-graph"],
+  "C": [0.01, 0.1, 1.0],
+  "maximum_iterations": 400,
+  "two_level_weights": [0.5, 0.5],
+  "two_level_components": ["original HNE-additive", "HNE-fg-conditional-graph"],
+  "reason_to_advance": "Fixed equal mixture improved original HNE on both exposed development cohorts and exceeded CATCH by0.0596/0.0557; independent College evaluation now tests this condition",
+  "data": "Same original College participants, daily labels and H/N/E formulas",
+  "status": "Supplementary condition fixed before College test construction; original primary comparison retained",
+  "comparison": "Two-level versus original HNE and the extended strongest-control set; dynamic versus independent and constant family coupling"
+}
