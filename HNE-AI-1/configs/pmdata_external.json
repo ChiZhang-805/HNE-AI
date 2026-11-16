@@ -1,0 +1,21 @@
+{
+  "dataset": "PMData",
+  "citation": "Thambawita et al. (2020), doi:10.1145/3339825.3394926",
+  "evaluation_role": "Additional reused-cohort endpoint evaluation; historical data had been examined in the previous project",
+  "raw_root": "data/raw/pmdata_2020",
+  "sources": ["RESILIENT", "BrisT1D-Open"],
+  "feature_directory": "data/features/pmdata",
+  "study_directory": "data/pmdata_study",
+  "state_count": 11,
+  "state_names": ["sleep_minutes", "awake_minutes", "deep_minutes", "rem_minutes", "sleep_start_sin", "sleep_start_cos", "resting_heart_rate", "fatigue", "mood", "stress", "soreness"],
+  "state_families": ["sleep", "sleep", "sleep", "sleep", "sleep", "sleep", "heart", "self-report", "self-report", "self-report", "self-report"],
+  "context_names": ["sedentary_minutes", "lightly_active_minutes", "moderately_active_minutes", "very_active_minutes"],
+  "mapping": "Main sleep ends on dateOfSleep; start-hour sine/cosine with 24-hour period. Native resting HR/dateTime and activity/dateTime daily summaries. PMSys effective_time_frame UTC completion date. Keep actual observation days and zero values; no interpolation.",
+  "source_clock": "Fitbit dates preserve unspecified source clock; explicit questionnaire dates retain UTC. No inferred timezone offset.",
+  "protocol": "Unchanged daily_protocol.json, 56-day reference,32-day history,1-day gap,7-day future",
+  "methods": ["HNE-additive", "HNE-history", "H-pooled-HGB", "HNE-pooled-HGB", "DNB", "MM-DEV-daily", "CNM-GC-past32"],
+  "primary": "HNE-additive",
+  "comparators": ["HNE-history", "H-pooled-HGB", "HNE-pooled-HGB", "DNB", "MM-DEV-daily", "CNM-GC-past32"],
+  "selection": "Reuse the already frozen RESILIENT+Bris source bundles from the SSAQS experiment; no PMData fitting",
+  "bootstrap": {"seed": 20261110, "replicates": 2000, "unit": "person"}
+}

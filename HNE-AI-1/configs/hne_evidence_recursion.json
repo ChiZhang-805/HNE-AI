@@ -1,0 +1,20 @@
+{
+  "datasets": ["RESILIENT", "BrisT1D-Open"],
+  "variants": ["feedback", "fixed_query", "one_step", "reset"],
+  "seeds": [20261114, 20261115, 20261116],
+  "width": 48,
+  "depth": 4,
+  "batch_size": 256,
+  "max_epochs": 24,
+  "patience": 6,
+  "learning_rate": 0.0007,
+  "weight_decay": 0.01,
+  "intermediate_loss_weight": 0.10,
+  "anchor_C": 0.1,
+  "residual_logit_scale": 0.5,
+  "selection": "highest validation AUROC, then lowest validation log loss; fixed grid and participant folds",
+  "protocol": "configs/daily_protocol.json",
+  "backbone": "Chronos-2, frozen blocks 1-10; see scripts/prepare_hne_latent.py",
+  "primary_mechanism_control": "fixed_query",
+  "transfer": "every source fold and seed scored on the entire other cohort without target fitting"
+}

@@ -1,0 +1,33 @@
+\documentclass[10pt]{article}
+\usepackage[paperwidth=216mm,paperheight=146mm,left=13mm,right=13mm,top=10mm,bottom=10mm]{geometry}
+\usepackage{array,booktabs,multirow}
+\usepackage[hidelinks]{hyperref}
+\DeclareFontShape{TU}{lmr}{bx}{n}{<-> \UnicodeFontFile{lmroman10-bold}{\UnicodeFontTeXLigatures}}{}
+\hypersetup{pdftitle={HNE: early warning and component ablations}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{0pt}
+\renewcommand{\arraystretch}{1.16}
+\setlength{\heavyrulewidth}{0.9pt}
+\setlength{\lightrulewidth}{0.45pt}
+\setlength{\cmidrulewidth}{0.35pt}
+\newcommand{\sheettable}[3]{%
+  {\centering\normalsize\bfseries #1\par}\vspace{6pt}%
+  {\small\begin{tabular}{@{}p{.38\linewidth}*{4}{>{\centering\arraybackslash}p{.155\linewidth}}@{}}
+  \toprule
+  \multirow{2}{*}{#2} & \multicolumn{2}{c}{RESILIENT} & \multicolumn{2}{c}{BrisT1D-Open}\\
+  \cmidrule(lr){2-3}\cmidrule(l){4-5}
+  & AUROC & AP & AUROC & AP\\
+  \midrule
+  #3
+  \bottomrule
+  \end{tabular}}\par}
+\begin{document}
+\sheettable{Table 1.\enspace Main results for early warning of multivariate disturbances}{Method}{
+% MAIN_ROWS
+}
+\vspace{17pt}
+\sheettable{Table 2.\enspace HNE component ablations}{Variant}{
+% ABLATION_ROWS
+}
+\end{document}
