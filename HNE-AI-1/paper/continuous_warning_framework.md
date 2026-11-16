@@ -46,6 +46,6 @@ python scripts/report_evidence_recursion.py
 
 [一页两张结果表](../results/evidence_recursion/HNE_AI_1_tables.pdf) · [表 1 数值](../results/evidence_recursion/table1.csv) · [表 2 消融分数](../results/evidence_recursion/ablations.csv) · [完整配对差、区间与迁移](../results/evidence_recursion/table2.csv) · [15 篇论文与作者代码对读](../literature/continuous_reasoning_methods.md)
 
-2026-11-16 补入 Moirai 2.0、JAPE 和 Mantis。既有 RESILIENT 研究估计睡眠年龄，GlucoFM-Bench 在 BrisT1D-Open 上预测短时血糖。表 1 按共同的未来一周紊乱定义评分。[近期同队列文献、三项对照与复现入口](../literature/recent_public_warning_comparators.md)
+2026-11-16 的主表包含八项外部对照，其中近期实测方法为 Moirai 2.0、JAPE、Mantis 和 TimesFM 2.5。StepFM 在 RESILIENT 上评估睡眠等结局，GlucoFM-Bench 和 FedPhysio-Adapter 在 BrisT1D-Open 上预测血糖。表 1 统一使用未来第 2–8 天的多指标紊乱标签。[同队列文献、四项近期对照与复现入口](../literature/recent_public_warning_comparators.md)
 
 公开队列来源：[RESILIENT](https://www.nature.com/articles/s41597-025-05958-x) · [BrisT1D-Open](https://data.bris.ac.uk/data/dataset/33z5jc8fa6tob21ptrugzqog08) · [College Experience](https://doi.org/10.1145/3643501)
