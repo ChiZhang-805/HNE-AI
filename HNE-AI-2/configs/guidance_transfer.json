@@ -1,0 +1,16 @@
+{
+  "source_dataset": "BrisT1D-Open",
+  "source_profile": "cpu_pilot",
+  "target_dataset": "RESILIENT",
+  "outer_fold": 0,
+  "scored_split": "validation",
+  "seed": 20261114,
+  "origins_per_person": 0,
+  "personal_steps": 100,
+  "threads": 2,
+  "bootstrap_repetitions": 2000,
+  "primary_contrast": "aligned minus baseline NLL",
+  "mechanism_contrast": "aligned minus reversed NLL",
+  "alignment_control": "Reverse valid historical innovation vectors within each channel and each directed edge at the issue time. Preserve observed coverage, reference fields, masks, lag features and weights. Aligned uses the same gather with identity indices.",
+  "scope": "Development transfer with all source weights frozen and prefix-only personal calibration. All eligible origins on person fold 1 in both datasets. No labeled target fit or threshold selection."
+}

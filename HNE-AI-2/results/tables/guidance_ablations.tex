@@ -1,0 +1,35 @@
+\documentclass[10pt]{article}
+\usepackage[paperwidth=216mm,paperheight=50mm,left=10mm,right=10mm,top=6mm,bottom=4mm]{geometry}
+\usepackage{booktabs,multirow}
+\ifdefined\XeTeXversion
+  \DeclareFontShape{TU}{lmr}{bx}{n}{<-> \UnicodeFontFile{lmroman10-bold}{\UnicodeFontTeXLigatures}}{}
+\fi
+\pagestyle{empty}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.19}
+\setlength{\heavyrulewidth}{0.9pt}
+\setlength{\lightrulewidth}{0.45pt}
+\setlength{\cmidrulewidth}{0.35pt}
+\makeatletter
+\long\def\@makecaption#1#2{{\centering\normalsize\bfseries #1.\enspace #2\par}\vspace{6pt}}
+\makeatother
+\newcommand{\unmeasured}{\mbox{-}\kern.06em\mbox{-}}
+\begin{document}
+\setcounter{table}{1}
+\begin{table}[!ht]
+\centering\small
+\caption{Inference ablations relative to aligned guidance}
+\label{tab:guidance-ablations}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}l*{6}{c}@{}}
+\toprule
+\multirow{2}{*}{Variant} & \multicolumn{3}{c}{BrisT1D-Open} & \multicolumn{3}{c}{RESILIENT (frozen transfer)} \\
+\cmidrule(lr){2-4}\cmidrule(l){5-7}
+ & \shortstack{Within-person\\AUROC $\uparrow$} & \shortstack{$\Delta$NLL\\($10^{-5}$)} & \shortstack{Mean $|\Delta p|$\\($10^{-5}$)} & \shortstack{Within-person\\AUROC $\uparrow$} & \shortstack{$\Delta$NLL\\($10^{-5}$)} & \shortstack{Mean $|\Delta p|$\\($10^{-5}$)} \\
+\midrule
+Aligned guidance & 0.7745 & 0.000 & 0.000 & 0.5205 & 0.000 & 0.000 \\
+Guidance removed & 0.7745 & $-1.368$ & 1.801 & 0.5205 & $+0.035$ & 0.520 \\
+Evidence order reversed & 0.7745 & $-0.569$ & 0.927 & 0.5205 & $+0.193$ & 0.617 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+\end{document}

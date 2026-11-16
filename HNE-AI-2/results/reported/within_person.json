@@ -1,0 +1,38 @@
+{
+  "BrisT1D-Open": {
+    "baseline": {
+      "pairs": 102,
+      "auroc": 0.7745098039215685
+    },
+    "aligned": {
+      "pairs": 102,
+      "auroc": 0.7745098039215685
+    },
+    "reversed": {
+      "pairs": 102,
+      "auroc": 0.7745098039215685
+    },
+    "full_fusion": {
+      "pairs": 102,
+      "auroc": 0.7745098039215685
+    }
+  },
+  "RESILIENT": {
+    "baseline": {
+      "pairs": 390,
+      "auroc": 0.5205128205128206
+    },
+    "aligned": {
+      "pairs": 390,
+      "auroc": 0.5205128205128206
+    },
+    "reversed": {
+      "pairs": 390,
+      "auroc": 0.5205128205128206
+    },
+    "full_fusion": {
+      "pairs": 390,
+      "auroc": 0.5205128205128206
+    }
+  }
+}

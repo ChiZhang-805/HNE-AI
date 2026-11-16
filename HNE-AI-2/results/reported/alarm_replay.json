@@ -1,0 +1,97 @@
+{
+  "BrisT1D-Open": {
+    "baseline": {
+      "threshold": 0.2294585406780243,
+      "candidate_issue_days": 236,
+      "scorable_issue_days": 185,
+      "unknown_days": 51,
+      "alerts": 9,
+      "false_alerts": 6,
+      "alerts_unknown": 2,
+      "alerts_positive": 1,
+      "false_per_30_scorable_issue_days": 0.972972972972973,
+      "timely_hits": 1,
+      "events": 2,
+      "recall": 0.5,
+      "median_lead_days": 1.0
+    },
+    "aligned": {
+      "threshold": 0.2294453382492065,
+      "candidate_issue_days": 236,
+      "scorable_issue_days": 185,
+      "unknown_days": 51,
+      "alerts": 9,
+      "false_alerts": 6,
+      "alerts_unknown": 2,
+      "alerts_positive": 1,
+      "false_per_30_scorable_issue_days": 0.972972972972973,
+      "timely_hits": 1,
+      "events": 2,
+      "recall": 0.5,
+      "median_lead_days": 1.0
+    },
+    "full_fusion": {
+      "threshold": 0.2313534021377563,
+      "candidate_issue_days": 236,
+      "scorable_issue_days": 185,
+      "unknown_days": 51,
+      "alerts": 9,
+      "false_alerts": 6,
+      "alerts_unknown": 2,
+      "alerts_positive": 1,
+      "false_per_30_scorable_issue_days": 0.972972972972973,
+      "timely_hits": 1,
+      "events": 2,
+      "recall": 0.5,
+      "median_lead_days": 1.0
+    }
+  },
+  "RESILIENT": {
+    "baseline": {
+      "threshold": 0.2294585406780243,
+      "candidate_issue_days": 311,
+      "scorable_issue_days": 263,
+      "unknown_days": 48,
+      "alerts": 27,
+      "false_alerts": 18,
+      "alerts_unknown": 5,
+      "alerts_positive": 4,
+      "false_per_30_scorable_issue_days": 2.053231939163498,
+      "timely_hits": 4,
+      "events": 9,
+      "recall": 0.4444444444444444,
+      "median_lead_days": 1.0
+    },
+    "aligned": {
+      "threshold": 0.2294453382492065,
+      "candidate_issue_days": 311,
+      "scorable_issue_days": 263,
+      "unknown_days": 48,
+      "alerts": 27,
+      "false_alerts": 18,
+      "alerts_unknown": 5,
+      "alerts_positive": 4,
+      "false_per_30_scorable_issue_days": 2.053231939163498,
+      "timely_hits": 4,
+      "events": 9,
+      "recall": 0.4444444444444444,
+      "median_lead_days": 1.0
+    },
+    "full_fusion": {
+      "threshold": 0.2313534021377563,
+      "candidate_issue_days": 311,
+      "scorable_issue_days": 263,
+      "unknown_days": 48,
+      "alerts": 27,
+      "false_alerts": 18,
+      "alerts_unknown": 5,
+      "alerts_positive": 4,
+      "false_per_30_scorable_issue_days": 2.053231939163498,
+      "timely_hits": 4,
+      "events": 9,
+      "recall": 0.4444444444444444,
+      "median_lead_days": 1.0
+    }
+  },
+  "elapsed_seconds": 294.3526792000048
+}

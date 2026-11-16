@@ -1,0 +1,21 @@
+{
+  "small_cross_fit_seconds": 59.966958400000294,
+  "personal_fit_and_evidence_seconds": 14.635147300001336,
+  "backbone_load_seconds": 3.5554381999991165,
+  "prefix_cache_seconds": 306.90786819999994,
+  "baseline_feature_cache_seconds": 190.35003489999872,
+  "invocation_wall_seconds": 5412.6525188999985,
+  "process_peak_rss_bytes": 1449357312,
+  "gpu_peak_allocated_bytes": 0,
+  "cache_bytes": 745958424,
+  "method_training_seconds": {
+    "M04_C2_LoRA": 2733.591464700001,
+    "M10_SAGE_fixed": 1861.982779,
+    "M05_S_logit_residual": 0.7498083999998926,
+    "M12_S_hidden_late_fusion": 0.6894915000011679,
+    "M12_full_evidence_fusion": 6.395371700000396
+  },
+  "full_evidence_fusion_additional_wall_seconds": 171.22834049999983,
+  "full_evidence_fusion_feature_seconds": 160.0349611999991,
+  "full_evidence_fusion_peak_rss_bytes": 1192062976
+}

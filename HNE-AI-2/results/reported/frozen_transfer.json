@@ -1,0 +1,177 @@
+{
+  "RESILIENT": {
+    "metrics": {
+      "baseline": {
+        "origins": 263,
+        "people": 9,
+        "positives": 30,
+        "auroc": 0.6010014306151645,
+        "auprc": 0.240638071883717,
+        "brier": 0.11008721263188714,
+        "nll": 0.38533582107598396
+      },
+      "aligned": {
+        "origins": 263,
+        "people": 9,
+        "positives": 30,
+        "auroc": 0.6008583690987124,
+        "auprc": 0.2406011624348981,
+        "brier": 0.11008711554891021,
+        "nll": 0.3853354671848258
+      },
+      "reversed": {
+        "origins": 263,
+        "people": 9,
+        "positives": 30,
+        "auroc": 0.6010014306151645,
+        "auprc": 0.240638071883717,
+        "brier": 0.11008776702236851,
+        "nll": 0.38533739888476437
+      },
+      "full_fusion": {
+        "origins": 263,
+        "people": 9,
+        "positives": 30,
+        "auroc": 0.6002861230329042,
+        "auprc": 0.23958229111231732,
+        "brier": 0.11037937802529334,
+        "nll": 0.3862042125606169
+      }
+    },
+    "contrasts": {
+      "baseline": {
+        "delta_nll": -3.5389115807143925e-07,
+        "interval": [
+          -3.5644010440180372e-06,
+          3.176116673529457e-06
+        ],
+        "mean_absolute_probability_change": 5.204358028368351e-06,
+        "people_improved": 4,
+        "people_worsened": 4
+      },
+      "reversed": {
+        "delta_nll": -1.9316999384901513e-06,
+        "interval": [
+          -5.776593745442441e-06,
+          2.789267086941276e-06
+        ],
+        "mean_absolute_probability_change": 6.1720269714471504e-06,
+        "people_improved": 4,
+        "people_worsened": 4
+      },
+      "full_fusion": {
+        "delta_nll": -0.0008687453757909995,
+        "interval": [
+          -0.0015513937366655793,
+          0.0003606404426253568
+        ],
+        "mean_absolute_probability_change": 0.0013890184263766038,
+        "people_improved": 6,
+        "people_worsened": 3
+      }
+    },
+    "positive_people": 5,
+    "tail_seconds": {
+      "aligned": 0.6408436999918194,
+      "reversed": 0.6460521999979392
+    },
+    "zero_node_origins": 12,
+    "zero_edge_origins": 12,
+    "processing_seconds": 859.8641286000202,
+    "calibration_seconds": 7.370800600008806
+  },
+  "BrisT1D-Open": {
+    "metrics": {
+      "baseline": {
+        "origins": 185,
+        "people": 3,
+        "positives": 3,
+        "auroc": 0.8186813186813187,
+        "auprc": 0.08243145743145744,
+        "brier": 0.05124229297366481,
+        "nll": 0.24921538792470782
+      },
+      "aligned": {
+        "origins": 185,
+        "people": 3,
+        "positives": 3,
+        "auroc": 0.8186813186813187,
+        "auprc": 0.08243145743145744,
+        "brier": 0.05124655148627929,
+        "nll": 0.24922907226559055
+      },
+      "reversed": {
+        "origins": 185,
+        "people": 3,
+        "positives": 3,
+        "auroc": 0.8186813186813187,
+        "auprc": 0.08243145743145744,
+        "brier": 0.05124471376603242,
+        "nll": 0.2492233785484136
+      },
+      "full_fusion": {
+        "origins": 185,
+        "people": 3,
+        "positives": 3,
+        "auroc": 0.8186813186813187,
+        "auprc": 0.08243145743145744,
+        "brier": 0.051803451416027185,
+        "nll": 0.25092648965400877
+      }
+    },
+    "contrasts": {
+      "baseline": {
+        "delta_nll": 1.3684340882745449e-05,
+        "interval": [
+          1.165469947875328e-06,
+          2.837030714982758e-05
+        ],
+        "mean_absolute_probability_change": 1.8008899044346166e-05,
+        "people_improved": 0,
+        "people_worsened": 3
+      },
+      "reversed": {
+        "delta_nll": 5.69371717696272e-06,
+        "interval": [
+          3.364345517455182e-06,
+          1.0698167702479936e-05
+        ],
+        "mean_absolute_probability_change": 9.268522262573242e-06,
+        "people_improved": 0,
+        "people_worsened": 3
+      },
+      "full_fusion": {
+        "delta_nll": -0.0016974173884182068,
+        "interval": [
+          -0.0019827106917701402,
+          -0.0011011180138316597
+        ],
+        "mean_absolute_probability_change": 0.001445354481001158,
+        "people_improved": 3,
+        "people_worsened": 0
+      }
+    },
+    "positive_people": 1,
+    "tail_seconds": {
+      "aligned": 0.6222670999995898,
+      "reversed": 0.6241720000107307
+    },
+    "zero_node_origins": 0,
+    "zero_edge_origins": 1,
+    "processing_seconds": 356.95776419997856,
+    "calibration_seconds": 2.690463200007798,
+    "source_replay_max_abs_error": {
+      "baseline": 5.960464485865735e-08,
+      "aligned": 8.326672684688674e-17,
+      "full_fusion": 8.326672684688674e-17
+    }
+  },
+  "runtime": {
+    "invocation_seconds": 1227.0170055999915,
+    "peak_rss_bytes": 1227194368,
+    "threads": 2,
+    "device": "cpu",
+    "pretrained_blocks": 12,
+    "guided_blocks": 4
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "source": "BrisT1D-Open",
+  "target": "RESILIENT",
+  "methods": ["baseline", "aligned", "full_fusion"],
+  "false_alarms_per_30_scorable_issue_days": 1.0,
+  "silence_days": 7,
+  "threshold_rule": "On source validation only, select the lowest observed score satisfying the false-alarm budget after chronological silence. Include a no-alert threshold. Each method has its own frozen threshold.",
+  "exposure": "Known-outcome history-eligible issue days within complete calendar follow-up, including positive and negative days. Unknown outcomes can still trigger and silence alerts; report their alerts separately.",
+  "events": "Union overlapping or adjoining positive target intervals for each person. A timely hit requires a positive-window alert strictly before the earliest covered day. Count each event once. Lead is operational, not a clinical onset time."
+}

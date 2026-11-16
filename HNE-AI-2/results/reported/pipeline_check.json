@@ -1,0 +1,58 @@
+{
+  "M04_C2_LoRA": {
+    "validation": {
+      "origins": 12,
+      "people": 3,
+      "positives": 1,
+      "auroc": 0.6363636363636364,
+      "auprc": 0.2,
+      "brier": 0.21882328392575467,
+      "nll": 0.6306677867755628
+    },
+    "selected_epoch": 2,
+    "selection_metric": "validation_NLL",
+    "trainable_parameters": 266625
+  },
+  "M10_SAGE_fixed": {
+    "validation": {
+      "origins": 12,
+      "people": 3,
+      "positives": 1,
+      "auroc": 0.6363636363636364,
+      "auprc": 0.2,
+      "brier": 0.21882246924542956,
+      "nll": 0.6306661476018894
+    },
+    "selected_epoch": 2,
+    "selection_metric": "validation_NLL",
+    "trainable_parameters": 866
+  },
+  "M05_S_logit_residual": {
+    "validation": {
+      "origins": 12,
+      "people": 3,
+      "positives": 1,
+      "auroc": 0.8181818181818181,
+      "auprc": 0.3333333333333333,
+      "brier": 0.15449326661843996,
+      "nll": 0.45293456098455903
+    },
+    "selected_epoch": 2,
+    "selection_metric": "validation_NLL",
+    "trainable_parameters": 856
+  },
+  "M12_S_hidden_late_fusion": {
+    "validation": {
+      "origins": 12,
+      "people": 3,
+      "positives": 1,
+      "auroc": 0.8181818181818181,
+      "auprc": 0.3333333333333333,
+      "brier": 0.16392646309876927,
+      "nll": 0.48494416808872237
+    },
+    "selected_epoch": 2,
+    "selection_metric": "validation_NLL",
+    "trainable_parameters": 721
+  }
+}

@@ -1,0 +1,287 @@
+{
+  "name": "SAGE-TS",
+  "status": "Bris source training and frozen Bris-to-RESILIENT development comparison; formal multi-fold runs pending",
+  "development_transfer_config": "configs/guidance_transfer.json",
+  "development_alarm_config": "configs/alarm_replay.json",
+  "protocol_source": "daily_protocol.json",
+  "protocol_sha256": "3d58b3089a3e7d25a442ec8aa78638c509fc03fcf2af901e1cfbe2b5ab17607c",
+  "protocol_code_sha256": "8b2b157145226ee821cec7a965627b6992961702b1dfcfff3f7d51e788998e50",
+  "reference_days": 56,
+  "history_days": 32,
+  "future_offsets_days_inclusive": [
+    2,
+    8
+  ],
+  "small": {
+    "class": "ConditionalPredictor",
+    "patch_hours": 16,
+    "width": 64,
+    "dilations": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "convolutions_per_block": 2,
+    "normalization": "LayerNorm_features_only",
+    "distribution": "StudentT",
+    "degrees_of_freedom": 5,
+    "min_predictive_scale": 0.001,
+    "views": [
+      "H",
+      "HN",
+      "HNE",
+      "H_plus_single_source"
+    ],
+    "single_source_loss_weight": 0.25,
+    "state_source_minimum_observed_hours": 8,
+    "context_source_minimum_observed_hours": 1,
+    "prediction_loss_targets": "state_channels_only",
+    "single_source_training_sampling": "enumerated_expectation_of_one_uniform_source_per_valid_family_per_target",
+    "global_training_data": "training_people_reference_prefixes_only",
+    "event_labels_allowed": false,
+    "window_days": 28,
+    "burn_in_days": 14,
+    "evidence_days": 14,
+    "node_features": [
+      "nll_H",
+      "nll_HN",
+      "nll_HNE",
+      "z_H",
+      "z_HN",
+      "z_HNE",
+      "gain_N",
+      "gain_E",
+      "coverage"
+    ],
+    "edge_features": [
+      "reference_standardized_single_source_gain",
+      "reference_gain_divided_by_reference_scale_asinh_clipped",
+      "min_target_and_prior_source_coverage",
+      "source_is_state"
+    ],
+    "parameter_count_instantiated": 120736
+  },
+  "personal_calibration": {
+    "day_intervals_zero_based_half_open": {
+      "normalizer_and_reference": [
+        0,
+        28
+      ],
+      "fit": [
+        28,
+        42
+      ],
+      "held_out_scores": [
+        42,
+        56
+      ]
+    },
+    "fit_input_interval": [
+      14,
+      42
+    ],
+    "calibration_input_interval": [
+      28,
+      56
+    ],
+    "personal_parameters_per_channel": 6,
+    "location_bound": 2.0,
+    "scale_multiplier_bounds": [
+      0.5,
+      2.0
+    ],
+    "ridge_weight": 0.1,
+    "fit_steps": 100,
+    "pair_view_uses_H_adapter": true,
+    "minimum_observed_target_hours_per_patch": 8,
+    "minimum_valid_calibration_patches": 12,
+    "score_transform": "clip(asinh((score-median_ref)/max(1.4826*MAD_ref,0.1)),-5,5)",
+    "rolling_reference_update": false,
+    "insufficient_calibration_action": "disable_affected_guidance_not_event_prediction"
+  },
+  "backbone": {
+    "model": "amazon/chronos-2",
+    "original_parameter_count": 119477664,
+    "native_normalization": true,
+    "missing_before_normalization": "NaN",
+    "actual_hour_offsets_in_time_features_and_RoPE": true,
+    "group_identifier": "unique_person_and_forecast_origin",
+    "reference_patches": 84,
+    "recent_patches": 48,
+    "reg_tokens": 1,
+    "future_placeholder_patches": 12,
+    "total_tokens": 145,
+    "future_segment_pool_weights": [
+      0,
+      0.5,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "future_observations_allowed": false,
+    "lora_rank": 8,
+    "lora_blocks_zero_based": [
+      8,
+      9,
+      10,
+      11
+    ],
+    "lora_attention_types": [
+      "time",
+      "group"
+    ],
+    "lora_projections": [
+      "q",
+      "v"
+    ],
+    "planned_lora_parameter_count": 196608,
+    "event_head_parameter_count_instantiated": 70017,
+    "event_pooling": "within_family_mean_then_across_family_mean_and_max",
+    "missing_family_denominator": "data_dictionary_before_dropping_empty_channels"
+  },
+  "guidance": {
+    "train_after_baseline_is_frozen": true,
+    "freeze_small_backbone_lora_event_head": true,
+    "detach_evidence": true,
+    "time_head_dimensions": [
+      19,
+      32,
+      1
+    ],
+    "group_head_dimensions": [
+      4,
+      32,
+      1
+    ],
+    "shared_across_layers_and_heads": true,
+    "zero_initialization_last_linear": true,
+    "active_queries": "valid_state_patches_in_last_14_days_only",
+    "time_active_keys": "valid_evidence_patches_in_last_14_days_only",
+    "group_active_keys": "valid_single_source_edges_at_query_patch",
+    "bound_after_centering": 2.0,
+    "native_attention_scale": 1.0,
+    "bias_formula": "bound/2*(tanh(raw)-mean_over_native_valid_keys(tanh(raw)))",
+    "penalty_mean_squared_bias": 0.0001,
+    "parameter_count_instantiated": 866,
+    "rq1_gate": "always_on_for_available_evidence",
+    "rq2_actions": [
+      "off",
+      "on_last_four_blocks"
+    ]
+  },
+  "cross_fitting": {
+    "outer_split": "original_5_person_folds; eval=k; val=(k+1)%5; train=other_three",
+    "small_inner_person_groups": 3,
+    "validation_and_evaluation_small_component": "int(SHA256(dataset_id|person_id|seed),16)%3",
+    "utility_targets": "entire_pipeline_out_of_fold_with_nested_small_cross_fit",
+    "forbid_held_out_person_in_hyperparameter_selection": true
+  },
+  "utility_gate": {
+    "input_dim": 12,
+    "features_defined_in": "research_plan.md:stage_D",
+    "loss": "Huber_on_BCE_off_minus_BCE_on",
+    "huber_delta": 1.0,
+    "l2_weight": 0.001,
+    "threshold_candidates": [
+      -0.01,
+      0,
+      0.01,
+      0.02,
+      0.05
+    ],
+    "threshold_selection": "validation_NLL",
+    "parameter_count_instantiated": 13,
+    "deployment_large_model_passes": 1,
+    "deployment_on_off_logits_as_features": false
+  },
+  "training_defaults": {
+    "optimizer": "AdamW",
+    "small_lr_candidates": [
+      0.0003,
+      0.001
+    ],
+    "small_weight_decay_candidates": [
+      0.0001,
+      0.001
+    ],
+    "small_max_epochs": 80,
+    "small_patience": 10,
+    "small_checkpoint_metric": "internal_held_out_people_forecast_NLL_only",
+    "baseline_lora_lr_default": 0.0001,
+    "baseline_head_lr_default": 0.001,
+    "guide_lr_default": 0.001,
+    "event_stage_lr_multiplier_candidates": [
+      0.3,
+      1.0,
+      3.0
+    ],
+    "event_weight_decay_candidates": [
+      0.0001,
+      0.001
+    ],
+    "gradient_clip_norm": 1.0,
+    "event_max_epochs": 40,
+    "minimum_selection_epoch": 6,
+    "patience": 8,
+    "maximum_hyperparameter_candidates_per_method": 8,
+    "effective_batch": 32,
+    "first_full_size_memory_probe_microbatch": 1,
+    "loss_weighting": "equal_person_and_equal_measurement_family_where_applicable"
+  },
+  "resources": {
+    "gpu_jobs_launched_this_task": 0,
+    "training_entry": "scripts/run_key_comparison.py",
+    "key_comparison_config": "configs/key_comparison.json",
+    "cpu_verification": "artifacts/verification/cpu_verification.json",
+    "full_size_memory_feasibility": "full_pretrained_CPU_pipeline_completed_peak_process_1.35_GiB_GPU_not_measured",
+    "completed_pilot_report": "results/key_comparison/cpu_pilot/BrisT1D-Open/fold0_seed20261114_report.html",
+    "single_deployment_path_added_parameters": 388240,
+    "personal_parameters_and_calibration_statistics_included_in_total": false,
+    "first_paper_workspace": "read_only"
+  },
+  "datasets": [
+    "RESILIENT",
+    "BrisT1D-Open"
+  ],
+  "folds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "seeds": [
+    20261113,
+    20261114,
+    20261115
+  ],
+  "fold_rule": "evaluation=k; validation=(k+1)%5; training=remaining original three folds",
+  "validation_status": "previously exposed development people; not untouched tests",
+  "primary_metric": "within-fold pair-weighted AUROC",
+  "secondary_metrics": [
+    "AUPRC",
+    "Brier",
+    "NLL",
+    "event_recall_at_1_false_alert_per_30_person_days",
+    "operational_event_lead_time"
+  ],
+  "target_delta_auroc": 0.04,
+  "target_is_selection_rule": false,
+  "bootstrap_repetitions": 2000,
+  "statistical_unit": "person, paired within original fold; never individual overlapping windows",
+  "external_dataset": "UCI-501-Beijing-Multi-Site-Air-Quality",
+  "external_train_end_exclusive": "2016-01-01",
+  "external_validation_end_exclusive": "2016-07-01",
+  "external_test_end_exclusive": "2017-03-01",
+  "external_test_outcomes": "not constructed",
+  "gpu_policy": "First paper has priority; default two-thread below-normal-priority CPU; refuse shared GPU when foreign compute processes exist",
+  "experiment_matrix": "experiment_matrix.json"
+}

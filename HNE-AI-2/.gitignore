@@ -1,0 +1,13 @@
+/artifacts/
+/cache/
+/data/
+/tools/models/
+/results/*
+!/results/reported/
+!/results/tables/
+*.npz
+*.pt
+*.safetensors
+*.log
+.env*
+__pycache__/

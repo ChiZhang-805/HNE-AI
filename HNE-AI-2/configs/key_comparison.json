@@ -1,0 +1,37 @@
+{
+  "common": {
+    "threads": 2,
+    "small_lr": 0.001,
+    "small_patience": 10,
+    "personal_steps": 100,
+    "event_patience": 8,
+    "effective_batch": 32,
+    "bootstrap_repetitions": 2000
+  },
+  "profiles": {
+    "pipeline_check": {
+      "small_epochs": 2,
+      "event_epochs": 2,
+      "minimum_selection_epoch": 1,
+      "train_origins_per_person": 2,
+      "validation_origins_per_person": 4,
+      "interpretation": "End-to-end engineering check with real pretrained weights; not a performance experiment"
+    },
+    "cpu_pilot": {
+      "small_epochs": 20,
+      "event_epochs": 8,
+      "minimum_selection_epoch": 6,
+      "train_origins_per_person": 8,
+      "validation_origins_per_person": 0,
+      "interpretation": "Resource-limited development pilot; full validation, selected training origins, no evaluation fold by default"
+    },
+    "full": {
+      "small_epochs": 80,
+      "event_epochs": 40,
+      "minimum_selection_epoch": 6,
+      "train_origins_per_person": 0,
+      "validation_origins_per_person": 0,
+      "interpretation": "All eligible origins; one prespecified learning-rate setting; wider tuning and repeated folds remain separate"
+    }
+  }
+}

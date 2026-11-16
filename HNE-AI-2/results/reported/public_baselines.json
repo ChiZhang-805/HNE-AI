@@ -1,0 +1,138 @@
+{
+  "source": "BrisT1D-Open",
+  "target": "RESILIENT",
+  "split": "validation",
+  "outer_fold": 0,
+  "seed": 20261114,
+  "source_training_origins": 91,
+  "source_training_people": 12,
+  "source_training_positives": 21,
+  "metrics": {
+    "BrisT1D-Open": {
+      "HYDRA": {
+        "n": 185,
+        "tn": 182,
+        "fp": 0,
+        "fn": 3,
+        "tp": 0,
+        "accuracy": 0.9837837837837838,
+        "sensitivity": 0.0,
+        "auroc": 0.5457875457875458,
+        "auprc": 0.024498797863283843
+      },
+      "LightGBM": {
+        "n": 185,
+        "tn": 172,
+        "fp": 10,
+        "fn": 3,
+        "tp": 0,
+        "accuracy": 0.9297297297297298,
+        "sensitivity": 0.0,
+        "auroc": 0.293040293040293,
+        "auprc": 0.014889709689878561
+      },
+      "Random Forest": {
+        "n": 185,
+        "tn": 175,
+        "fp": 7,
+        "fn": 3,
+        "tp": 0,
+        "accuracy": 0.9459459459459459,
+        "sensitivity": 0.0,
+        "auroc": 0.3608058608058608,
+        "auprc": 0.016200742965075617
+      },
+      "SAGE-TS": {
+        "n": 185,
+        "tn": 182,
+        "fp": 0,
+        "fn": 3,
+        "tp": 0,
+        "accuracy": 0.9837837837837838,
+        "sensitivity": 0.0,
+        "auroc": 0.8186813186813187,
+        "auprc": 0.08243145743145744
+      },
+      "XGBoost": {
+        "n": 185,
+        "tn": 176,
+        "fp": 6,
+        "fn": 3,
+        "tp": 0,
+        "accuracy": 0.9513513513513514,
+        "sensitivity": 0.0,
+        "auroc": 0.5073260073260073,
+        "auprc": 0.021262441068622316
+      }
+    },
+    "RESILIENT": {
+      "HYDRA": {
+        "n": 263,
+        "tn": 198,
+        "fp": 35,
+        "fn": 30,
+        "tp": 0,
+        "accuracy": 0.752851711026616,
+        "sensitivity": 0.0,
+        "auroc": 0.3924177396280401,
+        "auprc": 0.08954487427021206
+      },
+      "LightGBM": {
+        "n": 263,
+        "tn": 232,
+        "fp": 1,
+        "fn": 28,
+        "tp": 2,
+        "accuracy": 0.8897338403041825,
+        "sensitivity": 0.06666666666666667,
+        "auroc": 0.47024320457796853,
+        "auprc": 0.19108276751436498
+      },
+      "Random Forest": {
+        "n": 263,
+        "tn": 223,
+        "fp": 10,
+        "fn": 29,
+        "tp": 1,
+        "accuracy": 0.8517110266159695,
+        "sensitivity": 0.03333333333333333,
+        "auroc": 0.3560801144492131,
+        "auprc": 0.08649017291955924
+      },
+      "SAGE-TS": {
+        "n": 263,
+        "tn": 233,
+        "fp": 0,
+        "fn": 30,
+        "tp": 0,
+        "accuracy": 0.8859315589353612,
+        "sensitivity": 0.0,
+        "auroc": 0.6008583690987124,
+        "auprc": 0.2406011624348981
+      },
+      "XGBoost": {
+        "n": 263,
+        "tn": 191,
+        "fp": 42,
+        "fn": 27,
+        "tp": 3,
+        "accuracy": 0.7376425855513308,
+        "sensitivity": 0.1,
+        "auroc": 0.39670958512160226,
+        "auprc": 0.09096666076954601
+      }
+    }
+  },
+  "binary_decision": "Probability >= 0.5; HYDRA uses the zero ridge margin and native class decision.",
+  "packages": {
+    "torch": "2.8.0+cu128",
+    "numpy": "2.5.3",
+    "scikit-learn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0"
+  },
+  "hydra_upstream": "https://github.com/angus924/hydra/tree/144bb7aa3186654042f00f36b078370c620acb06",
+  "hydra_alpha": 1000.0,
+  "seconds": 2.7342114000057336,
+  "cpu_threads": 1
+}

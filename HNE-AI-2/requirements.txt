@@ -1,0 +1,13 @@
+# Measured with Python 3.13. Install PyTorch from the wheel index for your platform.
+torch==2.8.0
+chronos-forecasting==2.3.2
+transformers==5.17.0
+numpy==2.5.3
+pandas==3.0.6
+scipy==1.18.1
+scikit-learn==1.9.1
+psutil==7.2.2
+threadpoolctl==3.7.0
+matplotlib==3.11.2
+xgboost==3.4.1
+lightgbm==4.7.0

@@ -1,0 +1,40 @@
+\documentclass[10pt]{article}
+\usepackage[paperwidth=216mm,paperheight=56mm,left=10mm,right=10mm,top=6mm,bottom=4mm]{geometry}
+\usepackage{booktabs,multirow}
+\ifdefined\XeTeXversion
+  \DeclareFontShape{TU}{lmr}{bx}{n}{<-> \UnicodeFontFile{lmroman10-bold}{\UnicodeFontTeXLigatures}}{}
+\fi
+\pagestyle{empty}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.19}
+\setlength{\heavyrulewidth}{0.9pt}
+\setlength{\lightrulewidth}{0.45pt}
+\setlength{\cmidrulewidth}{0.35pt}
+\makeatletter
+\long\def\@makecaption#1#2{{\centering\normalsize\bfseries #1.\enspace #2\par}\vspace{6pt}}
+\makeatother
+\newcommand{\unmeasured}{\mbox{-}\kern.06em\mbox{-}}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\methodcite}[3]{\href{#3}{[#2]}}
+\begin{document}
+\setcounter{table}{0}
+\begin{table}[!ht]
+\providecommand{\methodcite}[3]{\cite{#1}}
+\centering\small
+\caption{Early warning of sustained abnormalities on a single validation fold}
+\label{tab:guidance-results}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}l*{8}{c}@{}}
+\toprule
+\multirow{2}{*}{Method} & \multicolumn{4}{c}{BrisT1D-Open} & \multicolumn{4}{c}{RESILIENT (frozen transfer)} \\
+\cmidrule(lr){2-5}\cmidrule(l){6-9}
+ & Acc. (\%) & Sens. (\%) & AUROC & AUPRC & Acc. (\%) & Sens. (\%) & AUROC & AUPRC \\
+\midrule
+HYDRA (multivariate)~\methodcite{dempster2023}{Dempster et al., 2023}{https://doi.org/10.1007/s10618-023-00939-3} & 98.38 & 0.00 & 0.5458 & 0.0245 & 75.29 & 0.00 & 0.3924 & 0.0895 \\
+XGBoost~\methodcite{chen2016}{Chen \& Guestrin, 2016}{https://doi.org/10.1145/2939672.2939785} & 95.14 & 0.00 & 0.5073 & 0.0213 & 73.76 & 10.00 & 0.3967 & 0.0910 \\
+Random Forest~\methodcite{breiman2001}{Breiman, 2001}{https://doi.org/10.1023/A:1010933404324} & 94.59 & 0.00 & 0.3608 & 0.0162 & 85.17 & 3.33 & 0.3561 & 0.0865 \\
+LightGBM~\methodcite{ke2017}{Ke et al., 2017}{https://papers.nips.cc/paper/6907-lightgbm-a-highly-efficient-gradient-boosting-decision-tree} & 92.97 & 0.00 & 0.2930 & 0.0149 & 88.97 & 6.67 & 0.4702 & 0.1911 \\
+\textbf{SAGE-TS (Ours)} & 98.38 & 0.00 & 0.8187 & 0.0824 & 88.59 & 0.00 & 0.6009 & 0.2406 \\
+\bottomrule
+\end{tabular*}
+\end{table}
+\end{document}

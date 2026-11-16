@@ -1,0 +1,208 @@
+{
+  "status": "planned_not_executed",
+  "datasets": [
+    "RESILIENT",
+    "BrisT1D-Open"
+  ],
+  "folds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "seeds": [
+    20261113,
+    20261114,
+    20261115
+  ],
+  "core_evaluation_units": 360,
+  "unit_definition": "method_dataset_outer_fold_seed; excludes_inner_fits_and_tuning",
+  "core_methods": [
+    {
+      "id": "M01",
+      "name": "personal_summary_HGB",
+      "role": "simple_baseline"
+    },
+    {
+      "id": "M02",
+      "name": "S_evidence_only",
+      "role": "large_model_necessity"
+    },
+    {
+      "id": "M03",
+      "name": "C2_probe",
+      "role": "pretrained_representation"
+    },
+    {
+      "id": "M04",
+      "name": "C2_LoRA",
+      "role": "frozen_common_checkpoint"
+    },
+    {
+      "id": "M05",
+      "name": "S_logit_residual",
+      "base": "M04",
+      "role": "same_evidence_output_correction",
+      "additional_parameters": 856
+    },
+    {
+      "id": "M06",
+      "name": "S_input_embedding_residual",
+      "base": "M04",
+      "role": "same_evidence_input_interface",
+      "additional_parameters": 1546
+    },
+    {
+      "id": "M07",
+      "name": "ordinary_statistical_attention_guidance",
+      "base": "M04",
+      "role": "same_capacity_nonconditional_evidence",
+      "additional_parameters": 866
+    },
+    {
+      "id": "M08",
+      "name": "AME_style_structural_attention_guidance",
+      "base": "M04",
+      "role": "general_structure_not_official_reproduction",
+      "additional_parameters": 866
+    },
+    {
+      "id": "M09",
+      "name": "TimeRAF_style_C2_retrieval",
+      "base": "M04",
+      "role": "historical_retrieval_adaptation",
+      "knowledge_scope": "training_reference_and_own_observed_reference",
+      "top_k": 4
+    },
+    {
+      "id": "M10",
+      "name": "SAGE_fixed",
+      "base": "M04",
+      "role": "primary_method",
+      "additional_parameters": 866
+    },
+    {
+      "id": "M11",
+      "name": "shuffled_S_attention_guidance",
+      "base": "M04",
+      "role": "evidence_alignment_control",
+      "additional_parameters": 866
+    },
+    {
+      "id": "M12",
+      "name": "full_evidence_fusion",
+      "base": "M04",
+      "role": "complete_node_edge_evidence_learned_late_fusion",
+      "additional_parameters": 897,
+      "retained_summary_ablation": "S_hidden_late_fusion",
+      "summary_ablation_parameters": 721
+    }
+  ],
+  "primary_paired_contrasts": [
+    [
+      "M10",
+      "M04"
+    ],
+    [
+      "M10",
+      "M05"
+    ],
+    [
+      "M10",
+      "M12"
+    ]
+  ],
+  "mechanism_contrasts": [
+    [
+      "M10",
+      "M07"
+    ],
+    [
+      "M10",
+      "M08"
+    ],
+    [
+      "M10",
+      "M09"
+    ],
+    [
+      "M10",
+      "M11"
+    ]
+  ],
+  "external_comparators": [
+    "CATCH_event",
+    "A2P_event",
+    "JAPE_snapshot_event",
+    "Forecast2Anomaly_C2_adaptation",
+    "TiRex2_event",
+    "first_paper_fixed_method"
+  ],
+  "ablations": [
+    "H_only",
+    "no_N",
+    "no_E",
+    "no_personal_calibration",
+    "attention_change_instead_of_predictive_gain",
+    "time_only",
+    "group_only",
+    "fixed_early_layers",
+    "fixed_middle_layers",
+    "recent_only_backbone",
+    "rolling_reference_secondary"
+  ],
+  "stress_tests": [
+    "person_mismatched_evidence",
+    "time_shuffled_evidence",
+    "reference_contamination",
+    "sparse_context"
+  ],
+  "rq2": [
+    "always_off",
+    "always_on",
+    "coverage_only_gate",
+    "oof_utility_gate",
+    "oracle_diagnostic_not_deployable"
+  ],
+  "rq3": [
+    "T0_all_frozen",
+    "T1_target_normal_prefix_S_only",
+    "T2_target_labeled_guide",
+    "T3_target_labeled_all_adapted"
+  ],
+  "primary_metric": "within_fold_pair_weighted_AUROC",
+  "secondary_metrics": [
+    "AUPRC",
+    "Brier",
+    "NLL",
+    "event_recall_at_one_false_alert_per_30_person_days",
+    "operational_event_lead_time"
+  ],
+  "gate_metrics": [
+    "mixture_NLL",
+    "mixture_Brier",
+    "mixture_AUROC",
+    "acceptance_rate",
+    "negative_realized_utility_fraction",
+    "negative_realized_utility_magnitude"
+  ],
+  "bootstrap": {
+    "unit": "person_paired_within_fold",
+    "repetitions": 2000
+  },
+  "meaningful_delta_target": 0.04,
+  "positive_delta_required_to_report_results": false,
+  "protocol_changes_based_on_results": false,
+  "optional_extension_methods": [
+    "DNB",
+    "FCM_event",
+    "ridge_logistic",
+    "Moirai2_event",
+    "PatchTST_event",
+    "Pathformer_event",
+    "weak_label_only",
+    "weak_plus_true",
+    "binary_proxy"
+  ]
+}
