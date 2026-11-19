@@ -12,7 +12,7 @@ python scripts/report_evidence_recursion.py --layout-only
 
 The output is [HNE_AI_1_tables.pdf](../results/evidence_recursion/HNE_AI_1_tables.pdf). The [row layout](../paper/tables/evidence_recursion_layout.tex) and [rendering code](../scripts/report_evidence_recursion.py) are editable.
 
-## Prepare data and train HNE
+## Prepare data and train the GRU evidence reader
 
 Use the [authors’ archives](../data/README.md) and a CUDA environment with [training dependencies](../requirements-routed.txt). Replace the archive placeholders with paths to your downloads. The data adapter builds both datasets and downloads the pinned Chronos-2 weights. The next command caches the ten-block prefix. The following commands train both readouts, with and without the frozen base-risk anchor.
 
@@ -22,6 +22,16 @@ python scripts/prepare_hne_latent.py
 python scripts/run_evidence_recursion.py --anchored
 python scripts/run_evidence_recursion.py
 ```
+
+## Train continuous feedback inside the Transformer core
+
+After the same archive preparation and ten-block prefix encoding, train the shared two-block Transformer core with its rank-8 LoRA. The default configuration runs five participant folds and three seeds for recurrent, single-pass and reset-feedback models. Training length is selected inside the training participants. The [architecture](../paper/continuous_warning_framework.md) gives the evidence memory, feedback path and auxiliary objective.
+
+```shell
+python scripts/run_hne_latent.py
+```
+
+Saved models and per-origin predictions go to `results/hne_latent/`. Published [aggregate metrics](../results/hne_latent/summary/metrics.csv) report this implementation separately from the GRU tables.
 
 ## Fit external comparators and score the same origins
 

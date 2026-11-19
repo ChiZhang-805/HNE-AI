@@ -2,7 +2,8 @@
 
 | Experiment | Aggregate results |
 | --- | --- |
-| Internal continuous reasoning | [Main results](evidence_recursion/table1.csv) · [Ablations](evidence_recursion/ablations.csv) · [Paired effects and frozen transfer](evidence_recursion/table2.csv) · [External comparisons](evidence_recursion/recent_baselines_paired.csv) |
+| Continuous feedback through the pretrained Transformer core | [Five-fold comparisons](hne_latent/summary/metrics.csv) · [Matched feedback controls](hne_latent/summary/rq2_simultaneous_intervals.csv) |
+| GRU evidence reader over frozen encoder features | [Main results](evidence_recursion/table1.csv) · [Ablations](evidence_recursion/ablations.csv) · [Paired effects and frozen transfer](evidence_recursion/table2.csv) · [External comparisons](evidence_recursion/recent_baselines_paired.csv) |
 | Earlier evidence-ordering model | [Fold-level and pooled metrics](hne_joint/summary/) · [Bidirectional transfer](hne_joint/transfer/metrics.csv) |
 | Manuscript on additive evidence | [Development comparisons](unified_daily/summary/) · [Human Rhythms adaptation](human_rhythms_transfer/test_metrics.csv) · [College transfer](college_transfer/test_metrics.csv) · [Satellite telemetry](esa_native/) |
 

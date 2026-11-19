@@ -153,3 +153,5 @@ paper/preview/
 !/results/transfer/RESILIENT_to_BrisT1D-Open/paired_differences.csv
 !/results/unified_daily/summary/metrics.csv
 !/results/unified_daily/summary/paired_differences.csv
+!/results/hne_latent/summary/metrics.csv
+!/results/hne_latent/summary/rq2_simultaneous_intervals.csv
