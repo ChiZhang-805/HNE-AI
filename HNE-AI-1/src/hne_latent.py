@@ -1,4 +1,9 @@
-"""Continuous hidden-state feedback through a shared pretrained Transformer core."""
+"""HNE: evidence memory -> conditioned core -> warning -> continuous feedback.
+
+Algorithm references and author-code links: literature/continuous_reasoning_methods.md.
+The forward loop follows Coconut's hidden-state feedback. The optional core
+modulation adapts LoopFormer-style conditioning to pretrained Chronos-2 blocks.
+"""
 from pathlib import Path
 import numpy as np
 import torch
@@ -13,6 +18,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class HNELatent(nn.Module):
+    """Shared core for both cohorts; H/N/E are evidence, not ordered reasoning steps."""
+
     def __init__(self, config, widths, variant='recurrent'):
         super().__init__()
         self.config = config; self.variant = variant
@@ -59,6 +66,11 @@ class HNELatent(nn.Module):
         self.register_buffer('future_scale', torch.ones(2))
 
     def memory(self, x, mask, reference, reference_mask, stats, basis):
+        """Append reference, scale and H/N/E tokens to each channel's observed history.
+
+        x: [batch, channels, history_tokens, width]. The returned memory has
+        five extra tokens per channel; valid marks the observable key positions.
+        """
         b, c, _, _ = x.shape
         numeric = [encoder(values) for encoder, values in zip(self.evidence, basis)]
         omitted = {'no_history_coordinates': 0, 'no_network_coordinates': 1, 'no_environment_coordinates': 2}.get(self.variant)
@@ -75,6 +87,12 @@ class HNELatent(nn.Module):
         return memory, valid
 
     def core_step(self, hidden, positions, time_mask, group_mask, cache, condition=None, latent_mask=None):
+        """Update states inside shared temporal/channel attention and feedforward layers.
+
+        Modulation is restricted to latent positions. Zero modulation preserves
+        the pretrained residual branches through (1 + gate). Cached K/V retain
+        their computation graph so later losses can train earlier computations.
+        """
         updated = []
         for index, block in enumerate(self.core):
             time_layer = block.layer[0]; attention = time_layer.self_attention
@@ -106,63 +124,108 @@ class HNELatent(nn.Module):
                 hidden = hidden+(1+gate_ff)*(transformed-hidden)
         return hidden, updated
 
+    def step_condition(self, memory, previous_input, seed, step, steps):
+        """Combine the current latent input, H/N/E evidence and internal step time."""
+        clock = memory.new_tensor([step/steps, 1/steps])
+        condition_input = previous_input+memory[:, :, -3:].mean(2)
+        if self.variant == 'clock_only_modulation':
+            condition_input = seed
+        return condition_input+self.iteration_embedding(clock)
+
+    def prepare_step(self, memory, valid, latent_inputs, conditions, cached, reset):
+        """Build the visible prefix and masks for one internal computation step.
+
+        Observations never read latent positions. Each latent position reads
+        observations, itself and earlier latent positions. With a K/V cache,
+        only the newest query is recomputed; all valid prefix keys remain.
+        """
+        b, c, m, width = memory.shape
+        count = len(latent_inputs)
+        tokens = torch.cat([memory, torch.stack(latent_inputs, 2)], 2)
+        length = tokens.shape[2]
+        full_valid = torch.cat([valid, torch.ones((b, c, count), device=memory.device, dtype=torch.bool)], 2)
+        flat_valid = full_valid.reshape(b*c, length)
+        allowed = torch.ones((length, length), device=memory.device, dtype=torch.bool)
+        allowed[:m, m:] = False
+        allowed[m:, m:] = torch.ones((count, count), device=memory.device, dtype=torch.bool).tril()
+        if self.core_modulation and reset:
+            # This control removes earlier latent K/V reads as well as explicit feedback.
+            allowed[m:, m:] = torch.eye(count, device=memory.device, dtype=torch.bool)
+        allowed = allowed[None, None] & flat_valid[:, None, None, :]
+        time_mask = torch.zeros(allowed.shape, device=memory.device, dtype=tokens.dtype).masked_fill(~allowed, -1e4)
+        start = length-1 if cached else 0
+        groups = torch.arange(b, device=memory.device).repeat_interleave(c)
+        group_mask = Chronos2Encoder._construct_and_invert_group_time_mask(
+            groups, flat_valid[:, start:].to(tokens.dtype), tokens.dtype)
+        hidden = tokens[:, :, start:].reshape(b*c, length-start, width)
+        positions = torch.arange(start, length, device=memory.device)[None]
+        condition = latent_mask = None
+        if self.core_modulation:
+            condition = torch.cat([torch.zeros_like(memory), torch.stack(conditions, 2)], 2)
+            condition = condition[:, :, start:].reshape(b*c, length-start, width)
+            latent_mask = (positions >= m).to(hidden.dtype)[..., None]
+        return hidden, positions, time_mask[:, :, start:], group_mask, condition, latent_mask
+
+    def read_state(self, hidden, batch_size, channels):
+        """Read risk and future summaries from state channels at the newest position."""
+        state = self.output_norm(hidden[:, -1]).reshape(batch_size, channels, -1)
+        n_state = channels-self.config.get('context_channels', 1)
+        representation = self.readout(state[:, :n_state])
+        pooled = torch.cat([representation.mean(1), representation.amax(1)], -1)
+        logit = self.risk(pooled).squeeze(-1)-self.class_log_odds
+        return state, logit, self.future(representation)
+
+    def feedback_input(self, state, seed, intervention):
+        """Write the continuous state into the next position, without text decoding."""
+        feedback = self.feedback_gain*state
+        if self.variant == 'detached_feedback':
+            # Detach this edge only; the separate K/V graph is still retained.
+            feedback = feedback.detach()
+        if self.variant == 'reset_feedback' or intervention == 'reset':
+            feedback = seed
+        if intervention == 'shuffle':
+            feedback = feedback.roll(1, 0)
+        return feedback
+
     def forward(self, x, mask, reference, reference_mask, stats, basis, steps=None,
                 intervention=None, return_states=False, use_cache=None):
+        """Refine one prediction over internal steps; no new observations arrive.
+
+        return_states exposes [batch, steps, channels, width] and the original
+        state tensors for trajectory analysis and cross-step gradient probes.
+        """
         memory, valid = self.memory(x, mask, reference, reference_mask, stats, basis)
-        b, c, m, width = memory.shape
+        b, c = memory.shape[:2]
         steps = steps or (1 if self.variant == 'single_pass' else self.config['latent_steps'])
         seed = self.initial_latent[None, None].expand(b, c, -1)
-        latent_inputs = [seed]; states = []; logits = []; futures = []; cache = None; conditions = []
+        latent_inputs, conditions = [seed], []
+        states, logits, futures = [], [], []
+        cache = None
         use_cache = self.config.get('use_kv_cache', False) if use_cache is None else use_cache
-        groups = torch.arange(b, device=x.device).repeat_interleave(c)
-        n_state = c-self.config.get('context_channels', 1)
+        reset = self.variant == 'reset_feedback' or intervention == 'reset'
         for step in range(steps):
+            # 1. Let evidence and the previous state condition this internal step.
             if self.core_modulation:
-                clock = memory.new_tensor([step/steps, 1/steps])
-                condition_input = latent_inputs[-1]+memory[:, :, -3:].mean(2)
-                if self.variant == 'clock_only_modulation': condition_input = seed
-                conditions.append(condition_input+self.iteration_embedding(clock))
-            tokens = torch.cat([memory, torch.stack(latent_inputs, 2)], 2)
-            length = tokens.shape[2]
-            full_valid = torch.cat([valid, torch.ones((b, c, step+1), device=x.device, dtype=torch.bool)], 2)
-            flat_valid = full_valid.reshape(b*c, length)
-            # Observations cannot read latent tokens; each latent position reads only earlier states.
-            allowed = torch.ones((length, length), device=x.device, dtype=torch.bool)
-            allowed[:m, m:] = False
-            allowed[m:, m:] = torch.ones((step+1, step+1), device=x.device, dtype=torch.bool).tril()
-            if self.core_modulation and (self.variant == 'reset_feedback' or intervention == 'reset'):
-                # Remove earlier latent KV reads as well as explicit feedback in the matched control.
-                allowed[m:, m:] = torch.eye(step+1, device=x.device, dtype=torch.bool)
-            allowed = allowed[None, None] & flat_valid[:, None, None, :]
-            time_mask = torch.zeros(allowed.shape, device=x.device, dtype=tokens.dtype).masked_fill(~allowed, -1e4)
-            start = length-1 if use_cache and cache is not None else 0
-            group_mask = Chronos2Encoder._construct_and_invert_group_time_mask(groups, flat_valid[:, start:].to(tokens.dtype), tokens.dtype)
-            hidden = tokens[:, :, start:].reshape(b*c, length-start, width)
-            positions = torch.arange(start, length, device=x.device)[None]
-            condition = latent_mask = None
-            if self.core_modulation:
-                condition = torch.cat([torch.zeros_like(memory), torch.stack(conditions, 2)], 2)
-                condition = condition[:, :, start:].reshape(b*c, length-start, width)
-                latent_mask = (positions >= m).to(hidden.dtype)[..., None]
+                conditions.append(self.step_condition(memory, latent_inputs[-1], seed, step, steps))
+            hidden, positions, time_mask, group_mask, condition, latent_mask = self.prepare_step(
+                memory, valid, latent_inputs, conditions, use_cache and cache is not None, reset)
+
+            # 2. Reuse the same pretrained blocks, including their trainable LoRA.
             if use_cache or self.core_modulation:
-                hidden, new_cache = self.core_step(hidden, positions, time_mask[:, :, start:], group_mask,
+                hidden, new_cache = self.core_step(hidden, positions, time_mask, group_mask,
                     cache if use_cache else None, condition, latent_mask)
                 cache = new_cache if use_cache else None
             else:
                 for block in self.core:
                     hidden = block(hidden, position_ids=positions, attention_mask=time_mask,
                                    group_time_mask=group_mask).hidden_states
-            state = self.output_norm(hidden[:, -1]).reshape(b, c, width)
-            representation = self.readout(state[:, :n_state])
-            pooled = torch.cat([representation.mean(1), representation.amax(1)], -1)
-            logits.append(self.risk(pooled).squeeze(-1)-self.class_log_odds)
-            futures.append(self.future(representation))
+
+            # 3. Read the current prediction and feed its hidden state forward.
+            state, logit, future = self.read_state(hidden, b, c)
+            logits.append(logit)
+            futures.append(future)
             states.append(state)
-            feedback = self.feedback_gain*state
-            if self.variant == 'detached_feedback': feedback = feedback.detach()
-            if self.variant == 'reset_feedback' or intervention == 'reset': feedback = seed
-            if intervention == 'shuffle': feedback = feedback.roll(1, 0)
-            latent_inputs.append(feedback)
+            latent_inputs.append(self.feedback_input(state, seed, intervention))
         output = dict(logits=logits[-1], step_logits=torch.stack(logits, 1), future=futures[-1],
                       step_future=torch.stack(futures, 1))
         if return_states:
@@ -172,6 +235,11 @@ class HNELatent(nn.Module):
 
 
 def latent_objective(model, out, y, weight, target, config):
+    """Train event prediction and future-summary decoding through the latent steps.
+
+    Every step predicts the same future window. These observed training targets
+    ground the states; they do not prescribe a different semantic task per step.
+    """
     logits = out['step_logits'].float()+model.class_log_odds
     losses = F.binary_cross_entropy_with_logits(logits, y[:, None].expand_as(logits), reduction='none')
     event = (losses[:, -1]*weight).mean()

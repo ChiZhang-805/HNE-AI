@@ -2,6 +2,8 @@
 
 以个人前 56 天为参考，用截至预测日的 32 天历史判断第 2–8 天是否会出现持续的跨指标偏移或波动放大。论文主架构把个人历史、指标关系和环境编码为记忆，将上一轮隐状态写入下一连续位置，反复通过 Chronos-2 的两个共享 Transformer 块，训练其中的 LoRA 及证据投影。
 
+2026-11-20：对照 Coconut、Huginn、LoopFormer、CODI 与 SIM-CoT，将核心前向过程整理为证据记忆、步条件、可见位置、核心更新、结果读出与状态回填。[代码阅读顺序与借鉴位置](paper/continuous_warning_framework.md#对照作者代码怎样读懂-hne)逐项对应函数。两库真实输入上的输出、混合精度训练损失与梯度和整理前一致，原模型文件继续适用。
+
 | 内容 | 入口 |
 | --- | --- |
 | 当前研究 | [三个研究问题、模型与实验解释](paper/continuous_warning_framework.md) · [连续推理文献](literature/continuous_reasoning_methods.md) |

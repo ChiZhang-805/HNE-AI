@@ -2,7 +2,7 @@
 
 论文主线是把个人历史（H）、指标关系网络（N）和环境／行为情境（E）送入预训练时序模型，通过连续隐状态反馈，让模型在同一预测时点反复整合证据，输出未来多指标紊乱的风险。第一篇的模型级机制落在预训练 Transformer 核心的反复计算上。
 
-与这条主线对应的已实现模型为 [HNELatent](../src/hne_latent.py)，配置为 [hne_latent.json](../configs/hne_latent.json)，训练入口为 [run_hne_latent.py](../scripts/run_hne_latent.py)。此前汇报的 AUROC 0.7796 / 0.6950 对应另一套 GRU 证据读取实现；本页下方给出两套实现各自的计算位置和成绩。本文架构整理依据 2026-11-19 的代码，实验数值来自已有训练产物。
+与这条主线对应的已实现模型为 [HNELatent](../src/hne_latent.py)，配置为 [hne_latent.json](../configs/hne_latent.json)，训练入口为 [run_hne_latent.py](../scripts/run_hne_latent.py)。此前汇报的 AUROC 0.7796 / 0.6950 对应另一套 GRU 证据读取实现；本页下方给出两套实现各自的计算位置和成绩。本文架构整理依据 2026-11-20 的代码，实验数值来自已有训练产物。
 
 给定一个人截至今天的多维记录，在最近一周仍处于其通常波动范围时，预测随后一周是否会出现跨指标的持续偏移或异常起伏。最有区分力的问题是：即使两种模型使用完全相同的历史、指标关系和环境，上一轮判断能否帮助模型在下一轮重新读取更有用的证据？
 
@@ -52,6 +52,36 @@ z_k=\operatorname{Last}\!\left(T_{\theta,\Delta\theta}[M,z_0,gz_1,\ldots,gz_{k-1
 这里省略了通道下标。上一轮隐状态改变下一轮的查询及注意力分布，因此相同模型权重在不同个人输入上形成不同的连续计算轨迹。四个步骤的语义由训练产生，代码采用固定四步推理预算。Coconut 的隐状态回填机制是这一设计的参考。[本地已核对的 Coconut 源码记录](../literature/continuous_reasoning_methods.md) · [Coconut 作者实现](https://github.com/facebookresearch/coconut/blob/HEAD/coconut.py)
 
 **风险读出。** 每步将状态通道的隐表示投影后做均值和最大值汇聚，读出未来事件概率。最终输出使用第四步。另一个预测头从第四步各通道表示预测未来窗口的均值和对数标准差，为隐状态提供连续的变化目标。
+
+## 对照作者代码，怎样读懂 HNE
+
+从 `HNELatent.forward` 开始，沿下面的顺序阅读 [核心文件](../src/hne_latent.py)。所有内部步骤对应同一个预测时点，四步之间没有读入新一天的数据。
+
+| HNE 函数 | 输入与输出 | 要理解的计算 |
+| --- | --- | --- |
+| `memory` | 历史、参考期、通道统计、H/N/E → 每通道的记忆序列 | H/N/E 同时成为可读取的证据；三个投影接收的分别是历史、指标关系与情境坐标 |
+| `step_condition` | 上一步输入、H/N/E 均值、内部步时间 → 条件向量 | 当前证据和状态决定这一轮的调节量 |
+| `prepare_step` | 记忆及已生成的连续输入 → 当前查询、注意力掩码 | 历史不能读取隐状态；隐状态可读取历史、自身和更早隐位置；缓存模式只重算新位置 |
+| `core_step` | 查询、缓存和条件 → 更新后的隐藏表示 | 在共享预训练块内部计算时间注意力、通道注意力和前馈更新；LoRA 与条件调节在这里作用 |
+| `read_state` | 最后位置的表示 → 风险与未来动态摘要 | 每步均可读出结果，正式预测取最后一步 |
+| `feedback_input` | 当前连续隐状态 → 下一位置的输入 | 状态直接回填，下一步继续在同一核心内部计算 |
+| `latent_objective` | 各步输出、事件标签、未来动态 → 训练损失 | 损失沿连续计算链训练证据投影、LoRA、内部调节与读出头 |
+
+这些函数划分计算职责，参数仍由同一个 `HNELatent` 持有。`H → N → E` 不是步骤顺序；每一步都能读取三类证据。
+
+| 作者代码中的关键实现 | HNE 的具体借鉴 |
+| --- | --- |
+| [Coconut](https://github.com/facebookresearch/coconut/blob/HEAD/coconut.py)：最后隐状态替换下一个连续位置的输入，保留梯度与缓存 | `feedback_input` 回填状态；`prepare_step` 保持历史与隐位置的可见关系；`core_step` 保留 K/V 计算图 |
+| [Huginn](https://github.com/seal-rg/recurrent-pretraining/blob/HEAD/recpre/model_dynamic.py)：`iterate_forward` 反复调用 `core_block_forward`，核心接收状态与输入证据 | HNE 四步共享最后两个 Chronos-2 块，每步均可访问个人记忆；前十层提供冻结的序列表征 |
+| [LoopFormer](https://github.com/armenjeddi/loopformer/blob/59a8ae85bf72dd60f722871788faf51d009b920a/model.py)：条件向量生成注意力和 MLP 的缩放、残差门控 | `step_condition` 加入 H/N/E 与当前状态，`core_step` 调节时间注意力、通道注意力和前馈更新 |
+| [CODI](https://github.com/zhenyi4/codi/blob/HEAD/src/model.py)：隐状态连续回填，学生指定位置的逐层表示对齐教师表示 | 借鉴对内部表示施加训练约束的问题定义；HNE 使用可观测未来动态训练状态，没有文字推理教师分支 |
+| [SIM-CoT](https://github.com/InternLM/SIM-CoT/blob/HEAD/Coconut/coconut.py)：按 thought index 将连续表示送入解释解码器，对应不同文字步骤 | HNE 用共享 `future` 头逐步解码同一未来窗口的均值和波动，检验中间状态的预测作用 |
+
+LoopFormer 的零门控从恒等残差块起步；HNE 使用 `1 + gate`，零初始化时保留 Chronos-2 原来的预训练计算，再学习每一步如何调整它。CODI 的 `use_prj` 控制可选的反馈投影；HNE 当前通过标量 `feedback_gain` 缩放回填状态。这些是针对现有基模作出的具体实现选择。
+
+**两条跨步通路。** 一条是 `feedback_input` 的隐状态回填，另一条是 `core_step` 保存的注意力 K/V。`detached_feedback` 只对第一条通路调用 `detach()`；它检验显式回填的梯度贡献。新配置的 `reset_feedback` 同时重置回填输入并屏蔽更早隐位置的 K/V 读取，用于比较同深度下累积状态的作用。`return_states=True` 返回逐步状态及原始状态张量，可计算状态变化与最终损失对各步状态的梯度。
+
+2026-11-20 按上述职责整理前向函数，保持全部参数名、初始化与计算公式。两库各取 8 条真实训练输入，加载已有模型，并用非零调节参数覆盖新配置分支：缓存／非缓存、无调节、仅步条件及重置条件的逐步输出与整理前完全相同；固定随机种子的混合精度训练损失及全部参数梯度差为零。本次整理不产生新的性能分数。
 
 ## 训练改变什么
 
