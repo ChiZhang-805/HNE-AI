@@ -25,11 +25,14 @@ flowchart TD
     F --> M[历史序列表示与个人参考记忆]
     HNE --> P[可训练的证据投影]
     P --> M
+    P --> C[新配置：证据、当前状态与步编码生成内部调节]
+    C --> T
     M --> T[共享的两层预训练 Transformer 核心 · LoRA]
     Z0[可学习初始隐状态] --> T
     T --> Z[当前连续隐状态]
     Z -->|作为下一个位置的输入 · 共四步| T
-    Z --> O[风险读出 · 未来波动辅助预测]
+    Z --> C
+    Z --> O[逐步风险读出 · 未来波动辅助预测]
 ```
 
 **个人参考与统一证据。** 用个人前 56 天估计参考分布，在 8、16、32 天窗口中提取近期相对变化。H 编码偏移、振幅、尾部波动、趋势和自相关变化。N 编码指标之间的同步及滞后相关变化。E 编码活动、饮食等情境的变化、个人历史中情境与状态的关联，以及扣除该关联后的剩余波动。两库采用同一套特征计算和学习规则，按数据字段对应状态与情境。[证据实现](../src/hne_representation.py) · [统计量实现](../src/hne_features.py)
@@ -72,6 +75,72 @@ z_k=\operatorname{Last}\!\left(T_{\theta,\Delta\theta}[M,z_0,gz_1,\ldots,gz_{k-1
 3. **用同一证据定义和模型检验跨领域预警。** 冻结来源模型与来源训练人员拟合的变换，在目标域应用相同公式；目标人员的历史用于建立其参考状态。对应 RQ3。
 
 这些是论文的方法主张。个人参考、相关统计、LoRA、连续隐状态反馈各有已有研究基础，新增贡献需要由它们在多变量未来紊乱任务中的具体结合与对应实验确立。[方法研究脉络](../literature/continuous_reasoning_methods.md)
+
+## 2025—2026 文献驱动的模型级优化
+
+本轮按会议出处、引用记录及作者代码筛选了 15 篇内部推理论文，重点采用 Coconut 的连续反馈、Huginn 的共享核心、SIM-CoT 的中间状态监督和 LoopFormer／TMLT 的内部调节思路。[阅读及源码入口](../literature/continuous_reasoning_methods.md) · [新配置](../configs/hne_latent_grounded.json)
+
+**调节发生在 Transformer 内部。** 令 \(e=\operatorname{Mean}(P_H,P_N,P_E)\)，每个通道在第 \(k\) 步构造条件
+
+\[
+c_k=u_k+e+\operatorname{MLP}_{t}((k-1)/K,1/K),
+\]
+
+其中 \(u_1=z_0\)，后续 \(u_k=gz_{k-1}\)。每个共享块从自己的 LayerNorm 和 MLP 产生四组有界调节量：
+
+\[
+(s_k,a_k,n_k,f_k)=0.25\tanh\{\operatorname{MLP}_{b}(\operatorname{LN}_{b}(c_k))\}.
+\]
+
+时间注意力的归一化输入乘 \(1+s_k\)，时间注意力、通道注意力、前馈层的残差更新分别乘 \(1+a_k\)、\(1+n_k\)、\(1+f_k\)。这些量是逐通道、逐隐藏维度的向量。历史记忆位置不调节，只调节连续隐位置；共享核心及其缓存保留跨步梯度。调节头最后线性层零初始化，从预训练核心的原始计算出发学习更新方式。已有 LoRA、H/N/E 投影和输出头继续训练。
+
+这样，训练同时改变参数和输入相关的更新过程。同一个人在不同情境、不同人面对相似波动时，可以形成不同的隐状态轨迹。四个步骤共同读取 H/N/E；没有预设某一步只处理一类证据。
+
+**未来动态监督到每一步。** 各步用共享预测头解码个人参考标准化后的未来均值及 \(\log(1+\mathrm{std})\)，再按来源训练人员估计的均值和尺度归一化。新辅助项为
+
+\[
+\mathcal L_{\mathrm{future}}
+=\frac1K\sum_{k=1}^{K}
+ \operatorname{SmoothL1}(D(z_k),q_{\mathrm{future}}).
+\]
+
+事件损失及其 0.1 中间权重保持原样，未来辅助权重保持 0.02。各步预测同一个未来窗口，目标不规定推理顺序；逐步误差与状态干预检验计算是否改善。未来值只用于训练目标，预测输入截止于预测日。
+
+**对应 RQ 的比较分离。** RQ1 比较公开算法及 H/N/E 证据消融；RQ2 比较下表的内部计算条件；RQ3 冻结来源模型，检验同一更新规则的跨领域作用。RESILIENT 与 BrisT1D-Open 共用配置，字段映射、目标和人员划分不变。
+
+| 代码条件 | 内部调节 | 未来摘要监督 | 跨步状态与潜在 KV |
+| --- | --- | --- | --- |
+| recurrent | 开启，四步 | 所有步骤平均 | 保留 |
+| no_modulation | 关闭，四步 | 所有步骤平均 | 保留 |
+| clock_only_modulation | 开启，仅初始状态与步条件，四步 | 所有步骤平均 | 保留；调节量不依赖个人证据或更新状态 |
+| final_future_only | 开启，四步 | 仅最后一步 | 保留 |
+| reset_feedback | 开启，四步 | 所有步骤平均 | 显式反馈重置；禁止读取之前潜在位置 |
+| single_pass | 开启，一步 | 唯一步骤 | 不发生跨步反馈 |
+
+新配置的重置对照同时移除两条状态传递通路；原配置继续复现原实验。当前固定 \(K=4\)，尚未加入 LoopFormer 的长短轨迹一致性或 MoR 的自适应深度。固定预算的机制实验后，再以对应训练比较 1／2／4／8 步的性能、延迟和显存。
+
+本轮开发实验使用外层 fold 0 对应的训练人员，在其内部做三折选轮，比较完整、无调节、仅终步监督及仅步条件调节；[输出目录](../results/hne_latent_grounded)。下列命令不执行外层验证／评估及三种子重训：
+
+~~~shell
+python scripts/run_hne_latent.py --config configs/hne_latent_grounded.json --output results/hne_latent_grounded --variants recurrent no_modulation final_future_only clock_only_modulation --folds 0 --selection-only
+~~~
+
+### 本轮内部开发结果
+
+完成两库、四个条件、每个条件三个内部人员折，共 24 次拟合。使用外层 fold 0 的原训练人员：RESILIENT 36 人，BrisT1D-Open 12 人；内部选轮分数如下。它们用于方法选择，不替换下节五折评估结果。
+
+| 内部计算条件 | RESILIENT AUROC | BrisT1D-Open AUROC | 所选轮数（RES／Bris） |
+| --- | ---: | ---: | ---: |
+| 证据、状态调节＋逐步未来监督 | 0.8263 | 0.6989 | 1／4 |
+| 无调节＋逐步未来监督 | 0.8225 | 0.7018 | 1／4 |
+| 同参数、仅步条件调节 | 0.8176 | 0.6979 | 3／8 |
+| 证据、状态调节＋终步未来监督 | 0.8268 | 0.6926 | 1／4 |
+
+完整条件相对同参数仅步条件高 0.0087／0.0010；相对无调节为 +0.0037／−0.0030。逐步未来监督相对终步监督为 −0.0006／+0.0063。两项修改各自的收益随队列变化。完整条件训练目标持续下降，但内部验证 BCE 在 RESILIENT 从 0.4013 升至 0.6511，在 BrisT1D-Open 从 0.4146 升至 1.1731，继续增加训练轮数不对应更好的验证表现。
+
+据此，当前新配置保留为机制研究条件，原主实验成绩保持原实现对应关系。下一轮优先检验状态更新是否改善可观测的未来动态预测，并控制调节网络的容量；相同未来摘要在每步重复监督，尚未建立两库一致的增益。
+
+[开发汇总 JSON](../results/hne_latent_grounded/summary/development_summary.json) · [四条件数值表](../results/hne_latent_grounded/summary/development_metrics.csv) · [各内部折的损失曲线数据](../results/hne_latent_grounded/summary/development_curves.csv) · [汇总脚本](../scripts/summarize_hne_latent_development.py)
 
 ## 已实现模型与结果的对应关系
 

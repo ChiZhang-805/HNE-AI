@@ -173,6 +173,8 @@ def main(args):
             for variant in args.variants or config['variants']:
                 folder = ROOT/args.output/dataset/variant/f'fold{k}'; folder.mkdir(parents=True, exist_ok=True)
                 selection = select_length(data, meta, numerical, train, config, variant, folder)
+                if args.selection_only:
+                    continue
                 seeds = config['seeds'][:args.seeds]
                 for seed in seeds:
                     refit(data, meta, numerical, train, val, test, config, variant, seed, selection, folder/f'seed{seed}')
@@ -193,4 +195,5 @@ if __name__ == '__main__':
     parser.add_argument('--variants', nargs='+')
     parser.add_argument('--folds', nargs='+', type=int)
     parser.add_argument('--seeds', type=int, default=3)
+    parser.add_argument('--selection-only', action='store_true', help='Use training-person inner folds only; do not score outer folds.')
     main(parser.parse_args())

@@ -16,3 +16,7 @@
 现有两表的 GRU 证据读取实现取得 AUROC 0.7796 和 0.6950，八个外部对照中 CATCH 在两库均最高，分别为 0.7651 和 0.6510。相对 CATCH 的两项配对区间均跨零。该 GRU 实现相对同深度固定查询提高 0.0044 和 0.0049。以上两库用于开发；GRU 实现的冻结迁移另见[迁移与机制差值](results/evidence_recursion/table2.csv)。
 
 论文 PDF 和两页汇报记录早期方法。架构说明逐项对应 Transformer 内部反馈与 GRU 证据读取的模型、训练方式及实验成绩。
+
+2026-11-19 更新：完成 2025—2026 年内部推理文献与作者源码核对，主清单 15 篇，另补读轨迹评估工作。[引用与出处](literature/internal_reasoning_2025_2026.json) · [调研与 HNE 优化](literature/continuous_reasoning_methods.md)。
+
+新配置加入证据、当前状态和循环时间调节的 Transformer 内部更新，以及逐步未来动态监督。[统一配置](configs/hne_latent_grounded.json)。两库四种条件完成 24 次训练人员内部拟合，完整条件相对无调节的内部 AUROC 差为 +0.0037／−0.0030；开发比较不替换上面的五折主结果。[汇总 JSON](results/hne_latent_grounded/summary/development_summary.json) · [数值表](results/hne_latent_grounded/summary/development_metrics.csv) · [损失曲线数据](results/hne_latent_grounded/summary/development_curves.csv)。

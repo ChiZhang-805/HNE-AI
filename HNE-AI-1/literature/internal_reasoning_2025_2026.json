@@ -1,0 +1,612 @@
+{
+  "retrieved_at": "2026-11-19T14:14:48.493080+00:00",
+  "citation_source": "OpenAlex cited_by_count for a title-matched work record; no summing versions; not Google Scholar",
+  "papers": [
+    {
+      "name": "Coconut",
+      "query_title": "Training Large Language Models to Reason in a Continuous Latent Space",
+      "source_url": "https://api.openalex.org/works?search=Training+Large+Language+Models+to+Reason+in+a+Continuous+Latent+Space&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W4405254469",
+        "doi": "https://doi.org/10.48550/arxiv.2412.06769",
+        "title": "Training Large Language Models to Reason in a Continuous Latent Space",
+        "publication_year": 2024,
+        "publication_date": "2024-12-09",
+        "cited_by_count": 958
+      },
+      "venue": "COLM",
+      "publication_year": 2025,
+      "paper_url": "https://colmweb.org/2025/AcceptedPapers",
+      "code_url": "https://github.com/facebookresearch/coconut",
+      "role": "core",
+      "code_tree_sha": "27273cb8cca4bb763c041a63b036d0c3b7cbbb48",
+      "read_source": {
+        "name": "Coconut",
+        "paper": "https://arxiv.org/abs/2412.06769",
+        "pdf": "Coconut.pdf",
+        "implementation": "https://github.com/facebookresearch/coconut/blob/HEAD/coconut.py",
+        "git_blob": "894f887d4bcb4c3fb290339c56b74b7f9ae6348a"
+      },
+      "downloaded_source_files": []
+    },
+    {
+      "name": "Huginn",
+      "query_title": "Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach",
+      "source_url": "https://api.openalex.org/works?search=Scaling+up+Test-Time+Compute+with+Latent+Reasoning%3A+A+Recurrent+Depth+Approach&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W4407310640",
+        "doi": "https://doi.org/10.52202/085713-1380",
+        "title": "Scaling up Test-Time Compute with Latent Reasoning: A Recurrent Depth Approach",
+        "publication_year": 2025,
+        "publication_date": "2025-01-01",
+        "cited_by_count": 558
+      },
+      "venue": "NeurIPS",
+      "publication_year": 2025,
+      "paper_url": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/3b01972cf31e6fa0fe29e4b8b5c2a0a1-Abstract-Conference.html",
+      "code_url": "https://github.com/seal-rg/recurrent-pretraining",
+      "role": "core",
+      "code_tree_sha": "1ea7220ec7eb42d13e89db0663df254d0bcdc28e",
+      "read_source": {
+        "name": "Huginn",
+        "paper": "https://arxiv.org/abs/2502.05171",
+        "pdf": "Huginn.pdf",
+        "implementation": "https://github.com/seal-rg/recurrent-pretraining/blob/HEAD/recpre/model_dynamic.py",
+        "git_blob": "e8ef88e6148463ce0723ad0c9676073c5a9f447c"
+      },
+      "downloaded_source_files": []
+    },
+    {
+      "name": "CODI",
+      "query_title": "CODI: Compressing Chain-of-Thought into Continuous Space via Self-Distillation",
+      "source_url": "https://api.openalex.org/works?search=CODI%3A+Compressing+Chain-of-Thought+into+Continuous+Space+via+Self-Distillation&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W4416037467",
+        "doi": "https://doi.org/10.18653/v1/2025.emnlp-main.36",
+        "title": "CODI: Compressing Chain-of-Thought into Continuous Space via Self-Distillation",
+        "publication_year": 2025,
+        "publication_date": "2025-01-01",
+        "cited_by_count": 354
+      },
+      "venue": "EMNLP",
+      "publication_year": 2025,
+      "paper_url": "https://aclanthology.org/2025.emnlp-main.36/",
+      "code_url": "https://github.com/zhenyi4/codi",
+      "role": "core",
+      "code_tree_sha": "2c2314662c63e9f482ebc46614ffe9af17a241e5",
+      "read_source": {
+        "name": "CODI",
+        "paper": "https://arxiv.org/abs/2502.21074",
+        "pdf": "CODI.pdf",
+        "implementation": "https://github.com/zhenyi4/codi/blob/HEAD/src/model.py",
+        "git_blob": "7a489c3c6e40989ac7ff74ada9de9ab8b31d68ca"
+      },
+      "downloaded_source_files": []
+    },
+    {
+      "name": "SoftCoT",
+      "query_title": "SoftCoT: Soft Chain-of-Thought for Efficient Reasoning with LLMs",
+      "source_url": "https://api.openalex.org/works?search=SoftCoT%3A+Soft+Chain-of-Thought+for+Efficient+Reasoning+with+LLMs&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W4412944734",
+        "doi": "https://doi.org/10.18653/v1/2025.acl-long.1137",
+        "title": "SoftCoT: Soft Chain-of-Thought for Efficient Reasoning with LLMs",
+        "publication_year": 2025,
+        "publication_date": "2025-01-01",
+        "cited_by_count": 210
+      },
+      "venue": "ACL",
+      "publication_year": 2025,
+      "paper_url": "https://aclanthology.org/2025.acl-long.1137/",
+      "code_url": "https://github.com/xuyige/SoftCoT",
+      "role": "AI-2-related",
+      "code_tree_sha": "fa7f537d1d0affa430851315edf68746d410b59c",
+      "read_source": {
+        "name": "SoftCoT",
+        "paper": "https://arxiv.org/abs/2502.12134",
+        "pdf": "SoftCoT.pdf",
+        "implementation": "https://github.com/xuyige/SoftCoT/blob/HEAD/llm_model.py",
+        "git_blob": "a4cbe05f008aee0101b431869e988f3010e71712"
+      },
+      "downloaded_source_files": []
+    },
+    {
+      "name": "SoftThinking",
+      "query_title": "Soft Thinking: Unlocking the Reasoning Potential of LLMs in Continuous Concept Space",
+      "source_url": "https://api.openalex.org/works?search=Soft+Thinking%3A+Unlocking+the+Reasoning+Potential+of+LLMs+in+Continuous+Concept+Space&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W4415329330",
+        "doi": "https://doi.org/10.52202/085713-5629",
+        "title": "Soft Thinking: Unlocking the Reasoning Potential of LLMs in Continuous Concept Space",
+        "publication_year": 2025,
+        "publication_date": "2025-01-01",
+        "cited_by_count": 156
+      },
+      "venue": "NeurIPS",
+      "publication_year": 2025,
+      "paper_url": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/f7396d1c54d51416958d63e285377103-Abstract-Conference.html",
+      "code_url": "https://github.com/eric-ai-lab/Soft-Thinking",
+      "role": "core",
+      "code_tree_sha": "b97407c60d5e971da4a4fe76f405d6e236d0ddfa",
+      "read_source": {
+        "name": "SoftThinking",
+        "paper": "https://arxiv.org/abs/2505.15778",
+        "pdf": "SoftThinking.pdf",
+        "implementation": "https://github.com/eric-ai-lab/Soft-Thinking/blob/HEAD/sglang_soft_thinking_pkg/python/sglang/srt/layers/sampler.py",
+        "git_blob": "a8941250516c59b8175e7a35d4afe7ed93946f7b"
+      },
+      "downloaded_source_files": []
+    },
+    {
+      "name": "CTM",
+      "query_title": "Continuous Thought Machines",
+      "source_url": "https://api.openalex.org/works?search=Continuous+Thought+Machines&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W4417511331",
+        "doi": "https://doi.org/10.52202/085713-0728",
+        "title": "Continuous Thought Machines",
+        "publication_year": 2025,
+        "publication_date": "2025-01-01",
+        "cited_by_count": 24
+      },
+      "venue": "NeurIPS",
+      "publication_year": 2025,
+      "paper_url": "https://papers.nips.cc/paper_files/paper/2025/hash/1f1628d502c62ef3725fb3b0b8eb4219-Abstract-Conference.html",
+      "code_url": "https://github.com/SakanaAI/continuous-thought-machines",
+      "role": "core",
+      "code_tree_sha": "4a6c9c3a7fb5dc4bca6381cc7883a3b9252c6466",
+      "read_source": {
+        "name": "CTM",
+        "paper": "https://arxiv.org/abs/2505.05522",
+        "pdf": "CTM.pdf",
+        "implementation": "https://github.com/SakanaAI/continuous-thought-machines/blob/HEAD/models/ctm.py",
+        "git_blob": "833451baf5ff59decae584fa2f60ad76c19d3e9a"
+      },
+      "downloaded_source_files": []
+    },
+    {
+      "name": "MoR",
+      "query_title": "Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation",
+      "source_url": "https://api.openalex.org/works?search=Mixture-of-Recursions%3A+Learning+Dynamic+Recursive+Depths+for+Adaptive+Token-Level+Computation&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W7197044712",
+        "doi": "https://doi.org/10.52202/085713-3229",
+        "title": "Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level Computation",
+        "publication_year": 2025,
+        "publication_date": "2025-01-01",
+        "cited_by_count": 191
+      },
+      "venue": "NeurIPS",
+      "publication_year": 2025,
+      "paper_url": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/8b08bbf8b420faa6eeb4020720582ec7-Abstract-Conference.html",
+      "code_url": "https://github.com/raymin0223/mixture_of_recursions",
+      "role": "core",
+      "code_tree_sha": "82c97f29cd140efa01f5cc4fe0de73a4c3b6ffd6",
+      "read_source": {
+        "name": "MoR",
+        "paper": "https://arxiv.org/abs/2507.10524",
+        "pdf": "MoR.pdf",
+        "implementation": "https://github.com/raymin0223/mixture_of_recursions/blob/HEAD/model/mor_model/expert_choice_router.py",
+        "git_blob": "bf9d51e92b820e31689b91586654bd551300e8e5"
+      },
+      "downloaded_source_files": []
+    },
+    {
+      "name": "SIM-CoT",
+      "query_title": "SIM-CoT: Supervised Implicit Chain-of-Thought",
+      "source_url": "https://api.openalex.org/works?search=SIM-CoT%3A+Supervised+Implicit+Chain-of-Thought&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W4414787337",
+        "doi": "https://doi.org/10.48550/arxiv.2509.20317",
+        "title": "SIM-CoT: Supervised Implicit Chain-of-Thought",
+        "publication_year": 2025,
+        "publication_date": "2025-09-24",
+        "cited_by_count": 74
+      },
+      "venue": "ICLR",
+      "publication_year": 2026,
+      "paper_url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/5d087955ee13fe9a7402eedec879b9c3-Abstract-Conference.html",
+      "code_url": "https://github.com/InternLM/SIM-CoT",
+      "role": "core",
+      "code_tree_sha": "cd3291dac9fe1e495da9fe00e61a9b96a884b2ed",
+      "read_source": {
+        "name": "SIM-CoT",
+        "paper": "https://arxiv.org/abs/2509.20317",
+        "pdf": "SIM-CoT.pdf",
+        "implementation": "https://github.com/InternLM/SIM-CoT/blob/HEAD/Coconut/coconut.py",
+        "git_blob": "e0c200b9d80996c6487a16c56f9c5a92913daebb"
+      },
+      "downloaded_source_files": []
+    },
+    {
+      "name": "CoT2",
+      "query_title": "Continuous Chain of Thought Enables Parallel Exploration and Reasoning",
+      "source_url": "https://api.openalex.org/works?search=Continuous+Chain+of+Thought+Enables+Parallel+Exploration+and+Reasoning&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W4416612998",
+        "doi": "https://doi.org/10.48550/arxiv.2505.23648",
+        "title": "Continuous Chain of Thought Enables Parallel Exploration and Reasoning",
+        "publication_year": 2025,
+        "publication_date": "2025-05-29",
+        "cited_by_count": 34
+      },
+      "venue": "ICLR",
+      "publication_year": 2026,
+      "paper_url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/85ec26ef94c3acb4c195e905df1ff4f7-Abstract-Conference.html",
+      "code_url": "https://github.com/alperengozeten/CoT2",
+      "role": "core",
+      "code_tree_sha": "11932cbb3bd8592e17772f9193cf8ed163218f68",
+      "read_source": {
+        "name": "CoT2",
+        "paper": "https://arxiv.org/abs/2505.23648",
+        "pdf": "CoT2.pdf",
+        "implementation": "https://github.com/alperengozeten/CoT2/blob/HEAD/train/continuous_train.py",
+        "git_blob": "1ad088b8ab229d4d977ca3c72daa84f9eda79f45"
+      },
+      "downloaded_source_files": []
+    },
+    {
+      "name": "Superposition",
+      "query_title": "Reasoning by Superposition: A Theoretical Perspective on Chain of Continuous Thought",
+      "source_url": "https://api.openalex.org/works?search=Reasoning+by+Superposition%3A+A+Theoretical+Perspective+on+Chain+of+Continuous+Thought&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W4417301048",
+        "doi": "https://doi.org/10.52202/085713-2670",
+        "title": "Reasoning by Superposition: A Theoretical Perspective on Chain of Continuous Thought",
+        "publication_year": 2025,
+        "publication_date": "2025-01-01",
+        "cited_by_count": 96
+      },
+      "venue": "NeurIPS",
+      "publication_year": 2025,
+      "paper_url": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/72c363c2a573ca2128bd176d3317696b-Abstract-Conference.html",
+      "code_url": "https://github.com/Ber666/reasoning-by-superposition",
+      "role": "core",
+      "code_tree_sha": "72d22af7ec1533aef6bd208e3f08a819d3e1b47f",
+      "downloaded_source_files": [
+        {
+          "local_name": "Superposition.coconut.py",
+          "blob_sha": "894f887d4bcb4c3fb290339c56b74b7f9ae6348a",
+          "repository_path": "coconut.py"
+        }
+      ]
+    },
+    {
+      "name": "LaDiR",
+      "query_title": "LaDiR: Latent Diffusion Enhances LLMs for Text Reasoning",
+      "source_url": "https://api.openalex.org/works?search=LaDiR%3A+Latent+Diffusion+Enhances+LLMs+for+Text+Reasoning&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W4416365642",
+        "doi": "https://doi.org/10.48550/arxiv.2510.04573",
+        "title": "LaDiR: Latent Diffusion Enhances LLMs for Text Reasoning",
+        "publication_year": 2025,
+        "publication_date": "2025-10-06",
+        "cited_by_count": 25
+      },
+      "venue": "ICLR",
+      "publication_year": 2026,
+      "paper_url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/843e1d8ab4819c8c8a4221fce2c8d455-Abstract-Conference.html",
+      "code_url": "https://github.com/mk322/LaDiR",
+      "role": "core",
+      "code_tree_sha": "5eaa5968393e5e93262bb53b867683704dd1da3a",
+      "downloaded_source_files": [
+        {
+          "local_name": "LaDiR.ladir_modeling_flow.py",
+          "blob_sha": "d508b12bb21a2b7f0d165020e43e143ee9e0063f",
+          "repository_path": "ladir/modeling/flow.py"
+        },
+        {
+          "local_name": "LaDiR.sft_trainer.py",
+          "blob_sha": "a1843500ce4b9c1e878fcf156005cc33392d8153",
+          "repository_path": "sft/trainer.py"
+        }
+      ]
+    },
+    {
+      "name": "Nabla",
+      "query_title": "Nabla-Reasoner: LLM Reasoning via Test-Time Gradient Descent in Latent Space",
+      "source_url": "https://api.openalex.org/works?search=Nabla-Reasoner%3A+LLM+Reasoning+via+Test-Time+Gradient+Descent+in+Latent+Space&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W7134071283",
+        "doi": "https://doi.org/10.48550/arxiv.2603.04948",
+        "title": "$\\nabla$-Reasoner: LLM Reasoning via Test-Time Gradient Descent in Latent Space",
+        "publication_year": 2026,
+        "publication_date": "2026-03-05",
+        "cited_by_count": 7
+      },
+      "venue": "ICLR",
+      "publication_year": 2026,
+      "paper_url": "https://openreview.net/pdf?id=pEJAja73dk",
+      "code_url": "https://github.com/VITA-Group/Nabla-Reasoner",
+      "role": "core",
+      "code_tree_sha": "46a15711cc2a31be62dc24f07cc357e39aa35249",
+      "downloaded_source_files": [
+        {
+          "local_name": "Nabla.optimize.py",
+          "blob_sha": "f6e72f82df40f3e6f9450be322804b0032b90d0d",
+          "repository_path": "optimize.py"
+        }
+      ]
+    },
+    {
+      "name": "DSD",
+      "query_title": "What Makes Effective Supervision in Latent Chain-of-Thought: An Information-Theoretic Analysis",
+      "source_url": "https://api.openalex.org/works?search=What+Makes+Effective+Supervision+in+Latent+Chain-of-Thought%3A+An+Information-Theoretic+Analysis&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W7165389488",
+        "doi": "https://doi.org/10.48550/arxiv.2606.20075",
+        "title": "What Makes Effective Supervision in Latent Chain-of-Thought: An Information-Theoretic Analysis",
+        "publication_year": 2026,
+        "publication_date": "2026-06-18",
+        "cited_by_count": 2
+      },
+      "venue": "ICML",
+      "publication_year": 2026,
+      "paper_url": "https://proceedings.mlr.press/v306/chen26bi.html",
+      "code_url": "https://github.com/EIT-NLP/Supervision-in-Latent-CoT",
+      "role": "theory-code-coming-soon",
+      "code_tree_sha": "852c3aee9c62bba6dfb5d44872c55d15a147f960",
+      "downloaded_source_files": []
+    },
+    {
+      "name": "DIS",
+      "query_title": "Latent Reasoning in TRMs is Secretly a Policy Improvement Operator",
+      "source_url": "https://api.openalex.org/works?search=Latent+Reasoning+in+TRMs+is+Secretly+a+Policy+Improvement+Operator&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W4416666854",
+        "doi": "https://doi.org/10.48550/arxiv.2511.16886",
+        "title": "Latent Reasoning in TRMs is Secretly a Policy Improvement Operator",
+        "publication_year": 2025,
+        "publication_date": "2025-11-21",
+        "cited_by_count": 10
+      },
+      "venue": "ICML",
+      "publication_year": 2026,
+      "paper_url": "https://proceedings.mlr.press/v306/asadulaev26a.html",
+      "code_url": "https://github.com/machinestein/Deep-Improvement-Supervision",
+      "role": "core",
+      "code_tree_sha": "5de79e3376f27767d456d6b80df0973b73dfe2e8",
+      "downloaded_source_files": [
+        {
+          "local_name": "DIS.models_recursive_reasoning_trm.py",
+          "blob_sha": "fd2a9c14ccce8da3f6991b408329f0c37630c03d",
+          "repository_path": "models/recursive_reasoning/trm.py"
+        },
+        {
+          "local_name": "DIS.train_arc_tiny_corrupt.py",
+          "blob_sha": "668d0d2c4029bc9aeebac43a8057afe747b7a4e5",
+          "repository_path": "train_arc_tiny_corrupt.py"
+        }
+      ]
+    },
+    {
+      "name": "DynaSteer",
+      "query_title": "Search for Truth from Reasoning: A Dynamic Representation Editing Framework for Steering LLM Trajectories",
+      "source_url": "https://api.openalex.org/works?search=Search+for+Truth+from+Reasoning%3A+A+Dynamic+Representation+Editing+Framework+for+Steering+LLM+Trajectories&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W7166755527",
+        "doi": "https://doi.org/10.48550/arxiv.2606.28589",
+        "title": "Search for Truth from Reasoning: A Dynamic Representation Editing Framework for Steering LLM Trajectories",
+        "publication_year": 2026,
+        "publication_date": "2026-06-26",
+        "cited_by_count": 4
+      },
+      "venue": "ICML",
+      "publication_year": 2026,
+      "paper_url": "https://proceedings.mlr.press/v306/wang26hz.html",
+      "code_url": "https://github.com/tianlwang/DynaSteer",
+      "role": "core",
+      "code_tree_sha": "acd1a917e01d7c6f4301a11a1e6dfa36bc143db0",
+      "downloaded_source_files": [
+        {
+          "local_name": "DynaSteer.custom_hf_modeling_qwen3.py",
+          "blob_sha": "dfc1302489e4f63d371a1d55c3810661997cbd9f",
+          "repository_path": "custom_hf/modeling_qwen3.py"
+        },
+        {
+          "local_name": "DynaSteer.solve_steering.py",
+          "blob_sha": "65811bba91e3e4cc36de31611ba20ac39a668403",
+          "repository_path": "solve_steering.py"
+        }
+      ]
+    },
+    {
+      "name": "DynamicLatent",
+      "query_title": "Rethinking LLM Reasoning: From Explicit Trajectories to Latent Representations",
+      "source_url": "https://api.openalex.org/works?search=Rethinking+LLM+Reasoning%3A+From+Explicit+Trajectories+to+Latent+Representations&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": null,
+      "venue": "ICLR",
+      "publication_year": 2026,
+      "paper_url": "https://openreview.net/pdf/81998f90e3cff2c52213db93dfa73043f4a4396f.pdf",
+      "code_url": "https://github.com/MobiusDai/LRT",
+      "role": "AI-2-related",
+      "citation_note": "Original query did not match; corrected-title API request was rate-limited (HTTP 429); count remains unassigned.",
+      "verified_title": "Rethinking LLM Reasoning: From Explicit Trajectories to Latent Representations",
+      "code_tree_sha": "31c93833f4164904b80e42335922359a804ac2d6",
+      "downloaded_source_files": [
+        {
+          "local_name": "LRT.modeling_reason.py",
+          "blob_sha": "355ea0f0329f8a27aefc8dae8008b2a8543fd335",
+          "repository_path": "modeling/reason.py"
+        },
+        {
+          "local_name": "LRT.modeling_reasoning_net.py",
+          "blob_sha": "65aec8329f14236a3d435500fd9e37ac3259e158",
+          "repository_path": "modeling/reasoning_net.py"
+        }
+      ]
+    },
+    {
+      "name": "TRM",
+      "query_title": "Less is More: Recursive Reasoning with Tiny Networks",
+      "source_url": "https://api.openalex.org/works?search=Less+is+More%3A+Recursive+Reasoning+with+Tiny+Networks&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W4417455104",
+        "doi": "https://doi.org/10.21203/rs.3.rs-8148771/v1",
+        "title": "Less is More: Recursive Reasoning with Tiny Networks",
+        "publication_year": 2025,
+        "publication_date": "2025-12-18",
+        "cited_by_count": 266
+      },
+      "venue": null,
+      "role": "not-in-verified-top-venue-list",
+      "reason": "Venue not verified",
+      "code_tree_sha": "c01103738605ba39d1430519b1ee0c62f4c707f8",
+      "read_source": {
+        "name": "TRM",
+        "paper": "https://arxiv.org/abs/2510.04871",
+        "pdf": "TRM.pdf",
+        "implementation": "https://github.com/SamsungSAILMontreal/TinyRecursiveModels/blob/HEAD/models/recursive_reasoning/trm.py",
+        "git_blob": "5c3e39dfb6e2f93f0781e9e25af9a12751201482"
+      },
+      "downloaded_source_files": []
+    },
+    {
+      "name": "HRM",
+      "query_title": "Hierarchical Reasoning Model",
+      "source_url": "https://api.openalex.org/works?search=Hierarchical+Reasoning+Model&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W4417156095",
+        "doi": "https://doi.org/10.48550/arxiv.2506.21734",
+        "title": "Hierarchical Reasoning Model",
+        "publication_year": 2025,
+        "publication_date": "2025-06-26",
+        "cited_by_count": 285
+      },
+      "venue": null,
+      "role": "not-in-verified-top-venue-list",
+      "reason": "Venue not verified",
+      "code_tree_sha": "ac15626f8db096a63c775b84c9dc868776a6feda",
+      "read_source": {
+        "name": "HRM",
+        "paper": "https://arxiv.org/abs/2506.21734",
+        "pdf": "HRM.pdf",
+        "implementation": "https://github.com/sapientinc/HRM/blob/HEAD/models/hrm/hrm_act_v1.py",
+        "git_blob": "e91c7d1a047b9f9735fa8253daa4b8effa23f011"
+      },
+      "downloaded_source_files": []
+    },
+    {
+      "name": "LatentSeek",
+      "query_title": "Seek in the Dark: Reasoning via Test-Time Instance-Level Policy Gradient in Latent Space",
+      "source_url": "https://api.openalex.org/works?search=Seek+in+the+Dark%3A+Reasoning+via+Test-Time+Instance-Level+Policy+Gradient+in+Latent+Space&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": null,
+      "venue": null,
+      "role": "not-in-verified-top-venue-list",
+      "reason": "Search returned a different paper; citation count not assigned"
+    },
+    {
+      "name": "LoopedThoughts",
+      "query_title": "Reasoning with Latent Thoughts: On the Power of Looped Transformers",
+      "source_url": "https://api.openalex.org/works?search=Reasoning+with+Latent+Thoughts%3A+On+the+Power+of+Looped+Transformers&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W4414850566",
+        "doi": "https://doi.org/10.48550/arxiv.2502.17416",
+        "title": "Reasoning with Latent Thoughts: On the Power of Looped Transformers",
+        "publication_year": 2025,
+        "publication_date": "2025-02-24",
+        "cited_by_count": 242
+      },
+      "venue": "ICLR",
+      "publication_year": 2025,
+      "paper_url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/2676109d49d1eb26d6bc584a8f556305-Paper-Conference.pdf",
+      "code_url": null,
+      "role": "theory-code-not-verified",
+      "read_source": {
+        "name": "LoopedThoughts",
+        "paper": "https://arxiv.org/abs/2502.17416",
+        "pdf": "LoopedThoughts.pdf",
+        "implementation": null
+      }
+    },
+    {
+      "name": "TMLT",
+      "query_title": "On Expressive Power of Looped Transformers: Theoretical Analysis and Enhancement via Timestep Encoding",
+      "source_url": "https://api.openalex.org/works?search=On+Expressive+Power+of+Looped+Transformers%3A+Theoretical+Analysis+and+Enhancement+via+Timestep+Encoding&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W4403346051",
+        "doi": "https://doi.org/10.48550/arxiv.2410.01405",
+        "title": "On Expressive Power of Looped Transformers: Theoretical Analysis and Enhancement via Timestep Encoding",
+        "publication_year": 2024,
+        "publication_date": "2024-10-02",
+        "cited_by_count": 21
+      },
+      "venue": "ICML",
+      "publication_year": 2025,
+      "paper_url": "https://proceedings.mlr.press/v267/xu25x.html",
+      "code_url": "https://github.com/kevin671/tmlt",
+      "role": "core",
+      "code_tree_sha": "72b322843bc029f032fd001b6d6d71b83c758a4d",
+      "downloaded_source_files": [
+        {
+          "local_name": "TMLT.model.py",
+          "blob_sha": "5231c80130ba460f9e8845c4bc783b23c6aec343",
+          "repository_path": "model.py"
+        }
+      ]
+    },
+    {
+      "name": "LoopFormer",
+      "query_title": "LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation",
+      "source_url": "https://api.openalex.org/works?search=LoopFormer%3A+Elastic-Depth+Looped+Transformers+for+Latent+Reasoning+via+Shortcut+Modulation&per-page=3&select=id%2Cdoi%2Ctitle%2Cpublication_year%2Cpublication_date%2Ccited_by_count%2Cprimary_location",
+      "citation_record": {
+        "id": "https://openalex.org/W7128793353",
+        "doi": "https://doi.org/10.48550/arxiv.2602.11451",
+        "title": "LoopFormer: Elastic-Depth Looped Transformers for Latent Reasoning via Shortcut Modulation",
+        "publication_year": 2026,
+        "publication_date": "2026-02-11",
+        "cited_by_count": 71
+      },
+      "venue": "ICLR",
+      "publication_year": 2026,
+      "paper_url": "https://loopformer.github.io/",
+      "code_url": "https://github.com/armenjeddi/loopformer",
+      "role": "core",
+      "code_tree_sha": "59a8ae85bf72dd60f722871788faf51d009b920a",
+      "downloaded_source_files": [
+        {
+          "local_name": "LoopFormer.model.py",
+          "blob_sha": "3e78e6f0dc004576a2ae558e8da09d2450cc887f",
+          "repository_path": "model.py"
+        },
+        {
+          "local_name": "LoopFormer.train.py",
+          "blob_sha": "957d84ab4e6901ae8a7abde77da859837a45a17d",
+          "repository_path": "train.py"
+        }
+      ]
+    }
+  ],
+  "year_rule": "Year of verified conference publication; initial preprint date recorded separately",
+  "additional_references": [
+    {
+      "name": "LTO",
+      "venue": "ICLR",
+      "year": 2026,
+      "paper_url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/a4b1a25e1b37a17733c1fea50d0b7446-Abstract-Conference.html",
+      "code_url": "https://github.com/ninglab/LTO",
+      "code_tree_sha": "7156c1b695586046c7269a2a4f8434090d8c7af0",
+      "role": "trajectory-quality-and-selection",
+      "citation_record": null
+    },
+    {
+      "name": "LT-signals",
+      "venue": "ICLR",
+      "year": 2026,
+      "paper_url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/03e81b3bdb6c0a61093defd319d12203-Abstract-Conference.html",
+      "code_url": "https://github.com/martinagvilas/LT-signals",
+      "code_tree_sha": "a8d4ceb2d47eca5d0040b5bb1da8a2a27422216a",
+      "role": "trajectory-diagnostics",
+      "citation_record": null
+    },
+    {
+      "name": "HyRea",
+      "venue": "ICLR",
+      "year": 2026,
+      "paper_url": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/2cb880950081ceb85100951b0ad0d542-Abstract-Conference.html",
+      "code_url": "https://github.com/zhaoyiran924/HyRea",
+      "role": "code-not-released",
+      "citation_record": null
+    }
+  ]
+}

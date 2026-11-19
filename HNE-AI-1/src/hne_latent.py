@@ -43,6 +43,17 @@ class HNELatent(nn.Module):
         self.readout = nn.Sequential(nn.LayerNorm(width), nn.Linear(width, d), nn.GELU())
         self.risk = nn.Linear(2*d, 1)
         self.future = nn.Linear(d, 2)
+        self.core_modulation = config.get('core_modulation', False)
+        if self.core_modulation:
+            self.iteration_embedding = nn.Sequential(nn.Linear(2, d), nn.SiLU(), nn.Linear(d, width))
+            self.core_modulators = nn.ModuleList([
+                nn.Sequential(nn.LayerNorm(width), nn.Linear(width, d), nn.SiLU(), nn.Linear(d, 4*width))
+                for _ in self.core
+            ])
+            # Begin at the pretrained computation; learn bounded deviations inside its blocks.
+            for modulator in self.core_modulators:
+                nn.init.zeros_(modulator[-1].weight)
+                nn.init.zeros_(modulator[-1].bias)
         self.register_buffer('class_log_odds', torch.zeros(()))
         self.register_buffer('future_mean', torch.zeros(2))
         self.register_buffer('future_scale', torch.ones(2))
@@ -63,11 +74,17 @@ class HNELatent(nn.Module):
         valid = torch.cat([mask, torch.ones((b, c, 5), device=x.device, dtype=torch.bool)], 2)
         return memory, valid
 
-    def core_step(self, hidden, positions, time_mask, group_mask, cache):
+    def core_step(self, hidden, positions, time_mask, group_mask, cache, condition=None, latent_mask=None):
         updated = []
         for index, block in enumerate(self.core):
             time_layer = block.layer[0]; attention = time_layer.self_attention
             normed = time_layer.layer_norm(hidden)
+            scale = gate_time = gate_group = gate_ff = 0.
+            if condition is not None and self.variant != 'no_modulation':
+                modulation = .25*torch.tanh(self.core_modulators[index](condition))
+                modulation = modulation*latent_mask
+                scale, gate_time, gate_group, gate_ff = modulation.chunk(4, -1)
+                normed = normed*(1+scale)
             shape = lambda value: value.reshape(len(value), -1, attention.n_heads, attention.kv_proj_dim).transpose(1, 2)
             q, k, v = [shape(layer(normed)) for layer in [attention.q, attention.k, attention.v]]
             cos, sin = attention.rope_embed(v, positions)
@@ -79,9 +96,14 @@ class HNELatent(nn.Module):
             updated.append((k, v))
             attended, _ = attention._sdpa_attention(q, k, v, time_mask)
             attended = attended.transpose(1, 2).reshape(len(hidden), hidden.shape[1], attention.inner_dim)
-            hidden = hidden+time_layer.dropout(attention.o(attended))
-            hidden = block.layer[1](hidden, attention_mask=group_mask).hidden_states
-            hidden = block.layer[2](hidden)
+            hidden = hidden+(1+gate_time)*time_layer.dropout(attention.o(attended))
+            grouped = block.layer[1](hidden, attention_mask=group_mask).hidden_states
+            if condition is None or self.variant == 'no_modulation':
+                hidden = block.layer[2](grouped)
+            else:
+                hidden = hidden+(1+gate_group)*(grouped-hidden)
+                transformed = block.layer[2](hidden)
+                hidden = hidden+(1+gate_ff)*(transformed-hidden)
         return hidden, updated
 
     def forward(self, x, mask, reference, reference_mask, stats, basis, steps=None,
@@ -90,11 +112,16 @@ class HNELatent(nn.Module):
         b, c, m, width = memory.shape
         steps = steps or (1 if self.variant == 'single_pass' else self.config['latent_steps'])
         seed = self.initial_latent[None, None].expand(b, c, -1)
-        latent_inputs = [seed]; states = []; logits = []; futures = []; cache = None
+        latent_inputs = [seed]; states = []; logits = []; futures = []; cache = None; conditions = []
         use_cache = self.config.get('use_kv_cache', False) if use_cache is None else use_cache
         groups = torch.arange(b, device=x.device).repeat_interleave(c)
         n_state = c-self.config.get('context_channels', 1)
         for step in range(steps):
+            if self.core_modulation:
+                clock = memory.new_tensor([step/steps, 1/steps])
+                condition_input = latent_inputs[-1]+memory[:, :, -3:].mean(2)
+                if self.variant == 'clock_only_modulation': condition_input = seed
+                conditions.append(condition_input+self.iteration_embedding(clock))
             tokens = torch.cat([memory, torch.stack(latent_inputs, 2)], 2)
             length = tokens.shape[2]
             full_valid = torch.cat([valid, torch.ones((b, c, step+1), device=x.device, dtype=torch.bool)], 2)
@@ -103,14 +130,24 @@ class HNELatent(nn.Module):
             allowed = torch.ones((length, length), device=x.device, dtype=torch.bool)
             allowed[:m, m:] = False
             allowed[m:, m:] = torch.ones((step+1, step+1), device=x.device, dtype=torch.bool).tril()
+            if self.core_modulation and (self.variant == 'reset_feedback' or intervention == 'reset'):
+                # Remove earlier latent KV reads as well as explicit feedback in the matched control.
+                allowed[m:, m:] = torch.eye(step+1, device=x.device, dtype=torch.bool)
             allowed = allowed[None, None] & flat_valid[:, None, None, :]
             time_mask = torch.zeros(allowed.shape, device=x.device, dtype=tokens.dtype).masked_fill(~allowed, -1e4)
             start = length-1 if use_cache and cache is not None else 0
             group_mask = Chronos2Encoder._construct_and_invert_group_time_mask(groups, flat_valid[:, start:].to(tokens.dtype), tokens.dtype)
             hidden = tokens[:, :, start:].reshape(b*c, length-start, width)
             positions = torch.arange(start, length, device=x.device)[None]
-            if use_cache:
-                hidden, cache = self.core_step(hidden, positions, time_mask[:, :, start:], group_mask, cache)
+            condition = latent_mask = None
+            if self.core_modulation:
+                condition = torch.cat([torch.zeros_like(memory), torch.stack(conditions, 2)], 2)
+                condition = condition[:, :, start:].reshape(b*c, length-start, width)
+                latent_mask = (positions >= m).to(hidden.dtype)[..., None]
+            if use_cache or self.core_modulation:
+                hidden, new_cache = self.core_step(hidden, positions, time_mask[:, :, start:], group_mask,
+                    cache if use_cache else None, condition, latent_mask)
+                cache = new_cache if use_cache else None
             else:
                 for block in self.core:
                     hidden = block(hidden, position_ids=positions, attention_mask=time_mask,
@@ -126,7 +163,8 @@ class HNELatent(nn.Module):
             if self.variant == 'reset_feedback' or intervention == 'reset': feedback = seed
             if intervention == 'shuffle': feedback = feedback.roll(1, 0)
             latent_inputs.append(feedback)
-        output = dict(logits=logits[-1], step_logits=torch.stack(logits, 1), future=futures[-1])
+        output = dict(logits=logits[-1], step_logits=torch.stack(logits, 1), future=futures[-1],
+                      step_future=torch.stack(futures, 1))
         if return_states:
             output['states'] = torch.stack(states, 1)
             output['state_list'] = states
@@ -140,7 +178,10 @@ def latent_objective(model, out, y, weight, target, config):
     intermediate = (losses[:, :-1].mean(1)*weight).mean() if logits.shape[1] > 1 else event*0
     observed = torch.isfinite(target)
     normalized = (torch.nan_to_num(target)-model.future_mean)/model.future_scale
-    future = F.smooth_l1_loss(out['future'].float(), normalized.clamp(-8, 8), reduction='none')
+    prediction = out['future'][:, None]
+    if config.get('dense_future_supervision', False) and model.variant != 'final_future_only':
+        prediction = out['step_future']
+    future = F.smooth_l1_loss(prediction.float(), normalized[:, None].clamp(-8, 8).expand_as(prediction), reduction='none').mean(1)
     # Preserve equal participant groups when execution micro-batches are combined.
     group_size = config['batch_size']//config['people_per_batch']
     future = ((future*observed).reshape(-1, group_size, *target.shape[1:]).sum((1, 2, 3)) /

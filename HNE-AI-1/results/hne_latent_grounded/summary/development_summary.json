@@ -1,0 +1,166 @@
+{
+  "evaluation_scope": "Three participant folds within the original training subset; each condition selects its epoch on these same inner folds.",
+  "score_role": "Development and model selection, not outer-fold test performance.",
+  "completed_conditions": 8,
+  "completed_inner_fits": 24,
+  "runs": [
+    {
+      "dataset": "BrisT1D-Open",
+      "variant": "clock_only_modulation",
+      "outer_fold": 0,
+      "training_people": 12,
+      "inner_fits": 3,
+      "selected_epoch": 8,
+      "completed_epochs": 16,
+      "inner_auroc": 0.6978862263783363,
+      "inner_bce": 0.8067227602005005,
+      "first_train_objective": 0.6715832356891083,
+      "last_train_objective": 0.04483212500197858,
+      "first_inner_bce": 0.41661325097084045,
+      "last_inner_bce": 1.3604708909988403
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "variant": "final_future_only",
+      "outer_fold": 0,
+      "training_people": 12,
+      "inner_fits": 3,
+      "selected_epoch": 4,
+      "completed_epochs": 12,
+      "inner_auroc": 0.6925774400935125,
+      "inner_bce": 0.7083130478858948,
+      "first_train_objective": 0.669462118442282,
+      "last_train_objective": 0.04918513078392689,
+      "first_inner_bce": 0.41448402404785156,
+      "last_inner_bce": 1.059064269065857
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "variant": "no_modulation",
+      "outer_fold": 0,
+      "training_people": 12,
+      "inner_fits": 3,
+      "selected_epoch": 4,
+      "completed_epochs": 12,
+      "inner_auroc": 0.7018475225664004,
+      "inner_bce": 0.6181437373161316,
+      "first_train_objective": 0.6736569424859837,
+      "last_train_objective": 0.05166333499141362,
+      "first_inner_bce": 0.41454318165779114,
+      "last_inner_bce": 1.118758201599121
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "variant": "recurrent",
+      "outer_fold": 0,
+      "training_people": 12,
+      "inner_fits": 3,
+      "selected_epoch": 4,
+      "completed_epochs": 12,
+      "inner_auroc": 0.6988765504253523,
+      "inner_bce": 0.6884244084358215,
+      "first_train_objective": 0.6696240523736722,
+      "last_train_objective": 0.04835744057853011,
+      "first_inner_bce": 0.4145730137825012,
+      "last_inner_bce": 1.1731261014938354
+    },
+    {
+      "dataset": "RESILIENT",
+      "variant": "clock_only_modulation",
+      "outer_fold": 0,
+      "training_people": 36,
+      "inner_fits": 3,
+      "selected_epoch": 3,
+      "completed_epochs": 11,
+      "inner_auroc": 0.8175797421652116,
+      "inner_bce": 0.4903757572174072,
+      "first_train_objective": 0.5994291811895018,
+      "last_train_objective": 0.10562275712080049,
+      "first_inner_bce": 0.4174131155014038,
+      "last_inner_bce": 0.857361912727356
+    },
+    {
+      "dataset": "RESILIENT",
+      "variant": "final_future_only",
+      "outer_fold": 0,
+      "training_people": 36,
+      "inner_fits": 3,
+      "selected_epoch": 1,
+      "completed_epochs": 9,
+      "inner_auroc": 0.8268302623393895,
+      "inner_bce": 0.40103965997695923,
+      "first_train_objective": 0.5985996921623444,
+      "last_train_objective": 0.12442944750266495,
+      "first_inner_bce": 0.40103965997695923,
+      "last_inner_bce": 0.6572057604789734
+    },
+    {
+      "dataset": "RESILIENT",
+      "variant": "no_modulation",
+      "outer_fold": 0,
+      "training_people": 36,
+      "inner_fits": 3,
+      "selected_epoch": 1,
+      "completed_epochs": 9,
+      "inner_auroc": 0.8225294407859457,
+      "inner_bce": 0.4147251844406128,
+      "first_train_objective": 0.6076144328327765,
+      "last_train_objective": 0.13511247035711074,
+      "first_inner_bce": 0.4147251844406128,
+      "last_inner_bce": 0.631844699382782
+    },
+    {
+      "dataset": "RESILIENT",
+      "variant": "recurrent",
+      "outer_fold": 0,
+      "training_people": 36,
+      "inner_fits": 3,
+      "selected_epoch": 1,
+      "completed_epochs": 9,
+      "inner_auroc": 0.826256461957571,
+      "inner_bce": 0.4012642204761505,
+      "first_train_objective": 0.5986710695273006,
+      "last_train_objective": 0.12780084200795241,
+      "first_inner_bce": 0.4012642204761505,
+      "last_inner_bce": 0.6511496901512146
+    }
+  ],
+  "comparisons": [
+    {
+      "dataset": "BrisT1D-Open",
+      "outer_fold": 0,
+      "control": "clock_only_modulation",
+      "inner_auroc_difference": 0.0009903240470160446
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "outer_fold": 0,
+      "control": "final_future_only",
+      "inner_auroc_difference": 0.00629911033183983
+    },
+    {
+      "dataset": "BrisT1D-Open",
+      "outer_fold": 0,
+      "control": "no_modulation",
+      "inner_auroc_difference": -0.0029709721410480228
+    },
+    {
+      "dataset": "RESILIENT",
+      "outer_fold": 0,
+      "control": "clock_only_modulation",
+      "inner_auroc_difference": 0.0086767197923594
+    },
+    {
+      "dataset": "RESILIENT",
+      "outer_fold": 0,
+      "control": "final_future_only",
+      "inner_auroc_difference": -0.0005738003818185344
+    },
+    {
+      "dataset": "RESILIENT",
+      "outer_fold": 0,
+      "control": "no_modulation",
+      "inner_auroc_difference": 0.0037270211716252666
+    }
+  ]
+}
