@@ -1,0 +1,14 @@
+{
+  "run_key": "ablation/BrisT1D-Open/fold0/seed20261114/matched_hidden_evidence/210d3ca7cd95fa62",
+  "owner": "A",
+  "status": "claimed",
+  "code_commit": "a53529fe3eca60036c194a7afd168fc6b64cea33",
+  "config_sha256": "210d3ca7cd95fa62cf5d262d6daaa0e56b9d51206c8c7bf60cf8e62e18ca4106",
+  "protocol_sha256": "3d58b3089a3e7d25a442ec8aa78638c509fc03fcf2af901e1cfbe2b5ab17607c",
+  "base_checkpoint_sha256": "996c2aef33414f72323fbb6e43cbb21c45a1dcf1efb13b53e9636ce0d4ec5668",
+  "shared_inputs_verified": false,
+  "private_artifact_reference": "artifacts/experiments/ablation/BrisT1D-Open/fold0/seed20261114/matched_hidden_evidence/210d3ca7cd95fa62",
+  "summary": null,
+  "elapsed_seconds": null,
+  "note": "Fit full-evidence and history-only hidden readouts on the same finished M04 and source origins. Development only."
+}
