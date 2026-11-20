@@ -2,12 +2,22 @@
   "run_key": "core/BrisT1D-Open/fold0/seed20261114/M04_M10_M12/1d619a1a30802af3",
   "owner": "A",
   "status": "running",
-  "code_commit": "3a96e2715ece2486ced2fb6c4f81ac6a45621fcb",
+  "code_commit": "58450e217a0cfc63b0cc50a0b44207d0f98fee0c",
   "config_sha256": "1d619a1a30802af36d7ad0b949c8d25e808037b356f75cb8644a28940cf14c36",
   "protocol_sha256": "3d58b3089a3e7d25a442ec8aa78638c509fc03fcf2af901e1cfbe2b5ab17607c",
   "shared_inputs_verified": true,
   "summary": null,
   "elapsed_seconds": null,
   "private_artifact_reference": "artifacts/experiments/core/BrisT1D-Open/fold0/seed20261114/M04_M10_M12/1d619a1a30802af3",
-  "note": "CPU one thread; source-only development. One fresh common M04 and six candidates each for internal guidance and node/edge-only hidden fusion. No formal core units completed by this claim."
+  "note": "CPU one thread; source-only development. One fresh common M04 and six candidates each for internal guidance and node/edge-only hidden fusion. No formal core units completed by this claim.",
+  "initial_code_commit": "3a96e2715ece2486ced2fb6c4f81ac6a45621fcb",
+  "continuation": {
+    "reason": "Logging payload key collision after saving first epoch",
+    "saved_epoch": 1,
+    "training_seconds_preserved": 502.2968011999983,
+    "prior_invocation_seconds": 1552.505888599997,
+    "scientific_training_ast_identical": true,
+    "configuration_unchanged": true,
+    "original_manifest_preserved": true
+  }
 }
