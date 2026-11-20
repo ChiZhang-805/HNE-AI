@@ -50,7 +50,9 @@
         "M13"
       ],
       "cuda_training_verified": false
-    }
+    },
+    "internal_guidance_completed_epochs": 2,
+    "latest_guidance_epoch_seconds": 663.3206079999982
   },
   "base_checkpoint_sha256": "996c2aef33414f72323fbb6e43cbb21c45a1dcf1efb13b53e9636ce0d4ec5668"
 }

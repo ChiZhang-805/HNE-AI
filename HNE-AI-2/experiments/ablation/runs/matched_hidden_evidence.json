@@ -1,14 +1,43 @@
 {
   "run_key": "ablation/BrisT1D-Open/fold0/seed20261114/matched_hidden_evidence/210d3ca7cd95fa62",
   "owner": "A",
-  "status": "claimed",
+  "status": "completed",
   "code_commit": "a53529fe3eca60036c194a7afd168fc6b64cea33",
   "config_sha256": "210d3ca7cd95fa62cf5d262d6daaa0e56b9d51206c8c7bf60cf8e62e18ca4106",
   "protocol_sha256": "3d58b3089a3e7d25a442ec8aa78638c509fc03fcf2af901e1cfbe2b5ab17607c",
   "base_checkpoint_sha256": "996c2aef33414f72323fbb6e43cbb21c45a1dcf1efb13b53e9636ce0d4ec5668",
-  "shared_inputs_verified": false,
+  "shared_inputs_verified": true,
   "private_artifact_reference": "artifacts/experiments/ablation/BrisT1D-Open/fold0/seed20261114/matched_hidden_evidence/210d3ca7cd95fa62",
-  "summary": null,
-  "elapsed_seconds": null,
-  "note": "Fit full-evidence and history-only hidden readouts on the same finished M04 and source origins. Development only."
+  "summary": {
+    "validation_nll": {
+      "M04_C2_LoRA": 0.16195331524402973,
+      "M12_full_selected": 0.16195331524402973,
+      "M12_full_always_on": 0.16206189514596991,
+      "M12_history_only_selected": 0.16195331524402973,
+      "M12_history_only_always_on": 0.16205764493056504
+    },
+    "candidate_count": 12,
+    "epochs_completed": 72,
+    "train_origins": 91,
+    "validation_origins": 185,
+    "positive_people": 1,
+    "views": {
+      "full": {
+        "selected_epoch": 0,
+        "always_on_epoch": 1,
+        "off_exact": true,
+        "checkpoint_sha256": "07c636c51e07ee77a90eb70646ee2216b9b36214e8d5c6077355f355602e0809"
+      },
+      "history_only": {
+        "selected_epoch": 0,
+        "always_on_epoch": 1,
+        "off_exact": true,
+        "checkpoint_sha256": "fa8334d814540dd77203fac823015844256e861e7896709e65b268238abf0431"
+      }
+    },
+    "paired_report_sha256": "e47403d3c326645bb091141f383f5d82b284cedfffddd4002df9fdbb58c587ee",
+    "formal_core_units_completed": 0
+  },
+  "elapsed_seconds": 120.98520719999942,
+  "note": "Paired source-only feature ablation with the same frozen M04. Validation was used for selection. Formal groups completed: zero."
 }

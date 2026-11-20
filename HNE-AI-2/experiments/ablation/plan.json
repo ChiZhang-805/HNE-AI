@@ -15,7 +15,8 @@
   "entry_points": [
     "src/train_evidence.py",
     "src/train_comparison.py",
-    "experiments/ablation/history_evidence.py"
+    "experiments/ablation/history_evidence.py",
+    "experiments/ablation/compare_hidden_evidence.py"
   ],
   "tasks": [
     {
