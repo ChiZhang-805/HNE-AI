@@ -24,7 +24,8 @@ DIRECTORIES = ('artifacts/local_baselines', 'results/local_baselines',
 SUMMARIES = ('baseline_summary.csv', 'baseline_seed_metrics.csv',
              'baseline_prior_contrasts.csv', 'alarm_summary.csv',
              'alarm_seed_metrics.csv', 'alarm_validation.json',
-             'analysis_manifest.json', 'fold_coverage.csv', 'calibration_bins.csv')
+             'analysis_manifest.json', 'fold_coverage.csv', 'calibration_bins.csv',
+             'within_person_metrics.csv', 'within_person_summary.csv', 'within_person_seed_metrics.csv')
 
 
 def require(ok, message):
@@ -222,6 +223,11 @@ def audit(reader, study_root):
         require(file_hash(path) == checksum, 'Independent input hash mismatch: ' + relative)
         mapped[relative] = checksum
     analysis = reader.json('results/local_experiments/analysis_manifest.json')
+    historical_source = 'scripts/analyze_local_experiments.py'
+    with zipfile.ZipFile(io.BytesIO(reader.read('artifacts/local_output_review/sources.zip'))) as snapshot:
+        archived_analysis = snapshot.read(historical_source)
+    require(digest(archived_analysis) == {k.replace('\\', '/'): v for k, v in analysis['source_sha256'].items()}[historical_source],
+            'Historical analysis snapshot mismatch')
     for name in ('results/local_baselines/run_registry.csv', 'results/local_alarms/run_registry.csv'):
         recorded = {k.replace('\\', '/'): v for k, v in analysis['source_sha256'].items()}
         require(recorded[name] == digest(reader.read(name)), 'Summary source registry mismatch')
@@ -267,8 +273,17 @@ def build(code_root):
     paths.update(ROOT / 'results/local_experiments' / n for n in SUMMARIES)
     paths.update(ROOT / p for p in ('artifacts/local_output_review/validation.json',
                                    'artifacts/local_output_review/sources.zip',
-                                   'scripts/baseline_handoff.py', 'docs/private_handoff.md'))
-    paths.update(directory / p for p in ('audit.json', 'formal_availability.csv', 'B_CODEX_PROMPT.txt'))
+                                   'scripts/baseline_handoff.py', 'scripts/analyze_local_experiments.py',
+                                   'experiments/evaluation/reproduce_historical_baselines.py',
+                                   'docs/private_handoff.md'))
+    paths.update(directory / p for p in ('audit.json', 'formal_availability.csv', 'delivery_matrix.json', 'B_CODEX_PROMPT.txt'))
+    replay = ROOT / 'results/experiments/evaluation/historical_baselines'
+    reproduction = json.loads((replay / 'reproduction.json').read_text(encoding='utf-8'))
+    require(reproduction['status'] == 'passed', 'Historical statistics reproduction has not passed')
+    require(reproduction['runner_sha256'] == file_hash(ROOT / 'experiments/evaluation/reproduce_historical_baselines.py'),
+            'Statistics runner changed after reproduction')
+    require(reproduction['draw_file_sha256'] == file_hash(replay / 'bootstrap_draws.npz'), 'Bootstrap draws changed')
+    paths.update(replay / p for p in ('bootstrap_draws.npz', 'bootstrap_calls.json', 'reproduction.json'))
     files = []
     for path in sorted(paths):
         require(path.resolve(strict=True).is_relative_to(ROOT.resolve()) and not path.is_symlink(), 'Payload escapes paper two')
@@ -279,6 +294,10 @@ def build(code_root):
                     privacy='Private artifacts; never publish this ZIP or individual records',
                     protocol_sha256=PROTOCOL, files=files, formal_common_model_groups=0,
                     historical_model_units=150, historical_alarm_units=150,
+                    historical_bootstrap_reproduced=True,
+                    historical_bootstrap_source='scripts/analyze_local_experiments.py',
+                    historical_bootstrap_runner='experiments/evaluation/reproduce_historical_baselines.py',
+                    recipient_receipt_status='awaiting_confirmation',
                     summary_use='Private independent audit; public aggregates require B review under the fixed statistical contract',
                     data_dependency='Existing HNE-AI-2-private-handoff.zip; configure --study-root to its independent inputs',
                     first_paper_accessed=False)
@@ -297,6 +316,30 @@ def build(code_root):
     (directory / 'validation.json').write_text(json.dumps(validation, indent=2) + '\n', encoding='utf-8')
     (output / 'BASELINE_VALIDATION.json').write_text(json.dumps(validation, indent=2) + '\n', encoding='utf-8')
     (output / 'BASELINE_SHA256SUMS.txt').write_text(f'{validation["archive_sha256"]}  {NAME}\n', encoding='ascii')
+    (output / 'B_CODEX_PROMPT.txt').write_bytes((directory / 'B_CODEX_PROMPT.txt').read_bytes())
+    original = output / 'HNE-AI-2-private-handoff.zip'
+    transfer_path = output / 'TRANSFER_RECEIPT.json'
+    previous = json.loads(transfer_path.read_text(encoding='utf-8')) if transfer_path.exists() else {}
+    superseded = previous.get('superseded_baseline_archive_sha256', [])
+    for entry in previous.get('files', []):
+        if entry['name'] == NAME and entry['sha256'] != validation['archive_sha256'] and entry['sha256'] not in superseded:
+            superseded.append(entry['sha256'])
+    transfer = dict(status='prepared_and_verified_awaiting_recipient_receipt', public_branch='exp/teacher-condition',
+                    public_commit=commit, files=[dict(name=p.name, bytes=p.stat().st_size, sha256=file_hash(p))
+                                                for p in (original, destination)],
+                    baseline_validation=validation, historical_statistics_reproduction=reproduction,
+                    superseded_baseline_archive_sha256=superseded,
+                    formal_common_groups_generated=0, formal_common_groups_delivered=0,
+                    B_code_received=False, recipient_confirmed_received=False, uploaded_private_files=False)
+    transfer_path.write_text(json.dumps(transfer, indent=2) + '\n', encoding='utf-8')
+    header = '# Private transfer contents\n\n'
+    for entry in transfer['files']:
+        header += f'- `{entry["name"]}`: {entry["bytes"]:,} bytes; SHA-256 `{entry["sha256"]}`\n'
+    header += ('\nThe baseline supplement uses the same stable filename and supersedes the checksum in the previous transfer. '
+               'Keep an already extracted historical directory unchanged; extract this ZIP into a separate private receiving directory. '
+               'The original input archive is unchanged. Prepared and verified does not mean received or accepted by B. '
+               f'Public code commit: `{commit}`. Formal common groups generated: **0/30**.\n\n')
+    (output / 'README.md').write_text(header + (ROOT / 'docs/private_handoff.md').read_text(encoding='utf-8'), encoding='utf-8')
     return validation
 
 
