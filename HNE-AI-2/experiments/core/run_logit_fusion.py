@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 import re
 import time
+import zipfile
 
 import psutil
 import torch
@@ -23,6 +24,7 @@ def main():
     parser.add_argument('--anchor-key', required=True)
     parser.add_argument('--expect-digest', required=True)
     parser.add_argument('--code-commit', required=True)
+    parser.add_argument('--wait-for-features-seconds', type=int, default=0)
     args = parser.parse_args()
     if not re.fullmatch(r'core/(BrisT1D-Open|RESILIENT)/fold[0-4]/seed\d+/M04_M10_M12/[a-f0-9]{16}', args.anchor_key):
         raise ValueError('Expected a registered M04/M10/M12 source-only anchor key')
@@ -30,14 +32,13 @@ def main():
     torch.set_num_interop_threads(1)
     if os.name == 'nt':
         psutil.Process().nice(psutil.BELOW_NORMAL_PRIORITY_CLASS)
-    resource_check('cpu')
     anchor = args.anchor_root / 'artifacts/experiments' / args.anchor_key
     manifest = read_json(anchor / 'manifest.json')
     config = manifest['config']
     if config['include_evaluation'] or config['device'] != 'cpu':
         raise ValueError('Cached M13 expects a source-only CPU anchor')
     paths = {name: anchor / name for name in ('manifest.json', 'baseline/candidate0.pt',
-                                              'baseline_features.pt', 'evidence_receipts.json')}
+                                              'evidence_receipts.json')}
     inputs = {name: sha(path) for name, path in paths.items()}
     digest = hashlib.sha256(json.dumps(inputs, sort_keys=True).encode()).hexdigest()
     if digest != args.expect_digest:
@@ -45,6 +46,19 @@ def main():
     key = f"core/{config['dataset']}/fold{config['fold']}/seed{config['seed']}/M13/{digest[:16]}"
     directory = args.anchor_root / 'artifacts/experiments' / key
     output = args.anchor_root / 'results/experiments' / key
+    features = anchor / 'baseline_features.pt'
+    deadline = time.monotonic() + args.wait_for_features_seconds
+    while not zipfile.is_zipfile(features):
+        status = read_json(anchor / 'status.json')
+        if (time.monotonic() >= deadline or status['status'] != 'running'
+                or not psutil.pid_exists(status['pid'])):
+            raise RuntimeError('The original M04 feature cache is not ready')
+        time.sleep(10)
+    resource_check('cpu')
+    if any(sha(path) != inputs[name] for name, path in paths.items()):
+        raise ValueError('Registered anchor files changed while waiting')
+    paths['baseline_features.pt'] = features
+    inputs['baseline_features.pt'] = sha(features)
     provenance = dict(run_key=key, config=config, anchor_key=args.anchor_key, inputs=inputs,
                       config_sha256=digest, protocol_sha256=manifest['protocol_sha256'], code_commit=args.code_commit,
                       source_sha256={p.name: sha(p) for p in (Path(__file__), Path(__file__).with_name('run.py'))},

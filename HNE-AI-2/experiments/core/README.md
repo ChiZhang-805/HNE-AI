@@ -41,6 +41,6 @@ Windows长任务可用 `start_local.ps1 -PythonExecutable <authorized-python.exe
 
 新开发运行可以在独立配置中设置 `include_logit_fusion: true`，让 M13 使用共同 M04 的 logit 和与 M10/M12 相同的节点、边和掩码。M13 使用同一组六候选、六轮预算和验证 NLL 选择规则，同时保留 selected 和 always-on。每种方法显式关闭时直接返回共同 M04 的冻结输出。冻结前后独立前向的最大 logit 误差另写入验证收据。
 
-已有开发运行若正在计算 M10，可用 `run_logit_fusion.py` 单独计算 M13。待原运行写完 M04 选中检查点和 `baseline_features.pt` 后，先为四份依赖文件计算 SHA-256：`manifest.json`、`baseline/candidate0.pt`、`baseline_features.pt`、`evidence_receipts.json`。以文件相对路径为键，按 `json.dumps(hashes, sort_keys=True).encode()` 序列化，再算 SHA-256 得到运行配置摘要。登记新的 M13 运行键后，以 `--anchor-root` 指向原运行的项目根目录，提供 `--anchor-key`、`--expect-digest` 和 `--code-commit`。该入口核对同源人员、起点及证据，独立存储 M13 结果和选择记录。
+已有开发运行可用 `run_logit_fusion.py` 单独计算 M13。原运行写完选中检查点后，为 `manifest.json`、`baseline/candidate0.pt` 和 `evidence_receipts.json` 计算 SHA-256。以文件相对路径为键，按 `json.dumps(hashes, sort_keys=True).encode()` 序列化，再算 SHA-256 得到运行配置摘要。登记新的 M13 运行键后，以 `--anchor-root` 指向原运行的项目根目录，提供 `--anchor-key`、`--expect-digest` 和 `--code-commit`。缓存尚在写入时可用 `--wait-for-features-seconds` 设置等待上限。该入口将完成的缓存摘要写入来源收据，并核对同源人员、起点及证据。
 
 在空闲设备上先运行 `python experiments/core/verify_stages.py --device cuda`，用公开原骨干和合成窗口验证四个阶段及检查点重载。CPU 检查已通过，CUDA 实际数值和耗时待验证。新 CUDA 开发运行用独立配置设置 `device: "cuda"`，沿用源侧分折和一条 CPU 线程，并在认领后执行 `run.py --config <cuda-config.json> --code-commit <source-commit>`。设备与配置进入来源记录，CUDA 运行重新训练其共同 M04，不能跨设备混用旧运行锚点。原有 CPU 运行按照其不可变源码和配置继续。
