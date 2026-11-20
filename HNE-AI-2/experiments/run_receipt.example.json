@@ -1,0 +1,17 @@
+{
+  "example_only": true,
+  "run_key": "core/BrisT1D-Open/fold0/seed20261113/M04/<config_digest>",
+  "owner": "A",
+  "status": "planned",
+  "code_commit": null,
+  "protocol_sha256": "3d58b3089a3e7d25a442ec8aa78638c509fc03fcf2af901e1cfbe2b5ab17607c",
+  "config_sha256": null,
+  "base_checkpoint_sha256": null,
+  "teacher_checkpoint_sha256": null,
+  "shared_inputs_verified": false,
+  "private_artifact_reference": null,
+  "summary": null,
+  "elapsed_seconds": null,
+  "failure": null,
+  "note": "Template only. Replace placeholders, identify input dependencies and push a claim receipt before execution. Never put participant records, absolute personal paths or secrets in this public receipt."
+}

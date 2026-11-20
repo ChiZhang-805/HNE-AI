@@ -1,0 +1,52 @@
+{
+  "id": "transfer",
+  "title": "跨人跨域迁移与适配边界",
+  "owner": "A",
+  "reviewer": "B",
+  "status": "planned",
+  "paper_bundles": [
+    "TRANSFER",
+    "TSUP"
+  ],
+  "core_methods": [],
+  "depends_on_for_full_runs": [
+    "core"
+  ],
+  "research_question": "重学当地参考规律后，固定指导规则能否跨域复用；需要多少目标监督？",
+  "entry_points": [
+    "scripts/run_guidance_transfer.py",
+    "configs/guidance_transfer.json"
+  ],
+  "tasks": [
+    {
+      "id": "transfer-1",
+      "status": "planned",
+      "description": "完成Bris↔RES及人体→Air的冻结T0和无标签参考重学T1"
+    },
+    {
+      "id": "transfer-2",
+      "status": "planned",
+      "description": "单列T2/T3目标监督适配预算及失败边界"
+    },
+    {
+      "id": "transfer-3",
+      "status": "planned",
+      "description": "交付锁定源模型、阈值、适配记录；由B独立回放和评分"
+    }
+  ],
+  "acceptance": [
+    "目标监督与无标签适配不能混称",
+    "外部保留结局在框架/选择锁定后评分",
+    "所有迁移比较引用相同源检查点与目标合法起点"
+  ],
+  "resources": "CPU for preparation and bounded checks; full refits require measured capacity, dedicated GPU recommended where appropriate; no mandatory API",
+  "run_receipts": "experiments/transfer/runs/",
+  "private_outputs": {
+    "artifacts": "artifacts/experiments/transfer/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/",
+    "results": "results/experiments/transfer/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/"
+  },
+  "delivery_status": "Planning only; no execution or result completion is claimed by this publication.",
+  "pending_local_entry_points": [
+    "scripts/prepare_air_quality.py"
+  ]
+}

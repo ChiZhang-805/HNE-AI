@@ -1,0 +1,51 @@
+{
+  "id": "mechanisms",
+  "title": "合成机制与冻结干预",
+  "owner": "B",
+  "reviewer": "A",
+  "status": "planned",
+  "paper_bundles": [
+    "MECH",
+    "SYN"
+  ],
+  "core_methods": [],
+  "depends_on_for_full_runs": [
+    "core"
+  ],
+  "research_question": "证据与风险是否响应可控前兆，并能区分良性变化和无前兆冲击？",
+  "entry_points": [
+    "src/evidence_alignment.py"
+  ],
+  "tasks": [
+    {
+      "id": "mechanisms-1",
+      "status": "planned",
+      "description": "先完成按完整系统划分的配对合成生成器和固定终点检查"
+    },
+    {
+      "id": "mechanisms-2",
+      "status": "planned",
+      "description": "比较耦合、相位、幅度/方差、良性情境及无前兆冲击"
+    },
+    {
+      "id": "mechanisms-3",
+      "status": "planned",
+      "description": "冻结后对内部/融合同时施加错序、错边、错人等干预并评分真实变点"
+    }
+  ],
+  "acceptance": [
+    "共享轨迹/噪声，按完整系统分割，不按重叠窗口随机分割",
+    "变点真值仅用于评分，不能进入推理输入",
+    "良性或突发单类保留NA；不改终点强造阳性"
+  ],
+  "resources": "CPU for preparation and bounded checks; full refits require measured capacity, dedicated GPU recommended where appropriate; no mandatory API",
+  "run_receipts": "experiments/mechanisms/runs/",
+  "private_outputs": {
+    "artifacts": "artifacts/experiments/mechanisms/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/",
+    "results": "results/experiments/mechanisms/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/"
+  },
+  "delivery_status": "Planning only; no execution or result completion is claimed by this publication.",
+  "pending_local_entry_points": [
+    "configs/paper_experiments.json"
+  ]
+}

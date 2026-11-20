@@ -1,0 +1,53 @@
+{
+  "id": "evaluation",
+  "title": "独立评价统计与论文图表",
+  "owner": "B",
+  "reviewer": "A",
+  "status": "planned",
+  "paper_bundles": [
+    "CAL",
+    "CASE",
+    "INVAR"
+  ],
+  "core_methods": [],
+  "depends_on_for_full_runs": [],
+  "research_question": "所有方法是否在同一估计对象上被公平评分，增益和不确定性是否支持论文主张？",
+  "entry_points": [
+    "scripts/export_guidance_tables.py"
+  ],
+  "tasks": [
+    {
+      "id": "evaluation-1",
+      "status": "planned",
+      "description": "固化键/来源校验、折内与人员内指标、配对bootstrap、六项主检验Holm和未知结局回放"
+    },
+    {
+      "id": "evaluation-2",
+      "status": "planned",
+      "description": "统一校准、风险/保留率、预定病例选择；验收工程合同而非复制实现测试"
+    },
+    {
+      "id": "evaluation-3",
+      "status": "planned",
+      "description": "由同一结果注册生成主文/附录全部图表与源CSV；A复核机制和方法文字"
+    }
+  ],
+  "acceptance": [
+    "各种子先算指标再平均；不把bootstrap或种子当独立新样本",
+    "阈值只看源验证，未知报警保留静默影响；确认性与探索性分析分开",
+    "英文居中标题、三线表、数字为主、主表公开算法有引用且Ours最后，无表注、无框架图"
+  ],
+  "resources": "CPU for preparation and bounded checks; full refits require measured capacity, dedicated GPU recommended where appropriate; no mandatory API",
+  "run_receipts": "experiments/evaluation/runs/",
+  "private_outputs": {
+    "artifacts": "artifacts/experiments/evaluation/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/",
+    "results": "results/experiments/evaluation/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/"
+  },
+  "delivery_status": "Planning only; no execution or result completion is claimed by this publication.",
+  "pending_local_entry_points": [
+    "scripts/analyze_local_experiments.py",
+    "scripts/replay_local_baselines.py",
+    "scripts/export_local_experiments.py",
+    "scripts/review_local_outputs.py"
+  ]
+}

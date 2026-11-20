@@ -1,0 +1,54 @@
+{
+  "id": "robustness",
+  "title": "缺失漂移与表示稳健性",
+  "owner": "B",
+  "reviewer": "A",
+  "status": "planned",
+  "paper_bundles": [
+    "STRESS",
+    "REPRESENT"
+  ],
+  "core_methods": [],
+  "depends_on_for_full_runs": [
+    "core",
+    "evidence_controls"
+  ],
+  "research_question": "指导在缺失、噪声、参考污染、单位和通道变化下何时失效？",
+  "entry_points": [
+    "src/protocol.py",
+    "scripts/verify_design_core.py"
+  ],
+  "tasks": [
+    {
+      "id": "robustness-1",
+      "status": "planned",
+      "description": "实现可复现的一因素扰动器：块缺失、情境缺失、参考污染、噪声、时钟延迟和人员错配"
+    },
+    {
+      "id": "robustness-2",
+      "status": "planned",
+      "description": "完成单位/重复字段/通道表示变化检查；同步变换参考元数据"
+    },
+    {
+      "id": "robustness-3",
+      "status": "planned",
+      "description": "对A冻结的模型做成对评分；输出损失增加、覆盖、关闭和失败分层"
+    }
+  ],
+  "acceptance": [
+    "保留干净标签和起点，不因扰动重新筛选有利子集",
+    "缺失不当零观测；单因素与组合实验分开",
+    "数值接口恒等与经验稳健性是不同结论"
+  ],
+  "resources": "CPU for preparation and bounded checks; full refits require measured capacity, dedicated GPU recommended where appropriate; no mandatory API",
+  "run_receipts": "experiments/robustness/runs/",
+  "private_outputs": {
+    "artifacts": "artifacts/experiments/robustness/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/",
+    "results": "results/experiments/robustness/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/"
+  },
+  "delivery_status": "Planning only; no execution or result completion is claimed by this publication.",
+  "pending_local_entry_points": [
+    "configs/paper_experiments.json",
+    "scripts/verify_complete_interfaces.py"
+  ]
+}

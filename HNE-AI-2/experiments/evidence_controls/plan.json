@@ -1,0 +1,57 @@
+{
+  "id": "evidence_controls",
+  "title": "统计结构检索与错配证据",
+  "owner": "B",
+  "reviewer": "A",
+  "status": "planned",
+  "paper_bundles": [
+    "EVID"
+  ],
+  "core_methods": [
+    "M07",
+    "M08",
+    "M09",
+    "M11"
+  ],
+  "depends_on_for_full_runs": [
+    "core"
+  ],
+  "research_question": "收益来自条件失配、一般结构、历史检索、缺失模式，还是额外读出参数？",
+  "entry_points": [
+    "src/evidence_alignment.py",
+    "src/pack_guidance.py"
+  ],
+  "tasks": [
+    {
+      "id": "evidence_controls-1",
+      "status": "planned",
+      "description": "在实验目录实现M07统计、M08结构、M09时间合格检索和M11打乱证据适配器"
+    },
+    {
+      "id": "evidence_controls-2",
+      "status": "planned",
+      "description": "维持相同S/L冻结接口，补全coverage-only、raw-error、node/edge-only与无证据控制"
+    },
+    {
+      "id": "evidence_controls-3",
+      "status": "planned",
+      "description": "区分重训对照和冻结推理错配；记录证据可用性与时间资格"
+    }
+  ],
+  "acceptance": [
+    "依赖方法共用A交付的M04，不能私自另训基线",
+    "检索库与邻居选择只见合法历史；未来值仅可用作训练目标",
+    "完整融合保留的信息与额外摘要必须显式对齐"
+  ],
+  "resources": "CPU for preparation and bounded checks; full refits require measured capacity, dedicated GPU recommended where appropriate; no mandatory API",
+  "run_receipts": "experiments/evidence_controls/runs/",
+  "private_outputs": {
+    "artifacts": "artifacts/experiments/evidence_controls/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/",
+    "results": "results/experiments/evidence_controls/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/"
+  },
+  "delivery_status": "Planning only; no execution or result completion is claimed by this publication.",
+  "pending_local_entry_points": [
+    "scripts/run_cached_evidence.py",
+    "scripts/run_cached_null_controls.py"
+  ]
+}

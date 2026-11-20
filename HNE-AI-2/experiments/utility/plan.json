@@ -1,0 +1,51 @@
+{
+  "id": "utility",
+  "title": "折外效用与条件干预",
+  "owner": "A",
+  "reviewer": "B",
+  "status": "planned",
+  "paper_bundles": [
+    "GATE"
+  ],
+  "core_methods": [],
+  "depends_on_for_full_runs": [
+    "core",
+    "evaluation"
+  ],
+  "research_question": "能否在结局未知时预测开启指导的效用并降低有害干预？",
+  "entry_points": [
+    "src/precursor_guidance.py"
+  ],
+  "tasks": [
+    {
+      "id": "utility-1",
+      "status": "planned",
+      "description": "构建整条S/L/事件头/G及其选择均排除被评分人员的嵌套OOF"
+    },
+    {
+      "id": "utility-2",
+      "status": "planned",
+      "description": "以成熟标签的BCE_off−BCE_on训练效用回归器，源验证锁阈值"
+    },
+    {
+      "id": "utility-3",
+      "status": "planned",
+      "description": "比较always-off/on、质量门控、学习门控与不可部署oracle；保存所有起点"
+    }
+  ],
+  "acceptance": [
+    "禁止使用旧pilot的样本内L缓存充当OOF",
+    "部署决策不得读取label或真实utility",
+    "报告全体风险、保留率、有害比例和失败，不只评接受子集"
+  ],
+  "resources": "CPU for preparation and bounded checks; full refits require measured capacity, dedicated GPU recommended where appropriate; no mandatory API",
+  "run_receipts": "experiments/utility/runs/",
+  "private_outputs": {
+    "artifacts": "artifacts/experiments/utility/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/",
+    "results": "results/experiments/utility/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/"
+  },
+  "delivery_status": "Planning only; no execution or result completion is claimed by this publication.",
+  "pending_local_entry_points": [
+    "configs/paper_experiments.json"
+  ]
+}

@@ -11,3 +11,10 @@
 *.log
 .env*
 __pycache__/
+
+# New experiment-local outputs and generated planning lists
+/experiments/**/outputs/
+/experiments/**/artifacts/
+/experiments/**/results/
+/configs/planned_runs.csv
+/configs/paper_runs.csv

@@ -1,0 +1,234 @@
+{
+  "project": "HNE-AI-2",
+  "status": "collaboration_layout_ready_no_new_runs_claimed",
+  "roles": {
+    "A": "本侧研究者及本聊天Codex：方法与训练",
+    "B": "另一位研究者及其Codex：对照与评估"
+  },
+  "protocol_file": "configs/daily_protocol.json",
+  "protocol_sha256": "3d58b3089a3e7d25a442ec8aa78638c509fc03fcf2af901e1cfbe2b5ab17607c",
+  "interface_contract": "docs/interfaces.md",
+  "coordination": "docs/collaboration.md",
+  "packages": [
+    {
+      "id": "teacher",
+      "path": "experiments/teacher",
+      "owner": "A"
+    },
+    {
+      "id": "baselines",
+      "path": "experiments/baselines",
+      "owner": "B"
+    },
+    {
+      "id": "core",
+      "path": "experiments/core",
+      "owner": "A"
+    },
+    {
+      "id": "ablation",
+      "path": "experiments/ablation",
+      "owner": "A"
+    },
+    {
+      "id": "evidence_controls",
+      "path": "experiments/evidence_controls",
+      "owner": "B"
+    },
+    {
+      "id": "utility",
+      "path": "experiments/utility",
+      "owner": "A"
+    },
+    {
+      "id": "transfer",
+      "path": "experiments/transfer",
+      "owner": "A"
+    },
+    {
+      "id": "robustness",
+      "path": "experiments/robustness",
+      "owner": "B"
+    },
+    {
+      "id": "mechanisms",
+      "path": "experiments/mechanisms",
+      "owner": "B"
+    },
+    {
+      "id": "horizons",
+      "path": "experiments/horizons",
+      "owner": "A"
+    },
+    {
+      "id": "efficiency",
+      "path": "experiments/efficiency",
+      "owner": "A"
+    },
+    {
+      "id": "evaluation",
+      "path": "experiments/evaluation",
+      "owner": "B"
+    }
+  ],
+  "method_owners": {
+    "M01": {
+      "owner": "B",
+      "package": "baselines"
+    },
+    "M03": {
+      "owner": "B",
+      "package": "baselines"
+    },
+    "M02": {
+      "owner": "A",
+      "package": "core"
+    },
+    "M04": {
+      "owner": "A",
+      "package": "core"
+    },
+    "M05": {
+      "owner": "A",
+      "package": "core"
+    },
+    "M06": {
+      "owner": "A",
+      "package": "core"
+    },
+    "M10": {
+      "owner": "A",
+      "package": "core"
+    },
+    "M12": {
+      "owner": "A",
+      "package": "core"
+    },
+    "M13": {
+      "owner": "A",
+      "package": "core"
+    },
+    "M07": {
+      "owner": "B",
+      "package": "evidence_controls"
+    },
+    "M08": {
+      "owner": "B",
+      "package": "evidence_controls"
+    },
+    "M09": {
+      "owner": "B",
+      "package": "evidence_controls"
+    },
+    "M11": {
+      "owner": "B",
+      "package": "evidence_controls"
+    }
+  },
+  "status_values": [
+    "planned",
+    "claimed",
+    "running",
+    "completed",
+    "failed",
+    "waiting_dependency"
+  ],
+  "private_artifact_pattern": "artifacts/experiments/<topic>/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/",
+  "private_prediction_pattern": "results/experiments/<topic>/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/",
+  "public_run_receipts": "experiments/<topic>/runs/",
+  "shared_train_integrator": "A",
+  "shared_evaluation_integrator": "B",
+  "formal_core_units": 390,
+  "initial_formal_units": 990,
+  "claim_requirement": "Push a sanitized claim receipt before starting a unique run key; resolve remote conflicts; local file locks do not coordinate machines.",
+  "planned_method_catalog": [
+    {
+      "id": "M01",
+      "name": "personal_summary_HGB",
+      "role": "simple_baseline"
+    },
+    {
+      "id": "M02",
+      "name": "full_S_evidence_only",
+      "role": "large_model_necessity_with_complete_evidence"
+    },
+    {
+      "id": "M03",
+      "name": "C2_probe",
+      "role": "pretrained_representation"
+    },
+    {
+      "id": "M04",
+      "name": "C2_LoRA",
+      "role": "frozen_common_checkpoint"
+    },
+    {
+      "id": "M05",
+      "name": "S_logit_residual",
+      "role": "compressed_evidence_output_correction"
+    },
+    {
+      "id": "M06",
+      "name": "full_evidence_input_embedding_residual",
+      "role": "complete_node_edge_input_interface"
+    },
+    {
+      "id": "M07",
+      "name": "ordinary_statistical_attention_guidance",
+      "role": "same_capacity_nonconditional_evidence"
+    },
+    {
+      "id": "M08",
+      "name": "AME_style_structural_attention_guidance",
+      "role": "general_structure_not_official_reproduction"
+    },
+    {
+      "id": "M09",
+      "name": "TimeRAF_style_C2_retrieval",
+      "role": "historical_retrieval_adaptation"
+    },
+    {
+      "id": "M10",
+      "name": "SAGE_fixed",
+      "role": "primary_method"
+    },
+    {
+      "id": "M11",
+      "name": "shuffled_S_attention_guidance",
+      "role": "evidence_alignment_control"
+    },
+    {
+      "id": "M12",
+      "name": "full_evidence_fusion",
+      "role": "complete_node_edge_evidence_learned_late_fusion"
+    },
+    {
+      "id": "M13",
+      "name": "full_evidence_logit_fusion",
+      "role": "complete_node_edge_output_fusion"
+    }
+  ],
+  "paper_bundle_ids": [
+    "CORE",
+    "EXT",
+    "ABL",
+    "GATE",
+    "TRANSFER",
+    "TSUP",
+    "STRESS",
+    "MECH",
+    "SYN",
+    "LEAD",
+    "DATA",
+    "SENS",
+    "CAL",
+    "CASE",
+    "INVAR",
+    "BACKBONE",
+    "ONLINE",
+    "EVID",
+    "REPRESENT"
+  ],
+  "configuration_status": "Planning only: A must reconcile executable configs with the 13-method plan before formal runs; existing runtime configs are preserved.",
+  "publication_scope": "Experiment directories, ownership, interfaces and validation only. No new training implementation or experimental results are published in this change."
+}

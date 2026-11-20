@@ -1,0 +1,52 @@
+{
+  "id": "baselines",
+  "title": "公开基线与冻结探针",
+  "owner": "B",
+  "reviewer": "A",
+  "status": "planned",
+  "paper_bundles": [
+    "EXT"
+  ],
+  "core_methods": [
+    "M01",
+    "M03"
+  ],
+  "depends_on_for_full_runs": [],
+  "research_question": "在同一终点、起点、信息预算和选择规则下，强公开方法能达到什么水平？",
+  "entry_points": [
+    "scripts/run_public_baselines.py",
+    "scripts/fit_public_trees.py"
+  ],
+  "tasks": [
+    {
+      "id": "baselines-1",
+      "status": "planned",
+      "description": "核对既有HGB/RF/XGBoost/LightGBM/HYDRA入口、评价规则及候选拟合预算"
+    },
+    {
+      "id": "baselines-2",
+      "status": "planned",
+      "description": "实现PatchTST-event、CATCH-event、A2P-event和冻结C2 probe的任务适配"
+    },
+    {
+      "id": "baselines-3",
+      "status": "planned",
+      "description": "接入统一六候选选择预算、全合法起点、3种子与人员折；交付预测适配器"
+    }
+  ],
+  "acceptance": [
+    "不填入原论文其他任务成绩",
+    "训练/验证/评估人员分离且全方法键一致",
+    "无GPU也能运行短检查；正式资源和输入单独登记"
+  ],
+  "resources": "CPU for preparation and bounded checks; full refits require measured capacity, dedicated GPU recommended where appropriate; no mandatory API",
+  "run_receipts": "experiments/baselines/runs/",
+  "private_outputs": {
+    "artifacts": "artifacts/experiments/baselines/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/",
+    "results": "results/experiments/baselines/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/"
+  },
+  "delivery_status": "Planning only; no execution or result completion is claimed by this publication.",
+  "pending_local_entry_points": [
+    "scripts/run_local_baselines.py"
+  ]
+}

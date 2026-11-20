@@ -1,5 +1,12 @@
 # SAGE-TS · Small-model guidance for early warning
 
+## Experiment-based collaboration
+
+Two researchers share one codebase organized by experiment. Start with the [assignment and handoff guide](docs/collaboration.md), [experiment directories](experiments/README.md), and [shared interface contract](docs/interfaces.md). A owns method/training; B owns baselines/evaluation. Run `python scripts/validate_collaboration.py` before claiming work.
+
+This directory update publishes planning and ownership only. Existing implementation and reported results remain in place; new local training code and results are not included. Missing helper entries are explicitly listed in each `plan.json`.
+
+
 Can a small model learn an individual's usual sensor relationships and use deviations to improve a time-series foundation model's warning of a sustained abnormality? SAGE-TS uses these deviations to bias attention in the last four blocks of Chronos-2. This directory contains the study design, implementation and single-fold development results for the second HNE-AI project.
 
 | Material | Entry |
