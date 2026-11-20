@@ -55,6 +55,12 @@
 
 ## 运行登记、产物与资源
 
+### 2026-11-20交接状态
+
+B自报`exp/evaluation-baselines`提交`902e675`完成CATCH/PatchTST共60个开发预算检查点的核验与评分准备，51项测试通过，尚未启动真实外层评价。其代码/收据尚未取得，不能标为A已复核。403原因已只读核实为账户只有read权限；交回增量Git bundle或fork+PR，待A审查并同步脱敏运行登记后确认无重复认领。
+
+A提供历史150组基线及150组报警回放私有补充包、独立校验工具和30组正式共同模型缺口清单，入口为[交接说明](private_handoff.md)。B先完成代码交回与历史复核；A继续源侧M04/M10/M12开发训练。正式30组M04/S及匹配M10/M12/M13仍未交付；旧pilot、工程检查及每人四窗口的短预算不能替代正式同预算实验。
+
 一运行键只允许一个执行者。启动前在对应`runs/`提交脱敏认领收据并确认远端没有重复；本地文件锁不能协调两台机器。示例见[收据模板](../experiments/run_receipt.example.json)。计划状态不代表认领，认领不代表运行完成。
 
 新私有输出使用`artifacts/experiments/<topic>/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/`及对应`results/experiments/.../`。`config_digest`区分设置，不是方案版本号。旧产物留原位置并在manifest中引用。公共仓库只提交审核过的代码、计划、脱敏收据及获授权公开的汇总；不提交逐人数据、预测、个人校准、权重、密钥或完整私有manifest。
