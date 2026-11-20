@@ -132,8 +132,13 @@ def write_csv(path, rows):
         writer.writeheader(); writer.writerows(rows)
 
 
-def audit_person(model, person, architecture, component, split, config):
+def audit_person(model, person, architecture, component, split, config, calibration_policy='independent'):
     calibration = calibrate_person(model, person, config['personal_steps'])
+    if calibration_policy == 'shared_H':
+        calibration['bias'][1:] = calibration['bias'][0].clone()
+        calibration['log_scale'][1:] = calibration['log_scale'][0].clone()
+    elif calibration_policy != 'independent':
+        raise ValueError(calibration_policy)
     rows = []
     periods = [('reference_score', 28, 56)]
     if len(person.raw) >= 88 * 24:
