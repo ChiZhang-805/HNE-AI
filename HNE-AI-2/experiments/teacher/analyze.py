@@ -42,6 +42,9 @@ def main():
     for key, people in matched_vs_older.items():
         values = [p['older_conditions'] - p['aligned'] for p in people.values()]
         contrasts[key] = paired_interval(values, summary['config']['seed'])
+    checks = [r for r in summary['conditional_gains'] if r['architecture'] == 'residual'
+              and r['mode'] == 'aligned' and r['calibrated']]
+    supported = bool(checks) and all(r['gain_NE']['interval'][0] > 0 for r in checks)
     result = dict(
         source_person_metrics_sha256=hashlib.sha256((directory / 'person_metrics.csv').read_bytes()).hexdigest(),
         analysis_source_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
@@ -52,7 +55,10 @@ def main():
         matched_condition_advantage=contrasts,
         contrast_definition='HNE NLL with causally older conditions minus HNE NLL with aligned conditions; positive favors aligned',
         uncertainty='Person resampling conditional on fitted models and this development fold; does not include refitting/selection uncertainty',
-        interpretation='Residual conditions reduce the degradation of the shared teacher, but stable positive conditional information is not established. Older-condition contrasts are diagnostic and are not causal identification.',
+        positive_conditional_gain_across_audited_windows=supported,
+        interpretation=('Positive conditional gain on the audited windows; broader validation remains required.' if supported
+                        else 'Stable positive conditional information across the audited windows is not established.'),
+        negative_control_limit='Older-condition contrasts are diagnostic and are not causal identification.',
         model_selection_changed=False,
     )
     (directory / 'interpretation.json').write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')

@@ -1,6 +1,6 @@
 {
   "project": "HNE-AI-2",
-  "status": "collaboration_layout_ready_no_new_runs_claimed",
+  "status": "A_source_development_running_formal_study_pending",
   "roles": {
     "A": "本侧研究者及本聊天Codex：方法与训练",
     "B": "另一位研究者及其Codex：对照与评估"
@@ -229,6 +229,6 @@
     "EVID",
     "REPRESENT"
   ],
-  "configuration_status": "13 method IDs aligned; full-fold orchestration and matched candidate selection remain pending.",
+  "configuration_status": "13 method IDs aligned; matched six-candidate M10/M12 development runner implemented; full-fold orchestration remains pending.",
   "publication_scope": "Experiment organization, input isolation, corrected runtime and private-handoff tooling. Private payloads and new experimental results are not published."
 }

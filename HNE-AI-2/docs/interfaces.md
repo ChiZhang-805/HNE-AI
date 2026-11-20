@@ -26,7 +26,7 @@ M04是共同无指导锚点。同一外层折/种子的M10/M12/M13及其他依�
 
 内部指导接口通过`pack_bias`与Chronos后四层attention接口接入；完整输入残差经过所有原生block，不能复用旧输入下的前缀hidden作为其训练前向。L与事件头在指导/融合阶段冻结，梯度可穿过冻结骨干回传到输入残差。显式关闭恢复M04；有效证据的数值为零不等于关闭。M02证据独立头的epoch0不是M04回退，不能套用残差分支的“关闭”含义。
 
-源验证NLL选型；正式残差最少训练6轮，但第1轮起的检查点均参加选型，另含epoch0无干预候选。分别保存always-on和selected结果。A须核验公开入口支持的学习率与轮次配置，补齐公平候选选择的完整编排；不能把单一设置视作完成全预算比较。
+源验证NLL选型；正式残差最少训练6轮，但第1轮起的检查点均参加选型，另含epoch0无干预候选。分别保存always-on和selected结果。旧的 scripts/run_key_comparison.py 入口仍是一个预设学习率。新的 experiments/core/run.py 已实现M10与M12各六候选（3个学习率×2个weight decay）、共同M04及node/edge-only控制，并保存selected和always-on；当前配置仅为单源折开发检查，全折和其余方法编排仍待完成。实际完成状态见 experiments/core/runs/matched_guidance.json，不能把代码存在当作运行完成。
 
 ## 方法输出：共同的可评估预测记录
 
