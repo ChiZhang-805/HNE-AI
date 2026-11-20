@@ -26,10 +26,23 @@
     "threads": 1,
     "priority": "below_normal",
     "verified_at_utc": "2026-11-20T05:22:32.419668+00:00",
-    "last_verified_completed_epoch": 4,
+    "last_verified_completed_epoch": 5,
     "session_interruption_checkpoint_preserved": true,
     "unrecorded_interrupted_compute_seconds": null,
     "total_timing_complete": false,
-    "last_baseline_epoch_seconds": 384.1486253000003
+    "last_baseline_epoch_seconds": 517.3916935000016,
+    "source_validation_anchor_spot_check_windows": 9,
+    "source_validation_anchor_spot_check_max_logit_error": 0.0,
+    "synthetic_stage_checks": {
+      "device": "cpu",
+      "passed": true,
+      "methods": [
+        "M04",
+        "M10",
+        "M12",
+        "M13"
+      ],
+      "cuda_training_verified": false
+    }
   }
 }

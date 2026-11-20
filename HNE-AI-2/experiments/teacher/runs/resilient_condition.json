@@ -7,11 +7,17 @@
   "config_sha256": "66f2f1246acad6eff9eb376827c75e128d7ebfd18ec2cf155c0068e7de0251a8",
   "shared_inputs_verified": true,
   "summary": {
-    "completed_candidates": 12,
+    "completed_candidates": 14,
     "event_labels_loaded": false,
     "formal_core_units_completed": 0
   },
   "elapsed_seconds": null,
   "private_artifact_reference": "artifacts/experiments/teacher/RESILIENT/fold0/seed20261114/conditional_teacher/66f2f1246acad6ef",
-  "note": "Fixed RESILIENT source-fold replication of the Bris teacher experiment. No event labels or outer fold; one CPU thread. Development only."
+  "note": "Fixed RESILIENT source-fold replication of the Bris teacher experiment. No event labels or outer fold; one CPU thread. Development only.",
+  "continuation": {
+    "completed_candidates_reused": 14,
+    "prior_invocation_seconds": 480.58353900000293,
+    "reason": "Memory guard stopped the first invocation",
+    "training_config_unchanged": true
+  }
 }
