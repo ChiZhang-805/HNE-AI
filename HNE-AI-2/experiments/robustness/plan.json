@@ -16,7 +16,8 @@
   "research_question": "指导在缺失、噪声、参考污染、单位和通道变化下何时失效？",
   "entry_points": [
     "src/protocol.py",
-    "scripts/verify_design_core.py"
+    "scripts/verify_design_core.py",
+    "scripts/verify_complete_interfaces.py"
   ],
   "tasks": [
     {
@@ -48,7 +49,6 @@
   },
   "delivery_status": "Planning only; no execution or result completion is claimed by this publication.",
   "pending_local_entry_points": [
-    "configs/paper_experiments.json",
-    "scripts/verify_complete_interfaces.py"
+    "configs/paper_experiments.json"
   ]
 }

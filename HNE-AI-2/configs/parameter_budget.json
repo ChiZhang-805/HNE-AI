@@ -1,0 +1,41 @@
+{
+  "status": "instantiated_module_budget_not_a_trained_model",
+  "parameters": {
+    "small_predictor": 120736,
+    "guidance_heads": 866,
+    "event_head": 70017,
+    "utility_gate": 13
+  },
+  "control_heads": {
+    "full_evidence_fusion": 897,
+    "full_S_evidence_only": 897,
+    "full_evidence_input_embedding_residual": 1785,
+    "full_evidence_logit_fusion": 905,
+    "summary_hidden_fusion": 721,
+    "summary_logit_residual": 856
+  },
+  "planned_control_heads": {
+    "status": "design_arithmetic_not_instantiated",
+    "retained_node_only_input_ablation": 1546
+  },
+  "chronos2_local_tensor_parameters": 119477664,
+  "planned_lora_parameters": 196608,
+  "single_deployment_path_added_parameters": 388240,
+  "personal_parameters_per_channel": 6,
+  "cross_fit_small_copies": 3,
+  "small_components": {
+    "input": 2432,
+    "blocks": 99840,
+    "reference_projection": 4096,
+    "query": 4096,
+    "key": 4096,
+    "message": 4096,
+    "head": 2080
+  },
+  "guidance_components": {
+    "time": 673,
+    "group": 193
+  },
+  "weight_metadata_source": "tools/models/chronos-2/model.safetensors",
+  "gpu_used": false
+}

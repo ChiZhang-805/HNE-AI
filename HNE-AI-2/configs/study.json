@@ -1,6 +1,6 @@
 {
   "name": "SAGE-TS",
-  "status": "Bris source training and frozen Bris-to-RESILIENT development comparison; formal multi-fold runs pending",
+  "status": "Framework implementation available; full matched multi-fold experiments pending",
   "development_transfer_config": "configs/guidance_transfer.json",
   "development_alarm_config": "configs/alarm_replay.json",
   "protocol_source": "daily_protocol.json",
@@ -229,7 +229,9 @@
     ],
     "gradient_clip_norm": 1.0,
     "event_max_epochs": 40,
-    "minimum_selection_epoch": 6,
+    "minimum_selection_epoch": 1,
+    "minimum_training_epochs": 6,
+    "selection_contract_status": "implemented_in_full_and_contract_check; legacy_profiles_preserved; full_tuning_orchestration_pending",
     "patience": 8,
     "maximum_hyperparameter_candidates_per_method": 8,
     "effective_batch": 32,
@@ -267,10 +269,11 @@
   "validation_status": "previously exposed development people; not untouched tests",
   "primary_metric": "within-fold pair-weighted AUROC",
   "secondary_metrics": [
+    "within_person_pair_weighted_AUROC",
     "AUPRC",
     "Brier",
     "NLL",
-    "event_recall_at_1_false_alert_per_30_person_days",
+    "event_recall_at_1_false_alert_per_30_scorable_issue_days",
     "operational_event_lead_time"
   ],
   "target_delta_auroc": 0.04,
@@ -283,5 +286,20 @@
   "external_test_end_exclusive": "2017-03-01",
   "external_test_outcomes": "not constructed",
   "gpu_policy": "First paper has priority; default two-thread below-normal-priority CPU; refuse shared GPU when foreign compute processes exist",
-  "experiment_matrix": "experiment_matrix.json"
+  "experiment_matrix": "experiment_matrix.json",
+  "paper_design": "paper_experiments.json",
+  "formal_selection_contract": {
+    "status": "implemented_in_key_comparison_full; eight_stage_contract_check_completed; legacy_profiles_preserved",
+    "baseline": "train at least 6 epochs; keep all trained checkpoints from epoch 1; unadapted probe reported separately",
+    "residual_stages": "epoch 0 is an eligible exact-baseline candidate; keep every trained checkpoint from epoch 1; train at least 6 epochs",
+    "report_both": "always_on_trained_and_validation_selected",
+    "selection_metric": "validation_NLL",
+    "primary_method": "M10; no post-test switching to utility-gated method"
+  },
+  "formal_inference_contract": {
+    "seed_aggregation": "mean of per-seed metrics; not seed-averaged probabilities",
+    "uncertainty": "paired entity bootstrap with fixed models; training-set uncertainty not fully captured",
+    "primary_family": "three contrasts per dataset; Holm across six tests",
+    "exposure": "both human cohorts are development-exposed; frozen-protocol CV is not untouched prospective validation"
+  }
 }

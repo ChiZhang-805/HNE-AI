@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 import torch
 
-SOURCE = Path(os.environ.get('HNE_STUDY_ROOT', Path(__file__).resolve().parents[2] / 'HNE-AI-1')).expanduser().resolve()
+from study_inputs import SOURCE
 
 
 def provenance_key(path, project):

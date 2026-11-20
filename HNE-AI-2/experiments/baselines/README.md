@@ -20,8 +20,7 @@
 
 - [scripts/run_public_baselines.py](../../scripts/run_public_baselines.py)
 - [scripts/fit_public_trees.py](../../scripts/fit_public_trees.py)
-
-待交付或对齐的辅助入口：`scripts/run_local_baselines.py`。这些文件目前不在公开仓库；由主责者核验现有私有实现后单独交付，不能当作已同步代码。
+- [scripts/run_local_baselines.py](../../scripts/run_local_baselines.py)
 
 完整运行前置模块：无，可独立准备。前置只约束完整运行，不阻止接口、适配器及合成检查。
 

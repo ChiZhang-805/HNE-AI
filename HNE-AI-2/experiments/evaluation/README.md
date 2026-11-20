@@ -19,8 +19,9 @@
 ## 已有公开入口
 
 - [scripts/export_guidance_tables.py](../../scripts/export_guidance_tables.py)
+- [scripts/replay_local_baselines.py](../../scripts/replay_local_baselines.py)
 
-待交付或对齐的辅助入口：`scripts/analyze_local_experiments.py`、`scripts/replay_local_baselines.py`、`scripts/export_local_experiments.py`、`scripts/review_local_outputs.py`。这些文件目前不在公开仓库；由主责者核验现有私有实现后单独交付，不能当作已同步代码。
+待交付或对齐的辅助入口：`scripts/analyze_local_experiments.py`、`scripts/export_local_experiments.py`、`scripts/review_local_outputs.py`。这些文件目前尚未公开交付，不应视为可直接运行。
 
 完整运行前置模块：无，可独立准备。前置只约束完整运行，不阻止接口、适配器及合成检查。
 

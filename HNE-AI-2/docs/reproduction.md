@@ -1,5 +1,7 @@
 # Reproduction
 
+If you received the private handoff, start with [its setup and CPU replay instructions](private_handoff.md). The runtime defaults to the HNE-AI-2 root and never requires the first-paper project. Private data/models remain outside Git. The commands further below describe historical experiments and may require additional artifacts not included in the handoff.
+
 Run commands from `HNE-AI-2/` in a clone of this repository. The development runs used Python 3.13 and float32 CPU inference. The attention adapter calls Chronos-2 internal methods, so use the [measured dependency versions](../requirements.txt). PyTorch 2.8.0 was installed from the CUDA 12.8 wheel distribution on the measurement host. A compatible CPU installation can run the synthetic checks.
 
 ```sh

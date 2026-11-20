@@ -15,7 +15,8 @@
   "research_question": "在同一终点、起点、信息预算和选择规则下，强公开方法能达到什么水平？",
   "entry_points": [
     "scripts/run_public_baselines.py",
-    "scripts/fit_public_trees.py"
+    "scripts/fit_public_trees.py",
+    "scripts/run_local_baselines.py"
   ],
   "tasks": [
     {
@@ -46,7 +47,5 @@
     "results": "results/experiments/baselines/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/"
   },
   "delivery_status": "Planning only; no execution or result completion is claimed by this publication.",
-  "pending_local_entry_points": [
-    "scripts/run_local_baselines.py"
-  ]
+  "pending_local_entry_points": []
 }

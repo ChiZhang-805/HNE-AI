@@ -18,3 +18,9 @@ __pycache__/
 /experiments/**/results/
 /configs/planned_runs.csv
 /configs/paper_runs.csv
+
+# Private collaboration packages and local environments
+/packages/
+/.venv/
+*.joblib
+*.ubj

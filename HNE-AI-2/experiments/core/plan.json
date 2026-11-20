@@ -24,7 +24,8 @@
     "scripts/run_key_comparison.py",
     "src/train_comparison.py",
     "src/chronos_bridge.py",
-    "src/fusion/evidence.py"
+    "src/fusion/evidence.py",
+    "scripts/verify_complete_interfaces.py"
   ],
   "tasks": [
     {
@@ -60,7 +61,5 @@
     "results": "results/experiments/core/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/"
   },
   "delivery_status": "Planning only; no execution or result completion is claimed by this publication.",
-  "pending_local_entry_points": [
-    "scripts/verify_complete_interfaces.py"
-  ]
+  "pending_local_entry_points": []
 }

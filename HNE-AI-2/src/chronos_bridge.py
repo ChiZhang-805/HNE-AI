@@ -47,7 +47,7 @@ def attention_guidance(model, time_bias=None, group_bias=None, blocks=(8, 9, 10,
 
 def encode_packed_segments(model, context, observed, hour_offsets, group_ids,
                            num_output_patches=12, time_bias=None, group_bias=None,
-                           blocks=(8, 9, 10, 11), gate=1.0):
+                           blocks=(8, 9, 10, 11), gate=1.0, input_residual=None):
     """Pack prefix/recent observations without pretending the gap is continuous.
 
     context/mask/hour_offsets: [flattened_channel, hours]. Missing values are NaN
@@ -81,6 +81,10 @@ def encode_packed_segments(model, context, observed, hour_offsets, group_ids,
     patched = patched.clone()
     patched[..., :patch] = offsets.to(patched.dtype) / model.chronos_config.time_encoding_scale
     embeddings = model.input_patch_embedding(patched)
+    if input_residual is not None:
+        if input_residual.shape != embeddings.shape:
+            raise ValueError('Input guidance must match historical patch embeddings')
+        embeddings = embeddings + input_residual.to(embeddings) * attention_mask[..., None] * gate
     # Shift all RoPE positions by n_context to match the official contiguous path
     # exactly in the no-gap case. Nonintegral offsets are permitted by RoPE.
     positions = offsets[..., 0].to(patched.dtype) / patch + n_context

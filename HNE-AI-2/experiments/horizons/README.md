@@ -19,8 +19,7 @@
 ## 已有公开入口
 
 - [configs/daily_protocol.json](../../configs/daily_protocol.json)
-
-待交付或对齐的辅助入口：`scripts/audit_forecast_horizons.py`。这些文件目前不在公开仓库；由主责者核验现有私有实现后单独交付，不能当作已同步代码。
+- [scripts/audit_forecast_horizons.py](../../scripts/audit_forecast_horizons.py)
 
 完整运行前置模块：core。前置只约束完整运行，不阻止接口、适配器及合成检查。
 

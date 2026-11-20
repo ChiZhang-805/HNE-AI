@@ -9,6 +9,17 @@
     "bootstrap_repetitions": 2000
   },
   "profiles": {
+    "contract_check": {
+      "small_epochs": 2,
+      "event_epochs": 2,
+      "minimum_selection_epoch": 1,
+      "minimum_training_epochs": 1,
+      "include_noop_candidate": true,
+      "complete_evidence_controls": true,
+      "train_origins_per_person": 2,
+      "validation_origins_per_person": 2,
+      "interpretation": "Full pretrained engineering check of revised selection and complete evidence interfaces; not a performance experiment"
+    },
     "pipeline_check": {
       "small_epochs": 2,
       "event_epochs": 2,
@@ -28,10 +39,13 @@
     "full": {
       "small_epochs": 80,
       "event_epochs": 40,
-      "minimum_selection_epoch": 6,
+      "minimum_selection_epoch": 1,
+      "minimum_training_epochs": 6,
+      "include_noop_candidate": true,
+      "complete_evidence_controls": true,
       "train_origins_per_person": 0,
       "validation_origins_per_person": 0,
-      "interpretation": "All eligible origins; one prespecified learning-rate setting; wider tuning and repeated folds remain separate"
+      "interpretation": "All eligible origins; revised no-op/checkpoint contract and complete evidence controls; one prespecified learning-rate setting, wider tuning and repeated folds remain separate"
     }
   }
 }

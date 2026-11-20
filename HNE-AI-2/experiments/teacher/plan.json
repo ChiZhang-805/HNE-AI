@@ -12,7 +12,8 @@
   "research_question": "个人参考规律中的N/E条件信息是否在人员外样本上改善预测，而不是仅产生非零失配？",
   "entry_points": [
     "src/precursor_guidance.py",
-    "src/train_evidence.py"
+    "src/train_evidence.py",
+    "scripts/select_small_predictor.py"
   ],
   "tasks": [
     {
@@ -44,7 +45,6 @@
   },
   "delivery_status": "Planning only; no execution or result completion is claimed by this publication.",
   "pending_local_entry_points": [
-    "scripts/select_small_predictor.py",
     "scripts/audit_small_predictor.py"
   ]
 }

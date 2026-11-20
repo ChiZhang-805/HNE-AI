@@ -11,3 +11,6 @@
 - 第一篇的目录、数据、权重和实验保持只读；不得占用或中断它的任务。核心实验无需API，不自动租GPU，不跨项目回退密钥。
 - 论文表格使用英文居中标题和LaTeX三线表，以数字为主、无表注。表一公共算法引用原文，Ours最后；表二为消融。暂不制作框架图。
 - 修改任务索引后运行`python scripts/validate_collaboration.py`。只暂存明确文件；不得force push/reset/clean覆盖他人工作。
+
+- 输入统一经`src/study_inputs.py`解析，默认第二篇项目根目录；不回退到第一篇。私有交接按`docs/private_handoff.md`验收，历史manifest保留原记录。
+- 私有交接ZIP、模型、证据和预测不得进入Git；`packages/`、`artifacts/`和相关数据目录保持忽略。

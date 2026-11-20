@@ -13,7 +13,8 @@
   ],
   "research_question": "七日持续终点保持不变时，提前间隔拉长会损失多少预测能力？",
   "entry_points": [
-    "configs/daily_protocol.json"
+    "configs/daily_protocol.json",
+    "scripts/audit_forecast_horizons.py"
   ],
   "tasks": [
     {
@@ -44,7 +45,5 @@
     "results": "results/experiments/horizons/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/"
   },
   "delivery_status": "Planning only; no execution or result completion is claimed by this publication.",
-  "pending_local_entry_points": [
-    "scripts/audit_forecast_horizons.py"
-  ]
+  "pending_local_entry_points": []
 }

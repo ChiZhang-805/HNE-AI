@@ -10,7 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--profile', choices=['pipeline_check', 'cpu_pilot', 'full'], default='cpu_pilot')
+    available = json.loads((ROOT / 'configs/key_comparison.json').read_text(encoding='utf8'))
+    parser.add_argument('--profile', choices=sorted(available['profiles']), default='cpu_pilot')
     parser.add_argument('--dataset', choices=['BrisT1D-Open', 'RESILIENT'], default='BrisT1D-Open')
     parser.add_argument('--fold', type=int, choices=range(5), default=0)
     parser.add_argument('--seed', type=int, default=20261114)

@@ -17,6 +17,7 @@ from train_evidence import fit_small_components, calibrate_person, origin_eviden
 from training_data import load_people, component_assignments, selected_origins, SOURCE
 from precursor_guidance import EvidenceBias
 from pack_guidance import pack_bias
+from fusion.evidence import FullEvidenceFusion, InputEvidenceResidual
 
 
 def save_json(path, value):
@@ -101,7 +102,7 @@ def execute(root, config):
         process.nice(psutil.BELOW_NORMAL_PRIORITY_CLASS)
     people = load_people(config['dataset'], config['fold'], config['include_evaluation'])
     assignments = component_assignments(people, config['seed'])
-    sources = {str(p.relative_to(root)): sha(p) for p in sorted((root / 'src').glob('*.py'))}
+    sources = {str(p.relative_to(root)): sha(p) for p in sorted((root / 'src').rglob('*.py'))}
     sources['scripts/run_key_comparison.py'] = sha(root / 'scripts/run_key_comparison.py')
     source_paths = sorted({f for group in people.values() for person in group for f in person.source_files})
     manifest = dict(config=config, source_sha256=sources, data_sha256={p: sha(p) for p in source_paths},
@@ -115,6 +116,10 @@ def execute(root, config):
             raise RuntimeError('Run provenance changed; existing experiment is preserved. Use a distinct purpose name or explicitly reconcile it.')
     else:
         save_json(manifest_path, manifest)
+        import zipfile
+        with zipfile.ZipFile(directory / 'sources.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+            for relative in sources:
+                archive.write(root / relative, relative)
     status_path = directory / 'status.json'
     save_json(status_path, dict(status='running', pid=os.getpid(), config=config))
     log('start', device=device, threads=config['threads'], split_people=manifest['split_people'])
@@ -205,6 +210,18 @@ def execute(root, config):
                 base = to_device(item['baseline'], device)
                 ev = to_device(item['summary'], device)
                 return module(base['logit'], base['feature'], ev), None
+            if mode in ('full_hidden', 'full_logit', 'evidence'):
+                base = to_device(item['baseline'], device)
+                ev = to_device(torch.load(item['evidence_path'], weights_only=True), device)
+                return module(base['logit'], base['feature'], ev, item['source'].family[0].to(device)), None
+            if mode == 'input':
+                from chronos_bridge import encode_packed_segments
+                ev = to_device(torch.load(item['evidence_path'], weights_only=True), device)
+                packed = to_device(item['source'].large_window(item['origin'])[0], device)
+                residual = module(ev, item['source'].family[0].to(device), item['keep'])
+                hidden = encode_packed_segments(model, **packed, input_residual=residual)[0]
+                cache = to_device(torch.load(item['prefix_path'], weights_only=True), device)
+                return read_event(head, hidden, cache, item['state'].to(device), item['family'].to(device), config['dataset']), None
             cache, ev = get(item)
             penalty = torch.tensor(0., device=device)
             tb = gb = None
@@ -232,22 +249,35 @@ def execute(root, config):
             else:
                 module.load_state_dict(state)
         outputs, reports = {}, {}
-        for mode, name in [('baseline', 'M04_C2_LoRA'), ('guidance', 'M10_SAGE_fixed'),
-                           ('logit', 'M05_S_logit_residual'), ('hidden', 'M12_S_hidden_late_fusion')]:
+        stages = [('baseline', 'M04_C2_LoRA'), ('guidance', 'M10_SAGE_fixed'),
+                  ('logit', 'M05_S_logit_residual'), ('hidden', 'M12_S_hidden_late_fusion')]
+        if config.get('complete_evidence_controls'):
+            stages += [('full_hidden', 'M12_full_evidence_fusion'), ('full_logit', 'M13_full_evidence_logit_fusion'),
+                       ('evidence', 'M02_S_evidence_only'), ('input', 'M06_full_evidence_input_residual')]
+        for stage_index, (mode, name) in enumerate(stages):
             resource_check(device)
-            torch.manual_seed(config['seed'] + {'baseline': 0, 'guidance': 1, 'logit': 2, 'hidden': 3}[mode])
+            torch.manual_seed(config['seed'] + stage_index)
             if mode == 'baseline':
                 module = head
                 groups = [{'params': [p for p in model.parameters() if p.requires_grad], 'lr': .0001},
                           {'params': head.parameters(), 'lr': .001}]
             else:
                 model.requires_grad_(False); head.requires_grad_(False)
-                module = EvidenceBias().to(device) if mode == 'guidance' else ResidualFusion(mode).to(device)
+                if mode == 'guidance':
+                    module = EvidenceBias()
+                elif mode in ('full_hidden', 'full_logit', 'evidence'):
+                    module = FullEvidenceFusion({'full_hidden': 'hidden', 'full_logit': 'logit', 'evidence': 'evidence'}[mode])
+                elif mode == 'input':
+                    module = InputEvidenceResidual()
+                else:
+                    module = ResidualFusion(mode)
+                module = module.to(device)
                 groups = [{'params': module.parameters(), 'lr': .001}]
             optimizer = torch.optim.AdamW(groups, weight_decay=.0001)
             params = [p for group in optimizer.param_groups for p in group['params']]
             path = directory / f'{name}.pt'; resume = directory / f'{name}_training.pt'
             elapsed_prior = 0.; curve = []; best = float('inf'); best_state = None; selected = 0; stale = 0
+            trained_best = float('inf'); trained_state = None; trained_epoch = None
             stage_start = time.perf_counter()
             if path.exists():
                 done = torch.load(path, map_location='cpu', weights_only=False)
@@ -255,11 +285,19 @@ def execute(root, config):
                 log('stage_resumed_complete', method=name)
             else:
                 first_epoch = 1
+                if config.get('include_noop_candidate') and mode not in ('baseline', 'evidence'):
+                    initial_metrics = metrics(evaluate(items['validation'], mode, module))
+                    best, best_state = initial_metrics['nll'], snapshot(mode, module)
+                    curve.append(dict(epoch=0, train_loss=None, validation=initial_metrics,
+                                      elapsed_seconds=0., candidate='exact_baseline_noop'))
                 if resume.exists():
                     saved = torch.load(resume, map_location='cpu', weights_only=False)
                     restore(mode, module, saved['state']); optimizer.load_state_dict(saved['optimizer'])
                     curve, best, best_state, selected, stale, elapsed_prior = (saved[k] for k in ('curve', 'best', 'best_state', 'selected', 'stale', 'elapsed_seconds'))
                     first_epoch = saved['epoch'] + 1
+                    trained_best = saved.get('trained_best', best)
+                    trained_state = saved.get('trained_state', best_state)
+                    trained_epoch = saved.get('trained_epoch', selected)
                 for epoch in range(first_epoch, config['event_epochs'] + 1):
                     resource_check(device)
                     epoch_start = time.perf_counter(); optimizer.zero_grad(); losses = []
@@ -288,6 +326,8 @@ def execute(root, config):
                     curve.append(dict(epoch=epoch, train_loss=float(np.mean(losses)), validation=m,
                                       elapsed_seconds=time.perf_counter() - epoch_start))
                     if epoch >= config['minimum_selection_epoch']:
+                        if m['nll'] < trained_best:
+                            trained_best, trained_state, trained_epoch = m['nll'], snapshot(mode, module), epoch
                         if m['nll'] < best:
                             best, best_state, selected, stale = m['nll'], snapshot(mode, module), epoch, 0
                         else:
@@ -295,17 +335,20 @@ def execute(root, config):
                     elapsed = elapsed_prior + time.perf_counter() - stage_start
                     torch.save(dict(state=snapshot(mode, module), optimizer=optimizer.state_dict(), epoch=epoch,
                                     curve=curve, best=best, best_state=best_state, selected=selected,
-                                    stale=stale, elapsed_seconds=elapsed), resume)
+                                    stale=stale, elapsed_seconds=elapsed, trained_best=trained_best,
+                                    trained_state=trained_state, trained_epoch=trained_epoch), resume)
                     log('epoch_complete', method=name, **curve[-1])
-                    if stale >= config['event_patience']:
+                    if stale >= config['event_patience'] and epoch >= config.get('minimum_training_epochs', 1):
                         break
                 if best_state is None:
                     raise ValueError('Epoch budget is below minimum selection epoch')
                 restore(mode, module, best_state)
                 report = dict(selected_epoch=selected, selection_metric='validation_NLL', curve=curve,
                               training_and_validation_seconds=elapsed_prior + time.perf_counter() - stage_start,
-                              trainable_parameters=sum(p.numel() for p in params))
-                torch.save(dict(state=best_state, report=report), path)
+                              trainable_parameters=sum(p.numel() for p in params),
+                              trained_selected_epoch=trained_epoch,
+                              noop_candidate=config.get('include_noop_candidate', False) and mode not in ('baseline', 'evidence'))
+                torch.save(dict(state=best_state, report=report, trained_state=trained_state), path)
             outputs[name] = {}
             for split in ('validation', 'evaluation'):
                 if items[split]:
@@ -313,6 +356,17 @@ def execute(root, config):
                     outputs[name][split] = evaluate(items[split], mode, module)
                     report[split] = metrics(outputs[name][split])
                     report[f'{split}_inference_seconds'] = time.perf_counter() - pred_start
+            if report.get('noop_candidate'):
+                saved = torch.load(path, map_location='cpu', weights_only=False)
+                restore(mode, module, saved['trained_state'])
+                active_name = name + '_always_on'
+                outputs[active_name] = {}
+                report['always_on'] = {}
+                for split in ('validation', 'evaluation'):
+                    if items[split]:
+                        outputs[active_name][split] = evaluate(items[split], mode, module)
+                        report['always_on'][split] = metrics(outputs[active_name][split])
+                restore(mode, module, saved['state'])
             reports[name] = report
             save_json(result_dir / f"fold{config['fold']}_seed{config['seed']}_metrics.json", reports)
             log('method_complete', method=name, metrics={k: report[k] for k in ('validation', 'evaluation') if k in report})

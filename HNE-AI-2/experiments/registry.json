@@ -229,6 +229,6 @@
     "EVID",
     "REPRESENT"
   ],
-  "configuration_status": "Planning only: A must reconcile executable configs with the 13-method plan before formal runs; existing runtime configs are preserved.",
-  "publication_scope": "Experiment directories, ownership, interfaces and validation only. No new training implementation or experimental results are published in this change."
+  "configuration_status": "13 method IDs aligned; full-fold orchestration and matched candidate selection remain pending.",
+  "publication_scope": "Experiment organization, input isolation, corrected runtime and private-handoff tooling. Private payloads and new experimental results are not published."
 }

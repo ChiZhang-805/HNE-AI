@@ -1,5 +1,5 @@
 {
-  "status": "planned_not_executed",
+  "status": "planned_not_all_executed",
   "datasets": [
     "RESILIENT",
     "BrisT1D-Open"
@@ -16,7 +16,7 @@
     20261114,
     20261115
   ],
-  "core_evaluation_units": 360,
+  "core_evaluation_units": 390,
   "unit_definition": "method_dataset_outer_fold_seed; excludes_inner_fits_and_tuning",
   "core_methods": [
     {
@@ -26,8 +26,11 @@
     },
     {
       "id": "M02",
-      "name": "S_evidence_only",
-      "role": "large_model_necessity"
+      "name": "full_S_evidence_only",
+      "role": "large_model_necessity_with_complete_evidence",
+      "additional_parameters": 897,
+      "parameter_count_status": "instantiated_verified",
+      "implementation_status": "implemented_full_pretrained_CPU_verified; formal_CV_pending"
     },
     {
       "id": "M03",
@@ -43,15 +46,19 @@
       "id": "M05",
       "name": "S_logit_residual",
       "base": "M04",
-      "role": "same_evidence_output_correction",
+      "role": "compressed_evidence_output_correction",
       "additional_parameters": 856
     },
     {
       "id": "M06",
-      "name": "S_input_embedding_residual",
+      "name": "full_evidence_input_embedding_residual",
       "base": "M04",
-      "role": "same_evidence_input_interface",
-      "additional_parameters": 1546
+      "role": "complete_node_edge_input_interface",
+      "additional_parameters": 1785,
+      "parameter_count_status": "instantiated_verified",
+      "retained_node_only_ablation": "node_only_input_embedding_residual",
+      "retained_node_only_parameters": 1546,
+      "implementation_status": "implemented_full_pretrained_CPU_verified; formal_CV_pending"
     },
     {
       "id": "M07",
@@ -97,6 +104,15 @@
       "additional_parameters": 897,
       "retained_summary_ablation": "S_hidden_late_fusion",
       "summary_ablation_parameters": 721
+    },
+    {
+      "id": "M13",
+      "name": "full_evidence_logit_fusion",
+      "base": "M04",
+      "role": "complete_node_edge_output_fusion",
+      "additional_parameters": 905,
+      "parameter_count_status": "instantiated_verified",
+      "implementation_status": "implemented_full_pretrained_CPU_verified; formal_CV_pending"
     }
   ],
   "primary_paired_contrasts": [
@@ -106,7 +122,7 @@
     ],
     [
       "M10",
-      "M05"
+      "M13"
     ],
     [
       "M10",
@@ -143,7 +159,12 @@
     "H_only",
     "no_N",
     "no_E",
-    "no_personal_calibration",
+    "no_personal_fit",
+    "no_score_calibration",
+    "absolute_error_only",
+    "coverage_only_evidence",
+    "source_agnostic_edges",
+    "no_single_source_loss",
     "attention_change_instead_of_predictive_gain",
     "time_only",
     "group_only",
@@ -204,5 +225,10 @@
     "weak_label_only",
     "weak_plus_true",
     "binary_proxy"
-  ]
+  ],
+  "compressed_evidence_contrast": [
+    "M10",
+    "M05"
+  ],
+  "ablation_execution_note": "Required and diagnostic scopes are registered in paper_experiments.json; remaining legacy ideas stay conditional, not silently executed."
 }

@@ -23,8 +23,7 @@
 - [src/train_comparison.py](../../src/train_comparison.py)
 - [src/chronos_bridge.py](../../src/chronos_bridge.py)
 - [src/fusion/evidence.py](../../src/fusion/evidence.py)
-
-待交付或对齐的辅助入口：`scripts/verify_complete_interfaces.py`。这些文件目前不在公开仓库；由主责者核验现有私有实现后单独交付，不能当作已同步代码。
+- [scripts/verify_complete_interfaces.py](../../scripts/verify_complete_interfaces.py)
 
 完整运行前置模块：teacher。前置只约束完整运行，不阻止接口、适配器及合成检查。
 

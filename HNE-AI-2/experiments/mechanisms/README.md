@@ -20,7 +20,7 @@
 
 - [src/evidence_alignment.py](../../src/evidence_alignment.py)
 
-待交付或对齐的辅助入口：`configs/paper_experiments.json`。这些文件目前不在公开仓库；由主责者核验现有私有实现后单独交付，不能当作已同步代码。
+待交付或对齐的辅助入口：`configs/paper_experiments.json`。这些文件目前尚未公开交付，不应视为可直接运行。
 
 完整运行前置模块：core。前置只约束完整运行，不阻止接口、适配器及合成检查。
 
