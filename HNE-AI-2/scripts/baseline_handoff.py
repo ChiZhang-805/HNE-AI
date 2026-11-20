@@ -324,7 +324,7 @@ def build(code_root):
     for entry in previous.get('files', []):
         if entry['name'] == NAME and entry['sha256'] != validation['archive_sha256'] and entry['sha256'] not in superseded:
             superseded.append(entry['sha256'])
-    transfer = dict(status='prepared_and_verified_awaiting_recipient_receipt', public_branch='exp/teacher-condition',
+    transfer = dict(status='prepared_and_verified_awaiting_recipient_receipt', public_branch='main',
                     public_commit=commit, files=[dict(name=p.name, bytes=p.stat().st_size, sha256=file_hash(p))
                                                 for p in (original, destination)],
                     baseline_validation=validation, historical_statistics_reproduction=reproduction,
