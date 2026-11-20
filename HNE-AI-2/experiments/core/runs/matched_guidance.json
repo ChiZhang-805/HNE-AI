@@ -1,0 +1,13 @@
+{
+  "run_key": "core/BrisT1D-Open/fold0/seed20261114/M04_M10_M12/1368a87b0db1f631",
+  "owner": "A",
+  "status": "claimed",
+  "code_commit": "5884e7e7201593cc595c6b15dcd6a79087761ede",
+  "config_sha256": "1368a87b0db1f63161dea80bc2b8476766a1db453449799a9df34b4cc09786df",
+  "protocol_sha256": "3d58b3089a3e7d25a442ec8aa78638c509fc03fcf2af901e1cfbe2b5ab17607c",
+  "shared_inputs_verified": true,
+  "summary": null,
+  "elapsed_seconds": null,
+  "private_artifact_reference": "artifacts/experiments/core/BrisT1D-Open/fold0/seed20261114/M04_M10_M12/1368a87b0db1f631",
+  "note": "CPU one thread; source-only development. One fresh common M04 and six candidates each for internal guidance and node/edge-only hidden fusion. No formal core units completed by this claim."
+}
