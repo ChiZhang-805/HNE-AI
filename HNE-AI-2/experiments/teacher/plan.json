@@ -45,7 +45,7 @@
     "artifacts": "artifacts/experiments/teacher/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/",
     "results": "results/experiments/teacher/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/"
   },
-  "delivery_status": "Source-only teacher development study completed; formal full-fold SENS remains pending.",
+  "delivery_status": "Source-only three-architecture teacher study and fixed-teacher shared-calibration control completed; formal full-fold SENS remains pending.",
   "pending_local_entry_points": [
     "scripts/audit_small_predictor.py"
   ]

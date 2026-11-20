@@ -33,3 +33,5 @@
 ## 当前开发入口
 
 `python experiments/teacher/run.py --code-commit <source-commit>`。配置见 `config.json`，设计和选型边界见 `design.md`。首个源折的27个超参数试验已完成，使用3个交叉拟合教师；不读取事件标签，不代表全折SENS完成。
+
+`audit_calibration.py --core-run-key <key>`审计独立个人校准是否改变H/HN/HNE对比。`shared_calibration.py --teacher-run-key <key> --code-commit <commit>`固定已选教师，让各分支共用H的个人校准；首折控制已完成，不改变正在运行的核心证据或模型选择。稳定的条件正增益仍未建立，全折结论尚待检验。
