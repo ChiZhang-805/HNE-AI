@@ -1,0 +1,127 @@
+{
+  "run_key": "teacher/RESILIENT/fold0/seed20261114/shared_calibration/78ba7974d379999d",
+  "owner": "A",
+  "status": "completed",
+  "code_commit": "92d88879ae717b8add8f0a5af666771ebbd95342",
+  "config_sha256": "78ba7974d379999d26c41307036532198311372b6579a72ab2a6a1aaa733351a",
+  "protocol_sha256": "3d58b3089a3e7d25a442ec8aa78638c509fc03fcf2af901e1cfbe2b5ab17607c",
+  "shared_inputs_verified": true,
+  "private_artifact_reference": "artifacts/experiments/teacher/RESILIENT/fold0/seed20261114/shared_calibration/78ba7974d379999d",
+  "elapsed_seconds": 80.01067489999696,
+  "summary": {
+    "teachers_reused": 3,
+    "event_labels_loaded": false,
+    "gpu_used": false,
+    "model_selection_changed": false,
+    "formal_core_units_completed": 0,
+    "private_summary_sha256": "a75b35af55cb99aefe320dc0ad8a7cd90c1ed25d7c495e19eb94f16c76ce0017",
+    "gain_definition": "H NLL minus HNE NLL; positive favors HNE",
+    "conditional_gains": [
+      {
+        "split": "source_oof",
+        "period": "fixed_monitoring_day87",
+        "people": 39,
+        "gain_N": {
+          "mean": -0.00332890068873381,
+          "interval": [
+            -0.012845330599408884,
+            0.0035892568433131913
+          ]
+        },
+        "gain_E": {
+          "mean": -0.038308509649374545,
+          "interval": [
+            -0.07495969524368261,
+            -0.0125809915507069
+          ]
+        },
+        "gain_NE": {
+          "mean": -0.041637410338108354,
+          "interval": [
+            -0.07874580613122537,
+            -0.012668936269787668
+          ]
+        }
+      },
+      {
+        "split": "source_oof",
+        "period": "reference_score",
+        "people": 41,
+        "gain_N": {
+          "mean": 0.003952111049396236,
+          "interval": [
+            0.0007018367828028958,
+            0.007233505010059693
+          ]
+        },
+        "gain_E": {
+          "mean": -0.01784605405679563,
+          "interval": [
+            -0.03281429733445005,
+            -0.0053875962681159744
+          ]
+        },
+        "gain_NE": {
+          "mean": -0.013893943007399396,
+          "interval": [
+            -0.030795842645371833,
+            0.0001688426996513101
+          ]
+        }
+      },
+      {
+        "split": "source_validation",
+        "period": "fixed_monitoring_day87",
+        "people": 10,
+        "gain_N": {
+          "mean": -0.0014056243002414704,
+          "interval": [
+            -0.02341763123869896,
+            0.014378890320658679
+          ]
+        },
+        "gain_E": {
+          "mean": -0.02018215283751488,
+          "interval": [
+            -0.043258027005940676,
+            -0.0018773250840604366
+          ]
+        },
+        "gain_NE": {
+          "mean": -0.021587777137756347,
+          "interval": [
+            -0.060037732943892475,
+            0.010911353230476336
+          ]
+        }
+      },
+      {
+        "split": "source_validation",
+        "period": "reference_score",
+        "people": 11,
+        "gain_N": {
+          "mean": -0.015761012380773372,
+          "interval": [
+            -0.039744581349871376,
+            0.0030915661968967997
+          ]
+        },
+        "gain_E": {
+          "mean": -0.073534987189553,
+          "interval": [
+            -0.17382036484777927,
+            -0.008216588537801424
+          ]
+        },
+        "gain_NE": {
+          "mean": -0.08929599957032637,
+          "interval": [
+            -0.21285775723782452,
+            -0.006370622224428444
+          ]
+        }
+      }
+    ]
+  },
+  "note": "RESILIENT development fold. Fixed teacher, shared H personal calibration. Person bootstrap conditional on fitted models. No outer fold or event labels."
+}

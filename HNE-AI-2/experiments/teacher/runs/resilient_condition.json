@@ -1,23 +1,31 @@
 {
   "run_key": "teacher/RESILIENT/fold0/seed20261114/conditional_teacher/66f2f1246acad6ef",
   "owner": "A",
-  "status": "running",
+  "status": "completed",
   "code_commit": "92d88879ae717b8add8f0a5af666771ebbd95342",
   "protocol_sha256": "3d58b3089a3e7d25a442ec8aa78638c509fc03fcf2af901e1cfbe2b5ab17607c",
   "config_sha256": "66f2f1246acad6eff9eb376827c75e128d7ebfd18ec2cf155c0068e7de0251a8",
   "shared_inputs_verified": true,
   "summary": {
-    "completed_candidates": 14,
+    "completed_candidates": 27,
     "event_labels_loaded": false,
-    "formal_core_units_completed": 0
+    "formal_core_units_completed": 0,
+    "source_training_people": 41,
+    "source_validation_people": 11,
+    "selected_architecture_counts": {
+      "residual": 3
+    },
+    "private_summary_sha256": "70be6c85e5c8546bbac8f00ab9a47746af65659398274c0400f4650205146f1a",
+    "gpu_used": false
   },
-  "elapsed_seconds": null,
+  "elapsed_seconds": 1171.4299705000012,
   "private_artifact_reference": "artifacts/experiments/teacher/RESILIENT/fold0/seed20261114/conditional_teacher/66f2f1246acad6ef",
   "note": "Fixed RESILIENT source-fold replication of the Bris teacher experiment. No event labels or outer fold; one CPU thread. Development only.",
   "continuation": {
     "completed_candidates_reused": 14,
     "prior_invocation_seconds": 480.58353900000293,
     "reason": "Memory guard stopped the first invocation",
-    "training_config_unchanged": true
+    "training_config_unchanged": true,
+    "resumed_invocation_seconds": 690.8464314999983
   }
 }
