@@ -1,0 +1,16 @@
+{
+  "run_key": "teacher/BrisT1D-Open/fold0/seed20261114/conditional_teacher/4747028ee324f3bc",
+  "owner": "A",
+  "status": "claimed",
+  "code_commit": "ef19748c394309677490f45f357d0eaf142a369b",
+  "protocol_sha256": "3d58b3089a3e7d25a442ec8aa78638c509fc03fcf2af901e1cfbe2b5ab17607c",
+  "config_sha256": "4747028ee324f3bc7fbff4a192000de0df633915953e349cdcb416cadf6f2827",
+  "base_checkpoint_sha256": null,
+  "teacher_checkpoint_sha256": null,
+  "shared_inputs_verified": true,
+  "private_artifact_reference": "artifacts/experiments/teacher/BrisT1D-Open/fold0/seed20261114/conditional_teacher/4747028ee324f3bc",
+  "summary": null,
+  "elapsed_seconds": null,
+  "failure": null,
+  "note": "Source-inner conditional-information development study; CPU one thread, below-normal priority; no event labels or GPU. No formal core units completed by this claim."
+}
