@@ -1,7 +1,7 @@
 {
   "run_key": "teacher/BrisT1D-Open/fold0/seed20261114/conditional_teacher/4747028ee324f3bc",
   "owner": "A",
-  "status": "claimed",
+  "status": "completed",
   "code_commit": "ef19748c394309677490f45f357d0eaf142a369b",
   "protocol_sha256": "3d58b3089a3e7d25a442ec8aa78638c509fc03fcf2af901e1cfbe2b5ab17607c",
   "config_sha256": "4747028ee324f3bc7fbff4a192000de0df633915953e349cdcb416cadf6f2827",
@@ -9,8 +9,19 @@
   "teacher_checkpoint_sha256": null,
   "shared_inputs_verified": true,
   "private_artifact_reference": "artifacts/experiments/teacher/BrisT1D-Open/fold0/seed20261114/conditional_teacher/4747028ee324f3bc",
-  "summary": null,
-  "elapsed_seconds": null,
+  "summary": {
+    "source_training_people": 12,
+    "source_validation_people": 4,
+    "teacher_components": 3,
+    "hyperparameter_trials": 27,
+    "selected_architecture_counts": {
+      "residual": 3
+    },
+    "event_labels_loaded": false,
+    "gpu_used": false,
+    "formal_core_units_completed": 0
+  },
+  "elapsed_seconds": 317.5739185000057,
   "failure": null,
   "note": "Source-inner conditional-information development study; CPU one thread, below-normal priority; no event labels or GPU. No formal core units completed by this claim."
 }

@@ -3,22 +3,25 @@
   "title": "教师条件预测与证据",
   "owner": "A",
   "reviewer": "B",
-  "status": "planned",
+  "status": "running",
   "paper_bundles": [
     "SENS"
   ],
   "core_methods": [],
   "depends_on_for_full_runs": [],
   "research_question": "个人参考规律中的N/E条件信息是否在人员外样本上改善预测，而不是仅产生非零失配？",
+  "current_evidence": "已完成单源折3学习率×3组件检查；条件增益仍弱；结构比较和全折选择待完成。",
   "entry_points": [
+    "experiments/teacher/run.py",
+    "scripts/select_small_predictor.py",
+    "scripts/audit_small_predictor.py",
     "src/precursor_guidance.py",
-    "src/train_evidence.py",
-    "scripts/select_small_predictor.py"
+    "src/train_evidence.py"
   ],
   "tasks": [
     {
       "id": "teacher-1",
-      "status": "planned",
+      "status": "running",
       "description": "比较既有共享教师、纯H和可关闭N/E条件残差；源内层预测损失选型"
     },
     {
@@ -43,8 +46,5 @@
     "artifacts": "artifacts/experiments/teacher/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/",
     "results": "results/experiments/teacher/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/"
   },
-  "delivery_status": "Planning only; no execution or result completion is claimed by this publication.",
-  "pending_local_entry_points": [
-    "scripts/audit_small_predictor.py"
-  ]
+  "delivery_status": "Source-only teacher development study completed; formal full-fold SENS remains pending."
 }

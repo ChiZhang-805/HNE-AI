@@ -3,7 +3,7 @@
   "title": "共享基线与内部及融合主对照",
   "owner": "A",
   "reviewer": "B",
-  "status": "planned",
+  "status": "running",
   "paper_bundles": [
     "CORE"
   ],
@@ -20,7 +20,9 @@
     "teacher"
   ],
   "research_question": "内部注入能否超越同一冻结基线上的完整输入、输出和隐藏证据融合？",
+  "current_evidence": "8组真实骨干短训练和24项接口检查已完成；主方法全折效果尚未完成。",
   "entry_points": [
+    "experiments/core/run.py",
     "scripts/run_key_comparison.py",
     "src/train_comparison.py",
     "src/chronos_bridge.py",
@@ -29,13 +31,8 @@
   ],
   "tasks": [
     {
-      "id": "core-config-sync",
-      "status": "planned",
-      "description": "先核对公开运行配置与13方法规划，补齐M13及一致预算；保留旧配置来源，不把规划当作已交付训练实现。"
-    },
-    {
       "id": "core-1",
-      "status": "planned",
+      "status": "running",
       "description": "交付统一M04及S/证据hash，补齐全折和公平六候选编排"
     },
     {
@@ -60,6 +57,5 @@
     "artifacts": "artifacts/experiments/core/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/",
     "results": "results/experiments/core/<dataset>/fold<k>/seed<s>/<method>/<config_digest>/"
   },
-  "delivery_status": "Planning only; no execution or result completion is claimed by this publication.",
-  "pending_local_entry_points": []
+  "delivery_status": "Matched six-candidate source-fold development runner implemented; full-fold study remains pending."
 }
