@@ -1,0 +1,13 @@
+{
+  "run_key": "teacher/RESILIENT/fold0/seed20261114/conditional_teacher/66f2f1246acad6ef",
+  "owner": "A",
+  "status": "claimed",
+  "code_commit": "92d88879ae717b8add8f0a5af666771ebbd95342",
+  "protocol_sha256": "3d58b3089a3e7d25a442ec8aa78638c509fc03fcf2af901e1cfbe2b5ab17607c",
+  "config_sha256": "66f2f1246acad6eff9eb376827c75e128d7ebfd18ec2cf155c0068e7de0251a8",
+  "shared_inputs_verified": false,
+  "summary": null,
+  "elapsed_seconds": null,
+  "private_artifact_reference": "artifacts/experiments/teacher/RESILIENT/fold0/seed20261114/conditional_teacher/66f2f1246acad6ef",
+  "note": "Fixed RESILIENT source-fold replication of the Bris teacher experiment. No event labels or outer fold; one CPU thread. Development only."
+}

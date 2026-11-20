@@ -1,0 +1,24 @@
+{
+  "dataset": "RESILIENT",
+  "fold": 0,
+  "seed": 20261114,
+  "architectures": [
+    "history",
+    "shared",
+    "residual"
+  ],
+  "learning_rates": [
+    0.0003,
+    0.001,
+    0.003
+  ],
+  "max_epochs": 24,
+  "patience": 5,
+  "inner_holdout_people": 2,
+  "personal_steps": 100,
+  "condition_lag_patches": 7,
+  "bootstrap_repetitions": 2000,
+  "threads": 1,
+  "selection": "source-inner person-mean HNE forecast NLL; no event labels",
+  "scope": "Cross-cohort source-fold development replication of the fixed teacher search; outer evaluation persons excluded"
+}
