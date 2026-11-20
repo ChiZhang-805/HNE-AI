@@ -40,6 +40,11 @@ def main():
     if not directory.is_relative_to((ROOT / 'artifacts/experiments/core').resolve()):
         raise ValueError('Expected a core run key')
     summary = read(output / 'summary.json'); manifest = read(directory / 'manifest.json')
+    continuation_path = directory / 'continuation.json'
+    if continuation_path.exists():
+        continuation = read(continuation_path)
+        assert continuation['original_manifest_sha256'] == sha(directory / 'manifest.json')
+        manifest = continuation['runtime_manifest']
     assert read(directory / 'status.json')['status'] == summary['status'] == 'completed'
     config = manifest['config']; protocol_hash = manifest['protocol_sha256']
     assert sha(ROOT / 'configs/daily_protocol.json') == protocol_hash
@@ -124,6 +129,7 @@ def main():
         checkpoints={k: dict(path=p.relative_to(ROOT).as_posix(), sha256=checkpoint_hashes[k]) for k, p in paths.items()},
         evidence_receipts_sha256=summary['evidence_receipts_sha256'],
         raw_predictions_sha256=sha(output / 'predictions.csv'),
+        continuation_sha256=sha(continuation_path) if continuation_path.exists() else None,
         timestamp_semantics='Input cutoff and target end are exclusive; issue and label maturity read from fixed daily data',
         no_independent_test_claim=True,
         warning='This replaces neither the older engineering package nor the pending formal full-fold study. Do not mix anchors or use these validation scores as independent test results.')
@@ -139,6 +145,8 @@ def main():
                  teacher_root / 'manifest.json', teacher_root / 'selection.json', teacher_root / 'sources.zip',
                  *[ROOT / r['path'] for r in chosen.values()], *sorted((directory / 'evidence').rglob('*.pt')),
                  *sorted(output.glob('*.json')), *sorted(output.glob('*.csv'))]
+        files += [directory / name for name in ('continuation.json', 'continuation_sources.zip',
+                    'input_timing_audit.json', 'sample_counts.json', 'calibration_identity_audit.json') if (directory / name).exists()]
         inventory = {file.relative_to(ROOT).as_posix(): dict(sha256=sha(file), bytes=file.stat().st_size) for file in files}
         with zipfile.ZipFile(package, 'w', zipfile.ZIP_DEFLATED) as archive:
             for file in files:

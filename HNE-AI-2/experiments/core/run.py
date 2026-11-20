@@ -147,7 +147,8 @@ def train_stage(mode, candidate, lr, decay, config, directory, items, model, hea
                         best=best, best_state=best_state, best_epoch=best_epoch, trained_best=trained_best,
                         trained_state=trained_state, trained_epoch=trained_epoch,
                         seconds=elapsed_prior + time.perf_counter() - started), resume)
-        log('epoch_complete', method=mode, candidate=candidate, **curve[-1])
+        log('epoch_complete', method=mode, candidate=candidate,
+            **{('epoch_seconds' if k == 'seconds' else k): v for k, v in curve[-1].items()})
     done = dict(state=best_state, trained_state=trained_state, report=dict(candidate=candidate, lr=lr, weight_decay=decay,
                 selected_epoch=best_epoch, selected_nll=best, always_on_epoch=trained_epoch, always_on_nll=trained_best,
                 epochs_completed=config['event_epochs'], curve=curve, trainable_parameters=sum(p.numel() for p in parameters),
@@ -195,9 +196,16 @@ def main():
                     split_people={k: [p.person for p in v] for k, v in people.items()},
                     scope=config['scope'])
     assert manifest['protocol_sha256'] == teacher_manifest['protocol_sha256']
-    if (directory / 'manifest.json').exists() and read_json(directory / 'manifest.json') != manifest:
-        raise RuntimeError('Run provenance differs; existing outputs preserved')
-    save_json(directory / 'manifest.json', manifest)
+    prior_seconds = 0.
+    if (directory / 'manifest.json').exists():
+        if read_json(directory / 'manifest.json') != manifest:
+            continuation = read_json(directory / 'continuation.json') if (directory / 'continuation.json').exists() else {}
+            if (continuation.get('original_manifest_sha256') != sha(directory / 'manifest.json')
+                    or continuation.get('runtime_manifest') != manifest):
+                raise RuntimeError('Run provenance differs; existing outputs preserved')
+            prior_seconds = continuation['prior_invocation_seconds']
+    else:
+        save_json(directory / 'manifest.json', manifest)
     if (directory / 'status.json').exists() and read_json(directory / 'status.json')['status'] == 'completed':
         print(json.dumps(dict(status='completed', directory=str(directory)))); return
     if not (directory / 'sources.zip').exists():
@@ -254,11 +262,20 @@ def main():
         prefix_start = time.perf_counter(); prefix_receipts = []
         prefix_reference = ROOT / config['prefix_reference'] / 'prefix'
         own_prefix = directory / 'prefix'; own_prefix.mkdir(exist_ok=True)
+        previous_prefixes = {Path(r['path']).name: r for r in read_json(directory / 'prefix_receipts.json')} if (directory / 'prefix_receipts.json').exists() else {}
         for split, rows in items.items():
             for item in rows:
                 name = f"{item['person']}_{item['origin']}.pt"
                 path = prefix_reference / name
                 packed, state, family, keep = item['source'].large_window(item['origin'])
+                if name in previous_prefixes:
+                    receipt = previous_prefixes[name]
+                    path = ROOT / receipt['path']
+                    assert receipt['exact_recompute'] and sha(path) == receipt['sha256']
+                    item.update(prefix_path=path, state=state, family=family, keep=torch.from_numpy(keep))
+                    prefix_receipts.append(receipt)
+                    resource_check('cpu')
+                    continue
                 fresh = capture_prefix(model, packed)
                 borrowed_exact = path.exists() and same_tensors(fresh, torch.load(path, weights_only=True))
                 rejected_hash = sha(path) if path.exists() and not borrowed_exact else None
@@ -339,7 +356,8 @@ def main():
                     for row in rows:
                         writer.writerow(dict(method=method, split=split, **row))
         save_json(output / 'paired.json', paired_bootstrap(outputs, config['seed'], config['bootstrap_repetitions']))
-        result = dict(status='completed', run_key=key, scope=config['scope'], seconds=time.perf_counter() - started,
+        result = dict(status='completed', run_key=key, scope=config['scope'], seconds=prior_seconds + time.perf_counter() - started,
+                      current_invocation_seconds=time.perf_counter() - started, prior_invocation_seconds=prior_seconds,
                       evidence_seconds=evidence_seconds, prefix_verify_seconds=prefix_seconds, feature_seconds=feature_seconds,
                       metrics={name: metrics(splits['validation']) for name, splits in outputs.items()},
                       reports=method_reports, verification=verification, gpu_used=False,
