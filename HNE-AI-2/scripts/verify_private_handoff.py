@@ -54,7 +54,10 @@ def verify_inventory(manifest):
     if protocol != manifest['protocol_sha256']:
         raise ValueError('Repository protocol differs from the delivered data')
     for name, expected in manifest['runtime_source_sha256'].items():
-        if sha(safe_path(ROOT, name)) != expected:
+        content = safe_path(ROOT, name).read_bytes()
+        if manifest.get('runtime_text_hash_normalization') == 'CRLF_to_LF':
+            content = content.replace(b'\r\n', b'\n')
+        if hashlib.sha256(content).hexdigest() != expected:
             raise ValueError(f'Runtime file differs from the tested handoff commit: {name}')
     index = {x['path']: x['sha256'] for x in manifest['files']}
     for spec in manifest['runs'].values():

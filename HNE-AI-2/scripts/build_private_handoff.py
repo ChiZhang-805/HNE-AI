@@ -77,7 +77,10 @@ def main():
     manifest = dict(status='private_handoff_prepared', created_at_utc=datetime.now(timezone.utc).isoformat(),
                     repository='https://github.com/ChiZhang-805/HNE-AI', code_commit=commit,
                     protocol_sha256=sha(code / 'configs/daily_protocol.json'), datasets=datasets, runs=runs,
-                    runtime_source_sha256={p.relative_to(code).as_posix(): sha(p) for p in runtime},
+                    runtime_text_hash_normalization='CRLF_to_LF',
+                    runtime_source_sha256={p.relative_to(code).as_posix():
+                                           hashlib.sha256(p.read_bytes().replace(b'\r\n', b'\n')).hexdigest()
+                                           for p in runtime},
                     files=files, payload_files=len(files), payload_bytes=sum(x['bytes'] for x in files),
                     privacy='Private research inputs and participant-level artifacts. Do not publish to GitHub.',
                     source_paper_modified=False, formal_multifold_models_included=False,
