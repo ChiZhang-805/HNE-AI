@@ -1,16 +1,27 @@
 {
   "run_key": "core/BrisT1D-Open/fold0/seed20261114/M13/ed8241e9ac3c6dfa",
   "owner": "A",
-  "status": "claimed",
+  "status": "completed",
   "code_commit": "e412779e09dfd0fe725409f129add5e4de30ced0",
   "config_sha256": "ed8241e9ac3c6dfaa397d556dfe34b9f81872643617458d8ff96ffc985c12148",
   "protocol_sha256": "3d58b3089a3e7d25a442ec8aa78638c509fc03fcf2af901e1cfbe2b5ab17607c",
   "base_checkpoint_sha256": "996c2aef33414f72323fbb6e43cbb21c45a1dcf1efb13b53e9636ce0d4ec5668",
-  "shared_inputs_verified": false,
+  "shared_inputs_verified": true,
   "private_artifact_reference": "artifacts/experiments/core/BrisT1D-Open/fold0/seed20261114/M13/ed8241e9ac3c6dfa",
   "summary": {
-    "formal_core_units_completed": 0
+    "formal_core_units_completed": 0,
+    "candidate_count": 6,
+    "selected_epoch": 0,
+    "always_on_epoch": 1,
+    "off_exact": true,
+    "validation_nll": {
+      "M04_C2_LoRA": 0.16195331524402973,
+      "M13_selected": 0.16195331524402973,
+      "M13_always_on": 0.16209702239286944
+    },
+    "checkpoint_sha256": "022a6ad9fd1df396a5dcd577140f9699dc2104bd56e4dd8f5333e66f499145ba",
+    "summary_sha256": "91894104f9a3f67c56162bc65236d34cf6a3cca207f4433cc550c0d8f6cb306a"
   },
-  "elapsed_seconds": null,
-  "note": "Source-only M13 training with the same M04 and node/edge evidence as the active M10/M12 study. Waiting for frozen feature cache."
+  "elapsed_seconds": 89.40589140000156,
+  "note": "Source-only M13 comparison. Shared M04 and node/edge evidence. Selection used source validation. No formal core units."
 }

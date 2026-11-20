@@ -14,7 +14,8 @@
   "research_question": "H/N/E、个人适配、分数校准与时间/通道指导各贡献什么？",
   "entry_points": [
     "src/train_evidence.py",
-    "src/train_comparison.py"
+    "src/train_comparison.py",
+    "experiments/ablation/history_evidence.py"
   ],
   "tasks": [
     {
