@@ -36,3 +36,5 @@
 `python experiments/core/run.py --code-commit <source-commit>`。配置见 `config.json`。先从已完成教师的 selection.json 读取固定S，再重训共同M04。M10与M12分别采用3个学习率乘2个weight decay，共6候选，每个训练6轮；第1轮起选型，另含epoch0。M12采用node/edge-only输入，额外12维摘要置零。保留selected与always-on，按源验证NLL选型。仅复用经逐份精确重算确认的原骨干前缀，不导入旧M04。单源折、抽样训练起点、完整源验证，不能当作正式外层测试。所有原始产物留私有忽略目录。
 
 `verify_batching.py --run-key <private-run-key>`???????????????????????`batching.py`????????????????????????????????
+
+Windows长任务可用 `start_local.ps1 -PythonExecutable <authorized-python.exe> -RunKey <claimed-key> -CodeCommit <runtime-source-commit>`启动隐藏后台进程。它核对配置、检查重复进程、固定低优先级单线程CPU，并把启动收据及标准输出保存在私有运行目录。必须同时核对实际工作进程和检查点更新时间，不能只相信status.json的running字样。首次日志字段冲突修复通过 `continue_run.py` 保留原manifest、源码、第一轮模型和优化器；剔除日志调用后的训练函数AST一致。后续会话中断的未记录计算成本保留为未知，不冒充完整总耗时。

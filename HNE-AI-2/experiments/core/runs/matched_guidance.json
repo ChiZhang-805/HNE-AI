@@ -19,5 +19,16 @@
     "scientific_training_ast_identical": true,
     "configuration_unchanged": true,
     "original_manifest_preserved": true
+  },
+  "execution": {
+    "mode": "independent_hidden_local_process",
+    "device": "cpu",
+    "threads": 1,
+    "priority": "below_normal",
+    "verified_at_utc": "2026-11-20T05:22:32.419668+00:00",
+    "last_verified_completed_epoch": 1,
+    "session_interruption_checkpoint_preserved": true,
+    "unrecorded_interrupted_compute_seconds": null,
+    "total_timing_complete": false
   }
 }
