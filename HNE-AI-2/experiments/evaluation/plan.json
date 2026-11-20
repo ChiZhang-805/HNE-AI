@@ -14,7 +14,9 @@
   "research_question": "所有方法是否在同一估计对象上被公平评分，增益和不确定性是否支持论文主张？",
   "entry_points": [
     "scripts/export_guidance_tables.py",
-    "scripts/replay_local_baselines.py"
+    "scripts/replay_local_baselines.py",
+    "scripts/analyze_local_experiments.py",
+    "experiments/evaluation/reproduce_historical_baselines.py"
   ],
   "tasks": [
     {
@@ -46,7 +48,6 @@
   },
   "delivery_status": "Planning only; no execution or result completion is claimed by this publication.",
   "pending_local_entry_points": [
-    "scripts/analyze_local_experiments.py",
     "scripts/export_local_experiments.py",
     "scripts/review_local_outputs.py"
   ]

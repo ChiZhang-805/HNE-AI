@@ -96,18 +96,20 @@ Linux/macOS用`python3.13 -m venv .venv`及`.venv/bin/python`。依赖安装需�
 | 上述模型的报警回放 | 150组收据、issue_days、alerts、events | 固定验证阈值、未知结局日与静默期复核 |
 | XGBoost恢复 | 30个UBJSON模型及恢复收据，原joblib保留 | 按原选中参数恢复；原预测误差小于1e-6 |
 | 统计汇总 | 历史baseline/alarm汇总与分析、输出审查来源 | 私有复核；公开前由B按固定统计合同审阅 |
-| 正式共同M04/S、合法起点/掩码、排除与来源包 | 两库×五折×三种子共30组均未交付 | 不得用旧pilot或工程检查抵扣 |
-| 正式M10/M12/M13 | 未交付 | 等待对应共同M04/S；M13不在当前开发运行中 |
+| 正式共同M04/S、合法起点/掩码、排除与来源包 | 尚未生成正式30组，完成0/30 | A负责生产；不是GitHub漏上传，不得用旧pilot或工程检查抵扣 |
+| 正式M10/M12/M13 | 尚未生成匹配的正式30组 | A负责生产；M13不在当前开发运行中 |
 | 新教师与M04/M10/M12开发流程 | 仅Bris fold0 seed20261114，源侧开发运行 | 不是30组正式共同产物，不供正式外层拼表 |
 
-补充包按原实验路径组织，完整保留历史manifest、源码快照和故障恢复材料。`artifacts/baseline_handoff/audit.json`给出逐组文件索引与独立输入hash映射；`formal_availability.csv`逐项列出30组缺口；`B_CODEX_PROMPT.txt`是可转交的任务说明。**补充包包含历史外层标签与预测**；只用作已有开发队列的复核，不据此调节新模型，也不能声称这些队列首次开盲。
+补充包按原实验路径组织，完整保留历史manifest、源码快照和故障恢复材料。`artifacts/baseline_handoff/audit.json`给出逐组文件索引与独立输入hash映射；`formal_availability.csv`逐项列出30组缺口；`delivery_matrix.json`区分已具备、未生成、待B回传与待接收确认；`B_CODEX_PROMPT.txt`是可转交的任务说明。**补充包包含历史外层标签与预测**；只用作已有开发队列的复核，不据此调节新模型，也不能声称这些队列首次开盲。
+
+交接工具及历史分析脚本同步到`main`，A训练开发仍在`exp/teacher-condition`。私有包内也直接带有本轮所需脚本，B无需切换或覆盖自己的开发分支。包已生成和本机校验通过，仅表示“待接收验收”，不表示双方交接已经闭环。
 
 ### 配置与验收
 
 使用Python 3.11或以上标准库即可验收，无需torch、GPU或API。`--study-root`指向已验收的第二篇输入根目录（其下应有`data/`、`configs/daily_protocol.json`），不得指向第一篇。
 
 ```powershell
-# 从已发布的 exp/teacher-condition 分支取得该脚本；在 HNE-AI-2 中运行。
+# 使用 main 的脚本，或补充包独立解压目录中同路径的脚本。
 Get-FileHash '接收目录/HNE-AI-2-baseline-handoff.zip' -Algorithm SHA256
 python scripts/baseline_handoff.py verify --archive '接收目录/HNE-AI-2-baseline-handoff.zip' --study-root $env:HNE_STUDY_ROOT
 ```
@@ -123,7 +125,21 @@ python scripts/baseline_handoff.py verify --archive '接收目录/HNE-AI-2-basel
 3. 汇总定义见`results/local_experiments/analysis_manifest.json`：AUROC在折内按正负对数加权；AUPRC按阳性数；NLL/Brier/accuracy按起点数；先逐种子计算再取均值。人员bootstrap在原折内重采样，跨方法/种子配对，固定训练模型，不含重训不确定性。保留单类别折/人员不可计分情况。
 4. XGBoost确需推理时，采用`artifacts/local_model_recovery/.../estimator.ubj`及配套settings、恢复收据。旧joblib仅作为历史证据保留；不要重复触发已记录的本机原生反序列化崩溃。其他模型的依赖与源码以历史来源快照为准。
 
-现有150组基线使用全部合法训练起点、人员等权和六个固定候选，验证NLL选型。B自报CATCH/PatchTST各两轮、每人最多四窗口属于开发预算。可先复核完整性和评分器，但在统一并锁定训练/选型预算前，不把它们与历史全起点基线合为公平主表，不以外层成绩调参。
+### 精确复现历史bootstrap端点
+
+旧补充包的`artifacts/local_output_review/sources.zip`已含原分析脚本，但此前缺少直接运行入口。本轮显式提供`scripts/analyze_local_experiments.py`，其原始字节SHA-256为`70820a0d95c04787b2e00bcc02ff5c91248a0704ce68fcec6556bacf817bc74e`。不要直接运行其完整main，它还涉及本次交接范围外的旧条件头、教师分析与图片。
+
+使用新入口只复算本轮历史基线、人员内指标和报警汇总：
+
+```powershell
+python experiments/evaluation/reproduce_historical_baselines.py --artifact-root '私有接收目录/HNE-AI-2' --output '本机第二篇/results/experiments/evaluation/historical_baselines'
+```
+
+依赖为Python 3.13、numpy 2.5.3、pandas 3.0.6、scikit-learn 1.9.1、psutil 7.2.2及threadpoolctl 3.7.0；已有同环境时无需重装，也无需torch、GPU或API。入口从源码归档加载字节相同的原函数，保留人员排序、折内抽样、各折seed=`20261120+fold`、2000次重采样与跨方法/种子配对规则；只改变输入/输出根目录，不覆盖历史结果。
+
+A已实际复算，11个原输出文件均通过数值核验（绝对容差`1e-12`），耗时18.34秒。对应`results/experiments/evaluation/historical_baselines/reproduction.json`记录逐文件差异及环境。该目录同时提供`bootstrap_draws.npz`和`bootstrap_calls.json`：20个调用（两库×五折×两类统计），每次2000组抽样。NPZ中的`callNN_people`定义有序人员表，`callNN_indices`的第r行是第r次有放回抽取的人员下标；原始点估计单独计算，不是其中一次抽样。这些人员映射与抽样索引只放私有包。
+
+现有150组基线使用全部合法训练起点、人员等权和六个固定候选，验证NLL选型。B自报CATCH/PatchTST各两轮、每人最多四窗口属于开发预算。可先复核完整性和评分器，但在统一并锁定训练/选型预算前，不把它们与历史全起点基线合为公平主表，不以外层成绩调参。**60组独立基线评分不依赖A的M04/S**；它们当前等待的是B代码、准确运行键和远端登记核对。该项完成后，可以按已锁定的开发预算和标签访问顺序执行并如实标注；只有指导/融合比较需要等待A的共同模型。
 
 ### B代码交回：403的可行处理
 
@@ -147,6 +163,17 @@ Get-FileHash 'HNE-AI-2/packages/private-handoff/HNE-AI-2-evaluation-code.bundle'
 **创建bundle前，逐提交审阅上述提交范围和文件清单**，确保其中没有数据、权重、个人预测、校准、完整私有manifest或密钥；仅审查最终diff不足以排除历史中曾加入又删除的私有文件。若发现，停止公共推送，保留原分支，私下交接问题清单后准备只含安全代码的提交。bundle也只通过私有渠道传给A。若已存在同名bundle，先比较HEAD与SHA；同内容不重复生成，不覆盖尚未确认交付的旧文件。
 
 B同时交回：完整提交hash、脱敏的60条运行键/状态与检查点hash登记、51项测试报告、合成流程检查报告、固定配置与验证阈值选择规则；60个检查点/阈值张量及完整来源另做私有包。说明实际已写预测/已读标签状态。A收到后先在隔离工作树审查、验证，再整合登记；不覆盖双方运行中的源文件。
+
+### 接收验收回执
+
+B按下面六项回传后，才能将相应交付标为已验收；有失败时附具体文件/字段/差异，不笼统再索要整套材料。
+
+1. 实际收到的包名和SHA-256（同名补充包已更新，应使用本次校验值；原输入包不变）。
+2. `baseline_handoff.py verify`的完整结果。
+3. 历史复算`reproduction.json`，包括11文件核验和20组抽样索引核验。
+4. B代码的完整HEAD、bundle SHA或PR链接，以及60条脱敏运行登记所在文件。
+5. 真实外层预测是否已写入、标签是否已读取；保持事实状态。
+6. 剩余缺口按责任列出：A未生成的正式共同模型；B未回传的代码/登记；接收校验失败。不要把三类都称为“GitHub缺材料”。
 
 ## 私有文件与历史来源
 
