@@ -43,4 +43,6 @@ Windows长任务可用 `start_local.ps1 -PythonExecutable <authorized-python.exe
 
 已有开发运行可用 `run_logit_fusion.py` 单独计算 M13。原运行写完选中检查点后，为 `manifest.json`、`baseline/candidate0.pt` 和 `evidence_receipts.json` 计算 SHA-256。以文件相对路径为键，按 `json.dumps(hashes, sort_keys=True).encode()` 序列化，再算 SHA-256 得到运行配置摘要。登记新的 M13 运行键后，以 `--anchor-root` 指向原运行的项目根目录，提供 `--anchor-key`、`--expect-digest` 和 `--code-commit`。缓存尚在写入时可用 `--wait-for-features-seconds` 设置等待上限。该入口将完成的缓存摘要写入来源收据，并核对同源人员、起点及证据。
 
+加 `--hidden-ablation` 可在该冻结缓存上独立完成隐藏层融合同证据消融。对摘要计算的键值再加入 `experiment: matched_hidden_evidence`，登记 `ablation/.../matched_hidden_evidence/<digest>`。完整证据和仅历史投影分别重训同一个读出结构，共用初始化、训练顺序、六候选六轮预算及验证 NLL 选型。仅历史投影保留 H 的损失、残差、覆盖率及节点掩码，清除条件特征、边和摘要。这两组对照共享同一个已经训练好的小模型，检验条件特征的附加价值。逐起点预测和模型留在该消融运行的私有结果目录。
+
 在空闲设备上先运行 `python experiments/core/verify_stages.py --device cuda`，用公开原骨干和合成窗口验证四个阶段及检查点重载。CPU 检查已通过，CUDA 实际数值和耗时待验证。新 CUDA 开发运行用独立配置设置 `device: "cuda"`，沿用源侧分折和一条 CPU 线程，并在认领后执行 `run.py --config <cuda-config.json> --code-commit <source-commit>`。设备与配置进入来源记录，CUDA 运行重新训练其共同 M04，不能跨设备混用旧运行锚点。原有 CPU 运行按照其不可变源码和配置继续。

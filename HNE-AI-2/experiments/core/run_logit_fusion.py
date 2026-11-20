@@ -1,4 +1,4 @@
-"""Fit M13 against a finished source-only M04 and its cached features."""
+"""Fit output fusion or a paired hidden-fusion ablation on a frozen M04."""
 import argparse
 import csv
 from datetime import datetime, timezone
@@ -8,6 +8,7 @@ import json
 import os
 from pathlib import Path
 import re
+import sys
 import time
 import zipfile
 
@@ -17,6 +18,9 @@ import torch
 from run import (ROOT, load_people, metrics, paired_bootstrap, read_json, resource_check,
                  same_evidence, save_json, selected_origins, sha, train_stage)
 
+sys.path.insert(0, str(ROOT / 'experiments/ablation'))
+from history_evidence import history_only
+
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
@@ -25,6 +29,8 @@ def main():
     parser.add_argument('--expect-digest', required=True)
     parser.add_argument('--code-commit', required=True)
     parser.add_argument('--wait-for-features-seconds', type=int, default=0)
+    parser.add_argument('--hidden-ablation', action='store_true',
+                        help='Compare full evidence and an H-only projection in the same hidden readout')
     args = parser.parse_args()
     if not re.fullmatch(r'core/(BrisT1D-Open|RESILIENT)/fold[0-4]/seed\d+/M04_M10_M12/[a-f0-9]{16}', args.anchor_key):
         raise ValueError('Expected a registered M04/M10/M12 source-only anchor key')
@@ -36,14 +42,16 @@ def main():
     manifest = read_json(anchor / 'manifest.json')
     config = manifest['config']
     if config['include_evaluation'] or config['device'] != 'cpu':
-        raise ValueError('Cached M13 expects a source-only CPU anchor')
+        raise ValueError('Cached fusion expects a source-only CPU anchor')
     paths = {name: anchor / name for name in ('manifest.json', 'baseline/candidate0.pt',
                                               'evidence_receipts.json')}
     inputs = {name: sha(path) for name, path in paths.items()}
-    digest = hashlib.sha256(json.dumps(inputs, sort_keys=True).encode()).hexdigest()
+    identity = dict(inputs, experiment='matched_hidden_evidence') if args.hidden_ablation else inputs
+    digest = hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest()
     if digest != args.expect_digest:
         raise ValueError('Anchor artifacts differ from the registered input digest')
-    key = f"core/{config['dataset']}/fold{config['fold']}/seed{config['seed']}/M13/{digest[:16]}"
+    topic, method = ('ablation', 'matched_hidden_evidence') if args.hidden_ablation else ('core', 'M13')
+    key = f"{topic}/{config['dataset']}/fold{config['fold']}/seed{config['seed']}/{method}/{digest[:16]}"
     directory = args.anchor_root / 'artifacts/experiments' / key
     output = args.anchor_root / 'results/experiments' / key
     features = anchor / 'baseline_features.pt'
@@ -63,6 +71,9 @@ def main():
                       config_sha256=digest, protocol_sha256=manifest['protocol_sha256'], code_commit=args.code_commit,
                       source_sha256={p.name: sha(p) for p in (Path(__file__), Path(__file__).with_name('run.py'))},
                       scope='Matched source validation development with frozen M04; no outer evaluation')
+    if args.hidden_ablation:
+        provenance['evidence_views'] = ['full', 'history_only']
+        provenance['source_sha256']['history_evidence.py'] = sha(ROOT / 'experiments/ablation/history_evidence.py')
     directory.mkdir(parents=True, exist_ok=True)
     output.mkdir(parents=True, exist_ok=True)
     with (directory / 'execution.lock').open('a+b') as lock:
@@ -76,10 +87,35 @@ def main():
         execute(directory, output, anchor, paths, provenance, manifest)
 
 
+def fit_readout(mode, name, directory, items, config, base, inputs, log):
+    candidates = []
+    for candidate, (lr, decay) in enumerate(itertools.product(config['learning_rates'], config['weight_decays'])):
+        _, done, evaluate, restore = train_stage(mode, candidate, lr, decay, config, directory,
+                                                 items, None, None, log)
+        selected = evaluate(items['validation'])
+        restore(done['trained_state'])
+        always_on = evaluate(items['validation'])
+        if evaluate(items['validation'], True) != base:
+            raise ValueError(f'Disabled {name} diverges from the canonical M04')
+        candidates.append((done, selected, always_on))
+    sel = min(range(len(candidates)), key=lambda i: (candidates[i][0]['report']['selected_nll'], i))
+    on = min(range(len(candidates)), key=lambda i: (candidates[i][0]['report']['always_on_nll'], i))
+    checkpoint = directory / f'{name}.pt'
+    torch.save(dict(state=candidates[sel][0]['state'], trained_state=candidates[on][0]['trained_state'],
+                    selected_report=candidates[sel][0]['report'], always_on_report=candidates[on][0]['report'],
+                    base_checkpoint_sha256=inputs['baseline/candidate0.pt'],
+                    evidence_receipts_sha256=inputs['evidence_receipts.json']), checkpoint)
+    predictions = {f'{name}_selected': {'validation': candidates[sel][1]},
+                   f'{name}_always_on': {'validation': candidates[on][2]}}
+    report = dict(candidates=[c[0]['report'] for c in candidates], selected_candidate=sel, always_on_candidate=on,
+                  checkpoint_sha256=sha(checkpoint), off_exact=True)
+    return predictions, report
+
+
 def execute(directory, output, anchor, paths, provenance, manifest):
     provenance_path = directory / 'manifest.json'
     if provenance_path.exists() and read_json(provenance_path) != provenance:
-        raise ValueError('Existing M13 run has different provenance')
+        raise ValueError('Existing fusion run has different provenance')
     status = directory / 'status.json'
     if status.exists() and read_json(status)['status'] == 'completed':
         print(json.dumps(dict(status='completed', run_key=provenance['run_key'], reused=True)))
@@ -123,24 +159,22 @@ def execute(directory, output, anchor, paths, provenance, manifest):
         base = [dict(person=x['person'], origin=x['origin'], label=x['label'],
                      logit=x['baseline']['logit'].item(), probability=x['baseline']['logit'].reshape(1).sigmoid().item())
                 for x in items['validation']]
-        candidates = []
-        for candidate, (lr, decay) in enumerate(itertools.product(config['learning_rates'], config['weight_decays'])):
-            _, done, evaluate, restore = train_stage('logit_fusion', candidate, lr, decay, config, directory,
-                                                     items, None, None, log)
-            selected = evaluate(items['validation'])
-            restore(done['trained_state'])
-            always_on = evaluate(items['validation'])
-            if evaluate(items['validation'], True) != base:
-                raise ValueError('Disabled M13 diverges from the canonical M04')
-            candidates.append((done, selected, always_on))
-        sel = min(range(len(candidates)), key=lambda i: (candidates[i][0]['report']['selected_nll'], i))
-        on = min(range(len(candidates)), key=lambda i: (candidates[i][0]['report']['always_on_nll'], i))
-        torch.save(dict(state=candidates[sel][0]['state'], trained_state=candidates[on][0]['trained_state'],
-                        selected_report=candidates[sel][0]['report'], always_on_report=candidates[on][0]['report'],
-                        base_checkpoint_sha256=provenance['inputs']['baseline/candidate0.pt'],
-                        evidence_receipts_sha256=provenance['inputs']['evidence_receipts.json']), directory / 'M13.pt')
-        outputs = {'M04_C2_LoRA': {'validation': base}, 'M13_selected': {'validation': candidates[sel][1]},
-                   'M13_always_on': {'validation': candidates[on][2]}}
+        outputs = {'M04_C2_LoRA': {'validation': base}}
+        if 'evidence_views' in provenance:
+            reports = {}
+            for view in provenance['evidence_views']:
+                view_items = items
+                if view == 'history_only':
+                    view_items = {split: [dict(row, evidence=history_only(row['evidence'])) for row in rows]
+                                  for split, rows in items.items()}
+                predictions, reports[view] = fit_readout('fusion', f'M12_{view}', directory / view,
+                                                         view_items, config, base, provenance['inputs'], log)
+                outputs.update(predictions)
+            details = dict(evidence_views=reports, matched_readout_architecture=True)
+        else:
+            predictions, details = fit_readout('logit_fusion', 'M13', directory, items,
+                                               config, base, provenance['inputs'], log)
+            outputs.update(predictions)
         with (output / 'predictions.csv').open('w', newline='', encoding='utf-8') as stream:
             writer = csv.DictWriter(stream, fieldnames=['method', 'split', 'person', 'origin', 'label', 'logit', 'probability'])
             writer.writeheader()
@@ -149,12 +183,11 @@ def execute(directory, output, anchor, paths, provenance, manifest):
         save_json(output / 'paired.json', paired_bootstrap(outputs, config['seed'], config['bootstrap_repetitions']))
         result = dict(status='completed', run_key=provenance['run_key'], scope=provenance['scope'],
                       metrics={k: metrics(v['validation']) for k, v in outputs.items()},
-                      candidates=[c[0]['report'] for c in candidates], selected_candidate=sel, always_on_candidate=on,
-                      checkpoint_sha256=sha(directory / 'M13.pt'), seconds=time.perf_counter() - started,
-                      off_exact=True, train_origins=len(items['train']), validation_origins=len(base),
-                      anchor_inputs=provenance['inputs'], gpu_used=False)
+                      seconds=time.perf_counter() - started,
+                      train_origins=len(items['train']), validation_origins=len(base),
+                      anchor_inputs=provenance['inputs'], gpu_used=False, **details)
         if any(sha(path) != provenance['inputs'][name] for name, path in paths.items()):
-            raise ValueError('Anchor changed during M13 run')
+            raise ValueError('Anchor changed during fusion run')
         save_json(output / 'summary.json', result)
         save_json(status, dict(status='completed', seconds=result['seconds']))
         log('completed', run_key=provenance['run_key'], metrics=result['metrics'], seconds=result['seconds'])
