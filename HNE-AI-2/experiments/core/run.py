@@ -260,16 +260,17 @@ def main():
                 path = prefix_reference / name
                 packed, state, family, keep = item['source'].large_window(item['origin'])
                 fresh = capture_prefix(model, packed)
-                if path.exists():
-                    assert same_tensors(fresh, torch.load(path, weights_only=True)), 'Borrowed prefix mismatch'
-                else:
+                borrowed_exact = path.exists() and same_tensors(fresh, torch.load(path, weights_only=True))
+                rejected_hash = sha(path) if path.exists() and not borrowed_exact else None
+                if not borrowed_exact:
                     path = own_prefix / name
                     if path.exists():
                         assert same_tensors(fresh, torch.load(path, weights_only=True))
                     else:
                         torch.save(fresh, path)
                 item.update(prefix_path=path, state=state, family=family, keep=torch.from_numpy(keep))
-                prefix_receipts.append(dict(path=path.relative_to(ROOT).as_posix(), sha256=sha(path), exact_recompute=True))
+                prefix_receipts.append(dict(path=path.relative_to(ROOT).as_posix(), sha256=sha(path), exact_recompute=True,
+                                            borrowed_exact=borrowed_exact, rejected_historical_sha256=rejected_hash))
                 resource_check('cpu')
         save_json(directory / 'prefix_receipts.json', prefix_receipts)
         prefix_seconds = time.perf_counter() - prefix_start

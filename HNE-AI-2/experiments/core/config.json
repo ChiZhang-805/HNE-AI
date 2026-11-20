@@ -4,6 +4,7 @@
   "seed": 20261114,
   "teacher_run": "teacher/BrisT1D-Open/fold0/seed20261114/conditional_teacher/4747028ee324f3bc",
   "prefix_reference": "artifacts/key_comparison/cpu_pilot/BrisT1D-Open/fold0/seed20261114",
+  "prefix_policy": "reuse_only_exact_else_recompute",
   "train_origins_per_person": 8,
   "validation_origins_per_person": 0,
   "include_evaluation": false,
