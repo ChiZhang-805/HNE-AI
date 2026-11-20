@@ -27,7 +27,8 @@
     "src/train_comparison.py",
     "src/chronos_bridge.py",
     "src/fusion/evidence.py",
-    "scripts/verify_complete_interfaces.py"
+    "scripts/verify_complete_interfaces.py",
+    "experiments/core/verify_stages.py"
   ],
   "tasks": [
     {

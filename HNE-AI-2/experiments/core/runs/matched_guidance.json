@@ -26,9 +26,10 @@
     "threads": 1,
     "priority": "below_normal",
     "verified_at_utc": "2026-11-20T05:22:32.419668+00:00",
-    "last_verified_completed_epoch": 1,
+    "last_verified_completed_epoch": 4,
     "session_interruption_checkpoint_preserved": true,
     "unrecorded_interrupted_compute_seconds": null,
-    "total_timing_complete": false
+    "total_timing_complete": false,
+    "last_baseline_epoch_seconds": 384.1486253000003
   }
 }

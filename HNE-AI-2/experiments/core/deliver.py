@@ -61,6 +61,8 @@ def main():
     assert sha(base_path) == summary['base_checkpoint_sha256']
     assert sha(directory / 'evidence_receipts.json') == summary['evidence_receipts_sha256']
     paths = {'M04': base_path, 'M10': directory / 'M10.pt', 'M12': directory / 'M12.pt'}
+    if config.get('include_logit_fusion', False):
+        paths['M13'] = directory / 'M13.pt'
     checkpoint_hashes = {key: sha(path) for key, path in paths.items()}
     daily = {}
     clocks = {}
@@ -163,6 +165,7 @@ def main():
                 'Selected teacher checkpoints require src/conditional_teacher.py::teacher_from_checkpoint.\n'
                 'M04 is baseline/candidate0.pt; reuse this exact anchor for all dependent comparisons.\n'
                 'M10.pt and M12.pt contain state (selected) and trained_state (always-on), with reports identifying candidates/epochs.\n'
+                'If included, M13.pt uses the same node/edge evidence on the frozen M04 logit and has the same state/policy format.\n'
                 'M12 uses node/edge-only evidence: zero the extra summary via experiments/core/run.py::same_evidence.\n'
                 'forecast_records.csv supplies per-row policy, checkpoint/evidence hashes and time boundaries.\n'
                 'Source validation was used for model selection; these are development results, not independent tests.\n'

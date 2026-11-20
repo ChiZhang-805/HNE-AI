@@ -38,3 +38,7 @@
 `verify_batching.py --run-key <private-run-key>`???????????????????????`batching.py`????????????????????????????????
 
 Windows长任务可用 `start_local.ps1 -PythonExecutable <authorized-python.exe> -RunKey <claimed-key> -CodeCommit <runtime-source-commit>`启动隐藏后台进程。它核对配置、检查重复进程、固定低优先级单线程CPU，并把启动收据及标准输出保存在私有运行目录。必须同时核对实际工作进程和检查点更新时间，不能只相信status.json的running字样。首次日志字段冲突修复通过 `continue_run.py` 保留原manifest、源码、第一轮模型和优化器；剔除日志调用后的训练函数AST一致。后续会话中断的未记录计算成本保留为未知，不冒充完整总耗时。
+
+新开发运行可以在独立配置中设置 `include_logit_fusion: true`，让 M13 使用共同 M04 的 logit 和与 M10/M12 相同的节点、边和掩码。M13 使用同一组六候选、六轮预算和验证 NLL 选择规则，同时保留 selected 和 always-on。每种方法显式关闭时直接返回共同 M04 的冻结输出。冻结前后独立前向的最大 logit 误差另写入验证收据。
+
+在空闲设备上先运行 `python experiments/core/verify_stages.py --device cuda`，用公开原骨干和合成窗口验证四个阶段及检查点重载。CPU 检查已通过，CUDA 实际数值和耗时待验证。新 CUDA 开发运行用独立配置设置 `device: "cuda"`，沿用源侧分折和一条 CPU 线程，并在认领后执行 `run.py --config <cuda-config.json> --code-commit <source-commit>`。设备与配置进入来源记录，CUDA 运行重新训练其共同 M04，不能跨设备混用旧运行锚点。原有 CPU 运行按照其不可变源码和配置继续。

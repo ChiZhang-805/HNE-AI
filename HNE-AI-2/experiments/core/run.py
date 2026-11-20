@@ -1,4 +1,4 @@
-"""A-side matched M04/M10/M12 development training with six residual candidates.
+"""A-side matched development training with six candidates per residual method.
 
 Private artifacts are immutable by config/source/input provenance. The original
 trainer remains available; scientific kernels are imported from shared modules.
@@ -16,7 +16,6 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'src'))
-os.environ.setdefault('CUDA_VISIBLE_DEVICES', '')
 os.environ.setdefault('HF_HUB_OFFLINE', '1')
 import numpy as np
 import psutil
@@ -26,10 +25,12 @@ from conditional_teacher import teacher_from_checkpoint
 from training_data import load_people, selected_origins, SOURCE
 from train_evidence import calibrate_person, origin_evidence
 from train_backbone import load_backbone, capture_prefix, encoder_tail, read_event, adapter_state, load_adapter
-from train_comparison import save_json, sha, metrics, resource_check, paired_bootstrap
+from train_comparison import save_json, sha, metrics, resource_check, paired_bootstrap, to_device
 from precursor_guidance import EvidenceBias
 from pack_guidance import pack_bias
 from fusion.evidence import FullEvidenceFusion
+
+RESIDUAL_METHODS = {'guidance': 'M10', 'fusion': 'M12', 'logit_fusion': 'M13'}
 
 
 def read_json(path):
@@ -56,8 +57,14 @@ def same_evidence(evidence):
 
 
 def train_stage(mode, candidate, lr, decay, config, directory, items, model, head, log):
-    torch.manual_seed(config['seed'] + {'baseline': 0, 'guidance': 1, 'fusion': 2}[mode])
-    module = head if mode == 'baseline' else EvidenceBias() if mode == 'guidance' else FullEvidenceFusion('hidden')
+    device = config['device']
+    torch.manual_seed(config['seed'] + {'baseline': 0, 'guidance': 1, 'fusion': 2, 'logit_fusion': 3}[mode])
+    if mode == 'baseline':
+        module = head
+    elif mode == 'guidance':
+        module = EvidenceBias().to(device)
+    else:
+        module = FullEvidenceFusion({'fusion': 'hidden', 'logit_fusion': 'logit'}[mode]).to(device)
     groups = ([dict(params=[p for p in model.parameters() if p.requires_grad], lr=config['baseline_lora_lr']),
                dict(params=head.parameters(), lr=config['baseline_head_lr'])] if mode == 'baseline'
               else [dict(params=module.parameters(), lr=lr)])
@@ -78,15 +85,16 @@ def train_stage(mode, candidate, lr, decay, config, directory, items, model, hea
 
     def forward(item, off=False):
         if off:
-            return item['baseline']['logit'].reshape(1), torch.tensor(0.)
-        if mode == 'fusion':
+            return item['baseline']['logit'].reshape(1), torch.tensor(0., device=device)
+        if mode in ('fusion', 'logit_fusion'):
             base = item['baseline']
-            return module(base['logit'], base['feature'], item['evidence'], item['source'].family[0]), torch.tensor(0.)
-        cached = torch.load(item['prefix_path'], weights_only=True)
+            return module(base['logit'], base['feature'], to_device(item['evidence'], device),
+                          item['source'].family[0].to(device)), torch.tensor(0., device=device)
+        cached = to_device(torch.load(item['prefix_path'], weights_only=True, map_location='cpu'), device)
         tb = gb = None
-        penalty = torch.tensor(0.)
+        penalty = torch.tensor(0., device=device)
         if mode == 'guidance':
-            tb, gb, penalty = pack_bias(module, item['evidence'], cached, item['keep'])
+            tb, gb, penalty = pack_bias(module, to_device(item['evidence'], device), cached, item['keep'])
         hidden = encoder_tail(model, cached, tb, gb)
         return read_event(head, hidden, cached, item['state'], item['family'], config['dataset']), penalty
 
@@ -100,7 +108,7 @@ def train_stage(mode, candidate, lr, decay, config, directory, items, model, hea
             return output
 
     if target.exists():
-        done = torch.load(target, weights_only=False)
+        done = torch.load(target, weights_only=True, map_location='cpu')
         restore(done['state'])
         return module, done, evaluate, restore
     started = time.perf_counter()
@@ -114,7 +122,7 @@ def train_stage(mode, candidate, lr, decay, config, directory, items, model, hea
         best, best_state, best_epoch = metrics(initial)['nll'], snapshot(), 0
         curve.append(dict(epoch=0, validation=metrics(initial), seconds=0.))
     if resume.exists():
-        saved = torch.load(resume, weights_only=False)
+        saved = torch.load(resume, weights_only=True, map_location='cpu')
         restore(saved['state']); optimizer.load_state_dict(saved['optimizer'])
         curve, best, best_state, best_epoch, trained_best, trained_state, trained_epoch = (
             saved[k] for k in ('curve', 'best', 'best_state', 'best_epoch', 'trained_best', 'trained_state', 'trained_epoch'))
@@ -122,12 +130,12 @@ def train_stage(mode, candidate, lr, decay, config, directory, items, model, hea
     counts = {p: sum(r['person'] == p for r in items['train']) for p in {r['person'] for r in items['train']}}
     n_train = len(items['train'])
     for epoch in range(first_epoch, config['event_epochs'] + 1):
-        resource_check('cpu')
+        resource_check(device)
         epoch_start = time.perf_counter(); optimizer.zero_grad(set_to_none=True); losses = []
         for step, index in enumerate(np.random.default_rng(config['seed'] + epoch).permutation(n_train)):
             item = items['train'][index]
             z, penalty = forward(item)
-            loss = nn.functional.binary_cross_entropy_with_logits(z, torch.tensor([item['label']]))
+            loss = nn.functional.binary_cross_entropy_with_logits(z, torch.tensor([item['label']], device=device))
             loss = loss + config['guidance_penalty'] * penalty
             if not torch.isfinite(loss):
                 raise FloatingPointError('Nonfinite training loss')
@@ -136,7 +144,7 @@ def train_stage(mode, candidate, lr, decay, config, directory, items, model, hea
             (loss * weight / denom).backward(); losses.append(float(loss.detach()) * weight)
             if (step + 1) % config['effective_batch'] == 0 or step + 1 == n_train:
                 nn.utils.clip_grad_norm_(parameters, 1.); optimizer.step(); optimizer.zero_grad(set_to_none=True)
-                resource_check('cpu')
+                resource_check(device)
         validation = metrics(evaluate(items['validation']))
         curve.append(dict(epoch=epoch, validation=validation, train_loss=float(np.mean(losses)), seconds=time.perf_counter() - epoch_start))
         if validation['nll'] < trained_best:
@@ -163,16 +171,23 @@ def main():
     parser.add_argument('--code-commit', required=True)
     args = parser.parse_args()
     config = read_json(args.config)
-    if config['device'] != 'cpu' or config['threads'] != 1 or config['include_evaluation']:
-        raise ValueError('This development entry is CPU one thread and source-only')
+    device = config['device']
+    if device not in ('cpu', 'cuda') or config['threads'] != 1 or config['include_evaluation']:
+        raise ValueError('This development entry supports one host thread and source-only data')
     if config['event_epochs'] < 6 or config['fusion_evidence'] != 'node_edge_only':
         raise ValueError('Expected six or more training epochs and matched node/edge evidence')
     torch.set_num_threads(1); torch.set_num_interop_threads(1)
     if os.name == 'nt':
         psutil.Process().nice(psutil.BELOW_NORMAL_PRIORITY_CLASS)
-    resource_check('cpu')
+    resource_check(device)
+    if device == 'cuda' and not torch.cuda.is_available():
+        raise RuntimeError('CUDA requested but unavailable')
+    if device == 'cuda':
+        torch.backends.cuda.matmul.allow_tf32 = False
     digest = sha(args.config)
-    key = f"core/{config['dataset']}/fold{config['fold']}/seed{config['seed']}/M04_M10_M12/{digest[:16]}"
+    modes = ('guidance', 'fusion', 'logit_fusion') if config.get('include_logit_fusion', False) else ('guidance', 'fusion')
+    method_group = '_'.join(['M04', *(RESIDUAL_METHODS[mode] for mode in modes)])
+    key = f"core/{config['dataset']}/fold{config['fold']}/seed{config['seed']}/{method_group}/{digest[:16]}"
     directory = ROOT / 'artifacts/experiments' / key
     output = ROOT / 'results/experiments' / key
     directory.mkdir(parents=True, exist_ok=True); output.mkdir(parents=True, exist_ok=True)
@@ -194,6 +209,8 @@ def main():
                     source_sha256={p.relative_to(ROOT).as_posix(): sha(p) for p in sources},
                     teacher_selection_sha256=sha(teacher_root / 'selection.json'), selected_teachers=selection['selected'],
                     split_people={k: [p.person for p in v] for k, v in people.items()},
+                    runtime=(dict(torch=str(torch.__version__), cuda=torch.version.cuda,
+                                  gpu=torch.cuda.get_device_name(), tf32=False) if device == 'cuda' else None),
                     scope=config['scope'])
     assert manifest['protocol_sha256'] == teacher_manifest['protocol_sha256']
     prior_seconds = 0.
@@ -256,7 +273,7 @@ def main():
         evidence_seconds = time.perf_counter() - evidence_start
         del teachers
         torch.manual_seed(config['seed'])
-        model, head = load_backbone(SOURCE / 'tools/models/chronos-2')
+        model, head = load_backbone(SOURCE / 'tools/models/chronos-2', device)
         # Reuse only frozen pretrained prefixes, and recompute every one for exact
         # equality. Historical LoRA, teachers and event heads are never imported.
         prefix_start = time.perf_counter(); prefix_receipts = []
@@ -268,15 +285,16 @@ def main():
                 name = f"{item['person']}_{item['origin']}.pt"
                 path = prefix_reference / name
                 packed, state, family, keep = item['source'].large_window(item['origin'])
+                item.update(state=state.to(device), family=family.to(device), keep=torch.from_numpy(keep).to(device))
                 if name in previous_prefixes:
                     receipt = previous_prefixes[name]
                     path = ROOT / receipt['path']
                     assert receipt['exact_recompute'] and sha(path) == receipt['sha256']
-                    item.update(prefix_path=path, state=state, family=family, keep=torch.from_numpy(keep))
+                    item['prefix_path'] = path
                     prefix_receipts.append(receipt)
                     resource_check('cpu')
                     continue
-                fresh = capture_prefix(model, packed)
+                fresh = capture_prefix(model, to_device(packed, device))
                 borrowed_exact = path.exists() and same_tensors(fresh, torch.load(path, weights_only=True))
                 rejected_hash = sha(path) if path.exists() and not borrowed_exact else None
                 if not borrowed_exact:
@@ -285,7 +303,7 @@ def main():
                         assert same_tensors(fresh, torch.load(path, weights_only=True))
                     else:
                         torch.save(fresh, path)
-                item.update(prefix_path=path, state=state, family=family, keep=torch.from_numpy(keep))
+                item['prefix_path'] = path
                 prefix_receipts.append(dict(path=path.relative_to(ROOT).as_posix(), sha256=sha(path), exact_recompute=True,
                                             borrowed_exact=borrowed_exact, rejected_historical_sha256=rejected_hash))
                 resource_check('cpu')
@@ -294,7 +312,7 @@ def main():
         log('data_ready', counts={k: len(v) for k, v in items.items()}, evidence_seconds=evidence_seconds, prefix_seconds=prefix_seconds)
         module, base, evaluate, _ = train_stage('baseline', 0, config['baseline_head_lr'], config['baseline_weight_decay'],
                                                config, directory, items, model, head, log)
-        outputs = {'M04_C2_LoRA': {'validation': evaluate(items['validation'])}}
+        unfrozen = evaluate(items['validation'])
         model.requires_grad_(False); head.requires_grad_(False)
         model.zero_grad(set_to_none=True); head.zero_grad(set_to_none=True)
         frozen = dict(lora=adapter_state(model), head=copied_state(head))
@@ -302,28 +320,46 @@ def main():
         with torch.no_grad():
             for rows in items.values():
                 for item in rows:
-                    cached = torch.load(item['prefix_path'], weights_only=True)
+                    cached = to_device(torch.load(item['prefix_path'], weights_only=True, map_location='cpu'), device)
                     z, feature = read_event(head, encoder_tail(model, cached), cached, item['state'], item['family'], config['dataset'], True)
                     item['baseline'] = dict(logit=z[0], feature=feature[0])
-        torch.save({f"{x['person']}/{x['origin']}": x['baseline'] for rows in items.values() for x in rows}, directory / 'baseline_features.pt')
+        torch.save({f"{x['person']}/{x['origin']}": to_device(x['baseline'], 'cpu')
+                    for rows in items.values() for x in rows}, directory / 'baseline_features.pt')
+        # Predictions and the disabled residual paths must use one canonical
+        # anchor. A separate pre-freeze forward can differ by floating-point
+        # rounding, even with unchanged weights and dropout disabled.
+        anchor = [dict(person=item['person'], origin=item['origin'], label=item['label'],
+                       logit=float(item['baseline']['logit'].item()),
+                       probability=float(item['baseline']['logit'].reshape(1).sigmoid().item()))
+                  for item in items['validation']]
+        original = np.asarray([row['logit'] for row in unfrozen])
+        canonical = np.asarray([row['logit'] for row in anchor])
+        if not np.allclose(original, canonical, atol=2e-6, rtol=2e-5):
+            raise RuntimeError('Frozen M04 inference differs from the selected checkpoint')
+        outputs = {'M04_C2_LoRA': {'validation': anchor}}
         feature_seconds = time.perf_counter() - feature_start
-        method_reports, verification = {'M04': base['report']}, dict(prefix_exact_count=len(prefix_receipts), same_evidence_summary_zero=True)
-        for mode, method in [('guidance', 'M10'), ('fusion', 'M12')]:
+        method_reports, verification = {'M04': base['report']}, dict(
+            prefix_exact_count=len(prefix_receipts), same_evidence_summary_zero=True,
+            baseline_reforward_logit_max_abs_error=float(np.abs(canonical - original).max()),
+            baseline_predictions_use_frozen_feature_logits=True)
+        for mode in modes:
+            resource_check(device)
+            method = RESIDUAL_METHODS[mode]
             candidates = []
             for candidate, (lr, decay) in enumerate(itertools.product(config['learning_rates'], config['weight_decays'])):
                 module, done, evaluate, restore = train_stage(mode, candidate, lr, decay, config, directory, items, model, head, log)
                 selected = evaluate(items['validation'])
                 restore(done['trained_state']); always_on = evaluate(items['validation'])
                 off = evaluate(items['validation'], True)
-                assert all(a['logit'] == b['logit'] for a, b in zip(off, outputs['M04_C2_LoRA']['validation']))
+                assert off == anchor, 'Explicit off differs from the canonical M04 records'
                 changes = np.asarray([a['logit'] - b['logit'] for a, b in zip(always_on, off)])
                 done['report']['intervention'] = dict(mean_abs_logit_change=float(np.abs(changes).mean()),
                                                       max_abs_logit_change=float(np.abs(changes).max()))
                 if mode == 'guidance':
                     example = items['validation'][0]
-                    cached = torch.load(example['prefix_path'], weights_only=True)
+                    cached = to_device(torch.load(example['prefix_path'], weights_only=True, map_location='cpu'), device)
                     with torch.no_grad():
-                        tb, gb, _ = pack_bias(module, example['evidence'], cached, example['keep'])
+                        tb, gb, _ = pack_bias(module, to_device(example['evidence'], device), cached, example['keep'])
                         hidden_delta = encoder_tail(model, cached, tb, gb) - encoder_tail(model, cached)
                     done['report']['intervention'].update(time_bias_max=float(tb.abs().max()),
                                                          group_bias_max=float(gb.abs().max()),
@@ -360,7 +396,8 @@ def main():
                       current_invocation_seconds=time.perf_counter() - started, prior_invocation_seconds=prior_seconds,
                       evidence_seconds=evidence_seconds, prefix_verify_seconds=prefix_seconds, feature_seconds=feature_seconds,
                       metrics={name: metrics(splits['validation']) for name, splits in outputs.items()},
-                      reports=method_reports, verification=verification, gpu_used=False,
+                      reports=method_reports, verification=verification, gpu_used=device == 'cuda',
+                      peak_cuda_memory_allocated_bytes=torch.cuda.max_memory_allocated() if device == 'cuda' else None,
                       base_checkpoint_sha256=sha(directory / 'baseline/candidate0.pt'),
                       evidence_receipts_sha256=sha(directory / 'evidence_receipts.json'),
                       peak_rss_bytes=getattr(psutil.Process().memory_info(), 'peak_wset', psutil.Process().memory_info().rss))
