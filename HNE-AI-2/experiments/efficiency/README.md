@@ -27,3 +27,7 @@
 实验包：DATA, BACKBONE, ONLINE。资源：CPU for preparation and bounded checks; full refits require measured capacity, dedicated GPU recommended where appropriate; no mandatory API。
 
 详见[机器计划](plan.json)、[两人分工](../../docs/collaboration.md)、[接口合同](../../docs/interfaces.md)。认领记录放`runs/`；私有产物路径见`plan.json`。本次仅建立计划，不新增实验完成声明。
+
+## 独占设备计时准备
+
+`python experiments/efficiency/benchmark_backbone.py --device cpu --repetitions 3` 使用原始公开骨干和合成张量，测量前缀、M04/M10前后向及M12缓存特征更新。CPU路径已检查；CUDA路径尚未实测。独占CUDA设备就绪后显式指定 `--device cuda --model-path <public-model-directory>`，脚本会拒绝占用中的GPU。它不租用设备，不读取或上传人员数据，也不代表完整多折训练已迁移。单次合成计时不能代替完整研究的成本实测。

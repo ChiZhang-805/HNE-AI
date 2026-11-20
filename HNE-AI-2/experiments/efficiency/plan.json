@@ -15,7 +15,8 @@
   ],
   "research_question": "性能需要多少人员和计算；扩展骨干或在线更新是否改变结论？",
   "entry_points": [
-    "scripts/benchmark_key_comparison.py"
+    "scripts/benchmark_key_comparison.py",
+    "experiments/efficiency/benchmark_backbone.py"
   ],
   "tasks": [
     {
