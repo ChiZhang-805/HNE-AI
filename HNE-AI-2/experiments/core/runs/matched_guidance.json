@@ -6,7 +6,14 @@
   "config_sha256": "1d619a1a30802af36d7ad0b949c8d25e808037b356f75cb8644a28940cf14c36",
   "protocol_sha256": "3d58b3089a3e7d25a442ec8aa78638c509fc03fcf2af901e1cfbe2b5ab17607c",
   "shared_inputs_verified": true,
-  "summary": null,
+  "summary": {
+    "development_M04_completed": true,
+    "baseline_epochs_completed": 6,
+    "baseline_selected_epoch": 3,
+    "baseline_recorded_training_validation_seconds": 3670.088667799999,
+    "development_validation_nll": 0.16195331524402973,
+    "formal_core_units_completed": 0
+  },
   "elapsed_seconds": null,
   "private_artifact_reference": "artifacts/experiments/core/BrisT1D-Open/fold0/seed20261114/M04_M10_M12/1d619a1a30802af3",
   "note": "CPU one thread; source-only development. One fresh common M04 and six candidates each for internal guidance and node/edge-only hidden fusion. No formal core units completed by this claim.",
@@ -26,11 +33,11 @@
     "threads": 1,
     "priority": "below_normal",
     "verified_at_utc": "2026-11-20T05:22:32.419668+00:00",
-    "last_verified_completed_epoch": 5,
+    "last_verified_completed_epoch": 6,
     "session_interruption_checkpoint_preserved": true,
     "unrecorded_interrupted_compute_seconds": null,
     "total_timing_complete": false,
-    "last_baseline_epoch_seconds": 517.3916935000016,
+    "last_baseline_epoch_seconds": 725.4374709000003,
     "source_validation_anchor_spot_check_windows": 9,
     "source_validation_anchor_spot_check_max_logit_error": 0.0,
     "synthetic_stage_checks": {
@@ -44,5 +51,6 @@
       ],
       "cuda_training_verified": false
     }
-  }
+  },
+  "base_checkpoint_sha256": "996c2aef33414f72323fbb6e43cbb21c45a1dcf1efb13b53e9636ce0d4ec5668"
 }
