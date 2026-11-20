@@ -1,0 +1,13 @@
+{
+  "run_key": "teacher/BrisT1D-Open/fold0/seed20261114/shared_calibration/866bf62faa46d1f5",
+  "owner": "A",
+  "status": "claimed",
+  "code_commit": "2902469215c4be91ebbf3ac33b806f5899974b59",
+  "config_sha256": "866bf62faa46d1f57837cd8d94b5c3ec60e707ab1cee17c5e4c97cdecec98822",
+  "protocol_sha256": "3d58b3089a3e7d25a442ec8aa78638c509fc03fcf2af901e1cfbe2b5ab17607c",
+  "shared_inputs_verified": true,
+  "summary": null,
+  "elapsed_seconds": null,
+  "private_artifact_reference": "artifacts/experiments/teacher/BrisT1D-Open/fold0/seed20261114/shared_calibration/866bf62faa46d1f5",
+  "note": "Post-audit source-only fixed-teacher control with shared H personal adapter. No model selection or core evidence change. No event labels, GPU or API."
+}
